@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anime Checklist</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background-color: #2c2c2c;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .btn:hover {
+      background-color: #3d3d3d;
+    }
+    .year-label {
+      grid-column: span 1;
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr repeat(12, 1fr);
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .cell {
+      background-color: #1e1e1e;
+      color: #fff;
+      border: none;
+      padding: 10px 6px;
+      font-size: 12px;
+      text-align: center;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .green { background-color: #4caf50; }
+    .orange { background-color: #ff9800; }
+    .red { background-color: #f44336; }
+  </style>
+</head>
+<body>
+  <h1>Anime Checklist</h1>
+
+  <div id="counterBox" style="
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #222;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 24px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.7);
+  user-select: none;
+  z-index: 1000;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: 0;
+">
+  Watched: <span id="countWatched">0</span> |
+  Partial: <span id="countPartial">0</span> |
+  Dropped: <span id="countDropped">0</span> |
+  Total: <span id="countTotal">0</span>
+</div>
+
+
+<div class="controls">
+    <button class="btn" onclick="saveStateToFile()">Export</button>
+    <input type="file" id="loadFileInput" style="display:none" accept=".json" onchange="loadStateFromFile(event)" />
+    <button class="btn" onclick="document.getElementById('loadFileInput').click()">Import</button>
+    <label style="color: white">Language:</label>
+    <select class="btn" id="languageSelect" onchange="handleLanguageChange()">
+      <option value="romanji">Romanji</option>
+      <option value="english">English</option>
+      <option value="japanese">Japanese</option>
+    </select>
+    <select class="btn" id="filterDropdown" onchange="filterState(this.value)">
+      <option value="all">Show All</option>
+      <option value="green">Show Green</option>
+      <option value="orange">Show Orange</option>
+      <option value="red">Show Red</option>
+    </select>
+
+    <button class="btn" id="togglePopularity" onclick="setDataSource('popularity')">Popularity</button>
+    <button class="btn" id="toggleScore" onclick="setDataSource('score')">Score</button>
+    <label style="color: white">From:</label>
+    <select id="startYearSelect" class="btn" onchange="handleYearRangeChange()"></select>
+
+    <label style="color: white">To:</label>
+    <select id="endYearSelect" class="btn" onchange="handleYearRangeChange()"></select>
+  <button class="btn" onclick="captureGrid()">Download PNG</button>
+  <button class="btn" onclick="clearBoard()">Clear Board</button>
+</div>
+
+  <div id="container"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    const STATES = ["", "green", "orange", "red"];
+    const YEAR_MIN = 1979;
+    const YEAR_MAX = 2024;
+    let languageMode = 'romanji';
+    let dataSource = 'popularity';
+
+    function handleLanguageChange() {
+        const select = document.getElementById("languageSelect");
+        languageMode = select.value;
+        buildGrid();
+    }
+    function populateYearDropdowns() {
+        const startSelect = document.getElementById("startYearSelect");
+        const endSelect = document.getElementById("endYearSelect");
+
+        for (let y = YEAR_MIN; y <= YEAR_MAX; y++) {
+            const option1 = new Option(y, y);
+            const option2 = new Option(y, y);
+            startSelect.appendChild(option1);
+            endSelect.appendChild(option2);
+        }
+        startSelect.value = YEAR_MIN;
+        endSelect.value = YEAR_MAX;
+    }
+    function clearBoard() {
+        const cells = document.querySelectorAll(".cell");
+        cells.forEach(cell => {
+            const current = parseInt(cell.dataset.state);
+            if (STATES[current]) cell.classList.remove(STATES[current]);
+            cell.dataset.state = "0";
+        });
+
+        // Reset backgrounds
+        document.querySelectorAll(".year-label").forEach(label => {
+            label.style.backgroundColor = "#333";
+        });
+        updateCounter();
+    }
+    function parseCSVLine(line) {
+        const regex = /(?:\"([^\"]*)\")|([^,]+)/g;
+        const result = [];
+        let match;
+        while ((match = regex.exec(line))) {
+            result.push(match[1] || match[2]);
+        }
+        return result;
+    }
+
+    function setDataSource(source) {
+        dataSource = source;
+
+        // Update toggle button styles to show active
+        document.getElementById('togglePopularity').style.backgroundColor = source === 'popularity' ? '#4caf50' : '#2c2c2c';
+        document.getElementById('toggleScore').style.backgroundColor = source === 'score' ? '#4caf50' : '#2c2c2c';
+
+        // Clear container and rebuild grid with new data source
+        const container = document.getElementById("container");
+        container.innerHTML = '';
+        buildGrid();
+    }
+
+    function handleYearRangeChange() {
+        const start = parseInt(document.getElementById("startYearSelect").value);
+        const end = parseInt(document.getElementById("endYearSelect").value);
+
+        if (start > end) {
+            alert("Start year must be less than or equal to end year.");
+            return;
+        }
+        buildGrid();
+    }
+
+
+    // Update fetchCSV to use dataSource for path
+    async function fetchCSV(year) {
+        let path = dataSource === 'popularity'
+        ? `output/anime_popularity_${year}.csv`
+        : `output/anime_score_${year}.csv`;
+
+        try {
+            const response = await fetch(path);
+            if (!response.ok) return [];
+
+            const text = await response.text();
+            const lines = text.trim().split('\n');
+            const headers = parseCSVLine(lines[0]);
+
+            const jpIndex = headers.indexOf("title_japanese");
+            const enIndex = headers.indexOf("title_english");
+            const roIndex = headers.indexOf("title"); // romanji
+
+            const rows = lines.slice(1).map(line => {
+                const parsed = parseCSVLine(line);
+                return {
+                    en: parsed[enIndex],
+                    jp: parsed[jpIndex],
+                    ro: parsed[roIndex]
+                };
+            });
+
+            return rows.slice(0, 12); // only top 12
+        } catch {
+            return [];
+        }
+    }
+
+
+    // On page load, highlight the default toggle
+    window.onload = () => {
+        populateYearDropdowns();
+        setDataSource(dataSource);
+        buildGrid();
+    };
+
+    async function buildGrid() {
+        const container = document.getElementById("container");
+        container.innerHTML = "";
+
+        const startYear = parseInt(document.getElementById("startYearSelect").value);
+        const endYear = parseInt(document.getElementById("endYearSelect").value);
+
+        for (let year = startYear; year <= endYear; year++) {
+            const row = document.createElement("div");
+            row.className = "grid";
+            row.dataset.year = year;
+
+            const label = document.createElement("div");
+            label.className = "year-label";
+            label.textContent = year;
+            row.appendChild(label);
+
+            const titles = await fetchCSV(year);
+
+            for (let i = 0; i < 12; i++) {
+                const cell = document.createElement("div");
+                cell.className = "cell";
+                const show = titles[i];
+                cell.textContent = show
+                    ? (languageMode === 'english' ? show.en :
+                       languageMode === 'japanese' ? show.jp : show.ro)
+                : `#${i + 1}`;
+                cell.dataset.state = "0";
+
+                cell.addEventListener("click", () => {
+                    let current = parseInt(cell.dataset.state);
+                    let next = (current + 1) % STATES.length;
+                    if (STATES[current]) cell.classList.remove(STATES[current]);
+                    if (STATES[next]) cell.classList.add(STATES[next]);
+                    cell.dataset.state = next;
+                    updateCounter(); // update counts on each click
+                    saveState();
+                });
+
+                row.appendChild(cell);
+            }
+
+            container.appendChild(row);
+        }
+        updateCounter();
+        loadState()
+    }
+
+    function saveState() {
+      const stateKey = `animeGridState_${dataSource}`;
+      const currentState = JSON.parse(localStorage.getItem(stateKey) || "{}");
+
+      document.querySelectorAll(".grid").forEach(row => {
+        const year = row.dataset.year;
+        const cells = row.querySelectorAll(".cell");
+        const yearState = Array.from(cells).map(cell => cell.dataset.state);
+        currentState[year] = yearState;
+      });
+
+      localStorage.setItem(stateKey, JSON.stringify(currentState));
+    }
+    function loadState() {
+      const stateKey = `animeGridState_${dataSource}`;
+      const saved = JSON.parse(localStorage.getItem(stateKey) || "{}");
+
+      document.querySelectorAll(".grid").forEach(row => {
+        const year = row.dataset.year;
+        const state = saved[year] || [];
+        const cells = row.querySelectorAll(".cell");
+
+        cells.forEach((cell, index) => {
+          const current = parseInt(cell.dataset.state);
+          if (STATES[current]) cell.classList.remove(STATES[current]);
+          const newState = parseInt(state[index] || 0);
+          if (STATES[newState]) cell.classList.add(STATES[newState]);
+          cell.dataset.state = newState;
+        });
+      });
+
+      updateCounter();
+    }
+
+    function filterState(filter) {
+        const cells = document.querySelectorAll(".cell");
+        cells.forEach(cell => {
+            const state = STATES[parseInt(cell.dataset.state)];
+            if (filter === 'all' || state === filter) {
+                cell.style.display = '';
+            } else {
+                cell.style.display = 'none';
+            }
+        });
+    }
+
+    function saveStateToFile() {
+        const cells = document.querySelectorAll(".cell");
+        const state = Array.from(cells).map(cell => cell.dataset.state);
+        const blob = new Blob([JSON.stringify(state)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "animeGridState.json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+
+    function loadStateFromFile(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = e => {
+            try {
+                const state = JSON.parse(e.target.result);
+                const cells = document.querySelectorAll(".cell");
+                cells.forEach((cell, index) => {
+                    const current = parseInt(cell.dataset.state);
+                    if (STATES[current]) cell.classList.remove(STATES[current]);
+                    const newState = parseInt(state[index] || 0);
+                    if (STATES[newState]) cell.classList.add(STATES[newState]);
+                    cell.dataset.state = newState;
+                });
+                alert("Grid state loaded from file!");
+                updateCounter();
+            } catch (err) {
+                alert("Failed to load state: invalid file.");
+            }
+        };
+        reader.readAsText(file);
+
+        // Reset the input so same file can be selected again if needed
+        event.target.value = "";
+    }
+
+    function captureGrid() {
+        html2canvas(document.getElementById("container"), { backgroundColor: '#121212' }).then(canvas => {
+            const link = document.createElement("a");
+            link.download = "anime_grid.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    }
+
+    function updateCounter() {
+        const cells = document.querySelectorAll(".cell");
+        let watched = 0, partial = 0, dropped = 0;
+
+        cells.forEach(cell => {
+            const state = cell.dataset.state;
+            if (state === "1") watched++; // green
+            else if (state === "2") partial++; // orange
+            else if (state === "3") dropped++; // red
+        });
+
+        const total = cells.length;
+
+        document.getElementById("countWatched").textContent = watched;
+        document.getElementById("countPartial").textContent = partial;
+        document.getElementById("countDropped").textContent = dropped;
+        document.getElementById("countTotal").textContent = total;
+
+        document.querySelectorAll(".grid").forEach(row => {
+            const cells = row.querySelectorAll(".cell");
+            const label = row.querySelector(".year-label");
+
+            const allGreen = Array.from(cells).every(cell => cell.dataset.state === "1");
+            label.style.backgroundColor = allGreen ? "#4caf50" : "#333";
+        });
+    }
+  </script>
+</body>
+</html>

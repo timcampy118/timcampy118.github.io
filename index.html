@@ -160,6 +160,10 @@
     <select id="endYearSelect" class="btn" onchange="handleYearRangeChange()"></select>
   <button class="btn" onclick="captureGrid()">Download PNG</button>
   <button class="btn" onclick="clearBoard()">Clear Board</button>
+<div style="color: #bbb; font-size: 12px; text-align: center; margin-top: 10px;">
+Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.<br />
+<em>Note:</em> Downloading the PNG may take several seconds, especially with images on.
+</div>
 </div>
 
   <div id="container"></div>
@@ -523,6 +527,20 @@ document.addEventListener('mousemove', (e) => {
         const fullPage = document.getElementById("fullPage");
         const counterBox = document.getElementById("counterBox");
 
+          const warning = document.createElement("div");
+          warning.textContent = "Generating image... this may take a few seconds if images are on.";
+          warning.style.position = "fixed";
+          warning.style.top = "10px";
+          warning.style.left = "50%";
+          warning.style.transform = "translateX(-50%)";
+          warning.style.backgroundColor = "#222";
+          warning.style.color = "#fff";
+          warning.style.padding = "8px 16px";
+          warning.style.borderRadius = "6px";
+          warning.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
+          warning.style.zIndex = "10000";
+          document.body.appendChild(warning);
+
         const restoreSelects = swapSelectsForSpans();
 
         const prevPosition = counterBox.style.position;
@@ -540,6 +558,8 @@ document.addEventListener('mousemove', (e) => {
 
             counterBox.style.position = prevPosition;
             restoreSelects();
+
+            document.body.removeChild(warning);
         });
     }
 
@@ -605,7 +625,6 @@ document.addEventListener('mousemove', (e) => {
             const label = row.querySelector(".year-label");
 
             const allGreen = Array.from(cells).every(cell => cell.dataset.state === "1");
-            const anyPlanned = Array.from(cells).some(cell => cell.dataset.state === "4");
 
             if (allGreen) {
               label.style.backgroundColor = "#4caf50";

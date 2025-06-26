@@ -154,18 +154,27 @@
         endSelect.value = YEAR_MAX;
     }
     function clearBoard() {
-        const cells = document.querySelectorAll(".cell");
-        cells.forEach(cell => {
-            const current = parseInt(cell.dataset.state);
-            if (STATES[current]) cell.classList.remove(STATES[current]);
-            cell.dataset.state = "0";
-        });
+      const cells = document.querySelectorAll(".cell");
+      cells.forEach(cell => {
+        const current = parseInt(cell.dataset.state);
+        if (STATES[current]) cell.classList.remove(STATES[current]);
+        cell.dataset.state = "0";
+      });
 
-        // Reset backgrounds
-        document.querySelectorAll(".year-label").forEach(label => {
-            label.style.backgroundColor = "#333";
-        });
-        updateCounter();
+      // Clear the saved grid state for the current data source from localStorage
+      localStorage.removeItem(`animeGridState_${dataSource}`);
+
+      // Clear the cached grid state in memory for current source
+      if (gridStateCache[dataSource]) {
+        gridStateCache[dataSource] = {};
+      }
+
+      // Reset year label backgrounds
+      document.querySelectorAll(".year-label").forEach(label => {
+        label.style.backgroundColor = "#333";
+      });
+
+      updateCounter();
     }
     function parseCSVLine(line) {
         const regex = /(?:\"([^\"]*)\")|([^,]+)/g;

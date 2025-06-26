@@ -1,26 +1,23 @@
-rank,title,title_english,title_japanese,type,members,score,year
-7,Jujutsu Kaisen,Jujutsu Kaisen,呪術廻戦,TV,2824209,8.55,2020
-10,Golden Kamuy 3rd Season,Golden Kamuy Season 3,ゴールデンカムイ,TV,187247,8.43,2020
-11,Tian Guan Cifu,Heaven Official's Blessing,天官賜福,ONA,165761,8.41,2020
-12,Josee to Tora to Sakana-tachi,"Josee, the Tiger and the Fish",ジョゼと虎と魚たち,Movie,487863,8.38,2020
-16,Gotcha!,Gotcha!,GOTCHA!,Music,30451,8.31,2020
-17,MILGЯAM,MILGRAM,ミルグラム,Music,12196,8.23,2020
-18,Great Pretender,Great Pretender,GREAT PRETENDER,TV,715806,8.2,2020
-22,Yuukoku no Moriarty,Moriarty the Patriot,憂国のモリアーティ,TV,482330,8.17,2020
-24,Eizouken ni wa Te wo Dasu na!,Keep Your Hands Off Eizouken!,映像研には手を出すな!,TV,357099,8.13,2020
-28,Dorohedoro,Dorohedoro,ドロヘドロ,TV,599309,8.05,2020
-29,Tunshi Xingkong,Swallowed Star,吞噬星空,ONA,11129,8.05,2020
-32,Kakushigoto,Kakushigoto,かくしごと,TV,345272,7.97,2020
-33,Wan Sheng Jie,All Saints Street,万聖街,ONA,31178,7.97,2020
-34,Maoujou de Oyasumi,Sleepy Princess in the Demon Castle,魔王城でおやすみ,TV,236219,7.95,2020
-35,Yi Nian Yong Heng,A Will Eternal,一念永恒,ONA,21064,7.94,2020
-38,Wu Shan Wu Xing (2020),Fog Hill of Five Elements,雾山五行,ONA,69803,7.86,2020
-39,Tonikaku Kawaii,Tonikawa: Over The Moon For You,トニカクカワイイ,TV,800559,7.85,2020
-42,Jibaku Shounen Hanako-kun,Toilet-Bound Hanako-kun,地縛少年花子くん,TV,655446,7.82,2020
-43,Umibe no Étranger,The Stranger by the Shore,海辺のエトランゼ,Movie,206385,7.82,2020
-44,Id:Invaded,ID: INVADED,ID:INVADED イド:インヴェイデッド,TV,411744,7.81,2020
-45,Somali to Mori no Kamisama,Somali and the Forest Spirit,ソマリと森の神様,TV,308006,7.81,2020
-46,Haikyuu!! (OVA),Haikyuu!! (OVA),ハイキュー!!,OVA,35007,7.81,2020
-47,Shingeki no Kyojin: Chronicle,Attack on Titan: Chronicle,進撃の巨人 〜クロニクル〜,Movie,94565,7.81,2020
-48,Ane wa Yanmama Junyuu-chuu,Ane wa Yanmama Junyuu-chuu,義姉はヤンママ授乳中,OVA,31567,7.78,2020
-49,Inochi no Tabekata,How to Eat Life,いのちの食べ方,Music,6176,7.78,2020
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+7,Jujutsu Kaisen,Jujutsu Kaisen,呪術廻戦,TV,2824209,8.55,2020,https://cdn.myanimelist.net/images/anime/1171/109222.jpg
+11,Tian Guan Cifu,Heaven Official's Blessing,天官賜福,ONA,165761,8.41,2020,https://cdn.myanimelist.net/images/anime/1319/109301.jpg
+12,Josee to Tora to Sakana-tachi,"Josee, the Tiger and the Fish",ジョゼと虎と魚たち,Movie,487863,8.38,2020,https://cdn.myanimelist.net/images/anime/1714/108892.jpg
+18,Great Pretender,Great Pretender,GREAT PRETENDER,TV,715806,8.2,2020,https://cdn.myanimelist.net/images/anime/1418/107954.jpg
+24,Eizouken ni wa Te wo Dasu na!,Keep Your Hands Off Eizouken!,映像研には手を出すな!,TV,357099,8.13,2020,https://cdn.myanimelist.net/images/anime/1680/110451.jpg
+28,Dorohedoro,Dorohedoro,ドロヘドロ,TV,599309,8.05,2020,https://cdn.myanimelist.net/images/anime/1230/119278.jpg
+29,Tunshi Xingkong,Swallowed Star,吞噬星空,ONA,11129,8.05,2020,
+32,Kakushigoto,Kakushigoto,かくしごと,TV,345272,7.97,2020,https://cdn.myanimelist.net/images/anime/1048/128385.jpg
+33,Wan Sheng Jie,All Saints Street,万聖街,ONA,31178,7.97,2020,
+34,Maoujou de Oyasumi,Sleepy Princess in the Demon Castle,魔王城でおやすみ,TV,236219,7.95,2020,https://cdn.myanimelist.net/images/anime/1448/108514.jpg
+35,Yi Nian Yong Heng,A Will Eternal,一念永恒,ONA,21064,7.94,2020,
+38,Wu Shan Wu Xing (2020),Fog Hill of Five Elements,雾山五行,ONA,69803,7.86,2020,
+39,Tonikaku Kawaii,Tonikawa: Over The Moon For You,トニカクカワイイ,TV,800559,7.85,2020,https://cdn.myanimelist.net/images/anime/1613/108722.jpg
+42,Jibaku Shounen Hanako-kun,Toilet-Bound Hanako-kun,地縛少年花子くん,TV,655446,7.82,2020,https://cdn.myanimelist.net/images/anime/1050/111687.jpg
+43,Umibe no Étranger,The Stranger by the Shore,海辺のエトランゼ,Movie,206385,7.82,2020,https://cdn.myanimelist.net/images/anime/1668/108792.jpg
+44,Id:Invaded,ID: INVADED,ID:INVADED イド:インヴェイデッド,TV,411744,7.81,2020,https://cdn.myanimelist.net/images/anime/1889/105337.jpg
+45,Somali to Mori no Kamisama,Somali and the Forest Spirit,ソマリと森の神様,TV,308006,7.81,2020,https://cdn.myanimelist.net/images/anime/1938/102796.jpg
+46,Haikyuu!! (OVA),Haikyuu!! (OVA),ハイキュー!!,OVA,35007,7.81,2020,
+47,Shingeki no Kyojin: Chronicle,Attack on Titan: Chronicle,進撃の巨人 〜クロニクル〜,Movie,94565,7.81,2020,https://cdn.myanimelist.net/images/anime/1786/110717.jpg
+48,Ane wa Yanmama Junyuu-chuu,Ane wa Yanmama Junyuu-chuu,義姉はヤンママ授乳中,OVA,31567,7.78,2020,
+49,Inochi no Tabekata,How to Eat Life,いのちの食べ方,Music,6176,7.78,2020,
+50,Aggressive Retsuko (ONA) 3rd Season,Aggretsuko (ONA) 3rd Season,アグレッシブ烈子第3期,ONA,95876,7.78,2020,https://cdn.myanimelist.net/images/anime/1049/108692.jpg

@@ -1,45 +1,47 @@
-rank,title,title_english,title_japanese,type,members,score,year
-1,Kidou Senshi Gundam,Mobile Suit Gundam,機動戦士ガンダム,TV,144298,7.76,1979
-3,Versailles no Bara,The Rose of Versailles,ベルサイユのばら,TV,108621,8.35,1979
-5,Akage no Anne,Anne of Green Gables,赤毛のアン,TV,50332,7.84,1979
-6,Ginga Tetsudou 999 (Movie),Galaxy Express 999,銀河鉄道９９９,Movie,22455,7.54,1979
-7,Cyborg 009 (1979),Cyborg 009,サイボーグ009,TV,12197,7.15,1979
-8,Hana no Ko Lunlun,Flower Angel,花の子ルンルン,TV,6786,6.88,1979
-9,Alps no Shoujo Heidi (1979),The Story of Heidi,アルプスの少女ハイジ (1979),Movie,6135,6.97,1979
-10,Ace wo Nerae! (1979),Aim for the Ace!: The Movie,エースをねらえ！,Movie,5407,6.91,1979
-11,Tatsu no Ko Tarou,Taro the Dragon Boy,龍の子太郎,Movie,4760,6.75,1979
-13,The☆Ultraman,The☆Ultraman,ザ☆ウルトラマン,TV,4131,6.46,1979
-14,Mirai Shounen Conan (Movie),Future Boy Conan Movie,未来少年コナン (1979),Movie,3325,7.0,1979
-16,Kataku,House of Flames,火宅,Movie,2855,6.09,1979
-17,Uchuu Kuubo Blue Noah,Space Carrier Blue Noah,宇宙空母ブルーノア,TV,2591,6.49,1979
-18,Mirai Robo Daltanias,Future Robo Daltanius,未来ロボ ダルタニアス,TV,2352,6.68,1979
-19,Kaitei Choutokkyuu: Marine Express,Undersea Super Train: Marine Express,海底超特急　マリン・エクスプレス,Special,2350,6.16,1979
-20,Manga Sarutobi Sasuke,Ninja the Wonder Boy,まんが猿飛佐助,TV,2349,6.79,1979
-21,Entaku no Kishi Monogatari: Moero Arthur,Entaku no Kishi Monogatari: Moero Arthur,円卓の騎士物語　燃えろアーサー,TV,2338,6.37,1979
-22,Ginga Tetsudou 999: Kimi wa Senshi no You ni Ikirareru ka?,Galaxy Express 999: Can You Live Like A Warrior?,銀河鉄道９９９　君は戦士のように生きられるか！？,TV Special,2307,6.45,1979
-23,Tanpen Unico: Kuroi Kumo to Shiroi Hane,Unico: Black Cloud White Feather,短編ユニコ 黒い雲と白い羽,OVA,2302,6.22,1979
-24,Sasurai no Shoujo Nell,Nell the Wandering Girl,さすらいの少女ネル,TV,2285,6.37,1979
-25,Seton Doubutsuki: Risu no Banner,Bannertail: The Story of Gray Squirrel,シートン動物記　りすのバナ,TV,2264,6.66,1979
-26,Toushi Gordian,Gordian Warrior,闘士ゴーディアン,TV,1703,6.32,1979
-27,Paris no Isabelle,Paris no Isabelle,巴里のイザベル,TV,1586,5.61,1979
-28,Time Bokan Series: Zenderman,Time Bokan Series: Zenderman,タイムボカンシリーズ　ゼンダマン,TV,1563,5.85,1979
-29,Animation Kikou: Marco Polo no Bouken,Marco Polo's Adventures,アニメーション紀行 マルコ・ポーロの冒険,TV,1557,6.17,1979
-30,Golden Batman,Black Star and the Golden Bat,검은별과 황금박쥐,Movie,1536,4.2,1979
-31,Kinpatsu no Jeanie,Kinpatsu no Jeanie,金髪のジェニー,TV,1453,5.96,1979
-32,Uju Heukgisa,Captain of Cosmos,우주 흑기사,Movie,1400,3.52,1979
-33,Nezha Nao Hai,Nezha Conquers The Dragon King,哪吒鬧海,Movie,1349,6.42,1979
-34,Nobara no Julie,Julie the Wild Rose,野ばらのジュリー,TV,1338,6.01,1979
-35,Doraemon: Benkyou Heya no Tsuribori,Doraemon: Benkyou Heya no Tsuribori,ドラえもん 勉強部屋のつりぼり,Special,1326,6.18,1979
-36,Hoshi no Orpheus,Winds of Change,星のオルフェウス,Movie,1306,5.25,1979
-37,Jean Valjean Monogatari,Jean Valjean Monogatari,ジャン・バルジャン物語,TV Special,1266,6.14,1979
-38,Kurumiwari Ningyou,Nutcracker Fantasy,くるみ割り人形,Movie,1265,6.22,1979
-39,Tondemo Nezumi Daikatsuyaku,The Legend of Manxmouse,トンデモネズミ大活躍,TV Special,1244,5.83,1979
-40,Anne no Nikki: Anne Frank Monogatari,Anne no Nikki: Anne Frank Monogatari,アンネの日記　アンネ・フランク物語,TV Special,1221,6.15,1979
-41,Umi no Triton (1979),Triton of the Sea (1979),海のトリトン (1979),Movie,1177,6.08,1979
-42,Ashinaga Ojisan,Daddy Long-Legs,あしながおじさん,TV Special,1153,5.6,1979
-43,Kaitou Lupin: 813 no Nazo,Kaitou Lupin: 813 no Nazo,怪盗ルパン 813の謎,TV Special,1151,6.29,1979
-44,Daikyouryuu Jidai,Daikyouryuu Jidai,大恐竜時代,TV Special,1132,5.62,1979
-46,Koguma no Misha,Koguma no Misha,こぐまのミーシャ,TV,1037,6.11,1979
-47,Comics,Comics,コミックス,Movie,1008,4.26,1979
-48,Kagaku Bouken-tai Tansar 5,Kagaku Bouken-tai Tansar 5,科学冒険隊タンサー5,TV,993,6.11,1979
-49,SF Saiyuuki Starzinger (Movie),SF Saiyuuki Starzinger (Movie),ＳＦ西遊記 スタージンガー,Movie,942,5.47,1979
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,Kidou Senshi Gundam,Mobile Suit Gundam,機動戦士ガンダム,TV,144298,7.76,1979,https://cdn.myanimelist.net/images/anime/5/88524.jpg
+3,Versailles no Bara,The Rose of Versailles,ベルサイユのばら,TV,108621,8.35,1979,https://cdn.myanimelist.net/images/anime/9/57043.jpg
+4,Doraemon (1979),Doraemon,ドラえもん,TV,69173,7.87,1979,https://cdn.myanimelist.net/images/anime/3/3953.jpg
+5,Akage no Anne,Anne of Green Gables,赤毛のアン,TV,50332,7.84,1979,https://cdn.myanimelist.net/images/anime/1365/115824.jpg
+6,Ginga Tetsudou 999 (Movie),Galaxy Express 999,銀河鉄道９９９,Movie,22455,7.54,1979,https://cdn.myanimelist.net/images/anime/3/50505.jpg
+7,Cyborg 009 (1979),Cyborg 009,サイボーグ009,TV,12197,7.15,1979,https://cdn.myanimelist.net/images/anime/12/56741.jpg
+8,Hana no Ko Lunlun,Flower Angel,花の子ルンルン,TV,6786,6.88,1979,https://cdn.myanimelist.net/images/anime/3/16095.jpg
+9,Alps no Shoujo Heidi (1979),The Story of Heidi,アルプスの少女ハイジ (1979),Movie,6135,6.97,1979,https://cdn.myanimelist.net/images/anime/6/26447.jpg
+10,Ace wo Nerae! (1979),Aim for the Ace!: The Movie,エースをねらえ！,Movie,5407,6.91,1979,https://cdn.myanimelist.net/images/anime/1249/142309.jpg
+11,Tatsu no Ko Tarou,Taro the Dragon Boy,龍の子太郎,Movie,4760,6.75,1979,https://cdn.myanimelist.net/images/anime/1874/112893.jpg
+13,The☆Ultraman,The☆Ultraman,ザ☆ウルトラマン,TV,4131,6.46,1979,https://cdn.myanimelist.net/images/anime/10/61901.jpg
+16,Kataku,House of Flames,火宅,Movie,2855,6.09,1979,https://cdn.myanimelist.net/images/anime/7/81216.jpg
+17,Uchuu Kuubo Blue Noah,Space Carrier Blue Noah,宇宙空母ブルーノア,TV,2591,6.49,1979,https://cdn.myanimelist.net/images/anime/2/27147.jpg
+18,Mirai Robo Daltanias,Future Robo Daltanius,未来ロボ ダルタニアス,TV,2352,6.68,1979,https://cdn.myanimelist.net/images/anime/12/52299.jpg
+19,Kaitei Choutokkyuu: Marine Express,Undersea Super Train: Marine Express,海底超特急　マリン・エクスプレス,Special,2350,6.16,1979,https://cdn.myanimelist.net/images/anime/1664/147714.jpg
+20,Manga Sarutobi Sasuke,Ninja the Wonder Boy,まんが猿飛佐助,TV,2349,6.79,1979,https://cdn.myanimelist.net/images/anime/11/57257.jpg
+21,Entaku no Kishi Monogatari: Moero Arthur,Entaku no Kishi Monogatari: Moero Arthur,円卓の騎士物語　燃えろアーサー,TV,2338,6.37,1979,https://cdn.myanimelist.net/images/anime/9/7757.jpg
+22,Ginga Tetsudou 999: Kimi wa Senshi no You ni Ikirareru ka?,Galaxy Express 999: Can You Live Like A Warrior?,銀河鉄道９９９　君は戦士のように生きられるか！？,TV Special,2307,6.45,1979,https://cdn.myanimelist.net/images/anime/6/15482.jpg
+23,Tanpen Unico: Kuroi Kumo to Shiroi Hane,Unico: Black Cloud White Feather,短編ユニコ 黒い雲と白い羽,OVA,2302,6.22,1979,https://cdn.myanimelist.net/images/anime/1470/111870.jpg
+24,Sasurai no Shoujo Nell,Nell the Wandering Girl,さすらいの少女ネル,TV,2285,6.37,1979,https://cdn.myanimelist.net/images/anime/1496/101490.jpg
+25,Seton Doubutsuki: Risu no Banner,Bannertail: The Story of Gray Squirrel,シートン動物記　りすのバナ,TV,2264,6.66,1979,https://cdn.myanimelist.net/images/anime/11/78448.jpg
+26,Toushi Gordian,Gordian Warrior,闘士ゴーディアン,TV,1703,6.32,1979,https://cdn.myanimelist.net/images/anime/1898/110642.jpg
+27,Paris no Isabelle,Paris no Isabelle,巴里のイザベル,TV,1586,5.61,1979,https://cdn.myanimelist.net/images/anime/7/64331.jpg
+28,Time Bokan Series: Zenderman,Time Bokan Series: Zenderman,タイムボカンシリーズ　ゼンダマン,TV,1563,5.85,1979,https://cdn.myanimelist.net/images/anime/1695/133611.jpg
+29,Animation Kikou: Marco Polo no Bouken,Marco Polo's Adventures,アニメーション紀行 マルコ・ポーロの冒険,TV,1557,6.17,1979,https://cdn.myanimelist.net/images/anime/13/12829.jpg
+30,Golden Batman,Black Star and the Golden Bat,검은별과 황금박쥐,Movie,1536,4.2,1979,https://cdn.myanimelist.net/images/anime/10/45142.jpg
+31,Kinpatsu no Jeanie,Kinpatsu no Jeanie,金髪のジェニー,TV,1453,5.96,1979,https://cdn.myanimelist.net/images/anime/11/58201.jpg
+32,Uju Heukgisa,Captain of Cosmos,우주 흑기사,Movie,1400,3.52,1979,https://cdn.myanimelist.net/images/anime/1478/140148.jpg
+33,Nezha Nao Hai,Nezha Conquers The Dragon King,哪吒鬧海,Movie,1349,6.42,1979,https://cdn.myanimelist.net/images/anime/1217/112853.jpg
+34,Nobara no Julie,Julie the Wild Rose,野ばらのジュリー,TV,1338,6.01,1979,https://cdn.myanimelist.net/images/anime/3/24215.jpg
+35,Doraemon: Benkyou Heya no Tsuribori,Doraemon: Benkyou Heya no Tsuribori,ドラえもん 勉強部屋のつりぼり,Special,1326,6.18,1979,https://cdn.myanimelist.net/images/anime/2/88815.jpg
+36,Hoshi no Orpheus,Winds of Change,星のオルフェウス,Movie,1306,5.25,1979,https://cdn.myanimelist.net/images/anime/13/78891.jpg
+37,Jean Valjean Monogatari,Jean Valjean Monogatari,ジャン・バルジャン物語,TV Special,1266,6.14,1979,https://cdn.myanimelist.net/images/anime/10/30211.jpg
+38,Kurumiwari Ningyou,Nutcracker Fantasy,くるみ割り人形,Movie,1265,6.22,1979,https://cdn.myanimelist.net/images/anime/13/17651.jpg
+39,Tondemo Nezumi Daikatsuyaku,The Legend of Manxmouse,トンデモネズミ大活躍,TV Special,1244,5.83,1979,https://cdn.myanimelist.net/images/anime/10/58039.jpg
+40,Anne no Nikki: Anne Frank Monogatari,Anne no Nikki: Anne Frank Monogatari,アンネの日記　アンネ・フランク物語,TV Special,1221,6.15,1979,https://cdn.myanimelist.net/images/anime/1344/134341.jpg
+41,Umi no Triton (1979),Triton of the Sea (1979),海のトリトン (1979),Movie,1177,6.08,1979,https://cdn.myanimelist.net/images/anime/13/59675.jpg
+42,Ashinaga Ojisan,Daddy Long-Legs,あしながおじさん,TV Special,1153,5.6,1979,https://cdn.myanimelist.net/images/anime/1408/138512.jpg
+43,Kaitou Lupin: 813 no Nazo,Kaitou Lupin: 813 no Nazo,怪盗ルパン 813の謎,TV Special,1151,6.29,1979,https://cdn.myanimelist.net/images/anime/1759/148685.jpg
+44,Daikyouryuu Jidai,Daikyouryuu Jidai,大恐竜時代,TV Special,1132,5.62,1979,https://cdn.myanimelist.net/images/anime/1725/112721.jpg
+45,Shin Kyojin no Hoshi II,Shin Kyojin no Hoshi II,新巨人の星II,TV,1076,6.22,1979,https://cdn.myanimelist.net/images/anime/1344/91228.jpg
+46,Koguma no Misha,Koguma no Misha,こぐまのミーシャ,TV,1037,6.11,1979,https://cdn.myanimelist.net/images/anime/3/71237.jpg
+47,Comics,Comics,コミックス,Movie,1008,4.26,1979,https://cdn.myanimelist.net/images/anime/13/72721.jpg
+48,Kagaku Bouken-tai Tansar 5,Kagaku Bouken-tai Tansar 5,科学冒険隊タンサー5,TV,993,6.11,1979,https://cdn.myanimelist.net/images/anime/1548/96339.jpg
+49,SF Saiyuuki Starzinger (Movie),SF Saiyuuki Starzinger (Movie),ＳＦ西遊記 スタージンガー,Movie,942,5.47,1979,https://cdn.myanimelist.net/images/anime/2/45833.jpg
+50,Yakyuukyou no Uta: Kita no Ookami Minami no Tora,Yakyuukyou no Uta: Kita no Ookami Minami no Tora,野球狂の詩 北の狼南の虎,Movie,907,6.07,1979,https://cdn.myanimelist.net/images/anime/9/29016.jpg

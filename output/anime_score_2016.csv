@@ -1,29 +1,27 @@
-rank,title,title_english,title_japanese,type,members,score,year
-1,Koe no Katachi,A Silent Voice,聲の形,Movie,2491434,8.93,2016
-2,Kimi no Na wa.,Your Name.,君の名は。,Movie,2908561,8.83,2016
-6,Shouwa Genroku Rakugo Shinjuu,Showa Genroku Rakugo Shinju,昭和元禄落語心中,TV,305570,8.55,2016
-8,Mob Psycho 100,Mob Psycho 100,モブサイコ100,TV,2218956,8.49,2016
-10,Saiki Kusuo no Ψ-nan,The Disastrous Life of Saiki K.,斉木楠雄のΨ難,TV,1190521,8.41,2016
-12,3-gatsu no Lion,March Comes In Like a Lion,3月のライオン,TV,712049,8.37,2016
-13,Kizumonogatari I: Tekketsu-hen,Kizumonogatari Part 1: Iron-Blooded,傷物語〈Ⅰ鉄血篇〉,Movie,560704,8.36,2016
-15,Shelter (Music),Shelter,シェルター,Music,326018,8.31,2016
-16,Boku dake ga Inai Machi,Erased,僕だけがいない街,TV,2210155,8.3,2016
-17,Doukyuusei,Doukyusei: Classmates,同級生,Movie,285642,8.27,2016
-18,Re:Zero kara Hajimeru Isekai Seikatsu,Re:ZERO -Starting Life in Another World-,Re:ゼロから始める異世界生活,TV,2350712,8.24,2016
-19,Meitantei Conan: Episode One - Chiisaku Natta Meitantei,Detective Conan: Episode One - The Great Detective Turned Small,名探偵コナン エピソードONE 小さくなった名探偵,TV Special,33566,8.24,2016
-21,Kono Sekai no Katasumi ni,In This Corner of the World,この世界の片隅に,Movie,201128,8.22,2016
-23,Bungou Stray Dogs 2nd Season,Bungo Stray Dogs 2,文豪ストレイドッグス,TV,922013,8.17,2016
-27,Kono Subarashii Sekai ni Shukufuku wo!,KonoSuba: God's Blessing on This Wonderful World!,この素晴らしい世界に祝福を！,TV,2076638,8.09,2016
-28,Mahoutsukai no Yome: Hoshi Matsu Hito,The Ancient Magus' Bride: Those Awaiting a Star,魔法使いの嫁 星待つひと,OVA,293234,8.09,2016
-33,Akagami no Shirayuki-hime 2nd Season,Snow White with the Red Hair 2,赤髪の白雪姫,TV,379218,7.97,2016
-34,Violet Evergarden CMs,Violet Evergarden CMs,ヴァイオレット・エヴァーガーデン,CM,9878,7.96,2016
-35,ReLIFE,ReLIFE,ReLIFE,TV,1099742,7.96,2016
-36,Kidou Senshi Gundam Thunderbolt: December Sky,Mobile Suit Gundam Thunderbolt: December Sky,機動戦士ガンダム サンダーボルト DECEMBER SKY,Movie,27333,7.94,2016
-37,Yuri!!! on Ice,Yuri!!! On Ice,ユーリ!!! on ICE,TV,926296,7.9,2016
-38,Ushio to Tora (TV) 2nd Season,Ushio & Tora (2016),うしおととら,TV,138200,7.88,2016
-39,Drifters,Drifters,DRIFTERS,TV,599999,7.88,2016
-43,Boku no Hero Academia,My Hero Academia,僕のヒーローアカデミア,TV,3180380,7.84,2016
-44,Magi: Sinbad no Bouken (TV),Magi: Adventure of Sinbad,マギ シンドバッドの冒険,TV,504514,7.83,2016
-47,91 Days,91 Days,91Days,TV,766800,7.82,2016
-48,Bungou Stray Dogs,Bungo Stray Dogs,文豪ストレイドッグス,TV,1495970,7.81,2016
-49,Tanaka-kun wa Itsumo Kedaruge,Tanaka-kun is Always Listless,田中くんはいつもけだるげ,TV,499300,7.81,2016
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,Koe no Katachi,A Silent Voice,聲の形,Movie,2491434,8.93,2016,https://cdn.myanimelist.net/images/anime/1122/96435.jpg
+2,Kimi no Na wa.,Your Name.,君の名は。,Movie,2908561,8.83,2016,https://cdn.myanimelist.net/images/anime/5/87048.jpg
+6,Shouwa Genroku Rakugo Shinjuu,Showa Genroku Rakugo Shinju,昭和元禄落語心中,TV,305570,8.55,2016,https://cdn.myanimelist.net/images/anime/1354/124768.jpg
+8,Mob Psycho 100,Mob Psycho 100,モブサイコ100,TV,2218956,8.49,2016,https://cdn.myanimelist.net/images/anime/8/80356.jpg
+10,Saiki Kusuo no Ψ-nan,The Disastrous Life of Saiki K.,斉木楠雄のΨ難,TV,1190521,8.41,2016,https://cdn.myanimelist.net/images/anime/1973/142750.jpg
+12,3-gatsu no Lion,March Comes In Like a Lion,3月のライオン,TV,712049,8.37,2016,https://cdn.myanimelist.net/images/anime/3/82899.jpg
+16,Boku dake ga Inai Machi,Erased,僕だけがいない街,TV,2210155,8.3,2016,https://cdn.myanimelist.net/images/anime/10/77957.jpg
+17,Doukyuusei,Doukyusei: Classmates,同級生,Movie,285642,8.27,2016,https://cdn.myanimelist.net/images/anime/3/78606.jpg
+18,Re:Zero kara Hajimeru Isekai Seikatsu,Re:ZERO -Starting Life in Another World-,Re:ゼロから始める異世界生活,TV,2350712,8.24,2016,https://cdn.myanimelist.net/images/anime/1522/128039.jpg
+21,Kono Sekai no Katasumi ni,In This Corner of the World,この世界の片隅に,Movie,201128,8.22,2016,https://cdn.myanimelist.net/images/anime/2/87704.jpg
+27,Kono Subarashii Sekai ni Shukufuku wo!,KonoSuba: God's Blessing on This Wonderful World!,この素晴らしい世界に祝福を！,TV,2076638,8.09,2016,https://cdn.myanimelist.net/images/anime/1895/142748.jpg
+35,ReLIFE,ReLIFE,ReLIFE,TV,1099742,7.96,2016,https://cdn.myanimelist.net/images/anime/3/82149.jpg
+37,Yuri!!! on Ice,Yuri!!! On Ice,ユーリ!!! on ICE,TV,926296,7.9,2016,https://cdn.myanimelist.net/images/anime/6/81149.jpg
+38,Ushio to Tora (TV) 2nd Season,Ushio & Tora (2016),うしおととら,TV,138200,7.88,2016,https://cdn.myanimelist.net/images/anime/1092/117404.jpg
+39,Drifters,Drifters,DRIFTERS,TV,599999,7.88,2016,https://cdn.myanimelist.net/images/anime/10/80271.jpg
+40,New Initial D Movie: Legend 3 - Mugen,Initial D Legend 3: Dream,新劇場版　頭文字［イニシャル］D Legend3 -夢現-,Movie,30994,7.87,2016,
+41,One Piece Film: Gold,One Piece Film: Gold,ONE PIECE FILM GOLD,Movie,239496,7.87,2016,https://cdn.myanimelist.net/images/anime/1081/137690.jpg
+42,Non Non Biyori Repeat: Hotaru ga Tanoshinda,Non Non Biyori Repeat: Hotaru Had Fun,のんのんびより りぴーと 蛍が楽しんだ,OVA,52476,7.87,2016,
+43,Boku no Hero Academia,My Hero Academia,僕のヒーローアカデミア,TV,3180380,7.84,2016,https://cdn.myanimelist.net/images/anime/10/78745.jpg
+44,Magi: Sinbad no Bouken (TV),Magi: Adventure of Sinbad,マギ シンドバッドの冒険,TV,504514,7.83,2016,https://cdn.myanimelist.net/images/anime/10/78783.jpg
+45,Kono Subarashii Sekai ni Shukufuku wo!: Kono Subarashii Choker ni Shukufuku wo!,KonoSuba: God's Blessing on This Wonderful World! - God's Blessing on This Wonderful Choker!,この素晴らしい世界に祝福を！ 第11話 この素晴らしいチヨーカーに祝福を！,OVA,430967,7.83,2016,https://cdn.myanimelist.net/images/anime/1649/98516.jpg
+46,Kuroko no Basket Movie 3: Winter Cup - Tobira no Mukou,Winter Cup Highlights Episode 3 – Winter Cup Highlights -Crossing the Door-,劇場版「黒子のバスケ」ウインターカップ総集編～扉の向こう～,Movie,58555,7.83,2016,
+47,91 Days,91 Days,91Days,TV,766800,7.82,2016,https://cdn.myanimelist.net/images/anime/13/80515.jpg
+48,Bungou Stray Dogs,Bungo Stray Dogs,文豪ストレイドッグス,TV,1495970,7.81,2016,https://cdn.myanimelist.net/images/anime/3/79409.jpg
+49,Tanaka-kun wa Itsumo Kedaruge,Tanaka-kun is Always Listless,田中くんはいつもけだるげ,TV,499300,7.81,2016,https://cdn.myanimelist.net/images/anime/1189/111994.jpg
+50,Planetarian: Hoshi no Hito,Planetarian: Storyteller of the Stars,planetarian～星の人～,Movie,52222,7.8,2016,

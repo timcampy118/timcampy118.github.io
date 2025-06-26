@@ -1,31 +1,43 @@
-rank,title,title_english,title_japanese,type,members,score,year
-1,FLCL,FLCL,フリクリ,OVA,867455,8.04,2000
-2,InuYasha,InuYasha,犬夜叉,TV,835873,7.87,2000
-3,Hajime no Ippo,Fighting Spirit,はじめの一歩 THE FIGHTING!,TV,654346,8.78,2000
-5,Love Hina,Love Hina,ラブひな,TV,275741,7.09,2000
-6,Gakkou no Kaidan,Ghost Stories,学校の怪談,TV,238368,7.75,2000
-9,Jin-Rou,Jin-Roh: The Wolf Brigade,人狼 JIN-ROH,Movie,196183,7.78,2000
-12,Boogiepop wa Warawanai,Boogiepop Phantom,ブギーポップは笑わない Boogiepop Phantom,TV,146499,7.15,2000
-13,Gravitation,Gravitation,グラビテーション,TV,123963,6.9,2000
-15,Blood: The Last Vampire,Blood: The Last Vampire,BLOOD THE LAST VAMPIRE (ブラッド ザ ラスト ヴァンパイア),Movie,117368,6.87,2000
-17,Vandread,Vandread,ヴァンドレッド,TV,88237,7.15,2000
-18,JoJo no Kimyou na Bouken: Adventure,JoJo's Bizarre Adventure (OVA),ジョジョの奇妙な冒険 ADVENTURE,OVA,86348,7.25,2000
-20,Escaflowne,Escaflowne: A Girl in Gaea,エスカフローネ,Movie,76106,7.05,2000
-22,Ayashi no Ceres,"Ceres, Celestial Legend",妖しのセレス,TV,64952,7.17,2000
-23,Tottoko Hamtarou,Hamtaro,とっとこハム太郎,TV,63312,7.01,2000
-25,Yami no Matsuei,Descendants of Darkness,闇の末裔,TV,57961,7.01,2000
-26,Gensoumaden Saiyuuki,Saiyuki,幻想魔伝 最遊記,TV,57820,7.54,2000
-27,Tenshi Kinryouku,Angel Sanctuary,天使禁猟区,OVA,51361,6.24,2000
-31,NieA Under 7,NieA Under 7,ニア アンダーセブン,TV,41305,6.85,2000
-33,Mezzo Forte,Mezzo Forte,メゾフォルテ,OVA,36564,6.62,2000
-34,Azumanga Web Daiou,Azumanga Web Daioh,あずまんがWEB大王,ONA,36148,6.72,2000
-37,Hand Maid May,Hand Maid May,HAND MAID メイ,TV,32077,6.68,2000
-38,Argento Soma,Argento Soma,アルジェント ソーマ,TV,29752,6.74,2000
-39,Sakura Taisen,Sakura Wars TV,サクラ大戦,TV,29149,6.84,2000
-40,Daa! Daa! Daa!,Daa! Daa! Daa!,だぁ! だぁ! だぁ!,TV,27177,7.64,2000
-41,Amon: Devilman Mokushiroku,Amon: Apocalypse of Devilman,AMON デビルマン黙示録,OVA,27147,6.49,2000
-42,Boys Be...,Boys Be...,ボーイズ・ビー,TV,24924,6.38,2000
-44,Megami Kouhosei,Candidate for Goddesses,女神候補生,TV,23786,6.32,2000
-45,Gate Keepers,Gate Keepers,ゲートキーパーズ,TV,23640,6.9,2000
-49,Kazemakase Tsukikage Ran,Carried by the Wind: Tsukikage Ran,風まかせ月影蘭,TV,18848,7.09,2000
-50,Mushrambo,Shinzo,マシュランボー,TV,17420,6.93,2000
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,FLCL,FLCL,フリクリ,OVA,867455,8.04,2000,https://cdn.myanimelist.net/images/anime/7/77356.jpg
+2,InuYasha,InuYasha,犬夜叉,TV,835873,7.87,2000,https://cdn.myanimelist.net/images/anime/1589/95329.jpg
+3,Hajime no Ippo,Fighting Spirit,はじめの一歩 THE FIGHTING!,TV,654346,8.78,2000,https://cdn.myanimelist.net/images/anime/4/86334.jpg
+4,Yu☆Gi☆Oh! Duel Monsters,Yu-Gi-Oh!,遊☆戯☆王　デュエルモンスターズ,TV,416250,7.5,2000,https://cdn.myanimelist.net/images/anime/3/77055.jpg
+5,Love Hina,Love Hina,ラブひな,TV,275741,7.09,2000,https://cdn.myanimelist.net/images/anime/1153/99366.jpg
+6,Gakkou no Kaidan,Ghost Stories,学校の怪談,TV,238368,7.75,2000,https://cdn.myanimelist.net/images/anime/1414/112029.jpg
+9,Jin-Rou,Jin-Roh: The Wolf Brigade,人狼 JIN-ROH,Movie,196183,7.78,2000,https://cdn.myanimelist.net/images/anime/1323/103343.jpg
+12,Boogiepop wa Warawanai,Boogiepop Phantom,ブギーポップは笑わない Boogiepop Phantom,TV,146499,7.15,2000,https://cdn.myanimelist.net/images/anime/1327/95777.jpg
+13,Gravitation,Gravitation,グラビテーション,TV,123963,6.9,2000,https://cdn.myanimelist.net/images/anime/4/21856.jpg
+15,Blood: The Last Vampire,Blood: The Last Vampire,BLOOD THE LAST VAMPIRE (ブラッド ザ ラスト ヴァンパイア),Movie,117368,6.87,2000,https://cdn.myanimelist.net/images/anime/9/18913.jpg
+17,Vandread,Vandread,ヴァンドレッド,TV,88237,7.15,2000,https://cdn.myanimelist.net/images/anime/5/75446.jpg
+20,Escaflowne,Escaflowne: A Girl in Gaea,エスカフローネ,Movie,76106,7.05,2000,https://cdn.myanimelist.net/images/anime/1539/94517.jpg
+21,Meitantei Conan Movie 04: Hitomi no Naka no Ansatsusha,Case Closed Movie 04: Captured In Her Eyes,瞳の中の暗殺者,Movie,67077,8.02,2000,https://cdn.myanimelist.net/images/anime/1196/94319.jpg
+22,Ayashi no Ceres,"Ceres, Celestial Legend",妖しのセレス,TV,64952,7.17,2000,https://cdn.myanimelist.net/images/anime/1928/106202.jpg
+23,Tottoko Hamtarou,Hamtaro,とっとこハム太郎,TV,63312,7.01,2000,https://cdn.myanimelist.net/images/anime/3/21562.jpg
+24,Love Hina Christmas Special: Silent Eve,Love Hina Christmas Movie,ラブひなクリスマススペシャル ～サイレント・イヴ～,TV Special,59828,7.3,2000,https://cdn.myanimelist.net/images/anime/11/82467.jpg
+25,Yami no Matsuei,Descendants of Darkness,闇の末裔,TV,57961,7.01,2000,https://cdn.myanimelist.net/images/anime/1414/109717.jpg
+26,Gensoumaden Saiyuuki,Saiyuki,幻想魔伝 最遊記,TV,57820,7.54,2000,https://cdn.myanimelist.net/images/anime/11/75282.jpg
+27,Tenshi Kinryouku,Angel Sanctuary,天使禁猟区,OVA,51361,6.24,2000,https://cdn.myanimelist.net/images/anime/1627/146055.jpg
+28,Digimon Adventure 02 Movies,Digimon Movie 02 - Digimon Hurricane Touchdown! Supreme Evolution! The Golden Digimentals.,映画 デジモンアドベンチャー０２,Movie,47840,7.1,2000,https://cdn.myanimelist.net/images/anime/1042/143225.jpg
+29,Pokemon: Pichu to Pikachu,Pokémon: Pikachu and Pichu,ピチューとピカチュウ,Movie,44784,6.72,2000,https://cdn.myanimelist.net/images/anime/1075/97384.jpg
+30,Aa! Megami-sama! Movie,Ah! My Goddess: The Movie,劇場版　ああっ女神さまっ,Movie,44598,7.54,2000,https://cdn.myanimelist.net/images/anime/5/71211.jpg
+31,NieA Under 7,NieA Under 7,ニア アンダーセブン,TV,41305,6.85,2000,https://cdn.myanimelist.net/images/anime/8/18922.jpg
+32,One Piece: Umi no Heso no Daibouken-hen,One Piece: Adventure in the Ocean's Navel,ワンピース ルフィ落下!秘境・海のヘソの大冒険,TV Special,40766,7.15,2000,https://cdn.myanimelist.net/images/anime/6/20923.jpg
+33,Mezzo Forte,Mezzo Forte,メゾフォルテ,OVA,36564,6.62,2000,https://cdn.myanimelist.net/images/anime/6/37391.jpg
+34,Azumanga Web Daiou,Azumanga Web Daioh,あずまんがWEB大王,ONA,36148,6.72,2000,https://cdn.myanimelist.net/images/anime/1186/139941.jpg
+35,Seikai no Senki,Banner of the Stars,星界の戦旗,TV,35890,7.64,2000,https://cdn.myanimelist.net/images/anime/11/61111.jpg
+36,Cardcaptor Sakura: Kero-chan ni Omakase!,Cardcaptor Sakura: Leave it to Kero! Theatrical Version,ケロちゃんにおまかせ！,Movie,32701,7.32,2000,https://cdn.myanimelist.net/images/anime/13/28850.jpg
+37,Hand Maid May,Hand Maid May,HAND MAID メイ,TV,32077,6.68,2000,https://cdn.myanimelist.net/images/anime/1497/140178.jpg
+38,Argento Soma,Argento Soma,アルジェント ソーマ,TV,29752,6.74,2000,https://cdn.myanimelist.net/images/anime/8/9440.jpg
+39,Sakura Taisen,Sakura Wars TV,サクラ大戦,TV,29149,6.84,2000,https://cdn.myanimelist.net/images/anime/1641/107219.jpg
+40,Daa! Daa! Daa!,Daa! Daa! Daa!,だぁ! だぁ! だぁ!,TV,27177,7.64,2000,https://cdn.myanimelist.net/images/anime/3/21166.jpg
+41,Amon: Devilman Mokushiroku,Amon: Apocalypse of Devilman,AMON デビルマン黙示録,OVA,27147,6.49,2000,https://cdn.myanimelist.net/images/anime/1311/91101.jpg
+42,Boys Be...,Boys Be...,ボーイズ・ビー,TV,24924,6.38,2000,https://cdn.myanimelist.net/images/anime/1/2223.jpg
+43,Ojamajo Doremi Sharp,Ojamajo Doremi Sharp,おジャ魔女どれみ＃,TV,24273,7.46,2000,https://cdn.myanimelist.net/images/anime/1215/121240.jpg
+44,Megami Kouhosei,Candidate for Goddesses,女神候補生,TV,23786,6.32,2000,https://cdn.myanimelist.net/images/anime/11/75472.jpg
+45,Gate Keepers,Gate Keepers,ゲートキーパーズ,TV,23640,6.9,2000,https://cdn.myanimelist.net/images/anime/12/15226.jpg
+46,Medarot Damashii,Medabots Spirits,メダロット魂,TV,22195,6.67,2000,https://cdn.myanimelist.net/images/anime/2/19960.jpg
+47,Meitantei Conan OVA 01: Conan vs. Kid vs. Yaiba - Houtou Soudatsu Daikessen!!,Detective Conan OVA 01: Conan VS KID VS Yaiba,名探偵コナン: コナンvsキッドvsヤイバ 宝刀争奪大決戦!!,OVA,21157,7.23,2000,https://cdn.myanimelist.net/images/anime/1029/125693.jpg
+48,Monster Farm: Legend e no Michi,Monster Rancher (2000),モンスターファーム～伝説[レジェンド]への道～,TV,19667,6.74,2000,https://cdn.myanimelist.net/images/anime/8/48023.jpg
+49,Kazemakase Tsukikage Ran,Carried by the Wind: Tsukikage Ran,風まかせ月影蘭,TV,18848,7.09,2000,https://cdn.myanimelist.net/images/anime/5/16745.jpg
+50,Mushrambo,Shinzo,マシュランボー,TV,17420,6.93,2000,https://cdn.myanimelist.net/images/anime/4/87702.jpg

@@ -1,36 +1,41 @@
-rank,title,title_english,title_japanese,type,members,score,year
-2,Rurouni Kenshin: Meiji Kenkaku Romantan - Tsuioku-hen,Samurai X: Trust and Betrayal,るろうに剣心―明治剣客浪漫譚―追憶編,OVA,287360,8.69,1999
-4,Hunter x Hunter,Hunter x Hunter,HUNTER×HUNTER（ハンター×ハンター）,TV,625486,8.43,1999
-10,Master Keaton OVA,Master Keaton OVA,マスターキートン,OVA,12134,7.73,1999
-11,Shoujo Kakumei Utena: Adolescence Mokushiroku,Revolutionary Girl Utena: The Adolescence of Utena,少女革命ウテナ　アドゥレセンス黙示録,Movie,58268,7.68,1999
-13,Seikai no Monshou,Crest of the Stars,星界の紋章,TV,55976,7.62,1999
-14,Digimon Adventure Movie,Digimon: The Movie,デジモンアドベンチャー 劇場版,Movie,117297,7.61,1999
-15,"Ima, Soko ni Iru Boku","Now and Then, Here and There",今、そこにいる僕,TV,154959,7.58,1999
-16,The Big O,The Big O,THEビッグオー,TV,103337,7.53,1999
-17,Heppoko Jikken Animation Excel♥Saga,Excel Saga,へっぽこ実験アニメーション エクセル♥サーガ,TV,115393,7.48,1999
-18,Kamikaze Kaitou Jeanne,Kamikaze Kaitou Jeanne,神風怪盗ジャンヌ,TV,59730,7.47,1999
-19,Mugen no Ryvius,Infinite Ryvius,無限のリヴァイアス,TV,46973,7.41,1999
-20,Gokudou-kun Manyuuki,Gokudo,ゴクドーくん漫遊記,TV,16866,7.4,1999
-22,Zoids,Zoids,ゾイド,TV,52497,7.37,1999
-23,Oruchuban Ebichu,Oruchuban Ebichu,おるちゅばんエビちゅ,TV,55940,7.36,1999
-25,City Hunter: Kinkyuu Namachuukei!? Kyouakuhan Saeba Ryou no Saigo,City Hunter: Death of the Vicious Criminal Ryo Saeba,シティーハンタースペシャル 緊急生中継!?凶悪犯冴羽リョウの最期,TV Special,6905,7.34,1999
-26,Jibaku-kun,Bucky: The Incredible Kid,ジバクくん,TV,14486,7.34,1999
-27,Karakuri Zoushi Ayatsuri Sakon,Karakuri Zoushi Ayatsuri Sakon,人形草紙あやつり左近,TV,13076,7.34,1999
-28,Ojamajo Doremi,Magical DoReMi,おジャ魔女どれみ,TV,60571,7.33,1999
-29,Kaikan Phrase,Kaikan Phrase,快感 フレーズ,TV,14734,7.33,1999
-30,Kyoro-chan,Kyoro-chan,キョロちゃん,TV,3539,7.29,1999
-31,Aoyama Goushou Tanpenshuu,Gosho Aoyama's Collection of Short Stories,青山剛昌短編集,Special,6814,7.28,1999
-32,Petshop of Horrors,Pet Shop of Horrors,Pet Shop of Horrors (ペットショップ・オブ・ホラーズ),TV,73642,7.23,1999
-33,Doraemon: Nobita's the Night Before a Wedding,Doraemon: Nobita's the Night Before a Wedding,ドラえもん のび太の結婚前夜 The night before a wedding,Movie,3863,7.22,1999
-35,Cybersix,Cybersix,サイバーシックス,TV,12188,7.19,1999
-36,Shin Hakkenden,Shin Hakkenden,神八剣伝,TV,7312,7.18,1999
-37,Cyborg Kuro-chan,Cyborg Kuro-chan,サイボーグクロちゃん,TV,10310,7.15,1999
-38,Medarot,Medabots,メダロット,TV,62167,7.1,1999
-39,Chikyuu Bouei Kigyou Dai-Guard,Dai-Guard: Terrestrial Defense Corp.,地球防衛企業ダイ・ガード,TV,10667,7.1,1999
-41,Tonari no Yamada-kun,My Neighbors the Yamadas,ホーホケキョ となりの山田くん,Movie,52202,7.09,1999
-42,Senkaiden Houshin Engi,Soul Hunter,仙界伝 封神演義,TV,18453,7.06,1999
-43,One Piece: Kinkyuu Kikaku One Piece Kanzen Kouryakuhou,"One Piece: Emergency Planning, A Perfect Strategy for the One Piece",緊急企画ワンピース完全攻略法,TV Special,19491,7.06,1999
-44,Dual! Parallel Lun-Lun Monogatari,Dual! Parallel Trouble Adventure,デュアル！ぱられルンルン物語,TV,20159,7.05,1999
-45,Marco: Haha wo Tazunete Sanzenri,Marco: Haha wo Tazunete Sanzenri,Marco: 母をたずねて三千里,Movie,2959,7.04,1999
-48,Happy Birthday: Inochi Kagayaku Toki,Re-Birthday,ハッピーバースデー 命かがやく瞬間,Movie,4676,7.02,1999
-49,Blue Gender,Blue Gender,BLUE GENDER,TV,86359,7.01,1999
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,One Piece,One Piece,ONE PIECE,TV,2543848,8.73,1999,https://cdn.myanimelist.net/images/anime/1244/138851.jpg
+3,Great Teacher Onizuka,Great Teacher Onizuka,グレート・ティーチャー・オニヅカ,TV,882064,8.68,1999,https://cdn.myanimelist.net/images/anime/13/11460.jpg
+4,Hunter x Hunter,Hunter x Hunter,HUNTER×HUNTER（ハンター×ハンター）,TV,625486,8.43,1999,https://cdn.myanimelist.net/images/anime/1305/132237.jpg
+9,Digimon Adventure,Digimon: Digital Monsters,デジモンアドベンチャー,TV,415994,7.78,1999,https://cdn.myanimelist.net/images/anime/1471/99249.jpg
+13,Seikai no Monshou,Crest of the Stars,星界の紋章,TV,55976,7.62,1999,https://cdn.myanimelist.net/images/anime/1585/99289.jpg
+15,"Ima, Soko ni Iru Boku","Now and Then, Here and There",今、そこにいる僕,TV,154959,7.58,1999,https://cdn.myanimelist.net/images/anime/1094/109008.jpg
+16,The Big O,The Big O,THEビッグオー,TV,103337,7.53,1999,https://cdn.myanimelist.net/images/anime/1220/142476.jpg
+17,Heppoko Jikken Animation Excel♥Saga,Excel Saga,へっぽこ実験アニメーション エクセル♥サーガ,TV,115393,7.48,1999,https://cdn.myanimelist.net/images/anime/2/11744.jpg
+18,Kamikaze Kaitou Jeanne,Kamikaze Kaitou Jeanne,神風怪盗ジャンヌ,TV,59730,7.47,1999,https://cdn.myanimelist.net/images/anime/5/20389.jpg
+19,Mugen no Ryvius,Infinite Ryvius,無限のリヴァイアス,TV,46973,7.41,1999,https://cdn.myanimelist.net/images/anime/3/16734.jpg
+20,Gokudou-kun Manyuuki,Gokudo,ゴクドーくん漫遊記,TV,16866,7.4,1999,https://cdn.myanimelist.net/images/anime/1483/94117.jpg
+22,Zoids,Zoids,ゾイド,TV,52497,7.37,1999,https://cdn.myanimelist.net/images/anime/1908/139655.jpg
+23,Oruchuban Ebichu,Oruchuban Ebichu,おるちゅばんエビちゅ,TV,55940,7.36,1999,https://cdn.myanimelist.net/images/anime/4/79591.jpg
+24,Pokemon Movie 02: Maboroshi no Pokemon Lugia Bakutan,Pokémon: The Movie 2000,ポケットモンスター 幻のポケモンルギア爆誕,Movie,198696,7.35,1999,https://cdn.myanimelist.net/images/anime/11/41801.jpg
+25,City Hunter: Kinkyuu Namachuukei!? Kyouakuhan Saeba Ryou no Saigo,City Hunter: Death of the Vicious Criminal Ryo Saeba,シティーハンタースペシャル 緊急生中継!?凶悪犯冴羽リョウの最期,TV Special,6905,7.34,1999,https://cdn.myanimelist.net/images/anime/1920/92378.jpg
+26,Jibaku-kun,Bucky: The Incredible Kid,ジバクくん,TV,14486,7.34,1999,https://cdn.myanimelist.net/images/anime/1630/143498.jpg
+27,Karakuri Zoushi Ayatsuri Sakon,Karakuri Zoushi Ayatsuri Sakon,人形草紙あやつり左近,TV,13076,7.34,1999,https://cdn.myanimelist.net/images/anime/10/16022.jpg
+28,Ojamajo Doremi,Magical DoReMi,おジャ魔女どれみ,TV,60571,7.33,1999,https://cdn.myanimelist.net/images/anime/1069/133679.jpg
+29,Kaikan Phrase,Kaikan Phrase,快感 フレーズ,TV,14734,7.33,1999,https://cdn.myanimelist.net/images/anime/1625/114978.jpg
+30,Kyoro-chan,Kyoro-chan,キョロちゃん,TV,3539,7.29,1999,https://cdn.myanimelist.net/images/anime/1172/101184.jpg
+31,Aoyama Goushou Tanpenshuu,Gosho Aoyama's Collection of Short Stories,青山剛昌短編集,Special,6814,7.28,1999,https://cdn.myanimelist.net/images/anime/2/28783.jpg
+32,Petshop of Horrors,Pet Shop of Horrors,Pet Shop of Horrors (ペットショップ・オブ・ホラーズ),TV,73642,7.23,1999,https://cdn.myanimelist.net/images/anime/10/64543.jpg
+33,Doraemon: Nobita's the Night Before a Wedding,Doraemon: Nobita's the Night Before a Wedding,ドラえもん のび太の結婚前夜 The night before a wedding,Movie,3863,7.22,1999,https://cdn.myanimelist.net/images/anime/1398/133726.jpg
+34,Tenchi Muyou! in Love 2: Harukanaru Omoi,Tenchi Forever!,天地無用！　ｉｎ　ＬＯＶＥ２　遥かなる想い,Movie,17589,7.2,1999,https://cdn.myanimelist.net/images/anime/6/61773.jpg
+35,Cybersix,Cybersix,サイバーシックス,TV,12188,7.19,1999,https://cdn.myanimelist.net/images/anime/5/74732.jpg
+36,Shin Hakkenden,Shin Hakkenden,神八剣伝,TV,7312,7.18,1999,https://cdn.myanimelist.net/images/anime/10/49801.jpg
+37,Cyborg Kuro-chan,Cyborg Kuro-chan,サイボーグクロちゃん,TV,10310,7.15,1999,https://cdn.myanimelist.net/images/anime/11/17464.jpg
+38,Medarot,Medabots,メダロット,TV,62167,7.1,1999,https://cdn.myanimelist.net/images/anime/1778/133514.jpg
+39,Chikyuu Bouei Kigyou Dai-Guard,Dai-Guard: Terrestrial Defense Corp.,地球防衛企業ダイ・ガード,TV,10667,7.1,1999,https://cdn.myanimelist.net/images/anime/1969/94093.jpg
+40,Kochira Katsushikaku Kameari Kouenmae Hashutsujo The Movie,Kameari Park Precinct,こちら葛飾区亀有公園前派出所　ＴＨＥ　ＭＯＶＩＥ,Movie,2590,7.1,1999,
+41,Tonari no Yamada-kun,My Neighbors the Yamadas,ホーホケキョ となりの山田くん,Movie,52202,7.09,1999,https://cdn.myanimelist.net/images/anime/6/64545.jpg
+42,Senkaiden Houshin Engi,Soul Hunter,仙界伝 封神演義,TV,18453,7.06,1999,https://cdn.myanimelist.net/images/anime/1004/94169.jpg
+43,One Piece: Kinkyuu Kikaku One Piece Kanzen Kouryakuhou,"One Piece: Emergency Planning, A Perfect Strategy for the One Piece",緊急企画ワンピース完全攻略法,TV Special,19491,7.06,1999,https://cdn.myanimelist.net/images/anime/13/45414.jpg
+44,Dual! Parallel Lun-Lun Monogatari,Dual! Parallel Trouble Adventure,デュアル！ぱられルンルン物語,TV,20159,7.05,1999,https://cdn.myanimelist.net/images/anime/8/31223.jpg
+45,Marco: Haha wo Tazunete Sanzenri,Marco: Haha wo Tazunete Sanzenri,Marco: 母をたずねて三千里,Movie,2959,7.04,1999,
+46,Doraemon Movie 20: Nobita no Uchuu Hyouryuuki,Doraemon the Movie: Nobita Drifts in the Universe,映画 ドラえもん のび太の宇宙漂流記,Movie,6042,7.03,1999,https://cdn.myanimelist.net/images/anime/1242/133732.jpg
+47,Taiho Shichau zo Special,You're Under Arrest Mini Specials,逮捕しちゃうぞ Special,TV,8483,7.02,1999,https://cdn.myanimelist.net/images/anime/9/21692.jpg
+48,Happy Birthday: Inochi Kagayaku Toki,Re-Birthday,ハッピーバースデー 命かがやく瞬間,Movie,4676,7.02,1999,https://cdn.myanimelist.net/images/anime/1567/94728.jpg
+49,Blue Gender,Blue Gender,BLUE GENDER,TV,86359,7.01,1999,https://cdn.myanimelist.net/images/anime/1/2023.jpg
+50,Taiho Shichau zo: Nagisa no Koutsuu Yuudou,You're Under Arrest: Diverting Traffic at the Beach,逮捕しちゃうぞ 渚の交通誘導,TV Special,6456,7,1999,https://cdn.myanimelist.net/images/anime/11/21617.jpg

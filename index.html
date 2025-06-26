@@ -67,6 +67,31 @@
       cursor: pointer;
       transition: background-color 0.2s;
     }
+    .cell img {
+      transition: transform 0.2s ease;
+    }
+    .cell:hover img {
+      transform: scale(1.05);
+    }
+    #imagePopup {
+      position: fixed;
+      pointer-events: none;
+      border: 2px solid #4caf50;
+      border-radius: 8px;
+      background: #222;
+      padding: 4px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.7);
+      display: none;
+      z-index: 10000;
+      max-width: 300px;
+      max-height: 450px;
+    }
+    #imagePopup img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+    }
     .green { background-color: #4caf50; }
     .orange { background-color: #ff9800; }
     .red { background-color: #f44336; }
@@ -74,6 +99,7 @@
   </style>
 </head>
 <body>
+<div id="imagePopup"><img src="" alt="Large cover" /></div>
 <div id="fullPage">
   <h1>Anime Checklist</h1>
 
@@ -103,6 +129,11 @@
     <!-- <button class="btn" onclick="saveStateToFile()">Export</button>
     <input type="file" id="loadFileInput" style="display:none" accept=".json" onchange="loadStateFromFile(event)" />
     <button class="btn" onclick="document.getElementById('loadFileInput').click()">Import</button>-->
+    <label style="color: white">Show Images:</label>
+    <select class="btn" id="imageToggle" onchange="handleImageToggle()">
+      <option value="on">On</option>
+      <option value="off">Off</option>
+    </select>
     <label style="color: white">Language:</label>
     <select class="btn" id="languageSelect" onchange="handleLanguageChange()">
       <option value="romanji">Romanji</option>
@@ -135,6 +166,13 @@
     const YEAR_MAX = 2024;
     let languageMode = 'romanji';
     let dataSource = 'popularity';
+    let showImages = true;
+
+    function handleImageToggle() {
+        const toggle = document.getElementById("imageToggle").value;
+        showImages = toggle === "on";
+        buildGrid();
+    }
 
     function handleLanguageChange() {
         const select = document.getElementById("languageSelect");
@@ -155,74 +193,81 @@
         endSelect.value = YEAR_MAX;
     }
     function clearBoard() {
-      const cells = document.querySelectorAll(".cell");
-      cells.forEach(cell => {
-        const current = parseInt(cell.dataset.state);
-        if (STATES[current]) cell.classList.remove(STATES[current]);
-        cell.dataset.state = "0";
-      });
+        const cells = document.querySelectorAll(".cell");
+        cells.forEach(cell => {
+            const current = parseInt(cell.dataset.state);
+            if (STATES[current]) cell.classList.remove(STATES[current]);
+            cell.dataset.state = "0";
+        });
 
-      // Clear the saved grid state for the current data source from localStorage
-      localStorage.removeItem(`animeGridState_${dataSource}`);
+        // Clear the saved grid state for the current data source from localStorage
+        localStorage.removeItem(`animeGridState_${dataSource}`);
 
-      // Clear the cached grid state in memory for current source
-      if (gridStateCache[dataSource]) {
-        gridStateCache[dataSource] = {};
-      }
+        if (gridStateCache[dataSource]) {
+            gridStateCache[dataSource] = {};
+        }
+        document.querySelectorAll(".year-label").forEach(label => {
+            label.style.backgroundColor = "#333";
+        });
 
-      // Reset year label backgrounds
-      document.querySelectorAll(".year-label").forEach(label => {
-        label.style.backgroundColor = "#333";
-      });
-
-      updateCounter();
+        updateCounter();
     }
     function parseCSVLine(line) {
-        const regex = /(?:\"([^\"]*)\")|([^,]+)/g;
-        const result = [];
-        let match;
-        while ((match = regex.exec(line))) {
-            result.push(match[1] || match[2]);
+        const parts = [];
+        let current = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+
+            if (char === '"' ) {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                parts.push(current);
+                current = '';
+            } else {
+                current += char;
+            }
         }
-        return result;
+        parts.push(current);
+
+        return parts.map(s => s.trim());
     }
 
-function setDataSource(source) {
-    dataSource = source;
-    document.getElementById('togglePopularity').style.backgroundColor = source === 'popularity' ? '#4caf50' : '#2c2c2c';
-    document.getElementById('toggleScore').style.backgroundColor = source === 'score' ? '#4caf50' : '#2c2c2c';
 
-    const container = document.getElementById("container");
-    container.innerHTML = '';
+    function setDataSource(source) {
+        dataSource = source;
+        document.getElementById('togglePopularity').style.backgroundColor = source === 'popularity' ? '#4caf50' : '#2c2c2c';
+        document.getElementById('toggleScore').style.backgroundColor = source === 'score' ? '#4caf50' : '#2c2c2c';
 
-    buildGrid().then(() => {
-        loadState();
+        const container = document.getElementById("container");
+        container.innerHTML = '';
 
-        const currentFilter = document.getElementById("filterDropdown").value;
-        filterState(currentFilter);
-    });
-}
+        buildGrid().then(() => {
+            loadState();
 
-
-
-function handleYearRangeChange() {
-    const start = parseInt(document.getElementById("startYearSelect").value);
-    const end = parseInt(document.getElementById("endYearSelect").value);
-
-    if (start > end) {
-        alert("Start year must be less than or equal to end year.");
-        return;
+            const currentFilter = document.getElementById("filterDropdown").value;
+            filterState(currentFilter);
+        });
     }
 
-    buildGrid().then(() => {
-        const currentFilter = document.getElementById("filterDropdown").value;
-        filterState(currentFilter);
-    });
-}
 
 
+    function handleYearRangeChange() {
+        const start = parseInt(document.getElementById("startYearSelect").value);
+        const end = parseInt(document.getElementById("endYearSelect").value);
 
-    // Update fetchCSV to use dataSource for path
+        if (start > end) {
+            alert("Start year must be less than or equal to end year.");
+            return;
+        }
+
+        buildGrid().then(() => {
+            const currentFilter = document.getElementById("filterDropdown").value;
+            filterState(currentFilter);
+        });
+    }
+
     async function fetchCSV(year) {
         let path = dataSource === 'popularity'
         ? `output/anime_popularity_${year}.csv`
@@ -238,25 +283,26 @@ function handleYearRangeChange() {
 
             const jpIndex = headers.indexOf("title_japanese");
             const enIndex = headers.indexOf("title_english");
-            const roIndex = headers.indexOf("title"); // romanji
+            const roIndex = headers.indexOf("title");
+            const imgIndex = headers.indexOf("image_url");
 
             const rows = lines.slice(1).map(line => {
                 const parsed = parseCSVLine(line);
                 return {
                     en: parsed[enIndex],
                     jp: parsed[jpIndex],
-                    ro: parsed[roIndex]
+                    ro: parsed[roIndex],
+                    img: parsed[imgIndex]
                 };
             });
 
-            return rows.slice(0, 12); // only top 12
-        } catch {
+            return rows.slice(0, 12); // adjust as needed
+        } catch (e) {
+            console.error(`Failed to fetch CSV for ${year}:`, e);
             return [];
         }
     }
 
-
-    // On page load, highlight the default toggle
     window.onload = () => {
         populateYearDropdowns();
         setDataSource(dataSource);
@@ -280,15 +326,28 @@ function handleYearRangeChange() {
             row.appendChild(label);
 
             const titles = await fetchCSV(year);
+            console.log(`Titles for year ${year}:`, titles);
+
 
             for (let i = 0; i < 12; i++) {
                 const cell = document.createElement("div");
                 cell.className = "cell";
                 const show = titles[i];
-                cell.textContent = show
-                    ? (languageMode === 'english' ? show.en :
-                       languageMode === 'japanese' ? show.jp : show.ro)
-                : `#${i + 1}`;
+
+                if (!show) {
+                    cell.textContent = `#${i + 1}`;
+                } else if (showImages && show.img) {
+                    const displayTitle = languageMode === 'english' ? show.en :
+                    languageMode === 'japanese' ? show.jp : show.ro;
+                    cell.innerHTML = `
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <img src="${show.img}" alt="cover" style="width: 48px; height: 68px; object-fit: cover; border-radius: 4px; margin-bottom: 4px;" />
+        <span>${displayTitle}</span>
+      </div>`;
+                } else {
+                    cell.textContent = languageMode === 'english' ? show.en :
+                    languageMode === 'japanese' ? show.jp : show.ro;
+                }
                 cell.dataset.state = "0";
 
                 cell.addEventListener("click", () => {
@@ -297,7 +356,7 @@ function handleYearRangeChange() {
                     if (STATES[current]) cell.classList.remove(STATES[current]);
                     if (STATES[next]) cell.classList.add(STATES[next]);
                     cell.dataset.state = next;
-                    updateCounter(); // update counts on each click
+                    updateCounter();
                     saveState();
                 });
 
@@ -306,42 +365,104 @@ function handleYearRangeChange() {
 
             container.appendChild(row);
         }
+
         updateCounter();
-        loadState()
+        loadState();
     }
+
+    const imagePopup = document.getElementById('imagePopup');
+document.addEventListener('mousemove', (e) => {
+      if (imagePopup.style.display === 'block') {
+        const padding = 20;
+        let x = e.clientX + padding;
+        let y = e.clientY + padding;
+        const popupRect = imagePopup.getBoundingClientRect();
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        // Keep popup inside viewport horizontally
+        if (x + popupRect.width > windowWidth) {
+          x = e.clientX - popupRect.width - padding;
+        }
+        // Keep popup inside viewport vertically
+        if (y + popupRect.height > windowHeight) {
+          y = e.clientY - popupRect.height - padding;
+        }
+
+        imagePopup.style.left = `${x}px`;
+        imagePopup.style.top = `${y}px`;
+      }
+    });
+
+    document.querySelector('#container').addEventListener('mouseover', (e) => {
+      const cell = e.target.closest('.cell');
+      if (!cell) return;
+
+      // Show popup only if Ctrl is pressed AND image is visible inside cell
+      if (cell.querySelector('img') && (window.event.ctrlKey || window.event.metaKey)) {
+        const imgSrc = cell.querySelector('img').src;
+        const popupImg = imagePopup.querySelector('img');
+        popupImg.src = imgSrc;
+        imagePopup.style.display = 'block';
+      }
+    });
+
+    document.querySelector('#container').addEventListener('mouseout', (e) => {
+      const cell = e.target.closest('.cell');
+      if (!cell) return;
+      imagePopup.style.display = 'none';
+    });
+
+    // Also update popup visibility on keyup/keydown to handle Ctrl released while hovering
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Control' || e.key === 'Meta') {
+        const hovered = document.querySelector('.cell:hover');
+        if (hovered && hovered.querySelector('img')) {
+          const imgSrc = hovered.querySelector('img').src;
+          imagePopup.querySelector('img').src = imgSrc;
+          imagePopup.style.display = 'block';
+        }
+      }
+    });
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'Control' || e.key === 'Meta') {
+        imagePopup.style.display = 'none';
+      }
+    });
+
 
     function saveState() {
-      const stateKey = `animeGridState_${dataSource}`;
-      const currentState = JSON.parse(localStorage.getItem(stateKey) || "{}");
+        const stateKey = `animeGridState_${dataSource}`;
+        const currentState = JSON.parse(localStorage.getItem(stateKey) || "{}");
 
-      document.querySelectorAll(".grid").forEach(row => {
-        const year = row.dataset.year;
-        const cells = row.querySelectorAll(".cell");
-        const yearState = Array.from(cells).map(cell => cell.dataset.state);
-        currentState[year] = yearState;
-      });
+        document.querySelectorAll(".grid").forEach(row => {
+            const year = row.dataset.year;
+            const cells = row.querySelectorAll(".cell");
+            const yearState = Array.from(cells).map(cell => cell.dataset.state);
+            currentState[year] = yearState;
+        });
 
-      localStorage.setItem(stateKey, JSON.stringify(currentState));
+        localStorage.setItem(stateKey, JSON.stringify(currentState));
     }
     function loadState() {
-      const stateKey = `animeGridState_${dataSource}`;
-      const saved = JSON.parse(localStorage.getItem(stateKey) || "{}");
+        const stateKey = `animeGridState_${dataSource}`;
+        const saved = JSON.parse(localStorage.getItem(stateKey) || "{}");
 
-      document.querySelectorAll(".grid").forEach(row => {
-        const year = row.dataset.year;
-        const state = saved[year] || [];
-        const cells = row.querySelectorAll(".cell");
+        document.querySelectorAll(".grid").forEach(row => {
+            const year = row.dataset.year;
+            const state = saved[year] || [];
+            const cells = row.querySelectorAll(".cell");
 
-        cells.forEach((cell, index) => {
-          const current = parseInt(cell.dataset.state);
-          if (STATES[current]) cell.classList.remove(STATES[current]);
-          const newState = parseInt(state[index] || 0);
-          if (STATES[newState]) cell.classList.add(STATES[newState]);
-          cell.dataset.state = newState;
+            cells.forEach((cell, index) => {
+                const current = parseInt(cell.dataset.state);
+                if (STATES[current]) cell.classList.remove(STATES[current]);
+                const newState = parseInt(state[index] || 0);
+                if (STATES[newState]) cell.classList.add(STATES[newState]);
+                cell.dataset.state = newState;
+            });
         });
-      });
 
-      updateCounter();
+        updateCounter();
     }
 
     function filterState(filter) {
@@ -394,69 +515,67 @@ function handleYearRangeChange() {
             }
         };
         reader.readAsText(file);
-
-        // Reset the input so same file can be selected again if needed
         event.target.value = "";
     }
 
-function captureGrid() {
-  const fullPage = document.getElementById("fullPage");
-  const counterBox = document.getElementById("counterBox");
+    function captureGrid() {
+        const fullPage = document.getElementById("fullPage");
+        const counterBox = document.getElementById("counterBox");
 
-  const restoreSelects = swapSelectsForSpans(); // use spans instead of ugly divs
+        const restoreSelects = swapSelectsForSpans();
 
-  const prevPosition = counterBox.style.position;
-  counterBox.style.position = "static";
+        const prevPosition = counterBox.style.position;
+        counterBox.style.position = "static";
 
-  html2canvas(fullPage, {
-    backgroundColor: '#121212',
-    useCORS: true,
-    scrollY: 0
-  }).then(canvas => {
-    const link = document.createElement("a");
-    link.download = "anime_grid.png";
-    link.href = canvas.toDataURL();
-    link.click();
+        html2canvas(fullPage, {
+            backgroundColor: '#121212',
+            useCORS: true,
+            scrollY: 0
+        }).then(canvas => {
+            const link = document.createElement("a");
+            link.download = "anime_grid.png";
+            link.href = canvas.toDataURL();
+            link.click();
 
-    counterBox.style.position = prevPosition;
-    restoreSelects(); // cleanup
-  });
-}
+            counterBox.style.position = prevPosition;
+            restoreSelects();
+        });
+    }
 
-function swapSelectsForSpans() {
-  const selects = document.querySelectorAll("select");
-  const clones = [];
+    function swapSelectsForSpans() {
+        const selects = document.querySelectorAll("select");
+        const clones = [];
 
-  selects.forEach(select => {
-    const span = document.createElement("span");
-    span.className = "select-clone";
-    span.textContent = select.options[select.selectedIndex].text;
+        selects.forEach(select => {
+            const span = document.createElement("span");
+            span.className = "select-clone";
+            span.textContent = select.options[select.selectedIndex].text;
 
-    // Match style
-    const style = getComputedStyle(select);
-    span.style.display = "inline-block";
-    span.style.backgroundColor = style.backgroundColor || "#2c2c2c";
-    span.style.color = style.color || "#fff";
-    span.style.padding = style.padding || "8px 12px";
-    span.style.borderRadius = style.borderRadius || "4px";
-    span.style.font = style.font || "inherit";
-    span.style.fontSize = style.fontSize;
-    span.style.minWidth = select.offsetWidth + "px";
-    span.style.textAlign = "center";
-    span.style.marginRight = "4px";
+            // Match style
+            const style = getComputedStyle(select);
+            span.style.display = "inline-block";
+            span.style.backgroundColor = style.backgroundColor || "#2c2c2c";
+            span.style.color = style.color || "#fff";
+            span.style.padding = style.padding || "8px 12px";
+            span.style.borderRadius = style.borderRadius || "4px";
+            span.style.font = style.font || "inherit";
+            span.style.fontSize = style.fontSize;
+            span.style.minWidth = select.offsetWidth + "px";
+            span.style.textAlign = "center";
+            span.style.marginRight = "4px";
 
-    select.style.display = "none";
-    select.parentNode.insertBefore(span, select);
-    clones.push({ span, select });
-  });
+            select.style.display = "none";
+            select.parentNode.insertBefore(span, select);
+            clones.push({ span, select });
+        });
 
-  return () => {
-    clones.forEach(({ span, select }) => {
-      span.remove();
-      select.style.display = "";
-    });
-  };
-}
+        return () => {
+            clones.forEach(({ span, select }) => {
+                span.remove();
+                select.style.display = "";
+            });
+        };
+    }
 
 
 

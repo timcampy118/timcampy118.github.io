@@ -1,37 +1,39 @@
-rank,title,title_english,title_japanese,type,members,score,year
-1,Ginga Eiyuu Densetsu,Legend of the Galactic Heroes,銀河英雄伝説,OVA,346025,9.01,1988
-2,Hotaru no Haka,Grave of the Fireflies,火垂るの墓,Movie,728449,8.53,1988
-3,Tonari no Totoro,My Neighbor Totoro,となりのトトロ,Movie,1123233,8.25,1988
-4,Akira,Akira,AKIRA（アキラ）,Movie,917229,8.16,1988
-6,Ginga Eiyuu Densetsu: Waga Yuku wa Hoshi no Taikai,Legend of the Galactic Heroes: My Conquest is the Sea of Stars,銀河英雄伝説: わが征くは星の大海,Movie,43161,7.86,1988
-7,Top wo Nerae! Gunbuster,Gunbuster,トップをねらえ！ GunBuster,OVA,138459,7.85,1988
-12,Sakigake!! Otokojuku,Charge!! Men's Private School,魁!!男塾,TV,15754,7.42,1988
-13,Shoukoushi Cedie,Little Lord Fauntleroy,小公子セディ,TV,5325,7.33,1988
-15,Kidou Keisatsu Patlabor,Patlabor: The Mobile Police,機動警察パトレイバー,OVA,42219,7.26,1988
-16,Tekken Chinmi,Iron Fist Chinmi,鉄拳チンミ,TV,4998,7.25,1988
-18,Soukou Kihei Votoms: Red Shoulder Document - Yabou no Roots,Armored Trooper Votoms: Red Shoulder Document - Roots of Treachery,装甲騎兵ボトムズ　レッドショルダードキュメント野望のルーツ,OVA,4973,7.2,1988
-20,Hi no Ame ga Furu,Hi no Ame ga Furu,火の雨がふる,Movie,1993,7.17,1988
-24,Yoroiden Samurai Troopers,Samurai Troopers,鎧伝サムライトルーパー,TV,20182,7.07,1988
-25,Tsurupika Hagemaru-kun,Little Baldy Hagemaru,つるピカハゲ丸くん,TV,3602,7.01,1988
-26,Oishinbo,Oishinbo,美味しんぼ,TV,5553,7.0,1988
-27,Mashin Eiyuuden Wataru,Mashin Eiyuuden Wataru,魔神英雄伝ワタル,TV,3878,6.93,1988
-28,Kyuuketsuhime Miyu,Vampire Princess Miyu,吸血姫美夕,OVA,24219,6.93,1988
-29,Maison Ikkoku: Shiki Utsuriyuku Kisetsu no Naka de,Maison Ikkoku: Shiki Utsuriyuku Kisetsu no Naka de,めぞん一刻～移りゆく季節の中で～,OVA,3953,6.93,1988
-30,Kiteretsu Daihyakka,Kiteretsu Encyclopedia,キテレツ大百科,TV,6876,6.89,1988
-32,Dominion,Dominion,ドミニオン,OVA,20205,6.85,1988
-34,Osomatsu-kun (1988),Osomatsu-kun (1988),おそ松くん,TV,7041,6.79,1988
-35,F,F,Ｆ-エフ,TV,4452,6.76,1988
-36,Hurricane Live! 2032,Hurricane Live! 2032,バブルガムクライシス Hurricane Live! 2032,Special,2821,6.73,1988
-37,Dragon Ball Specials,Dragon Ball Specials,ドラゴンボール,Special,33650,6.7,1988
-38,Hai! Akko desu,Hai! Akko desu,ハーイあっこです,TV,1403,6.69,1988
-40,Dondon Dommel to Ron,Wowser,どんどんドメルとロン,TV,1252,6.64,1988
-41,Sakigake!! Otokojuku Movie,Charge!! Men's Private School,魁!!男塾,Movie,3365,6.63,1988
-42,3 Choume no Tama: Uchi no Tama Shirimasen ka?,Tama of Third Street: Have You Seen My Tama?,3丁目のタマ うちのタマ知りませんか?,TV,3060,6.6,1988
-43,Dallyeola Hani,Dallyeola Hani,달려라 하니,TV,1149,6.59,1988
-44,Sore Ike! Anpanman,Sore Ike! Anpanman,それいけ！アンパンマン,TV,5012,6.58,1988
-45,Shanshui Qing,Shanshui Qing,山水情,Movie,2458,6.56,1988
-46,Lady Lady!! (1988),Lady Lady!! (1988),レディレディ!! (1988),Movie,1829,6.53,1988
-47,Appleseed,Appleseed,アップル・シード,OVA,33993,6.52,1988
-48,Uchuu Kazoku Carlvinson,Space Family Carlvinson,宇宙家族カールビンソン,OVA,3813,6.52,1988
-49,Himitsu no Akko-chan 2,Himitsu no Akko-chan 2,ひみつのアッコちゃん２,TV,1770,6.46,1988
-50,Cheonbangjichuk Hani,Cheonbangjichuk Hani,천방지축 하니,TV,549,6.45,1988
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,Ginga Eiyuu Densetsu,Legend of the Galactic Heroes,銀河英雄伝説,OVA,346025,9.01,1988,https://cdn.myanimelist.net/images/anime/1976/142016.jpg
+2,Hotaru no Haka,Grave of the Fireflies,火垂るの墓,Movie,728449,8.53,1988,https://cdn.myanimelist.net/images/anime/1485/141208.jpg
+3,Tonari no Totoro,My Neighbor Totoro,となりのトトロ,Movie,1123233,8.25,1988,https://cdn.myanimelist.net/images/anime/1110/147278.jpg
+4,Akira,Akira,AKIRA（アキラ）,Movie,917229,8.16,1988,https://cdn.myanimelist.net/images/anime/1408/114012.jpg
+7,Top wo Nerae! Gunbuster,Gunbuster,トップをねらえ！ GunBuster,OVA,138459,7.85,1988,https://cdn.myanimelist.net/images/anime/1303/92309.jpg
+12,Sakigake!! Otokojuku,Charge!! Men's Private School,魁!!男塾,TV,15754,7.42,1988,https://cdn.myanimelist.net/images/anime/1672/94168.jpg
+13,Shoukoushi Cedie,Little Lord Fauntleroy,小公子セディ,TV,5325,7.33,1988,https://cdn.myanimelist.net/images/anime/5/3273.jpg
+15,Kidou Keisatsu Patlabor,Patlabor: The Mobile Police,機動警察パトレイバー,OVA,42219,7.26,1988,https://cdn.myanimelist.net/images/anime/11/24151.jpg
+16,Tekken Chinmi,Iron Fist Chinmi,鉄拳チンミ,TV,4998,7.25,1988,https://cdn.myanimelist.net/images/anime/13/57443.jpg
+20,Hi no Ame ga Furu,Hi no Ame ga Furu,火の雨がふる,Movie,1993,7.17,1988,https://cdn.myanimelist.net/images/anime/7/12821.jpg
+21,Kikou Ryouhei Mellowlink,Armor Hunter Mellowlink,機甲猟兵メロウリンク,OVA,11923,7.16,1988,https://cdn.myanimelist.net/images/anime/4/23503.jpg
+24,Yoroiden Samurai Troopers,Samurai Troopers,鎧伝サムライトルーパー,TV,20182,7.07,1988,https://cdn.myanimelist.net/images/anime/1855/92738.jpg
+25,Tsurupika Hagemaru-kun,Little Baldy Hagemaru,つるピカハゲ丸くん,TV,3602,7.01,1988,https://cdn.myanimelist.net/images/anime/1354/124736.jpg
+26,Oishinbo,Oishinbo,美味しんぼ,TV,5553,7,1988,https://cdn.myanimelist.net/images/anime/1681/109663.jpg
+27,Mashin Eiyuuden Wataru,Mashin Eiyuuden Wataru,魔神英雄伝ワタル,TV,3878,6.93,1988,https://cdn.myanimelist.net/images/anime/8/65417.jpg
+28,Kyuuketsuhime Miyu,Vampire Princess Miyu,吸血姫美夕,OVA,24219,6.93,1988,https://cdn.myanimelist.net/images/anime/12/78948.jpg
+29,Maison Ikkoku: Shiki Utsuriyuku Kisetsu no Naka de,Maison Ikkoku: Shiki Utsuriyuku Kisetsu no Naka de,めぞん一刻～移りゆく季節の中で～,OVA,3953,6.93,1988,https://cdn.myanimelist.net/images/anime/11/30539.jpg
+30,Kiteretsu Daihyakka,Kiteretsu Encyclopedia,キテレツ大百科,TV,6876,6.89,1988,https://cdn.myanimelist.net/images/anime/1872/133507.jpg
+31,Saint Seiya: Kamigami no Atsuki Tatakai,Saint Seiya: The Heated Battle of the Gods,聖闘士星矢 神々の熱き戦い,Movie,18893,6.87,1988,https://cdn.myanimelist.net/images/anime/1680/97668.jpg
+32,Dominion,Dominion,ドミニオン,OVA,20205,6.85,1988,https://cdn.myanimelist.net/images/anime/1450/110634.jpg
+33,Dragon Ball Movie 3: Makafushigi Daibouken,Dragon Ball: Mystical Adventure,ドラゴンボール 摩訶不思議大冒険,Movie,62363,6.81,1988,https://cdn.myanimelist.net/images/anime/1825/90341.jpg
+34,Osomatsu-kun (1988),Osomatsu-kun (1988),おそ松くん,TV,7041,6.79,1988,https://cdn.myanimelist.net/images/anime/1991/134376.jpg
+35,F,F,Ｆ-エフ,TV,4452,6.76,1988,https://cdn.myanimelist.net/images/anime/9/73616.jpg
+36,Hurricane Live! 2032,Hurricane Live! 2032,バブルガムクライシス Hurricane Live! 2032,Special,2821,6.73,1988,https://cdn.myanimelist.net/images/anime/13/9846.jpg
+37,Dragon Ball Specials,Dragon Ball Specials,ドラゴンボール,Special,33650,6.7,1988,https://cdn.myanimelist.net/images/anime/13/24380.jpg
+38,Hai! Akko desu,Hai! Akko desu,ハーイあっこです,TV,1403,6.69,1988,https://cdn.myanimelist.net/images/anime/1358/99405.jpg
+39,Transformers: Choujin Master Force,Transformers Super-God Masterforce,トランスフォーマー・超神マスターフォース,TV,3986,6.66,1988,https://cdn.myanimelist.net/images/anime/1437/92789.jpg
+40,Dondon Dommel to Ron,Wowser,どんどんドメルとロン,TV,1252,6.64,1988,
+41,Sakigake!! Otokojuku Movie,Charge!! Men's Private School,魁!!男塾,Movie,3365,6.63,1988,https://cdn.myanimelist.net/images/anime/1672/94168.jpg
+42,3 Choume no Tama: Uchi no Tama Shirimasen ka?,Tama of Third Street: Have You Seen My Tama?,3丁目のタマ うちのタマ知りませんか?,TV,3060,6.6,1988,https://cdn.myanimelist.net/images/anime/9/74055.jpg
+43,Dallyeola Hani,Dallyeola Hani,달려라 하니,TV,1149,6.59,1988,https://cdn.myanimelist.net/images/anime/4/45712.jpg
+44,Sore Ike! Anpanman,Sore Ike! Anpanman,それいけ！アンパンマン,TV,5012,6.58,1988,https://cdn.myanimelist.net/images/anime/1902/111797.jpg
+45,Shanshui Qing,Shanshui Qing,山水情,Movie,2458,6.56,1988,https://cdn.myanimelist.net/images/anime/1058/145274.jpg
+46,Lady Lady!! (1988),Lady Lady!! (1988),レディレディ!! (1988),Movie,1829,6.53,1988,https://cdn.myanimelist.net/images/anime/4/27066.jpg
+47,Appleseed,Appleseed,アップル・シード,OVA,33993,6.52,1988,https://cdn.myanimelist.net/images/anime/1512/107901.jpg
+48,Uchuu Kazoku Carlvinson,Space Family Carlvinson,宇宙家族カールビンソン,OVA,3813,6.52,1988,https://cdn.myanimelist.net/images/anime/1084/104620.jpg
+49,Himitsu no Akko-chan 2,Himitsu no Akko-chan 2,ひみつのアッコちゃん２,TV,1770,6.46,1988,https://cdn.myanimelist.net/images/anime/13/74994.jpg
+50,Cheonbangjichuk Hani,Cheonbangjichuk Hani,천방지축 하니,TV,549,6.45,1988,

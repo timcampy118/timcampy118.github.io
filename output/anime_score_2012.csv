@@ -1,31 +1,34 @@
-rank,title,title_english,title_japanese,type,members,score,year
-3,Ookami Kodomo no Ame to Yuki,Wolf Children,おおかみこどもの雨と雪,Movie,846543,8.56,2012
-5,Bakuman. 3rd Season,Bakuman. Season 3,バクマン。,TV,341976,8.52,2012
-6,Uchuu Kyoudai,Space Brothers,宇宙兄弟,TV,205276,8.48,2012
-9,Psycho-Pass,Psycho-Pass,サイコパス,TV,1704166,8.33,2012
-10,Uchuu Senkan Yamato 2199,Star Blazers: Space Battleship Yamato 2199,宇宙戦艦ヤマト2199,OVA,122369,8.31,2012
-12,Sakamichi no Apollon,Kids on the Slope,坂道のアポロン,TV,406179,8.29,2012
-13,Shinsekai yori,From the New World,新世界より,TV,805860,8.25,2012
-14,Danshi Koukousei no Nichijou,Daily Lives of High School Boys,男子高校生の日常,TV,862394,8.23,2012
-15,Mahou Shoujo Madoka★Magica Movie 1: Hajimari no Monogatari,Puella Magi Madoka Magica the Movie Part 1: Beginnings,劇場版 魔法少女まどか☆マギカ 始まりの物語,Movie,210530,8.22,2012
-17,Kamisama Hajimemashita,Kamisama Kiss,神様はじめました,TV,697345,8.12,2012
-18,One Piece: Episode of Nami - Koukaishi no Namida to Nakama no Kizuna,One Piece: Episode of Nami - Tears of a Navigator and the Bonds of Friends,ワンピースエピソード・オブ・ナミ～航海士の涙と仲間の絆～,TV Special,74808,8.11,2012
-22,Hyouka,Hyouka,氷菓,TV,1439334,8.05,2012
-23,Kuroko no Basket,Kuroko's Basketball,黒子のバスケ,TV,1268634,8.05,2012
-24,Sakura-sou no Pet na Kanojo,The Pet Girl of Sakurasou,さくら荘のペットな彼女,TV,1294477,8.05,2012
-25,Magi: The Labyrinth of Magic,Magi: The Labyrinth of Magic,マギ The labyrinth of magic,TV,1091863,8.01,2012
-27,Nekomonogatari: Kuro,Nekomonogatari Black,猫物語（黒）,TV Special,576116,7.92,2012
-30,Shirokuma Cafe,Polar Bear Cafe,しろくまカフェ,TV,100191,7.89,2012
-31,Zetsuen no Tempest,Blast of Tempest,絶園のテンペスト,TV,617093,7.89,2012
-32,Kingdom,Kingdom,キングダム,TV,241825,7.88,2012
-36,JoJo no Kimyou na Bouken (TV),JoJo's Bizarre Adventure (2012),ジョジョの奇妙な冒険,TV,1770497,7.87,2012
-37,Danshi Koukousei no Nichijou Specials,Daily Lives of High School Boys Specials,男子高校生の日常,Special,155456,7.82,2012
-38,Tasogare Otome x Amnesia,Dusk Maiden of Amnesia,黄昏乙女×アムネジア,TV,435804,7.81,2012
-40,Jormungand,Jormungand,ヨルムンガンド,TV,384908,7.79,2012
-41,Lupin the Third: Mine Fujiko to Iu Onna,Lupin the Third: The Woman Called Fujiko Mine,LUPIN the Third ～峰不二子という女～,TV,68296,7.76,2012
-42,The Everlasting Guilty Crown,The Everlasting Guilty Crown,The Everlasting Guilty Crown,Music,36777,7.75,2012
-43,Kokoro Connect,Kokoro Connect,ココロコネクト,TV,868181,7.73,2012
-45,Berserk: Ougon Jidai-hen I - Haou no Tamago,Berserk: The Golden Age Arc I - The Egg of the King,ベルセルク 黄金時代篇Ⅰ 覇王の卵,Movie,240709,7.71,2012
-47,Jinrui wa Suitai Shimashita,Humanity Has Declined,人類は衰退しました,TV,197881,7.7,2012
-48,Chuunibyou demo Koi ga Shitai!,"Love, Chunibyo & Other Delusions!",中二病でも恋がしたい!,TV,1419502,7.7,2012
-50,Junjou Romantica OVA,Junjou Romantica OVA,純情ロマンチカ,OVA,57947,7.68,2012
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+3,Ookami Kodomo no Ame to Yuki,Wolf Children,おおかみこどもの雨と雪,Movie,846543,8.56,2012,https://cdn.myanimelist.net/images/anime/9/35721.jpg
+6,Uchuu Kyoudai,Space Brothers,宇宙兄弟,TV,205276,8.48,2012,https://cdn.myanimelist.net/images/anime/1290/135694.jpg
+9,Psycho-Pass,Psycho-Pass,サイコパス,TV,1704166,8.33,2012,https://cdn.myanimelist.net/images/anime/1314/142015.jpg
+10,Uchuu Senkan Yamato 2199,Star Blazers: Space Battleship Yamato 2199,宇宙戦艦ヤマト2199,OVA,122369,8.31,2012,https://cdn.myanimelist.net/images/anime/2/36607.jpg
+12,Sakamichi no Apollon,Kids on the Slope,坂道のアポロン,TV,406179,8.29,2012,https://cdn.myanimelist.net/images/anime/1604/98654.jpg
+13,Shinsekai yori,From the New World,新世界より,TV,805860,8.25,2012,https://cdn.myanimelist.net/images/anime/1549/136389.jpg
+14,Danshi Koukousei no Nichijou,Daily Lives of High School Boys,男子高校生の日常,TV,862394,8.23,2012,https://cdn.myanimelist.net/images/anime/3/33257.jpg
+17,Kamisama Hajimemashita,Kamisama Kiss,神様はじめました,TV,697345,8.12,2012,https://cdn.myanimelist.net/images/anime/3/85429.jpg
+22,Hyouka,Hyouka,氷菓,TV,1439334,8.05,2012,https://cdn.myanimelist.net/images/anime/13/50521.jpg
+23,Kuroko no Basket,Kuroko's Basketball,黒子のバスケ,TV,1268634,8.05,2012,https://cdn.myanimelist.net/images/anime/11/50453.jpg
+24,Sakura-sou no Pet na Kanojo,The Pet Girl of Sakurasou,さくら荘のペットな彼女,TV,1294477,8.05,2012,https://cdn.myanimelist.net/images/anime/4/43643.jpg
+25,Magi: The Labyrinth of Magic,Magi: The Labyrinth of Magic,マギ The labyrinth of magic,TV,1091863,8.01,2012,https://cdn.myanimelist.net/images/anime/11/42773.jpg
+30,Shirokuma Cafe,Polar Bear Cafe,しろくまカフェ,TV,100191,7.89,2012,https://cdn.myanimelist.net/images/anime/6/75649.jpg
+31,Zetsuen no Tempest,Blast of Tempest,絶園のテンペスト,TV,617093,7.89,2012,https://cdn.myanimelist.net/images/anime/7/42453.jpg
+32,Kingdom,Kingdom,キングダム,TV,241825,7.88,2012,https://cdn.myanimelist.net/images/anime/13/39511.jpg
+33,Jormungand: Perfect Order,Jormungand Season 2: Perfect Order,ヨルムンガンド PERFECT ORDER,TV,203482,7.88,2012,
+34,Shijou Saikyou no Deshi Kenichi OVA,KenIchi: The Mightiest Disciple OVA,史上最強の弟子 ケンイチ OVA,OVA,60995,7.87,2012,https://cdn.myanimelist.net/images/anime/1125/102421.jpg
+35,Berserk: Ougon Jidai-hen II - Doldrey Kouryaku,Berserk: The Golden Age Arc II - The Battle for Doldrey,ベルセルク 黄金時代篇Ⅱ ドルドレイ攻略,Movie,226309,7.87,2012,https://cdn.myanimelist.net/images/anime/12/37193.jpg
+36,JoJo no Kimyou na Bouken (TV),JoJo's Bizarre Adventure (2012),ジョジョの奇妙な冒険,TV,1770497,7.87,2012,https://cdn.myanimelist.net/images/anime/3/40409.jpg
+37,Danshi Koukousei no Nichijou Specials,Daily Lives of High School Boys Specials,男子高校生の日常,Special,155456,7.82,2012,https://cdn.myanimelist.net/images/anime/8/38527.jpg
+38,Tasogare Otome x Amnesia,Dusk Maiden of Amnesia,黄昏乙女×アムネジア,TV,435804,7.81,2012,https://cdn.myanimelist.net/images/anime/12/64435.jpg
+39,Yuru Yuri♪♪,YuruYuri: Happy Go Lily ♪♪,ゆるゆり♪♪,TV,205824,7.81,2012,https://cdn.myanimelist.net/images/anime/8/75174.jpg
+40,Jormungand,Jormungand,ヨルムンガンド,TV,384908,7.79,2012,https://cdn.myanimelist.net/images/anime/11/73280.jpg
+41,Lupin the Third: Mine Fujiko to Iu Onna,Lupin the Third: The Woman Called Fujiko Mine,LUPIN the Third ～峰不二子という女～,TV,68296,7.76,2012,
+42,The Everlasting Guilty Crown,The Everlasting Guilty Crown,The Everlasting Guilty Crown,Music,36777,7.75,2012,
+43,Kokoro Connect,Kokoro Connect,ココロコネクト,TV,868181,7.73,2012,https://cdn.myanimelist.net/images/anime/2/39665.jpg
+44,Toshokan Sensou: Kakumei no Tsubasa,Library Wars: The Wings of Revolution,図書館戦争 革命のつばさ,Movie,25889,7.72,2012,
+45,Berserk: Ougon Jidai-hen I - Haou no Tamago,Berserk: The Golden Age Arc I - The Egg of the King,ベルセルク 黄金時代篇Ⅰ 覇王の卵,Movie,240709,7.71,2012,https://cdn.myanimelist.net/images/anime/12/62179.jpg
+46,Meitantei Conan Movie 16: 11-ninme no Striker,Detective Conan Movie 16: The Eleventh Striker,劇場版　名探偵コナン　11人目のストライカー,Movie,47377,7.7,2012,
+47,Jinrui wa Suitai Shimashita,Humanity Has Declined,人類は衰退しました,TV,197881,7.7,2012,https://cdn.myanimelist.net/images/anime/12/50345.jpg
+48,Chuunibyou demo Koi ga Shitai!,"Love, Chunibyo & Other Delusions!",中二病でも恋がしたい!,TV,1419502,7.7,2012,https://cdn.myanimelist.net/images/anime/1905/142840.jpg
+49,Naruto: Shippuuden Movie 6 - Road to Ninja,Naruto Shippuden the Movie 6: Road to Ninja,ROAD TO NINJA NARUTO THE MOVIE,Movie,368311,7.68,2012,https://cdn.myanimelist.net/images/anime/1620/94336.jpg
+50,Junjou Romantica OVA,Junjou Romantica OVA,純情ロマンチカ,OVA,57947,7.68,2012,

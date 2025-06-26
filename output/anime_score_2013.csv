@@ -1,26 +1,33 @@
-rank,title,title_english,title_japanese,type,members,score,year
-4,Shingeki no Kyojin,Attack on Titan,進撃の巨人,TV,4178867,8.56,2013
-10,Kaguya-hime no Monogatari,The Tale of the Princess Kaguya,かぐや姫の物語,Movie,249904,8.21,2013
-13,One Piece: Episode of Merry - Mou Hitori no Nakama no Monogatari,One Piece: Episode of Merry - The Tale of One More Friend,ワンピース エピソード・オブ・メリー ～もうひとりの仲間の物語～,TV Special,78921,8.19,2013
-15,Kaze Tachinu,The Wind Rises,風立ちぬ,Movie,367740,8.13,2013
-16,Diamond no Ace,Ace of Diamond,ダイヤのA[エース],TV,258609,8.11,2013
-17,Gin no Saji,Silver Spoon,銀の匙,TV,306221,8.09,2013
-19,Kamisama Hajimemashita OVA,Kamisama Kiss OVA,神様はじめました,OVA,142896,8.07,2013
-20,Kill la Kill,Kill la Kill,キルラキル,TV,1798555,8.03,2013
-21,Yahari Ore no Seishun Love Comedy wa Machigatteiru.,My Teen Romantic Comedy SNAFU,やはり俺の青春ラブコメはまちがっている。,TV,1514397,8.0,2013
-25,Nagi no Asu kara,A Lull in the Sea,凪のあすから,TV,624598,7.94,2013
-26,Non Non Biyori,Non Non Biyori,のんのんびより,TV,445006,7.94,2013
-27,Sakasama no Patema,Patema Inverted,サカサマのパテマ,Movie,309171,7.93,2013
-28,Yowamushi Pedal,Yowamushi Pedal,弱虫ペダル,TV,242571,7.92,2013
-30,Log Horizon,Log Horizon,ログ・ホライズン,TV,1159288,7.9,2013
-32,Death Billiards,Death Billiards,デス・ビリヤード,Movie,248006,7.87,2013
-33,Kotonoha no Niwa,The Garden of Words,言の葉の庭,Movie,906052,7.86,2013
-37,Uchouten Kazoku,The Eccentric Family,有頂天家族,TV,186300,7.82,2013
-38,Little Witch Academia,Little Witch Academia,リトルウィッチアカデミア,Movie,320245,7.79,2013
-39,Kuroko no Basket: Tip Off,Kuroko's Basketball: Tip Off,黒子のバスケ 第22.5Q 「Tip Off」,Special,110021,7.79,2013
-40,Saint☆Oniisan (Movie),Saint☆Young Men (Movie),聖☆おにいさん,Movie,100780,7.78,2013
-41,Golden Time,Golden Time,ゴールデンタイム,TV,1098805,7.74,2013
-42,Pokemon: The Origin,Pokémon: Origins,ポケットモンスター THE ORIGIN,TV Special,241502,7.74,2013
-44,Kyoukai no Kanata,Beyond the Boundary,境界の彼方,TV,1215489,7.72,2013
-45,Hataraku Maou-sama!,The Devil is a Part-Timer!,はたらく魔王さま!,TV,1623363,7.71,2013
-46,Kyousou Giga (TV),Kyousougiga,京騒戯画,TV,202288,7.69,2013
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+4,Shingeki no Kyojin,Attack on Titan,進撃の巨人,TV,4178867,8.56,2013,https://cdn.myanimelist.net/images/anime/10/47347.jpg
+10,Kaguya-hime no Monogatari,The Tale of the Princess Kaguya,かぐや姫の物語,Movie,249904,8.21,2013,https://cdn.myanimelist.net/images/anime/1935/93606.jpg
+15,Kaze Tachinu,The Wind Rises,風立ちぬ,Movie,367740,8.13,2013,https://cdn.myanimelist.net/images/anime/8/52353.jpg
+16,Diamond no Ace,Ace of Diamond,ダイヤのA[エース],TV,258609,8.11,2013,https://cdn.myanimelist.net/images/anime/5/54235.jpg
+17,Gin no Saji,Silver Spoon,銀の匙,TV,306221,8.09,2013,https://cdn.myanimelist.net/images/anime/6/49237.jpg
+20,Kill la Kill,Kill la Kill,キルラキル,TV,1798555,8.03,2013,https://cdn.myanimelist.net/images/anime/1464/111943.jpg
+21,Yahari Ore no Seishun Love Comedy wa Machigatteiru.,My Teen Romantic Comedy SNAFU,やはり俺の青春ラブコメはまちがっている。,TV,1514397,8,2013,https://cdn.myanimelist.net/images/anime/1786/120117.jpg
+25,Nagi no Asu kara,A Lull in the Sea,凪のあすから,TV,624598,7.94,2013,https://cdn.myanimelist.net/images/anime/7/53549.jpg
+26,Non Non Biyori,Non Non Biyori,のんのんびより,TV,445006,7.94,2013,https://cdn.myanimelist.net/images/anime/2/51581.jpg
+27,Sakasama no Patema,Patema Inverted,サカサマのパテマ,Movie,309171,7.93,2013,https://cdn.myanimelist.net/images/anime/12/52415.jpg
+28,Yowamushi Pedal,Yowamushi Pedal,弱虫ペダル,TV,242571,7.92,2013,https://cdn.myanimelist.net/images/anime/5/53211.jpg
+30,Log Horizon,Log Horizon,ログ・ホライズン,TV,1159288,7.9,2013,https://cdn.myanimelist.net/images/anime/5/84004.jpg
+31,Shingeki no Kyojin OVA,Attack on Titan OAD,進撃の巨人ＯＡＤ,OVA,490513,7.89,2013,https://cdn.myanimelist.net/images/anime/9/59221.jpg
+32,Death Billiards,Death Billiards,デス・ビリヤード,Movie,248006,7.87,2013,https://cdn.myanimelist.net/images/anime/11/48721.jpg
+33,Kotonoha no Niwa,The Garden of Words,言の葉の庭,Movie,906052,7.86,2013,https://cdn.myanimelist.net/images/anime/1597/112995.jpg
+34,Lupin III vs. Meitantei Conan: The Movie,Lupin III vs. Detective Conan: The Movie,ルパン三世vs.名探偵コナン THE MOVIE,Movie,35741,7.85,2013,
+35,Hanasaku Iroha Movie: Home Sweet Home,Hanasaku Iroha the Movie: Home Sweet Home,劇場版 花咲くいろは HOME SWEET HOME,Movie,96325,7.83,2013,https://cdn.myanimelist.net/images/anime/9/70701.jpg
+36,Ano Hi Mita Hana no Namae wo Bokutachi wa Mada Shiranai. Movie,Anohana: The Flower We Saw That Day The Movie,劇場版 あの日見た花の名前を僕達はまだ知らない。,Movie,307082,7.83,2013,https://cdn.myanimelist.net/images/anime/5/49993.jpg
+37,Uchouten Kazoku,The Eccentric Family,有頂天家族,TV,186300,7.82,2013,https://cdn.myanimelist.net/images/anime/3/85433.jpg
+38,Little Witch Academia,Little Witch Academia,リトルウィッチアカデミア,Movie,320245,7.79,2013,https://cdn.myanimelist.net/images/anime/1890/147903.jpg
+39,Kuroko no Basket: Tip Off,Kuroko's Basketball: Tip Off,黒子のバスケ 第22.5Q 「Tip Off」,Special,110021,7.79,2013,https://cdn.myanimelist.net/images/anime/10/76803.jpg
+40,Saint☆Oniisan (Movie),Saint☆Young Men (Movie),聖☆おにいさん,Movie,100780,7.78,2013,
+41,Golden Time,Golden Time,ゴールデンタイム,TV,1098805,7.74,2013,https://cdn.myanimelist.net/images/anime/12/52091.jpg
+42,Pokemon: The Origin,Pokémon: Origins,ポケットモンスター THE ORIGIN,TV Special,241502,7.74,2013,
+43,Gundam Build Fighters,Gundam Build Fighters,ガンダムビルドファイターズ,TV,79611,7.74,2013,
+44,Kyoukai no Kanata,Beyond the Boundary,境界の彼方,TV,1215489,7.72,2013,https://cdn.myanimelist.net/images/anime/3/85468.jpg
+45,Hataraku Maou-sama!,The Devil is a Part-Timer!,はたらく魔王さま!,TV,1623363,7.71,2013,https://cdn.myanimelist.net/images/anime/3/50177.jpg
+46,Kyousou Giga (TV),Kyousougiga,京騒戯画,TV,202288,7.69,2013,
+47,Meitantei Conan Movie 17: Zekkai no Private Eye,Detective Conan Movie 17: Private Eye in the Distant Sea,名探偵コナン 絶海の探偵,Movie,42356,7.66,2013,
+48,Natsume Yuujinchou: Nyanko-sensei to Hajimete no Otsukai,Natsume’s Book of Friends: Nyanko-Sensei and the First Errand,夏目友人帳新作アニメDVD,Special,38070,7.65,2013,
+49,Minami-ke Tadaima,Minami-ke Tadaima,みなみけ ただいま,TV,60979,7.64,2013,
+50,AKB0048: Next Stage,AKB0048: Next Stage,AKB0048 next stage,TV,38551,7.62,2013,

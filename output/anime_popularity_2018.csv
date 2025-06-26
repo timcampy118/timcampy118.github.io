@@ -1,33 +1,39 @@
-rank,title,title_english,title_japanese,type,members,score,year
-2,Boku no Hero Academia 3rd Season,My Hero Academia Season 3,僕のヒーローアカデミア,TV,2296474,7.99,2018
-3,Violet Evergarden,Violet Evergarden,ヴァイオレット・エヴァーガーデン,TV,1907509,8.68,2018
-4,Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai,Rascal Does Not Dream of Bunny Girl Senpai,青春ブタ野郎はバニーガール先輩の夢を見ない,TV,1863083,8.23,2018
-5,Darling in the FranXX,DARLING in the FRANXX,ダーリン・イン・ザ・フランキス,TV,1744000,7.19,2018
-6,Tensei shitara Slime Datta Ken,That Time I Got Reincarnated as a Slime,転生したらスライムだった件,TV,1565981,8.14,2018
-8,Devilman: Crybaby,Devilman: Crybaby,DEVILMAN crybaby,ONA,1226330,7.74,2018
-9,Goblin Slayer,Goblin Slayer,ゴブリンスレイヤー,TV,1194475,7.42,2018
-14,Wotaku ni Koi wa Muzukashii,Wotakoi: Love is Hard for Otaku,ヲタクに恋は難しい,TV,1056907,7.92,2018
-15,Kimi no Suizou wo Tabetai,I Want To Eat Your Pancreas,君の膵臓をたべたい,Movie,1053686,8.55,2018
-18,Banana Fish,Banana Fish,BANANA FISH,TV,923390,8.45,2018
-20,Grand Blue,Grand Blue Dreaming,ぐらんぶる,TV,843573,8.44,2018
-22,Isekai Maou to Shoukan Shoujo no Dorei Majutsu,How Not to Summon a Demon Lord,異世界魔王と召喚少女の奴隷魔術,TV,770991,6.82,2018
-24,Satsuriku no Tenshi,Angels of Death,殺戮の天使,TV,713030,6.96,2018
-26,Hataraku Saibou,Cells at Work!,はたらく細胞,TV,679277,7.55,2018
-27,Sword Art Online Alternative: Gun Gale Online,Sword Art Online Alternative: Gun Gale Online,ソードアート・オンライン オルタナティブ ガンゲイル・オンライン,TV,656394,7.01,2018
-28,Karakai Jouzu no Takagi-san,Teasing Master Takagi-san,からかい上手の高木さん,TV,620954,7.68,2018
-29,Citrus,Citrus,シトラス,TV,541747,6.43,2018
-31,Death March kara Hajimaru Isekai Kyousoukyoku,Death March to the Parallel World Rhapsody,デスマーチからはじまる異世界狂想曲,TV,540415,6.43,2018
-33,Hinamatsuri,Hinamatsuri,ヒナまつり,TV,539909,8.12,2018
-34,Sora yori mo Tooi Basho,A Place Further Than The Universe,宇宙よりも遠い場所,TV,536130,8.5,2018
-35,Megalo Box,Megalobox,メガロボクス,TV,532289,7.88,2018
-36,Yuru Camp△,Laid-Back Camp,ゆるキャン△,TV,524386,8.27,2018
-37,Zombieland Saga,Zombie Land Saga,ゾンビランドサガ,TV,519248,7.5,2018
-38,Asobi Asobase,Asobi Asobase - workshop of fun -,あそびあそばせ,TV,514634,8.19,2018
-39,Sayonara no Asa ni Yakusoku no Hana wo Kazarou,Maquia: When the Promised Flower Blooms,さよならの朝に約束の花をかざろう,Movie,470279,8.39,2018
-42,Golden Kamuy,Golden Kamuy,ゴールデンカムイ,TV,428428,7.88,2018
-44,Kishuku Gakkou no Juliet,Boarding School Juliet,寄宿学校のジュリエット,TV,397816,7.45,2018
-45,Yagate Kimi ni Naru,Bloom Into You,やがて君になる,TV,367354,7.88,2018
-46,Gakuen Babysitters,School Babysitters,学園ベビーシッターズ,TV,364266,7.9,2018
-47,3D Kanojo: Real Girl,Real Girl,3D彼女 リアルガール,TV,362218,6.86,2018
-48,B: The Beginning,B: The Beginning,B: The Beginning,ONA,362170,7.15,2018
-50,Irozuku Sekai no Ashita kara,Iroduku: The World in Colors,色づく世界の明日から,TV,352885,7.52,2018
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+3,Violet Evergarden,Violet Evergarden,ヴァイオレット・エヴァーガーデン,TV,1907509,8.68,2018,https://cdn.myanimelist.net/images/anime/1795/95088.jpg
+4,Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai,Rascal Does Not Dream of Bunny Girl Senpai,青春ブタ野郎はバニーガール先輩の夢を見ない,TV,1863083,8.23,2018,https://cdn.myanimelist.net/images/anime/1301/93586.jpg
+5,Darling in the FranXX,DARLING in the FRANXX,ダーリン・イン・ザ・フランキス,TV,1744000,7.19,2018,https://cdn.myanimelist.net/images/anime/1614/90408.jpg
+6,Tensei shitara Slime Datta Ken,That Time I Got Reincarnated as a Slime,転生したらスライムだった件,TV,1565981,8.14,2018,https://cdn.myanimelist.net/images/anime/1069/123309.jpg
+8,Devilman: Crybaby,Devilman: Crybaby,DEVILMAN crybaby,ONA,1226330,7.74,2018,https://cdn.myanimelist.net/images/anime/2/89973.jpg
+9,Goblin Slayer,Goblin Slayer,ゴブリンスレイヤー,TV,1194475,7.42,2018,https://cdn.myanimelist.net/images/anime/1719/95621.jpg
+14,Wotaku ni Koi wa Muzukashii,Wotakoi: Love is Hard for Otaku,ヲタクに恋は難しい,TV,1056907,7.92,2018,https://cdn.myanimelist.net/images/anime/1864/93518.jpg
+15,Kimi no Suizou wo Tabetai,I Want To Eat Your Pancreas,君の膵臓をたべたい,Movie,1053686,8.55,2018,https://cdn.myanimelist.net/images/anime/1768/93291.jpg
+18,Banana Fish,Banana Fish,BANANA FISH,TV,923390,8.45,2018,https://cdn.myanimelist.net/images/anime/1190/93472.jpg
+20,Grand Blue,Grand Blue Dreaming,ぐらんぶる,TV,843573,8.44,2018,https://cdn.myanimelist.net/images/anime/1302/94882.jpg
+22,Isekai Maou to Shoukan Shoujo no Dorei Majutsu,How Not to Summon a Demon Lord,異世界魔王と召喚少女の奴隷魔術,TV,770991,6.82,2018,https://cdn.myanimelist.net/images/anime/1649/93412.jpg
+24,Satsuriku no Tenshi,Angels of Death,殺戮の天使,TV,713030,6.96,2018,https://cdn.myanimelist.net/images/anime/1862/95624.jpg
+25,Saiki Kusuo no Ψ-nan 2,The Disastrous Life of Saiki K. 2,斉木楠雄のΨ難 2,TV,688793,8.41,2018,https://cdn.myanimelist.net/images/anime/1961/91383.jpg
+26,Hataraku Saibou,Cells at Work!,はたらく細胞,TV,679277,7.55,2018,https://cdn.myanimelist.net/images/anime/1141/117446.jpg
+27,Sword Art Online Alternative: Gun Gale Online,Sword Art Online Alternative: Gun Gale Online,ソードアート・オンライン オルタナティブ ガンゲイル・オンライン,TV,656394,7.01,2018,https://cdn.myanimelist.net/images/anime/1141/93288.jpg
+28,Karakai Jouzu no Takagi-san,Teasing Master Takagi-san,からかい上手の高木さん,TV,620954,7.68,2018,https://cdn.myanimelist.net/images/anime/1591/95091.jpg
+29,Citrus,Citrus,シトラス,TV,541747,6.43,2018,https://cdn.myanimelist.net/images/anime/11/89985.jpg
+30,Fairy Tail: Final Series,Fairy Tail Final Series,FAIRY TAIL ファイナルシリーズ,TV,541645,7.61,2018,https://cdn.myanimelist.net/images/anime/1536/93863.jpg
+31,Death March kara Hajimaru Isekai Kyousoukyoku,Death March to the Parallel World Rhapsody,デスマーチからはじまる異世界狂想曲,TV,540415,6.43,2018,https://cdn.myanimelist.net/images/anime/4/88911.jpg
+32,High School DxD Hero,High School DxD Hero,ハイスクールDxD HERO,TV,539979,7.23,2018,https://cdn.myanimelist.net/images/anime/1189/93528.jpg
+33,Hinamatsuri,Hinamatsuri,ヒナまつり,TV,539909,8.12,2018,https://cdn.myanimelist.net/images/anime/1580/93526.jpg
+34,Sora yori mo Tooi Basho,A Place Further Than The Universe,宇宙よりも遠い場所,TV,536130,8.5,2018,https://cdn.myanimelist.net/images/anime/6/89879.jpg
+35,Megalo Box,Megalobox,メガロボクス,TV,532289,7.88,2018,https://cdn.myanimelist.net/images/anime/1958/93533.jpg
+36,Yuru Camp△,Laid-Back Camp,ゆるキャン△,TV,524386,8.27,2018,https://cdn.myanimelist.net/images/anime/4/89877.jpg
+37,Zombieland Saga,Zombie Land Saga,ゾンビランドサガ,TV,519248,7.5,2018,https://cdn.myanimelist.net/images/anime/1084/128208.jpg
+38,Asobi Asobase,Asobi Asobase - workshop of fun -,あそびあそばせ,TV,514634,8.19,2018,https://cdn.myanimelist.net/images/anime/1139/95077.jpg
+39,Sayonara no Asa ni Yakusoku no Hana wo Kazarou,Maquia: When the Promised Flower Blooms,さよならの朝に約束の花をかざろう,Movie,470279,8.39,2018,https://cdn.myanimelist.net/images/anime/11/89556.jpg
+40,Baki,Baki,バキ,ONA,457609,7.31,2018,https://cdn.myanimelist.net/images/anime/1979/93135.jpg
+41,Dragon Ball Super: Broly,Dragon Ball Super: Broly,ドラゴンボール超（スーパー） ブロリー,Movie,443282,8.19,2018,https://cdn.myanimelist.net/images/anime/1575/93498.jpg
+42,Golden Kamuy,Golden Kamuy,ゴールデンカムイ,TV,428428,7.88,2018,https://cdn.myanimelist.net/images/anime/1145/90880.jpg
+43,ReLIFE: Kanketsu-hen,ReLIFE: Final Arc,ReLIFE 完結編,Special,427463,8.21,2018,https://cdn.myanimelist.net/images/anime/1566/91061.jpg
+44,Kishuku Gakkou no Juliet,Boarding School Juliet,寄宿学校のジュリエット,TV,397816,7.45,2018,https://cdn.myanimelist.net/images/anime/1908/93416.jpg
+45,Yagate Kimi ni Naru,Bloom Into You,やがて君になる,TV,367354,7.88,2018,https://cdn.myanimelist.net/images/anime/1783/96153.jpg
+46,Gakuen Babysitters,School Babysitters,学園ベビーシッターズ,TV,364266,7.9,2018,https://cdn.myanimelist.net/images/anime/8/89978.jpg
+47,3D Kanojo: Real Girl,Real Girl,3D彼女 リアルガール,TV,362218,6.86,2018,https://cdn.myanimelist.net/images/anime/1327/93616.jpg
+48,B: The Beginning,B: The Beginning,B: The Beginning,ONA,362170,7.15,2018,https://cdn.myanimelist.net/images/anime/1564/90469.jpg
+49,"Violet Evergarden: Kitto ""Ai"" wo Shiru Hi ga Kuru no Darou","Violet Evergarden: The Day You Understand ""I Love You"" Will Surely Come","ヴァイオレット・エヴァーガーデンきっと""愛""を知る日が来るのだろう",Special,356184,8.35,2018,https://cdn.myanimelist.net/images/anime/9/89993.jpg
+50,Irozuku Sekai no Ashita kara,Iroduku: The World in Colors,色づく世界の明日から,TV,352885,7.52,2018,https://cdn.myanimelist.net/images/anime/1424/93855.jpg

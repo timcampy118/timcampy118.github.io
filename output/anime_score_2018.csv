@@ -1,25 +1,34 @@
-rank,title,title_english,title_japanese,type,members,score,year
-3,Violet Evergarden,Violet Evergarden,ヴァイオレット・エヴァーガーデン,TV,1907509,8.68,2018
-6,Kimi no Suizou wo Tabetai,I Want To Eat Your Pancreas,君の膵臓をたべたい,Movie,1053686,8.55,2018
-8,Sora yori mo Tooi Basho,A Place Further Than The Universe,宇宙よりも遠い場所,TV,536130,8.5,2018
-9,Mo Dao Zu Shi,The Master of Diabolism,魔道祖师,ONA,246504,8.46,2018
-10,Banana Fish,Banana Fish,BANANA FISH,TV,923390,8.45,2018
-11,Grand Blue,Grand Blue Dreaming,ぐらんぶる,TV,843573,8.44,2018
-14,Sayonara no Asa ni Yakusoku no Hana wo Kazarou,Maquia: When the Promised Flower Blooms,さよならの朝に約束の花をかざろう,Movie,470279,8.39,2018
-15,Kaze ga Tsuyoku Fuiteiru,Run with the Wind,風が強く吹いている,TV,322150,8.38,2018
-17,Douluo Dalu 2nd Season,Douluo Dalu 2nd Season,斗罗大陆,ONA,23005,8.35,2018
-18,Yuru Camp△,Laid-Back Camp,ゆるキャン△,TV,524386,8.27,2018
-20,Golden Kamuy 2nd Season,Golden Kamuy Season 2,ゴールデンカムイ,TV,224322,8.24,2018
-21,Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai,Rascal Does Not Dream of Bunny Girl Senpai,青春ブタ野郎はバニーガール先輩の夢を見ない,TV,1863083,8.23,2018
-26,Asobi Asobase,Asobi Asobase - workshop of fun -,あそびあそばせ,TV,514634,8.19,2018
-28,Tensei shitara Slime Datta Ken,That Time I Got Reincarnated as a Slime,転生したらスライムだった件,TV,1565981,8.14,2018
-29,Hinamatsuri,Hinamatsuri,ヒナまつり,TV,539909,8.12,2018
-32,Boku no Hero Academia 3rd Season,My Hero Academia Season 3,僕のヒーローアカデミア,TV,2296474,7.99,2018
-36,Douluo Dalu,Soul Land,斗罗大陆,ONA,32605,7.94,2018
-38,Wotaku ni Koi wa Muzukashii,Wotakoi: Love is Hard for Otaku,ヲタクに恋は難しい,TV,1056907,7.92,2018
-42,Gakuen Babysitters,School Babysitters,学園ベビーシッターズ,TV,364266,7.9,2018
-43,Megalo Box,Megalobox,メガロボクス,TV,532289,7.88,2018
-44,Golden Kamuy,Golden Kamuy,ゴールデンカムイ,TV,428428,7.88,2018
-45,Yagate Kimi ni Naru,Bloom Into You,やがて君になる,TV,367354,7.88,2018
-48,Hug tto! Precure,Hug tto! Precure,HuGっと！プリキュア,TV,31163,7.83,2018
-49,Ginga Eiyuu Densetsu: Die Neue These - Kaikou,Legend of the Galactic Heroes: Die Neue These,銀河英雄伝説 Die Neue These 邂逅,TV,103250,7.8,2018
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+3,Violet Evergarden,Violet Evergarden,ヴァイオレット・エヴァーガーデン,TV,1907509,8.68,2018,https://cdn.myanimelist.net/images/anime/1795/95088.jpg
+6,Kimi no Suizou wo Tabetai,I Want To Eat Your Pancreas,君の膵臓をたべたい,Movie,1053686,8.55,2018,https://cdn.myanimelist.net/images/anime/1768/93291.jpg
+8,Sora yori mo Tooi Basho,A Place Further Than The Universe,宇宙よりも遠い場所,TV,536130,8.5,2018,https://cdn.myanimelist.net/images/anime/6/89879.jpg
+9,Mo Dao Zu Shi,The Master of Diabolism,魔道祖师,ONA,246504,8.46,2018,https://cdn.myanimelist.net/images/anime/1253/93893.jpg
+10,Banana Fish,Banana Fish,BANANA FISH,TV,923390,8.45,2018,https://cdn.myanimelist.net/images/anime/1190/93472.jpg
+11,Grand Blue,Grand Blue Dreaming,ぐらんぶる,TV,843573,8.44,2018,https://cdn.myanimelist.net/images/anime/1302/94882.jpg
+14,Sayonara no Asa ni Yakusoku no Hana wo Kazarou,Maquia: When the Promised Flower Blooms,さよならの朝に約束の花をかざろう,Movie,470279,8.39,2018,https://cdn.myanimelist.net/images/anime/11/89556.jpg
+15,Kaze ga Tsuyoku Fuiteiru,Run with the Wind,風が強く吹いている,TV,322150,8.38,2018,https://cdn.myanimelist.net/images/anime/1936/129119.jpg
+18,Yuru Camp△,Laid-Back Camp,ゆるキャン△,TV,524386,8.27,2018,https://cdn.myanimelist.net/images/anime/4/89877.jpg
+21,Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai,Rascal Does Not Dream of Bunny Girl Senpai,青春ブタ野郎はバニーガール先輩の夢を見ない,TV,1863083,8.23,2018,https://cdn.myanimelist.net/images/anime/1301/93586.jpg
+26,Asobi Asobase,Asobi Asobase - workshop of fun -,あそびあそばせ,TV,514634,8.19,2018,https://cdn.myanimelist.net/images/anime/1139/95077.jpg
+28,Tensei shitara Slime Datta Ken,That Time I Got Reincarnated as a Slime,転生したらスライムだった件,TV,1565981,8.14,2018,https://cdn.myanimelist.net/images/anime/1069/123309.jpg
+29,Hinamatsuri,Hinamatsuri,ヒナまつり,TV,539909,8.12,2018,https://cdn.myanimelist.net/images/anime/1580/93526.jpg
+31,Chuunibyou demo Koi ga Shitai! Movie: Take On Me,"Love, Chunibyo & Other Delusions!: Take On Me",映画 中二病でも恋がしたい！-Take On Me-,Movie,290135,8.1,2018,https://cdn.myanimelist.net/images/anime/2/89974.jpg
+32,Boku no Hero Academia 3rd Season,My Hero Academia Season 3,僕のヒーローアカデミア,TV,2296474,7.99,2018,https://cdn.myanimelist.net/images/anime/1319/92084.jpg
+33,IDOLiSH7 Vibrato,IDOLiSH7 Vibrato,アイドリッシュセブン Vibrato,ONA,17449,7.97,2018,
+34,Code Geass: Hangyaku no Lelouch III - Oudou,Code Geass: Lelouch of the Rebellion III - Glorification,コードギアス 反逆のルルーシュⅢ 皇道,Movie,100869,7.97,2018,
+35,Shingeki no Kyojin Season 2 Movie: Kakusei no Houkou,Attack on Titan: The Roar of Awakening,劇場版 進撃の巨人 Season2〜覚醒の咆哮〜,Movie,79585,7.94,2018,
+36,Douluo Dalu,Soul Land,斗罗大陆,ONA,32605,7.94,2018,
+37,Shokugeki no Souma: San no Sara - Tootsuki Ressha-hen,Food Wars! The Third Plate: Totsuki Train Arc,食戟のソーマ 餐ノ皿 遠月列車篇,TV,754978,7.93,2018,https://cdn.myanimelist.net/images/anime/1604/93531.jpg
+38,Wotaku ni Koi wa Muzukashii,Wotakoi: Love is Hard for Otaku,ヲタクに恋は難しい,TV,1056907,7.92,2018,https://cdn.myanimelist.net/images/anime/1864/93518.jpg
+39,Bungou Stray Dogs: Dead Apple,Bungo Stray Dogs: Dead Apple,文豪ストレイドッグス DEAD APPLE,Movie,302167,7.91,2018,https://cdn.myanimelist.net/images/anime/1127/93981.jpg
+40,Cike Wu Liuqi,Scissor Seven,刺客伍六七,ONA,127504,7.91,2018,https://cdn.myanimelist.net/images/anime/1620/94968.jpg
+41,Overlord III,Overlord III,オーバーロードⅢ,TV,974112,7.91,2018,https://cdn.myanimelist.net/images/anime/1511/93473.jpg
+42,Gakuen Babysitters,School Babysitters,学園ベビーシッターズ,TV,364266,7.9,2018,https://cdn.myanimelist.net/images/anime/8/89978.jpg
+43,Megalo Box,Megalobox,メガロボクス,TV,532289,7.88,2018,https://cdn.myanimelist.net/images/anime/1958/93533.jpg
+44,Golden Kamuy,Golden Kamuy,ゴールデンカムイ,TV,428428,7.88,2018,https://cdn.myanimelist.net/images/anime/1145/90880.jpg
+45,Yagate Kimi ni Naru,Bloom Into You,やがて君になる,TV,367354,7.88,2018,https://cdn.myanimelist.net/images/anime/1783/96153.jpg
+46,Meitantei Conan Movie 22: Zero no Shikkounin,Case Closed Movie 22: Zero the Enforcer,劇場版 名探偵コナン ゼロの執行人,Movie,34251,7.85,2018,
+47,Hoozuki no Reitetsu 2nd Season: Sono Ni,Hozuki's Coolheadedness 2: Part 2,鬼灯の冷徹 第弐期その弐,TV,31359,7.85,2018,
+48,Hug tto! Precure,Hug tto! Precure,HuGっと！プリキュア,TV,31163,7.83,2018,
+49,Ginga Eiyuu Densetsu: Die Neue These - Kaikou,Legend of the Galactic Heroes: Die Neue These,銀河英雄伝説 Die Neue These 邂逅,TV,103250,7.8,2018,
+50,Emiya-san Chi no Kyou no Gohan,Today's Menu for the Emiya Family,衛宮さんちの今日のごはん,ONA,139679,7.79,2018,

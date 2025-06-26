@@ -1,30 +1,40 @@
-rank,title,title_english,title_japanese,type,members,score,year
-1,Sen to Chihiro no Kamikakushi,Spirited Away,千と千尋の神隠し,Movie,1957192,8.77,2001
-4,Hikaru no Go,Hikaru no Go,ヒカルの碁,TV,145924,8.07,2001
-8,Tennis no Oujisama,The Prince of Tennis,テニスの王子様,TV,193335,7.85,2001
-9,Jungle wa Itsumo Hare nochi Guu,Haré+Guu,ジャングルはいつもハレのちグゥ,TV,48212,7.8,2001
-11,Shaman King,Shaman King,シャーマンキング,TV,377944,7.73,2001
-12,Fruits Basket,Fruits Basket,フルーツバスケット,TV,557126,7.69,2001
-13,Digimon Tamers,Digimon Tamers,デジモンテイマーズ,TV,206435,7.65,2001
-14,R.O.D: Read or Die,R.O.D - Read or Die,R.O.D リード・オア・ダイ,OVA,72658,7.61,2001
-16,Metropolis,Metropolis,メトロポリス,Movie,115446,7.52,2001
-17,Hellsing,Hellsing,Hellsing [ヘルシング],TV,765426,7.49,2001
-21,Grappler Baki (TV),Baki the Grappler,グラップラー刃牙,TV,158538,7.45,2001
-22,Salaryman Kintarou,Salaryman Kintarou,サラリーマン金太郎,TV,11054,7.43,2001
-23,Super GALS! Kotobuki Ran,Super GALS!,超GALS! 寿蘭,TV,24875,7.39,2001
-27,s.CRY.ed,s-CRY-ed,スクライド,TV,86211,7.35,2001
-28,Nekojiru-sou,Cat Soup,ねこぢる草,OVA,84483,7.32,2001
-30,Zoids Shinseiki/Zero,Zoids: New Century,ゾイド新世紀／ゼロ,TV,30632,7.32,2001
-31,Mazinkaiser,Mazinkaiser,マジンカイザー,OVA,12030,7.32,2001
-33,Shin Chou Kyou Ryo: Condor Hero,Legend of the Condor Hero,神鵰侠侶 コンドルヒーロー,TV,9619,7.29,2001
-35,Noir,Noir,ノワール,TV,119558,7.27,2001
-37,Kidou Tenshi Angelic Layer,Battle Doll Angelic Layer,機動天使エンジェリックレイヤー,TV,61259,7.26,2001
-38,Cyborg 009: The Cyborg Soldier,Cyborg 009,サイボーグ009 THE CYBORG SOLDIER,TV,36586,7.25,2001
-39,Cosmic Baton Girl Comet-san☆,Cosmic Baton Girl Comet-san☆,Cosmic Baton Girl コメットさん☆,TV,5772,7.22,2001
-41,Groove Adventure Rave,Rave Master,レイヴ,TV,104544,7.2,2001
-42,Figure 17: Tsubasa & Hikaru,Figure 17: Tsubasa & Hikaru,フィギュア17 つばさ&ヒカル,TV,15294,7.19,2001
-44,Seikai no Senki Special,Seikai no Senki Special,星界の戦旗 特別編,TV Special,3583,7.18,2001
-46,Shin Shirayuki-hime Densetsu Prétear,Prétear: The New Legend of Snow White,新白雪姫伝説プリーティア,TV,67224,7.15,2001
-47,Mahou Senshi Louie,Rune Soldier,魔法戦士リウイ,TV,24348,7.14,2001
-48,Love Hina Final Selection,Love Hina Final Selection,ラブひなFINAL SELECTION ～アニメ総集編&LOVE HINA LIVE in 東京BAY N.K.～,OVA,33371,7.14,2001
-50,Kaze no Youjinbou,Kaze no Yojimbo,旋風の用心棒,TV,16671,7.14,2001
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,Sen to Chihiro no Kamikakushi,Spirited Away,千と千尋の神隠し,Movie,1957192,8.77,2001,https://cdn.myanimelist.net/images/anime/6/79597.jpg
+4,Hikaru no Go,Hikaru no Go,ヒカルの碁,TV,145924,8.07,2001,https://cdn.myanimelist.net/images/anime/12/78317.jpg
+8,Tennis no Oujisama,The Prince of Tennis,テニスの王子様,TV,193335,7.85,2001,https://cdn.myanimelist.net/images/anime/6/21624.jpg
+9,Jungle wa Itsumo Hare nochi Guu,Haré+Guu,ジャングルはいつもハレのちグゥ,TV,48212,7.8,2001,https://cdn.myanimelist.net/images/anime/10/24555.jpg
+11,Shaman King,Shaman King,シャーマンキング,TV,377944,7.73,2001,https://cdn.myanimelist.net/images/anime/1722/99235.jpg
+12,Fruits Basket,Fruits Basket,フルーツバスケット,TV,557126,7.69,2001,https://cdn.myanimelist.net/images/anime/4/75204.jpg
+14,R.O.D: Read or Die,R.O.D - Read or Die,R.O.D リード・オア・ダイ,OVA,72658,7.61,2001,https://cdn.myanimelist.net/images/anime/1824/98849.jpg
+16,Metropolis,Metropolis,メトロポリス,Movie,115446,7.52,2001,https://cdn.myanimelist.net/images/anime/4/75601.jpg
+17,Hellsing,Hellsing,Hellsing [ヘルシング],TV,765426,7.49,2001,https://cdn.myanimelist.net/images/anime/10/19956.jpg
+21,Grappler Baki (TV),Baki the Grappler,グラップラー刃牙,TV,158538,7.45,2001,https://cdn.myanimelist.net/images/anime/1782/128917.jpg
+22,Salaryman Kintarou,Salaryman Kintarou,サラリーマン金太郎,TV,11054,7.43,2001,https://cdn.myanimelist.net/images/anime/8/62593.jpg
+23,Super GALS! Kotobuki Ran,Super GALS!,超GALS! 寿蘭,TV,24875,7.39,2001,https://cdn.myanimelist.net/images/anime/2/25047.jpg
+24,X,X,X−エックス−,TV,87136,7.38,2001,https://cdn.myanimelist.net/images/anime/8/17167.jpg
+25,Taiho Shichau zo: Second Season,You're Under Arrest: Fast & Furious,逮捕しちゃうぞ SECOND SEASON,TV,12454,7.37,2001,
+26,Vandread: The Second Stage,Vandread: The Second Stage,ヴァンドレッド the second stage,TV,56289,7.37,2001,https://cdn.myanimelist.net/images/anime/4/75447.jpg
+27,s.CRY.ed,s-CRY-ed,スクライド,TV,86211,7.35,2001,https://cdn.myanimelist.net/images/anime/8/89882.jpg
+28,Nekojiru-sou,Cat Soup,ねこぢる草,OVA,84483,7.32,2001,https://cdn.myanimelist.net/images/anime/5/84241.jpg
+29,Initial D Extra Stage,Initial D Extra Stage,頭文字〈イニシャル〉D EXTRA STAGE,OVA,60401,7.32,2001,https://cdn.myanimelist.net/images/anime/8/13169.jpg
+30,Zoids Shinseiki/Zero,Zoids: New Century,ゾイド新世紀／ゼロ,TV,30632,7.32,2001,https://cdn.myanimelist.net/images/anime/1159/133229.jpg
+31,Mazinkaiser,Mazinkaiser,マジンカイザー,OVA,12030,7.32,2001,https://cdn.myanimelist.net/images/anime/1041/106091.jpg
+32,Gensoumaden Saiyuuki Movie: Requiem - Erabarezaru Mono e no Chinkonka,Saiyuki: Requiem,劇場版　幻想魔伝最遊記　Requiem　選ばれざる者への鎮魂歌,Movie,10358,7.31,2001,https://cdn.myanimelist.net/images/anime/1628/106419.jpg
+33,Shin Chou Kyou Ryo: Condor Hero,Legend of the Condor Hero,神鵰侠侶 コンドルヒーロー,TV,9619,7.29,2001,
+34,Doraemon Movie 22: Nobita to Tsubasa no Yuusha-tachi,Doraemon the Movie: Nobita and the Winged Braves,映画 ドラえもん のび太と翼の勇者たち,Movie,7270,7.27,2001,https://cdn.myanimelist.net/images/anime/2/72427.jpg
+35,Noir,Noir,ノワール,TV,119558,7.27,2001,https://cdn.myanimelist.net/images/anime/1054/96577.jpg
+36,Digimon Adventure 02: Diablomon no Gyakushuu,Digimon Adventure 02: Revenge of Diaboromon,デジモンアドベンチャー02 ディアボロモンの逆襲,Movie,55377,7.26,2001,https://cdn.myanimelist.net/images/anime/2/82620.jpg
+37,Kidou Tenshi Angelic Layer,Battle Doll Angelic Layer,機動天使エンジェリックレイヤー,TV,61259,7.26,2001,https://cdn.myanimelist.net/images/anime/1192/113699.jpg
+38,Cyborg 009: The Cyborg Soldier,Cyborg 009,サイボーグ009 THE CYBORG SOLDIER,TV,36586,7.25,2001,https://cdn.myanimelist.net/images/anime/5/21620.jpg
+39,Cosmic Baton Girl Comet-san☆,Cosmic Baton Girl Comet-san☆,Cosmic Baton Girl コメットさん☆,TV,5772,7.22,2001,
+40,"Love Hina: Motoko no Sentaku, Koi ka Ken... ""Naku na""",Love Hina: Motoko's Choice Between Love or Swords: Don't cry!,"素子のセンタク, 恋か剣... 「泣くな」",Special,39163,7.21,2001,https://cdn.myanimelist.net/images/anime/10/82631.jpg
+41,Groove Adventure Rave,Rave Master,レイヴ,TV,104544,7.2,2001,https://cdn.myanimelist.net/images/anime/9/20134.jpg
+42,Figure 17: Tsubasa & Hikaru,Figure 17: Tsubasa & Hikaru,フィギュア17 つばさ&ヒカル,TV,15294,7.19,2001,https://cdn.myanimelist.net/images/anime/1862/133787.jpg
+43,Motto! Ojamajo Doremi: Kaeru Ishi no Himitsu,Motto! Ojamajo Doremi: Kaeru Ishi no Himitsu,も～っと！おジャ魔女どれみ カエル石のひみつ,Movie,5711,7.19,2001,
+44,Seikai no Senki Special,Seikai no Senki Special,星界の戦旗 特別編,TV Special,3583,7.18,2001,
+45,Love Hina Haru Special: Kimi Sakura Chiru Nakare!!,Love Hina Spring Movie,ラブひな春スペシャル 〜キミサクラチルナカレ!!〜,TV Special,54524,7.17,2001,https://cdn.myanimelist.net/images/anime/12/82632.jpg
+46,Shin Shirayuki-hime Densetsu Prétear,Prétear: The New Legend of Snow White,新白雪姫伝説プリーティア,TV,67224,7.15,2001,https://cdn.myanimelist.net/images/anime/9/11709.jpg
+47,Mahou Senshi Louie,Rune Soldier,魔法戦士リウイ,TV,24348,7.14,2001,https://cdn.myanimelist.net/images/anime/1226/137581.jpg
+48,Love Hina Final Selection,Love Hina Final Selection,ラブひなFINAL SELECTION ～アニメ総集編&LOVE HINA LIVE in 東京BAY N.K.～,OVA,33371,7.14,2001,https://cdn.myanimelist.net/images/anime/10/82633.jpg
+49,Slayers Premium,Slayers Premium,スレイヤーズぷれみあむ,Movie,20874,7.14,2001,https://cdn.myanimelist.net/images/anime/2/20969.jpg
+50,Kaze no Youjinbou,Kaze no Yojimbo,旋風の用心棒,TV,16671,7.14,2001,https://cdn.myanimelist.net/images/anime/2/67573.jpg

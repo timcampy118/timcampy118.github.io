@@ -1,21 +1,17 @@
-rank,title,title_english,title_japanese,type,members,score,year
-6,Made in Abyss,Made in Abyss,メイドインアビス,TV,1483509,8.63,2017
-11,Houseki no Kuni,Land of the Lustrous,宝石の国,TV,496806,8.39,2017
-16,Shoujo Shuumatsu Ryokou,Girls' Last Tour,少女終末旅行,TV,377277,8.23,2017
-18,Ballroom e Youkoso,Welcome to the Ballroom,ボールルームへようこそ,TV,353097,8.18,2017
-19,Yoru wa Mijikashi Arukeyo Otome,"Night Is Short, Walk on Girl",夜は短し歩けよ乙女,Movie,135900,8.17,2017
-20,No Game No Life: Zero,"No Game, No Life: Zero",ノーゲーム・ノーライフ ゼロ,Movie,923447,8.17,2017
-22,Black Clover,Black Clover,ブラッククローバー,TV,1803115,8.14,2017
-25,Boku no Hero Academia 2nd Season,My Hero Academia Season 2,僕のヒーローアカデミア,TV,2640408,8.06,2017
-26,Mahoutsukai no Yome,The Ancient Magus' Bride,魔法使いの嫁,TV,984974,8.05,2017
-27,Tsuki ga Kirei,Tsukigakirei,月がきれい,TV,576164,8.03,2017
-31,Youjo Senki,Saga of Tanya the Evil,幼女戦記,TV,994261,7.96,2017
-34,Kobayashi-san Chi no Maid Dragon,Miss Kobayashi's Dragon Maid,小林さんちのメイドラゴン,TV,1291767,7.92,2017
-36,Dramaturgy,Dramaturgy,ドラマツルギー,Music,6618,7.89,2017
-37,Code Geass: Hangyaku no Lelouch I - Koudou,Code Geass: Lelouch of the Rebellion I - Initiation,コードギアス 反逆のルルーシュⅠ 興道,Movie,109722,7.88,2017
-40,Quanzhi Gaoshou,The King's Avatar,全职高手,ONA,385448,7.86,2017
-41,One Piece: Episode of East Blue - Luffy to 4-nin no Nakama no Daibouken,One Piece: Episode of East Blue - Luffy and His Four Crewmates' Great Adventure,ワンピース エピソードオブ東の海[イーストブルー] ~ルフィと4人の仲間の大冒険~,TV Special,46007,7.85,2017
-43,Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e,Classroom of the Elite,ようこそ実力至上主義の教室へ,TV,1387068,7.84,2017
-44,Owarimonogatari 2nd Season Recaps,Owarimonogatari Second Season Recaps,終わりに向かう物語; 阿良々木暦ノ物語,TV Special,27828,7.83,2017
-47,Little Witch Academia (TV),Little Witch Academia,リトルウィッチアカデミア,TV,689530,7.81,2017
-48,Mahoujin Guruguru (2017),Magical Circle,魔法陣グルグル,TV,34752,7.8,2017
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+6,Made in Abyss,Made in Abyss,メイドインアビス,TV,1483509,8.63,2017,https://cdn.myanimelist.net/images/anime/6/86733.jpg
+11,Houseki no Kuni,Land of the Lustrous,宝石の国,TV,496806,8.39,2017,https://cdn.myanimelist.net/images/anime/3/88293.jpg
+16,Shoujo Shuumatsu Ryokou,Girls' Last Tour,少女終末旅行,TV,377277,8.23,2017,https://cdn.myanimelist.net/images/anime/12/88321.jpg
+18,Ballroom e Youkoso,Welcome to the Ballroom,ボールルームへようこそ,TV,353097,8.18,2017,https://cdn.myanimelist.net/images/anime/5/86739.jpg
+19,Yoru wa Mijikashi Arukeyo Otome,"Night Is Short, Walk on Girl",夜は短し歩けよ乙女,Movie,135900,8.17,2017,
+22,Black Clover,Black Clover,ブラッククローバー,TV,1803115,8.14,2017,https://cdn.myanimelist.net/images/anime/2/88336.jpg
+26,Mahoutsukai no Yome,The Ancient Magus' Bride,魔法使いの嫁,TV,984974,8.05,2017,https://cdn.myanimelist.net/images/anime/3/88476.jpg
+27,Tsuki ga Kirei,Tsukigakirei,月がきれい,TV,576164,8.03,2017,https://cdn.myanimelist.net/images/anime/2/85592.jpg
+31,Youjo Senki,Saga of Tanya the Evil,幼女戦記,TV,994261,7.96,2017,https://cdn.myanimelist.net/images/anime/5/82890.jpg
+34,Kobayashi-san Chi no Maid Dragon,Miss Kobayashi's Dragon Maid,小林さんちのメイドラゴン,TV,1291767,7.92,2017,https://cdn.myanimelist.net/images/anime/5/85434.jpg
+40,Quanzhi Gaoshou,The King's Avatar,全职高手,ONA,385448,7.86,2017,https://cdn.myanimelist.net/images/anime/1534/104725.jpg
+43,Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e,Classroom of the Elite,ようこそ実力至上主義の教室へ,TV,1387068,7.84,2017,https://cdn.myanimelist.net/images/anime/5/86830.jpg
+47,Little Witch Academia (TV),Little Witch Academia,リトルウィッチアカデミア,TV,689530,7.81,2017,https://cdn.myanimelist.net/images/anime/1520/147248.jpg
+48,Mahoujin Guruguru (2017),Magical Circle,魔法陣グルグル,TV,34752,7.8,2017,
+49,Gochuumon wa Usagi desu ka?? Dear My Sister,Is the Order a Rabbit?? Dear My Sister,ご注文はうさぎですか??～Dear My Sister～,Movie,44831,7.79,2017,
+50,Yuuki Yuuna wa Yuusha de Aru: Washio Sumi no Shou 2 - Tamashii,Yuuki Yuuna wa Yuusha de Aru: Washio Sumi no Shou 2 - Tamashii,結城友奈は勇者である -鷲尾須美の章- 第２章「たましい」,Movie,15528,7.77,2017,

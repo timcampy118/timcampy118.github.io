@@ -1,39 +1,49 @@
-rank,title,title_english,title_japanese,type,members,score,year
-1,Yuu☆Yuu☆Hakusho,Yu Yu Hakusho: Ghost Files,幽☆遊☆白書,TV,728865,8.46,1992
-2,Kurenai no Buta,Porco Rosso,紅の豚,Movie,273114,7.96,1992
-3,Crayon Shin-chan,Shin Chan,クレヨンしんちゃん,TV,90739,7.81,1992
-4,Giant Robo the Animation: Chikyuu ga Seishi Suru Hi,Giant Robo the Animation: The Day the Earth Stood Still,ジャイアントロボ THE ANIMATION 地球が静止する日,OVA,29752,7.8,1992
-5,Bishoujo Senshi Sailor Moon,Sailor Moon,美少女戦士セーラームーン,TV,402368,7.75,1992
-6,Muumindani no Suisei,Comet in Moominland,ムーミン谷の彗星,Movie,11728,7.69,1992
-7,Tenchi Muyou! Ryououki,Tenchi Muyo! Ryo-Ohki,天地無用！魎皇鬼,OVA,56558,7.6,1992
-8,Hime-chan no Ribbon,Hime-chan no Ribbon,姫ちゃんのリボン,TV,10848,7.45,1992
-9,Uchuu no Kishi Tekkaman Blade,Tekkaman Blade,宇宙の騎士テッカマンブレード,TV,18297,7.43,1992
-11,Mama wa Shougaku 4-nensei,Mama is Just a Fourth Grade Pupil,ママは小学４年生,TV,7871,7.33,1992
-14,Video Girl Ai,Video Girl Ai,電影少女 VIDEO・GIRL・AI,OVA,32943,7.19,1992
-16,Mikan Enikki,Mikan Enikki,みかん絵日記,TV,3510,7.18,1992
-17,Ushio to Tora,Ushio and Tora,うしおととら,OVA,15520,7.15,1992
-18,Densetsu no Yuusha da Garn,Legendary Brave da Garn,伝説の勇者ダ・ガーン,TV,5142,7.11,1992
-19,"Flanders no Inu, Boku no Patrasche",A Dog of Flanders: My Patrasche,フランダースの犬　～ぼくのパトラッシュ～,TV,2778,7.05,1992
-20,Ai no Kusabi,Ai no Kusabi,間の楔,OVA,40117,7.04,1992
-21,Kaze no Naka no Shoujo: Kinpatsu no Jeanie,Kaze no Naka no Shoujo: Kinpatsu no Jeanie,風の中の少女 金髪のジェニー,TV,4665,7.04,1992
-22,Genki Bakuhatsu Ganbaruger,Energetic Bomb Ganbaruger,元気爆発ガンバルガー,TV,2028,7.01,1992
-23,Daisougen no Chiisana Tenshi: Bush Baby,"Bush Baby, Little Angel of the Great Plains",大草原の小さな天使　ブッシュベイビー,TV,3559,7.0,1992
-24,Hashire Melos (Movie),Run Melos!,走れメロス,Movie,7997,6.92,1992
-25,Tsuyoshi Shikkari Shinasai,Tsuyoshi Shikkari Shinasai,ツヨシしっかりしなさい,TV,3448,6.9,1992
-26,Ranma ½: Tendou-ke no Oyobidenai Yatsura!,Ranma ½: Tendou-ke no Oyobidenai Yatsura!,らんま1/2 天道家のおよびでない奴ら!,Special,5241,6.85,1992
-29,Candy Candy (Movie),Candy Candy (Movie),キャンディ・キャンディ,Movie,4465,6.74,1992
-30,Cooking Papa,Cooking Papa,クッキングパパ,TV,2858,6.73,1992
-31,Oyayubi Hime Monogatari,Thumbelina: A Magical Story,おやゆび姫物語,TV,2304,6.71,1992
-32,Chirorin Mura Monogatari,Nutsberry Town,チロリン村物語,TV,1308,6.69,1992
-33,Bannou Bunka Neko-Musume,All Purpose Cultural Cat Girl Nuku Nuku,万能文化猫娘,OVA,14134,6.69,1992
-34,Maison Ikkoku: Prelude - Meguru Haru no Sakura no You ni...,"Maison Ikkoku: Prelude, When the Cherry Blossoms in the Springtime Return",プレリュードめぞん一刻 プレリュード めぐる春の桜のように...,Special,4745,6.68,1992
-35,Bastard!! Ankoku no Hakaishin,Bastard!!,バスタード!! 暗黒の破壊神,OVA,47207,6.68,1992
-36,Tokyo Babylon,Tokyo Babylon,東京ＢＡＢＹＬＯＮ,OVA,20788,6.67,1992
-37,Kidou Senshi Gundam 0083: Zeon no Zankou,Mobile Suit Gundam 0083: The Afterglow Of Zeon,機動戦士ガンダム0083 －ジオンの残光－,Movie,11426,6.66,1992
-38,Nagagutsu wo Haita Neko no Bouken,Nagagutsu wo Haita Neko no Bouken,長靴をはいた猫の冒険,TV,1345,6.65,1992
-39,Hana no Mahoutsukai Mary Bell,Hana no Mahoutsukai Mary Bell,花の魔法使いマリーベル,TV,3879,6.63,1992
-41,Sangokushi: Dai Ichi Bu - Eiyuu-tachi no Yoake,Sangokushi: Dai Ichi Bu - Eiyuu-tachi no Yoake,三国志 第一部 英雄たちの夜明け,Movie,1045,6.59,1992
-43,Green Legend Ran,Green Legend Ran,グリーンレジェンド乱,OVA,7562,6.56,1992
-46,Chameleon (OVA),Bite me!,カメレオン,OVA,2699,6.53,1992
-48,KO Seiki Beast Sanjuushi,KO Century Beast Warriors,ＫＯ世紀　ビースト三獣士,OVA,3849,6.49,1992
-49,Oi! Ryouma,Rainbow Samurai,お〜い!竜馬,TV,1279,6.49,1992
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,Yuu☆Yuu☆Hakusho,Yu Yu Hakusho: Ghost Files,幽☆遊☆白書,TV,728865,8.46,1992,https://cdn.myanimelist.net/images/anime/1228/111372.jpg
+2,Kurenai no Buta,Porco Rosso,紅の豚,Movie,273114,7.96,1992,https://cdn.myanimelist.net/images/anime/1728/138709.jpg
+3,Crayon Shin-chan,Shin Chan,クレヨンしんちゃん,TV,90739,7.81,1992,https://cdn.myanimelist.net/images/anime/10/59897.jpg
+4,Giant Robo the Animation: Chikyuu ga Seishi Suru Hi,Giant Robo the Animation: The Day the Earth Stood Still,ジャイアントロボ THE ANIMATION 地球が静止する日,OVA,29752,7.8,1992,https://cdn.myanimelist.net/images/anime/1057/131970.jpg
+5,Bishoujo Senshi Sailor Moon,Sailor Moon,美少女戦士セーラームーン,TV,402368,7.75,1992,https://cdn.myanimelist.net/images/anime/1440/92258.jpg
+6,Muumindani no Suisei,Comet in Moominland,ムーミン谷の彗星,Movie,11728,7.69,1992,https://cdn.myanimelist.net/images/anime/12/3984.jpg
+7,Tenchi Muyou! Ryououki,Tenchi Muyo! Ryo-Ohki,天地無用！魎皇鬼,OVA,56558,7.6,1992,https://cdn.myanimelist.net/images/anime/1224/95301.jpg
+8,Hime-chan no Ribbon,Hime-chan no Ribbon,姫ちゃんのリボン,TV,10848,7.45,1992,https://cdn.myanimelist.net/images/anime/1049/111001.jpg
+9,Uchuu no Kishi Tekkaman Blade,Tekkaman Blade,宇宙の騎士テッカマンブレード,TV,18297,7.43,1992,https://cdn.myanimelist.net/images/anime/2/54793.jpg
+11,Mama wa Shougaku 4-nensei,Mama is Just a Fourth Grade Pupil,ママは小学４年生,TV,7871,7.33,1992,https://cdn.myanimelist.net/images/anime/12/87408.jpg
+13,Chibi Maruko-chan: Watashi no Suki na Uta,Chibi Maruko-chan: Watashi no Suki na Uta,ちびまる子ちゃん わたしの好きな歌,Movie,2417,7.26,1992,https://cdn.myanimelist.net/images/anime/1371/145203.jpg
+14,Video Girl Ai,Video Girl Ai,電影少女 VIDEO・GIRL・AI,OVA,32943,7.19,1992,https://cdn.myanimelist.net/images/anime/2/22130.jpg
+15,Doraemon Movie 13: Nobita to Kumo no Oukoku,Doraemon the Movie: Nobita and the Kingdom of Clouds,映画 ドラえもん のび太と雲の王国,Movie,8679,7.18,1992,https://cdn.myanimelist.net/images/anime/1060/133694.jpg
+16,Mikan Enikki,Mikan Enikki,みかん絵日記,TV,3510,7.18,1992,https://cdn.myanimelist.net/images/anime/9/29836.jpg
+17,Ushio to Tora,Ushio and Tora,うしおととら,OVA,15520,7.15,1992,https://cdn.myanimelist.net/images/anime/1582/127097.jpg
+18,Densetsu no Yuusha da Garn,Legendary Brave da Garn,伝説の勇者ダ・ガーン,TV,5142,7.11,1992,https://cdn.myanimelist.net/images/anime/1206/105983.jpg
+19,"Flanders no Inu, Boku no Patrasche",A Dog of Flanders: My Patrasche,フランダースの犬　～ぼくのパトラッシュ～,TV,2778,7.05,1992,https://cdn.myanimelist.net/images/anime/7/22953.jpg
+20,Ai no Kusabi,Ai no Kusabi,間の楔,OVA,40117,7.04,1992,https://cdn.myanimelist.net/images/anime/8/6531.jpg
+21,Kaze no Naka no Shoujo: Kinpatsu no Jeanie,Kaze no Naka no Shoujo: Kinpatsu no Jeanie,風の中の少女 金髪のジェニー,TV,4665,7.04,1992,https://cdn.myanimelist.net/images/anime/5/89782.jpg
+22,Genki Bakuhatsu Ganbaruger,Energetic Bomb Ganbaruger,元気爆発ガンバルガー,TV,2028,7.01,1992,https://cdn.myanimelist.net/images/anime/7/89881.jpg
+23,Daisougen no Chiisana Tenshi: Bush Baby,"Bush Baby, Little Angel of the Great Plains",大草原の小さな天使　ブッシュベイビー,TV,3559,7,1992,https://cdn.myanimelist.net/images/anime/1447/98818.jpg
+24,Hashire Melos (Movie),Run Melos!,走れメロス,Movie,7997,6.92,1992,https://cdn.myanimelist.net/images/anime/1040/122786.jpg
+25,Tsuyoshi Shikkari Shinasai,Tsuyoshi Shikkari Shinasai,ツヨシしっかりしなさい,TV,3448,6.9,1992,https://cdn.myanimelist.net/images/anime/1886/135496.jpg
+26,Ranma ½: Tendou-ke no Oyobidenai Yatsura!,Ranma ½: Tendou-ke no Oyobidenai Yatsura!,らんま1/2 天道家のおよびでない奴ら!,Special,5241,6.85,1992,https://cdn.myanimelist.net/images/anime/12/29881.jpg
+27,Dragon Ball Z Movie 07: Kyokugen Battle!! Sandai Super Saiyajin,Dragon Ball Z: Super Android 13!,ドラゴンボールZ 極限バトル!!三大超サイヤ人,Movie,131188,6.83,1992,https://cdn.myanimelist.net/images/anime/1723/93670.jpg
+28,Dragon Ball Z Movie 06: Gekitotsu!! 100-oku Power no Senshi-tachi,Dragon Ball Z: The Return of Cooler,ドラゴンボールZ 激突!!100億パワーの戦士たち,Movie,136096,6.79,1992,https://cdn.myanimelist.net/images/anime/1007/93669.jpg
+29,Candy Candy (Movie),Candy Candy (Movie),キャンディ・キャンディ,Movie,4465,6.74,1992,https://cdn.myanimelist.net/images/anime/11/66847.jpg
+30,Cooking Papa,Cooking Papa,クッキングパパ,TV,2858,6.73,1992,https://cdn.myanimelist.net/images/anime/1581/120955.jpg
+31,Oyayubi Hime Monogatari,Thumbelina: A Magical Story,おやゆび姫物語,TV,2304,6.71,1992,
+32,Chirorin Mura Monogatari,Nutsberry Town,チロリン村物語,TV,1308,6.69,1992,https://cdn.myanimelist.net/images/anime/4/25274.jpg
+33,Bannou Bunka Neko-Musume,All Purpose Cultural Cat Girl Nuku Nuku,万能文化猫娘,OVA,14134,6.69,1992,https://cdn.myanimelist.net/images/anime/7/10720.jpg
+34,Maison Ikkoku: Prelude - Meguru Haru no Sakura no You ni...,"Maison Ikkoku: Prelude, When the Cherry Blossoms in the Springtime Return",プレリュードめぞん一刻 プレリュード めぐる春の桜のように...,Special,4745,6.68,1992,https://cdn.myanimelist.net/images/anime/8/69245.jpg
+35,Bastard!! Ankoku no Hakaishin,Bastard!!,バスタード!! 暗黒の破壊神,OVA,47207,6.68,1992,https://cdn.myanimelist.net/images/anime/1419/99205.jpg
+36,Tokyo Babylon,Tokyo Babylon,東京ＢＡＢＹＬＯＮ,OVA,20788,6.67,1992,https://cdn.myanimelist.net/images/anime/12/20546.jpg
+37,Kidou Senshi Gundam 0083: Zeon no Zankou,Mobile Suit Gundam 0083: The Afterglow Of Zeon,機動戦士ガンダム0083 －ジオンの残光－,Movie,11426,6.66,1992,https://cdn.myanimelist.net/images/anime/5/75776.jpg
+38,Nagagutsu wo Haita Neko no Bouken,Nagagutsu wo Haita Neko no Bouken,長靴をはいた猫の冒険,TV,1345,6.65,1992,https://cdn.myanimelist.net/images/anime/2/69723.jpg
+39,Hana no Mahoutsukai Mary Bell,Hana no Mahoutsukai Mary Bell,花の魔法使いマリーベル,TV,3879,6.63,1992,https://cdn.myanimelist.net/images/anime/7/27032.jpg
+40,Lupin III: Russia yori Ai wo Komete,Lupin III: From Siberia With Love,ルパン三世『ロシアより愛をこめて』,TV Special,7782,6.62,1992,https://cdn.myanimelist.net/images/anime/4/61697.jpg
+41,Sangokushi: Dai Ichi Bu - Eiyuu-tachi no Yoake,Sangokushi: Dai Ichi Bu - Eiyuu-tachi no Yoake,三国志 第一部 英雄たちの夜明け,Movie,1045,6.59,1992,https://cdn.myanimelist.net/images/anime/1645/149647.jpg
+42,Ys: Tenkuu no Shinden - Adol Christine no Bouken,Ys II: Castle in the Heavens,Ys (イース) 天空の神殿 アドル=クリスティンの冒険,OVA,6018,6.58,1992,https://cdn.myanimelist.net/images/anime/1984/110828.jpg
+43,Green Legend Ran,Green Legend Ran,グリーンレジェンド乱,OVA,7562,6.56,1992,https://cdn.myanimelist.net/images/anime/1882/96360.jpg
+44,Dragon Ball Z: Summer Vacation Special,Dragon Ball Z: Summer Vacation Special,極限バトル!!三大超サイヤ人　スペシャル,TV Special,15009,6.54,1992,https://cdn.myanimelist.net/images/anime/7/60343.jpg
+45,Kobo-chan,Kobo-chan,コボちゃん,TV,1072,6.54,1992,
+46,Chameleon (OVA),Bite me!,カメレオン,OVA,2699,6.53,1992,https://cdn.myanimelist.net/images/anime/12/10924.jpg
+47,Dragon Quest: Dai no Daibouken Tachiagare!! Aban no Shito,Dragon Quest Great Adventure of Dai! Disciple of Aban.,ドラゴンクエスト　ダイの大冒険　起ち・がれ！！アバンの使徒,Movie,2687,6.51,1992,https://cdn.myanimelist.net/images/anime/12/31457.jpg
+48,KO Seiki Beast Sanjuushi,KO Century Beast Warriors,ＫＯ世紀　ビースト三獣士,OVA,3849,6.49,1992,https://cdn.myanimelist.net/images/anime/12/20394.jpg
+49,Oi! Ryouma,Rainbow Samurai,お〜い!竜馬,TV,1279,6.49,1992,https://cdn.myanimelist.net/images/anime/11/71603.jpg
+50,Takarajima Memorial: Yuunagi to Yobareta Otoko,Takarajima Memorial: Yuunagi to Yobareta Otoko,宝島メモリアル「夕凪と呼ばれた男」,OVA,1779,6.49,1992,

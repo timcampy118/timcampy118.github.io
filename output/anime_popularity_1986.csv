@@ -1,43 +1,47 @@
-rank,title,title_english,title_japanese,type,members,score,year
-1,Dragon Ball,Dragon Ball,ドラゴンボール,TV,1100597,7.98,1986
-2,Tenkuu no Shiro Laputa,Castle in the Sky,天空の城ラピュタ,Movie,518812,8.26,1986
-3,Saint Seiya,Saint Seiya: Knights of the Zodiac,聖闘士星矢(セイントセイヤ),TV,198313,7.76,1986
-4,Maison Ikkoku,Maison Ikkoku,めぞん一刻,TV,79726,8.19,1986
-5,Dragon Ball Movie 1: Shen Long no Densetsu,Dragon Ball: Curse of the Blood Rubies,ドラゴンボール 神龍の伝説,Movie,73105,6.75,1986
-7,Ginga Nagareboshi Gin,Silver Fang,銀牙　流れ星銀,TV,29290,8.02,1986
-8,Project A-Ko,Project A-Ko,プロジェクトＡ子,Movie,23597,6.85,1986
-9,Hokuto no Ken Movie,Fist of the North Star: The Movie,北斗の拳,Movie,23027,7.21,1986
-10,Soukihei MD Geist,M.D. Geist,装鬼兵ＭＤガイスト,OVA,18474,5.33,1986
-13,Call Me Tonight,Call Me Tonight,コール・ミー・トゥナイト,OVA,13271,5.3,1986
-14,11-nin Iru!,They Were Eleven,11人いる!,Movie,13261,7.0,1986
-15,Outlanders,Outlanders,アウトランダーズ,OVA,11764,5.81,1986
-16,Windaria,Once Upon a Time,"ウインダリア, 童話めいた戦史ウインダリア",Movie,10766,6.45,1986
-17,Ganbare! Kickers,Fight! Kickers,がんばれ！キッカーズ,TV,10340,6.86,1986
-20,Arion,Arion,ネオ・ヒロイック・ファンタジア　アリオン,Movie,8360,6.17,1986
-21,Gall Force 1: Eternal Story,Gall Force 1: Eternal Story,ガルフォース,Movie,8294,6.36,1986
-22,California Crisis: Tsuigeki no Juuka,California Crisis: Gun Salvo,カリフォルニア・クライシス　追撃の銃火,OVA,8161,5.64,1986
-23,Kyoushoku Soukou Guyver,Guyver: Out of Control,強殖装甲ガイバー,Movie,7863,6.18,1986
-24,Ai City,Love City,アイ・シティ,Movie,7859,5.68,1986
-25,Amon Saga,Amon Saga,アモン・サーガ,Movie,7059,5.43,1986
-26,Super Mario Brothers: Peach-hime Kyuushutsu Daisakusen!,Super Mario Brothers: Great Mission to Rescue Princess Peach,スーパーマリオブラザーズ　ピーチ姫救出大作戦!,Movie,6924,5.63,1986
-27,Shounan Bakusouzoku,Shounan Bakusouzoku,湘南爆走族,OVA,6803,7.58,1986
-28,Ai Shoujo Pollyanna Story,Ai Shoujo Pollyanna Story,愛少女ポリアンナ物語,TV,6562,6.95,1986
-29,Hikari no Densetsu,Hikari no Densetsu,光の伝説,TV,6535,6.59,1986
-31,The Supergal,Maris the Chojo,ザ・超女[ザ・スーパーギャル],OVA,5735,5.91,1986
-33,Toki no Tabibito: Time Stranger,Toki no Tabibito: Time Stranger,時空[とき]の旅人 Time Stranger,Movie,4859,6.11,1986
-34,Hi no Tori: Houou-hen,Phoenix: Karma Chapter,火の鳥　鳳凰編,Movie,4726,6.84,1986
-36,Roots Search: Shokushin Buttai X,Roots Search,ルーツ・サーチ 食心物体Ｘ,OVA,4409,4.2,1986
-37,Kenritsu Chikyuu Boueigun,Prefectural Earth Defense Force,県立地球防衛軍,OVA,4191,6.12,1986
-38,Mahou no Idol Pastel Yumi,Magical Idol Pastel Yumi,魔法のアイドル パステルユーミ,TV,4141,6.46,1986
-39,Wanna-Be's,Wanna-Be's,ウォナビーズ,OVA,3826,5.12,1986
-40,Cosmos Pink Shock,Cosmos Pink Shock,コスモス　ピンクショック,OVA,3755,5.49,1986
-41,Chiisana Penguin Lolo no Bouken,The Adventures of Scamper the Penguin,小さなペンギンロロの冒険,OVA,3667,7.38,1986
-42,Maple Town Monogatari,Maple Town,メイプルタウン物語,TV,3637,6.86,1986
-43,The Humanoid: Ai no Wakusei Lezeria,The Humanoid,ザ・ヒューマノイド 哀の惑星レザリア,OVA,3514,4.79,1986
-44,Tobira wo Akete,Tobira wo Akete,扉を開けて,Movie,3480,5.74,1986
-45,Grey: Digital Target,Grey: Digital Target,GREY デジタル・ターゲット,Movie,3386,6.01,1986
-46,Katsugeki Shoujo Tanteidan,Katsugeki Shoujo Tanteidan,活劇少女探偵団,OVA,3349,4.49,1986
-47,Oz no Mahoutsukai (TV),The Wonderful Wizard of Oz,オズの魔法使い,TV,3318,6.7,1986
-48,Majo demo Steady,Majo demo Steady,魔女でもステディ,OVA,3198,4.65,1986
-49,Seimei no Kagaku: Micro Patrol,Once Upon a Time... Life,生命の科学ミクロパトロール,OVA,3119,7.18,1986
-50,Touch: Sebangou no Nai Ace,Touch: Sebangou no Nai Ace,タッチ 背番号のないエース,Movie,2837,6.65,1986
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,Dragon Ball,Dragon Ball,ドラゴンボール,TV,1100597,7.98,1986,https://cdn.myanimelist.net/images/anime/1887/92364.jpg
+2,Tenkuu no Shiro Laputa,Castle in the Sky,天空の城ラピュタ,Movie,518812,8.26,1986,https://cdn.myanimelist.net/images/anime/5/37799.jpg
+3,Saint Seiya,Saint Seiya: Knights of the Zodiac,聖闘士星矢(セイントセイヤ),TV,198313,7.76,1986,https://cdn.myanimelist.net/images/anime/1180/133782.jpg
+4,Maison Ikkoku,Maison Ikkoku,めぞん一刻,TV,79726,8.19,1986,https://cdn.myanimelist.net/images/anime/6/17576.jpg
+7,Ginga Nagareboshi Gin,Silver Fang,銀牙　流れ星銀,TV,29290,8.02,1986,https://cdn.myanimelist.net/images/anime/3/47461.jpg
+8,Project A-Ko,Project A-Ko,プロジェクトＡ子,Movie,23597,6.85,1986,https://cdn.myanimelist.net/images/anime/2/58391.jpg
+10,Soukihei MD Geist,M.D. Geist,装鬼兵ＭＤガイスト,OVA,18474,5.33,1986,https://cdn.myanimelist.net/images/anime/4/21433.jpg
+12,Violence Jack: Harem Bomber-hen,Violence Jack: Slumking,バイオレンス ジャック 〜ハーレム・ボンバー編〜,OVA,14867,5.2,1986,https://cdn.myanimelist.net/images/anime/1152/121840.jpg
+13,Call Me Tonight,Call Me Tonight,コール・ミー・トゥナイト,OVA,13271,5.3,1986,https://cdn.myanimelist.net/images/anime/4/18490.jpg
+14,11-nin Iru!,They Were Eleven,11人いる!,Movie,13261,7,1986,https://cdn.myanimelist.net/images/anime/1771/96658.jpg
+15,Outlanders,Outlanders,アウトランダーズ,OVA,11764,5.81,1986,https://cdn.myanimelist.net/images/anime/1396/94529.jpg
+16,Windaria,Once Upon a Time,"ウインダリア, 童話めいた戦史ウインダリア",Movie,10766,6.45,1986,https://cdn.myanimelist.net/images/anime/12/25497.jpg
+17,Ganbare! Kickers,Fight! Kickers,がんばれ！キッカーズ,TV,10340,6.86,1986,https://cdn.myanimelist.net/images/anime/1322/90364.jpg
+18,Doraemon Movie 07: Nobita to Tetsujin Heidan,Doraemon the Movie: Nobita and the Steel Troops,映画 ドラえもん のび太と鉄人兵団,Movie,10220,7.65,1986,https://cdn.myanimelist.net/images/anime/10/72412.jpg
+19,Urusei Yatsura Movie 4: Lum The Forever,Urusei Yatsura Movie 4: Lum The Forever,うる星やつら ラム・ザ・フォーエバー,Movie,9596,6.7,1986,https://cdn.myanimelist.net/images/anime/1671/142316.jpg
+20,Arion,Arion,ネオ・ヒロイック・ファンタジア　アリオン,Movie,8360,6.17,1986,https://cdn.myanimelist.net/images/anime/1661/112654.jpg
+21,Gall Force 1: Eternal Story,Gall Force 1: Eternal Story,ガルフォース,Movie,8294,6.36,1986,https://cdn.myanimelist.net/images/anime/1720/121339.jpg
+22,California Crisis: Tsuigeki no Juuka,California Crisis: Gun Salvo,カリフォルニア・クライシス　追撃の銃火,OVA,8161,5.64,1986,https://cdn.myanimelist.net/images/anime/1887/97046.jpg
+23,Kyoushoku Soukou Guyver,Guyver: Out of Control,強殖装甲ガイバー,Movie,7863,6.18,1986,https://cdn.myanimelist.net/images/anime/1833/94524.jpg
+24,Ai City,Love City,アイ・シティ,Movie,7859,5.68,1986,https://cdn.myanimelist.net/images/anime/1859/97113.jpg
+25,Amon Saga,Amon Saga,アモン・サーガ,Movie,7059,5.43,1986,https://cdn.myanimelist.net/images/anime/1280/99706.jpg
+26,Super Mario Brothers: Peach-hime Kyuushutsu Daisakusen!,Super Mario Brothers: Great Mission to Rescue Princess Peach,スーパーマリオブラザーズ　ピーチ姫救出大作戦!,Movie,6924,5.63,1986,https://cdn.myanimelist.net/images/anime/1288/97114.jpg
+27,Shounan Bakusouzoku,Shounan Bakusouzoku,湘南爆走族,OVA,6803,7.58,1986,https://cdn.myanimelist.net/images/anime/1338/141478.jpg
+28,Ai Shoujo Pollyanna Story,Ai Shoujo Pollyanna Story,愛少女ポリアンナ物語,TV,6562,6.95,1986,https://cdn.myanimelist.net/images/anime/13/71674.jpg
+29,Hikari no Densetsu,Hikari no Densetsu,光の伝説,TV,6535,6.59,1986,https://cdn.myanimelist.net/images/anime/7/30581.jpg
+30,Captain Tsubasa: Sekai Daikessen!! Jr. World Cup,Captain Tsubasa: Sekai Daikessen!! Jr. World Cup,キャプテン翼　世界大決戦！！Ｊｒ．ワールドカップ,Movie,6003,6.83,1986,https://cdn.myanimelist.net/images/anime/1487/134516.jpg
+31,The Supergal,Maris the Chojo,ザ・超女[ザ・スーパーギャル],OVA,5735,5.91,1986,https://cdn.myanimelist.net/images/anime/11/41453.jpg
+32,Captain Tsubasa: Asu ni Mukatte Hashire!,Captain Tsubasa: Asu ni Mukatte Hashire!,キャプテン翼　明日に向って走れ！,Movie,5515,6.65,1986,https://cdn.myanimelist.net/images/anime/11/73342.jpg
+33,Toki no Tabibito: Time Stranger,Toki no Tabibito: Time Stranger,時空[とき]の旅人 Time Stranger,Movie,4859,6.11,1986,https://cdn.myanimelist.net/images/anime/10/4740.jpg
+34,Hi no Tori: Houou-hen,Phoenix: Karma Chapter,火の鳥　鳳凰編,Movie,4726,6.84,1986,https://cdn.myanimelist.net/images/anime/1924/97128.jpg
+35,Soukou Kihei Votoms: Big Battle,Armored Trooper Votoms: Big Battle,装甲騎兵ボトムズ　ビッグバトル,OVA,4420,6.71,1986,https://cdn.myanimelist.net/images/anime/10/24534.jpg
+36,Roots Search: Shokushin Buttai X,Roots Search,ルーツ・サーチ 食心物体Ｘ,OVA,4409,4.2,1986,https://cdn.myanimelist.net/images/anime/1/2476.jpg
+37,Kenritsu Chikyuu Boueigun,Prefectural Earth Defense Force,県立地球防衛軍,OVA,4191,6.12,1986,https://cdn.myanimelist.net/images/anime/1840/138245.jpg
+38,Mahou no Idol Pastel Yumi,Magical Idol Pastel Yumi,魔法のアイドル パステルユーミ,TV,4141,6.46,1986,https://cdn.myanimelist.net/images/anime/7/43623.jpg
+39,Wanna-Be's,Wanna-Be's,ウォナビーズ,OVA,3826,5.12,1986,https://cdn.myanimelist.net/images/anime/1540/93055.jpg
+40,Cosmos Pink Shock,Cosmos Pink Shock,コスモス　ピンクショック,OVA,3755,5.49,1986,https://cdn.myanimelist.net/images/anime/1824/99282.jpg
+41,Chiisana Penguin Lolo no Bouken,The Adventures of Scamper the Penguin,小さなペンギンロロの冒険,OVA,3667,7.38,1986,https://cdn.myanimelist.net/images/anime/9/46181.jpg
+42,Maple Town Monogatari,Maple Town,メイプルタウン物語,TV,3637,6.86,1986,https://cdn.myanimelist.net/images/anime/1141/92862.jpg
+43,The Humanoid: Ai no Wakusei Lezeria,The Humanoid,ザ・ヒューマノイド 哀の惑星レザリア,OVA,3514,4.79,1986,https://cdn.myanimelist.net/images/anime/1563/96475.jpg
+44,Tobira wo Akete,Tobira wo Akete,扉を開けて,Movie,3480,5.74,1986,https://cdn.myanimelist.net/images/anime/1920/112411.jpg
+45,Grey: Digital Target,Grey: Digital Target,GREY デジタル・ターゲット,Movie,3386,6.01,1986,https://cdn.myanimelist.net/images/anime/1301/94928.jpg
+46,Katsugeki Shoujo Tanteidan,Katsugeki Shoujo Tanteidan,活劇少女探偵団,OVA,3349,4.49,1986,https://cdn.myanimelist.net/images/anime/10/41457.jpg
+47,Oz no Mahoutsukai (TV),The Wonderful Wizard of Oz,オズの魔法使い,TV,3318,6.7,1986,https://cdn.myanimelist.net/images/anime/13/64339.jpg
+48,Majo demo Steady,Majo demo Steady,魔女でもステディ,OVA,3198,4.65,1986,https://cdn.myanimelist.net/images/anime/7/24678.jpg
+49,Seimei no Kagaku: Micro Patrol,Once Upon a Time... Life,生命の科学ミクロパトロール,OVA,3119,7.18,1986,https://cdn.myanimelist.net/images/anime/5/6208.jpg
+50,Touch: Sebangou no Nai Ace,Touch: Sebangou no Nai Ace,タッチ 背番号のないエース,Movie,2837,6.65,1986,https://cdn.myanimelist.net/images/anime/4/21457.jpg

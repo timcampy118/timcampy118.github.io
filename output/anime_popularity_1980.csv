@@ -1,41 +1,42 @@
-rank,title,title_english,title_japanese,type,members,score,year
-2,Densetsu Kyojin Ideon,Space Runaway Ideon,伝説巨神イデオン,TV,19882,7.08,1980
-3,Tetsuwan Atom (1980),Astro Boy (1980),鉄腕アトム,TV,16245,7.17,1980
-4,Terra e...,Toward the Terra,地球へ...,Movie,12382,6.41,1980
-6,Tom Sawyer no Bouken,The Adventures of Tom Sawyer,トム・ソーヤーの冒険,TV,10459,7.33,1980
-7,Nils no Fushigi na Tabi,Wonderful Adventures of Nils,ニルスのふしぎな旅,TV,7858,7.14,1980
-9,Ashita no Joe (Movie),Tomorrow's Joe The Movie,あしたのジョー (1980),Movie,7065,7.08,1980
-10,Tsurikichi Sanpei,Sanpei the Fisherman,釣りキチ三平,TV,6193,7.09,1980
-11,Hi no Tori 2772: Ai no CosmoZone,Phoenix 2772,火の鳥 ２７７２ 愛のコスモゾーン,Movie,5301,6.53,1980
-12,Yami no Teio: Kyuuketsuki Dracula,Dracula: Sovereign of the Damned,闇の帝王　吸血鬼ドラキュラ,TV Special,4961,3.81,1980
-14,Versailles no Bara to Onna-tachi,Lady Oscar Special,ベルサイユのばらと女たち,Special,4143,7.06,1980
-16,Ganbare Genki,Ganbare Genki,がんばれ元気,TV,3536,7.33,1980
-17,Uchuu Senshi Baldios,Space Warrior Baldios,宇宙戦士 バルディオス,TV,3304,6.46,1980
-18,Ginga Tetsudou 999: Glass no Clair,Galaxy Express 999: Claire of the Glass,銀河鉄道９９９ ガラスのクレア,Movie,3270,6.5,1980
-19,Mahou Shoujo Lalabel,Mahou Shoujo Lalabel,魔法少女ララベル,TV,3006,6.51,1980
-21,Ginga Tetsudou 999: Eien no Tabibito Emeraldas,Galaxy Express 999: Eternal Traveller Emeraldas,銀河鉄道９９９　永遠の旅人エメラルダス,TV Special,2765,6.69,1980
-22,Sekai Meisaku Douwa: Mori wa Ikiteiru,Sekai Meisaku Douwa: Mori wa Ikiteiru,森は生きている,Movie,2619,6.72,1980
-23,Ginga Tetsudou 999: Kimi wa Haha no You ni Aiseru ka!!,Galaxy Express 999: Can You Love Like a Mother?!!,銀河鉄道９９９　君は母のように愛せるか！！,TV Special,2527,6.49,1980
-24,Muu no Hakugei,The White Whale of Mu,ムーの白鯨,TV,2393,6.34,1980
-25,Kaibutsu-kun (1980),Kaibutsu-kun (1980),怪物くん (1980),TV,2115,6.63,1980
-26,Uchuu Taitei God Sigma,Space Emperor God Sigma,宇宙大帝ゴッドシグマ,TV,2034,6.46,1980
-27,Bocchan,Bocchan,坊っちゃん,TV Special,2002,6.09,1980
-28,Muteki Robo Trider G7,Invincible Robo Trider G7,無敵ロボトライダーG7,TV,1999,6.42,1980
-29,Fumoon,Fumoon,フウムーン,Special,1977,5.93,1980
-31,Mori no Youki na Kobito-tachi: Belfy to Lillibit,The Littl' Bits,森の陽気な小人たち ベルフィーとリビット,TV,1900,6.32,1980
-33,Time Bokan Series: Time Patroltai Otasukeman,Time Bokan Series: Time Patroltai Otasukeman,タイムボカンシリーズ タイムパトロール隊 オタスケマン,TV,1693,6.29,1980
-34,Maeterlinck no Aoi Tori: Tyltyl Mytyl no Bouken Ryokou,Maeterlinck no Aoi Tori: Tyltyl Mytyl no Bouken Ryokou,メーテルリングの青い鳥 チルチルミチルの冒険旅行,TV,1653,6.21,1980
-35,Tondemo Senshi Muteking,Tondemo Senshi Muteking,とんでも戦士ムテキング,TV,1593,6.25,1980
-36,Ie Naki Ko (Movie),Ie Naki Ko (Movie),家なき子,Movie,1575,6.54,1980
-37,Speed,Speed,スピード,Movie,1537,5.03,1980
-39,Wakakusa Monogatari,Little Women,若草物語,TV Special,1491,6.13,1980
-40,Hoero! Bun Bun,Hoero! Bun Bun,ほえろブンブン,TV,1489,6.42,1980
-41,Marine Snow no Densetsu,The Legend of Marine Snow,マリンスノーの伝説,TV Special,1348,5.92,1980
-42,11-piki no Neko,Eleven Cats,１１ぴきのねこ,Movie,1308,5.87,1980
-44,Joubuna Tire!,Joubuna Tire!,じょうぶなタイヤ!,Special,1236,5.02,1980
-45,Gegege no Kitarou: Chisougan,Spooky Kitaro: The All Seeing Eye,ゲゲゲの鬼太郎 地相眼,Movie,1233,5.85,1980
-46,Versailles no Bara: Moetsukita Bara no Shouzou,Versailles no Bara: Moetsukita Bara no Shouzou,ベルサイユのばら 燃えつきたバラの肖像,Special,1227,,1980
-47,Zukkoke Knight: Don De La Mancha,Don Quixote,ずっこけナイト　ドンデラマンチャ,TV,1222,5.68,1980
-48,Sue Cat,Sue Cat,スーキャット,TV,1202,6.1,1980
-49,Shelter,Shelter,SHELTER,Movie,1141,6.77,1980
-50,Makoto-chan,Makoto-chan,まことちゃん,Movie,1131,5.3,1980
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+2,Densetsu Kyojin Ideon,Space Runaway Ideon,伝説巨神イデオン,TV,19882,7.08,1980,https://cdn.myanimelist.net/images/anime/4/77068.jpg
+3,Tetsuwan Atom (1980),Astro Boy (1980),鉄腕アトム,TV,16245,7.17,1980,https://cdn.myanimelist.net/images/anime/1967/129099.jpg
+4,Terra e...,Toward the Terra,地球へ...,Movie,12382,6.41,1980,https://cdn.myanimelist.net/images/anime/1256/148786.jpg
+6,Tom Sawyer no Bouken,The Adventures of Tom Sawyer,トム・ソーヤーの冒険,TV,10459,7.33,1980,https://cdn.myanimelist.net/images/anime/10/73344.jpg
+7,Nils no Fushigi na Tabi,Wonderful Adventures of Nils,ニルスのふしぎな旅,TV,7858,7.14,1980,https://cdn.myanimelist.net/images/anime/1/2296.jpg
+10,Tsurikichi Sanpei,Sanpei the Fisherman,釣りキチ三平,TV,6193,7.09,1980,https://cdn.myanimelist.net/images/anime/1135/114713.jpg
+11,Hi no Tori 2772: Ai no CosmoZone,Phoenix 2772,火の鳥 ２７７２ 愛のコスモゾーン,Movie,5301,6.53,1980,https://cdn.myanimelist.net/images/anime/1488/96651.jpg
+12,Yami no Teio: Kyuuketsuki Dracula,Dracula: Sovereign of the Damned,闇の帝王　吸血鬼ドラキュラ,TV Special,4961,3.81,1980,https://cdn.myanimelist.net/images/anime/1349/100882.jpg
+16,Ganbare Genki,Ganbare Genki,がんばれ元気,TV,3536,7.33,1980,https://cdn.myanimelist.net/images/anime/9/25530.jpg
+17,Uchuu Senshi Baldios,Space Warrior Baldios,宇宙戦士 バルディオス,TV,3304,6.46,1980,https://cdn.myanimelist.net/images/anime/1289/145075.jpg
+19,Mahou Shoujo Lalabel,Mahou Shoujo Lalabel,魔法少女ララベル,TV,3006,6.51,1980,https://cdn.myanimelist.net/images/anime/6/17538.jpg
+20,Tetsujin 28-gou (1980),The New Adventures of Gigantor,鉄人２８号 (1980),TV,2950,6.72,1980,https://cdn.myanimelist.net/images/anime/5/46121.jpg
+22,Sekai Meisaku Douwa: Mori wa Ikiteiru,Sekai Meisaku Douwa: Mori wa Ikiteiru,森は生きている,Movie,2619,6.72,1980,https://cdn.myanimelist.net/images/anime/1263/131904.jpg
+23,Ginga Tetsudou 999: Kimi wa Haha no You ni Aiseru ka!!,Galaxy Express 999: Can You Love Like a Mother?!!,銀河鉄道９９９　君は母のように愛せるか！！,TV Special,2527,6.49,1980,https://cdn.myanimelist.net/images/anime/1529/133416.jpg
+24,Muu no Hakugei,The White Whale of Mu,ムーの白鯨,TV,2393,6.34,1980,https://cdn.myanimelist.net/images/anime/7/72039.jpg
+25,Kaibutsu-kun (1980),Kaibutsu-kun (1980),怪物くん (1980),TV,2115,6.63,1980,https://cdn.myanimelist.net/images/anime/5/29925.jpg
+26,Uchuu Taitei God Sigma,Space Emperor God Sigma,宇宙大帝ゴッドシグマ,TV,2034,6.46,1980,https://cdn.myanimelist.net/images/anime/4/52303.jpg
+27,Bocchan,Bocchan,坊っちゃん,TV Special,2002,6.09,1980,https://cdn.myanimelist.net/images/anime/13/22951.jpg
+28,Muteki Robo Trider G7,Invincible Robo Trider G7,無敵ロボトライダーG7,TV,1999,6.42,1980,https://cdn.myanimelist.net/images/anime/1703/93953.jpg
+29,Fumoon,Fumoon,フウムーン,Special,1977,5.93,1980,https://cdn.myanimelist.net/images/anime/1496/147713.jpg
+30,Doraemon: Time Machine de Oshougatsu,Doraemon: Time Machine de Oshougatsu,ドラえもん　タイムマシンでお正月,Special,1935,6.62,1980,https://cdn.myanimelist.net/images/anime/1709/92174.jpg
+31,Mori no Youki na Kobito-tachi: Belfy to Lillibit,The Littl' Bits,森の陽気な小人たち ベルフィーとリビット,TV,1900,6.32,1980,https://cdn.myanimelist.net/images/anime/10/73405.jpg
+32,Hana no Ko Lunlun: Konnichiwa Sakura no Kuni,Hana no Ko Lunlun: Konnichiwa Sakura no Kuni,花の子ルンルン こんにちわ桜の国,Movie,1742,5.64,1980,https://cdn.myanimelist.net/images/anime/1444/98767.jpg
+33,Time Bokan Series: Time Patroltai Otasukeman,Time Bokan Series: Time Patroltai Otasukeman,タイムボカンシリーズ タイムパトロール隊 オタスケマン,TV,1693,6.29,1980,https://cdn.myanimelist.net/images/anime/6/23215.jpg
+34,Maeterlinck no Aoi Tori: Tyltyl Mytyl no Bouken Ryokou,Maeterlinck no Aoi Tori: Tyltyl Mytyl no Bouken Ryokou,メーテルリングの青い鳥 チルチルミチルの冒険旅行,TV,1653,6.21,1980,https://cdn.myanimelist.net/images/anime/2/55609.jpg
+35,Tondemo Senshi Muteking,Tondemo Senshi Muteking,とんでも戦士ムテキング,TV,1593,6.25,1980,https://cdn.myanimelist.net/images/anime/5/88117.jpg
+36,Ie Naki Ko (Movie),Ie Naki Ko (Movie),家なき子,Movie,1575,6.54,1980,https://cdn.myanimelist.net/images/anime/1135/135330.jpg
+37,Speed,Speed,スピード,Movie,1537,5.03,1980,https://cdn.myanimelist.net/images/anime/11/6757.jpg
+38,Moero Arthur: Hakuba no Ouji,Moero Arthur: Hakuba no Ouji,燃えろアーサー・白馬の王子,TV,1514,6.18,1980,https://cdn.myanimelist.net/images/anime/13/47187.jpg
+39,Wakakusa Monogatari,Little Women,若草物語,TV Special,1491,6.13,1980,https://cdn.myanimelist.net/images/anime/6/60945.jpg
+40,Hoero! Bun Bun,Hoero! Bun Bun,ほえろブンブン,TV,1489,6.42,1980,https://cdn.myanimelist.net/images/anime/3/28908.jpg
+41,Marine Snow no Densetsu,The Legend of Marine Snow,マリンスノーの伝説,TV Special,1348,5.92,1980,https://cdn.myanimelist.net/images/anime/4/42727.jpg
+42,11-piki no Neko,Eleven Cats,１１ぴきのねこ,Movie,1308,5.87,1980,https://cdn.myanimelist.net/images/anime/1329/96647.jpg
+43,Mahou Shoujo Lalabel: Umi ga Yobu Natsuyasumi,Mahou Shoujo Lalabel: Umi ga Yobu Natsuyasumi,魔法少女ララベル 海が呼ぶ夏休み,Movie,1271,5.64,1980,https://cdn.myanimelist.net/images/anime/1912/106130.jpg
+44,Joubuna Tire!,Joubuna Tire!,じょうぶなタイヤ!,Special,1236,5.02,1980,https://cdn.myanimelist.net/images/anime/5/84311.jpg
+45,Gegege no Kitarou: Chisougan,Spooky Kitaro: The All Seeing Eye,ゲゲゲの鬼太郎 地相眼,Movie,1233,5.85,1980,https://cdn.myanimelist.net/images/anime/5/84231.jpg
+46,Versailles no Bara: Moetsukita Bara no Shouzou,Versailles no Bara: Moetsukita Bara no Shouzou,ベルサイユのばら 燃えつきたバラの肖像,Special,1227,,1980,https://cdn.myanimelist.net/images/anime/1941/134860.jpg
+47,Zukkoke Knight: Don De La Mancha,Don Quixote,ずっこけナイト　ドンデラマンチャ,TV,1222,5.68,1980,https://cdn.myanimelist.net/images/anime/4/44646.jpg
+48,Sue Cat,Sue Cat,スーキャット,TV,1202,6.1,1980,https://cdn.myanimelist.net/images/anime/6/27427.jpg
+49,Shelter,Shelter,SHELTER,Movie,1141,6.77,1980,https://cdn.myanimelist.net/images/anime/1503/115760.jpg
+50,Makoto-chan,Makoto-chan,まことちゃん,Movie,1131,5.3,1980,https://cdn.myanimelist.net/images/anime/1641/109775.jpg

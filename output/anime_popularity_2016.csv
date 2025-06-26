@@ -1,38 +1,46 @@
-rank,title,title_english,title_japanese,type,members,score,year
-1,Boku no Hero Academia,My Hero Academia,僕のヒーローアカデミア,TV,3180380,7.84,2016
-2,Kimi no Na wa.,Your Name.,君の名は。,Movie,2908561,8.83,2016
-3,Koe no Katachi,A Silent Voice,聲の形,Movie,2491434,8.93,2016
-4,Re:Zero kara Hajimeru Isekai Seikatsu,Re:ZERO -Starting Life in Another World-,Re:ゼロから始める異世界生活,TV,2350712,8.24,2016
-5,Mob Psycho 100,Mob Psycho 100,モブサイコ100,TV,2218956,8.49,2016
-6,Boku dake ga Inai Machi,Erased,僕だけがいない街,TV,2210155,8.3,2016
-7,Kono Subarashii Sekai ni Shukufuku wo!,KonoSuba: God's Blessing on This Wonderful World!,この素晴らしい世界に祝福を！,TV,2076638,8.09,2016
-9,Bungou Stray Dogs,Bungo Stray Dogs,文豪ストレイドッグス,TV,1495970,7.81,2016
-12,Saiki Kusuo no Ψ-nan,The Disastrous Life of Saiki K.,斉木楠雄のΨ難,TV,1190521,8.41,2016
-14,ReLIFE,ReLIFE,ReLIFE,TV,1099742,7.96,2016
-15,Yuri!!! on Ice,Yuri!!! On Ice,ユーリ!!! on ICE,TV,926296,7.9,2016
-16,Bungou Stray Dogs 2nd Season,Bungo Stray Dogs 2,文豪ストレイドッグス,TV,922013,8.17,2016
-17,Orange,Orange,orange（オレンジ）,TV,870676,7.63,2016
-18,Koutetsujou no Kabaneri,Kabaneri of the Iron Fortress,甲鉄城のカバネリ,TV,858336,7.28,2016
-19,Sakamoto desu ga?,Haven't You Heard? I'm Sakamoto,坂本ですが？,TV,806671,7.54,2016
-20,Hai to Gensou no Grimgar,Grimgar: Ashes and Illusions,灰と幻想のグリムガル,TV,778826,7.66,2016
-21,Kiznaiver,Kiznaiver,キズナイーバー,TV,777306,7.36,2016
-22,91 Days,91 Days,91Days,TV,766800,7.82,2016
-24,3-gatsu no Lion,March Comes In Like a Lion,3月のライオン,TV,712049,8.37,2016
-25,Ajin,Ajin: Demi-Human,亜人,TV,610941,7.38,2016
-26,Drifters,Drifters,DRIFTERS,TV,599999,7.88,2016
-28,Netoge no Yome wa Onnanoko ja Nai to Omotta?,And you thought there is never a girl online?,ネトゲの嫁は女の子じゃないと思った？,TV,576821,6.67,2016
-29,Musaigen no Phantom World,Myriad Colors Phantom World,無彩限のファントム・ワールド,TV,571626,6.85,2016
-30,Kizumonogatari I: Tekketsu-hen,Kizumonogatari Part 1: Iron-Blooded,傷物語〈Ⅰ鉄血篇〉,Movie,560704,8.36,2016
-31,Sousei no Onmyouji,Twin Star Exorcists,双星の陰陽師,TV,538868,7.29,2016
-32,Magi: Sinbad no Bouken (TV),Magi: Adventure of Sinbad,マギ シンドバッドの冒険,TV,504514,7.83,2016
-33,Tanaka-kun wa Itsumo Kedaruge,Tanaka-kun is Always Listless,田中くんはいつもけだるげ,TV,499300,7.81,2016
-34,Watashi ga Motete Dousunda,"Kiss Him, Not Me!",私がモテてどうすんだ,TV,477912,6.93,2016
-35,Dagashi Kashi,Dagashi Kashi,だがしかし,TV,477405,6.6,2016
-37,Gakusen Toshi Asterisk 2nd Season,The Asterisk War Season 2,学戦都市アスタリスク,TV,454089,6.98,2016
-38,New Game!,New Game!,NEW GAME!,TV,446218,7.55,2016
-40,Saijaku Muhai no Bahamut,Undefeated Bahamut Chronicle,最弱無敗の神装機竜《バハムート》,TV,418471,6.52,2016
-41,Keijo!!!!!!!!,Keijo!!!!!!!!,競女!!!!!!!!,TV,417690,6.9,2016
-43,Hundred,Hundred,ハンドレッド,TV,389335,6.3,2016
-45,Akagami no Shirayuki-hime 2nd Season,Snow White with the Red Hair 2,赤髪の白雪姫,TV,379218,7.97,2016
-47,Nanbaka,Nanbaka,ナンバカ,TV,351250,7.33,2016
-50,Nejimaki Seirei Senki: Tenkyou no Alderamin,Alderamin on the Sky,ねじ巻き精霊戦記 天鏡のアルデラミン,TV,338064,7.63,2016
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+1,Boku no Hero Academia,My Hero Academia,僕のヒーローアカデミア,TV,3180380,7.84,2016,https://cdn.myanimelist.net/images/anime/10/78745.jpg
+2,Kimi no Na wa.,Your Name.,君の名は。,Movie,2908561,8.83,2016,https://cdn.myanimelist.net/images/anime/5/87048.jpg
+3,Koe no Katachi,A Silent Voice,聲の形,Movie,2491434,8.93,2016,https://cdn.myanimelist.net/images/anime/1122/96435.jpg
+4,Re:Zero kara Hajimeru Isekai Seikatsu,Re:ZERO -Starting Life in Another World-,Re:ゼロから始める異世界生活,TV,2350712,8.24,2016,https://cdn.myanimelist.net/images/anime/1522/128039.jpg
+5,Mob Psycho 100,Mob Psycho 100,モブサイコ100,TV,2218956,8.49,2016,https://cdn.myanimelist.net/images/anime/8/80356.jpg
+6,Boku dake ga Inai Machi,Erased,僕だけがいない街,TV,2210155,8.3,2016,https://cdn.myanimelist.net/images/anime/10/77957.jpg
+7,Kono Subarashii Sekai ni Shukufuku wo!,KonoSuba: God's Blessing on This Wonderful World!,この素晴らしい世界に祝福を！,TV,2076638,8.09,2016,https://cdn.myanimelist.net/images/anime/1895/142748.jpg
+9,Bungou Stray Dogs,Bungo Stray Dogs,文豪ストレイドッグス,TV,1495970,7.81,2016,https://cdn.myanimelist.net/images/anime/3/79409.jpg
+12,Saiki Kusuo no Ψ-nan,The Disastrous Life of Saiki K.,斉木楠雄のΨ難,TV,1190521,8.41,2016,https://cdn.myanimelist.net/images/anime/1973/142750.jpg
+14,ReLIFE,ReLIFE,ReLIFE,TV,1099742,7.96,2016,https://cdn.myanimelist.net/images/anime/3/82149.jpg
+15,Yuri!!! on Ice,Yuri!!! On Ice,ユーリ!!! on ICE,TV,926296,7.9,2016,https://cdn.myanimelist.net/images/anime/6/81149.jpg
+17,Orange,Orange,orange（オレンジ）,TV,870676,7.63,2016,https://cdn.myanimelist.net/images/anime/1415/102477.jpg
+18,Koutetsujou no Kabaneri,Kabaneri of the Iron Fortress,甲鉄城のカバネリ,TV,858336,7.28,2016,https://cdn.myanimelist.net/images/anime/12/79164.jpg
+19,Sakamoto desu ga?,Haven't You Heard? I'm Sakamoto,坂本ですが？,TV,806671,7.54,2016,https://cdn.myanimelist.net/images/anime/4/79468.jpg
+20,Hai to Gensou no Grimgar,Grimgar: Ashes and Illusions,灰と幻想のグリムガル,TV,778826,7.66,2016,https://cdn.myanimelist.net/images/anime/13/77976.jpg
+21,Kiznaiver,Kiznaiver,キズナイーバー,TV,777306,7.36,2016,https://cdn.myanimelist.net/images/anime/1085/147246.jpg
+22,91 Days,91 Days,91Days,TV,766800,7.82,2016,https://cdn.myanimelist.net/images/anime/13/80515.jpg
+23,Nanatsu no Taizai: Seisen no Shirushi,The Seven Deadly Sins: Signs of Holy War,七つの大罪 聖戦の予兆,TV,750685,6.95,2016,https://cdn.myanimelist.net/images/anime/13/79331.jpg
+24,3-gatsu no Lion,March Comes In Like a Lion,3月のライオン,TV,712049,8.37,2016,https://cdn.myanimelist.net/images/anime/3/82899.jpg
+25,Ajin,Ajin: Demi-Human,亜人,TV,610941,7.38,2016,https://cdn.myanimelist.net/images/anime/13/77968.jpg
+26,Drifters,Drifters,DRIFTERS,TV,599999,7.88,2016,https://cdn.myanimelist.net/images/anime/10/80271.jpg
+27,"Gate: Jieitai Kanochi nite, Kaku Tatakaeri Part 2",GATE Part 2,GATE（ゲート）自衛隊　彼の地にて、斯く戦えり　第2クール,TV,584472,7.71,2016,https://cdn.myanimelist.net/images/anime/8/77382.jpg
+28,Netoge no Yome wa Onnanoko ja Nai to Omotta?,And you thought there is never a girl online?,ネトゲの嫁は女の子じゃないと思った？,TV,576821,6.67,2016,https://cdn.myanimelist.net/images/anime/3/79414.jpg
+29,Musaigen no Phantom World,Myriad Colors Phantom World,無彩限のファントム・ワールド,TV,571626,6.85,2016,https://cdn.myanimelist.net/images/anime/4/78339.jpg
+30,Kizumonogatari I: Tekketsu-hen,Kizumonogatari Part 1: Iron-Blooded,傷物語〈Ⅰ鉄血篇〉,Movie,560704,8.36,2016,https://cdn.myanimelist.net/images/anime/1783/112810.jpg
+31,Sousei no Onmyouji,Twin Star Exorcists,双星の陰陽師,TV,538868,7.29,2016,https://cdn.myanimelist.net/images/anime/12/79556.jpg
+32,Magi: Sinbad no Bouken (TV),Magi: Adventure of Sinbad,マギ シンドバッドの冒険,TV,504514,7.83,2016,https://cdn.myanimelist.net/images/anime/10/78783.jpg
+33,Tanaka-kun wa Itsumo Kedaruge,Tanaka-kun is Always Listless,田中くんはいつもけだるげ,TV,499300,7.81,2016,https://cdn.myanimelist.net/images/anime/1189/111994.jpg
+34,Watashi ga Motete Dousunda,"Kiss Him, Not Me!",私がモテてどうすんだ,TV,477912,6.93,2016,https://cdn.myanimelist.net/images/anime/4/81953.jpg
+35,Dagashi Kashi,Dagashi Kashi,だがしかし,TV,477405,6.6,2016,https://cdn.myanimelist.net/images/anime/1538/95686.jpg
+36,Kizumonogatari II: Nekketsu-hen,Kizumonogatari Part 2: Hot-Blooded,傷物語〈Ⅱ熱血篇〉,Movie,471827,8.56,2016,https://cdn.myanimelist.net/images/anime/1981/112812.jpg
+37,Gakusen Toshi Asterisk 2nd Season,The Asterisk War Season 2,学戦都市アスタリスク,TV,454089,6.98,2016,https://cdn.myanimelist.net/images/anime/11/79107.jpg
+38,New Game!,New Game!,NEW GAME!,TV,446218,7.55,2016,https://cdn.myanimelist.net/images/anime/9/80417.jpg
+39,Kono Subarashii Sekai ni Shukufuku wo!: Kono Subarashii Choker ni Shukufuku wo!,KonoSuba: God's Blessing on This Wonderful World! - God's Blessing on This Wonderful Choker!,この素晴らしい世界に祝福を！ 第11話 この素晴らしいチヨーカーに祝福を！,OVA,430967,7.83,2016,https://cdn.myanimelist.net/images/anime/1649/98516.jpg
+40,Saijaku Muhai no Bahamut,Undefeated Bahamut Chronicle,最弱無敗の神装機竜《バハムート》,TV,418471,6.52,2016,https://cdn.myanimelist.net/images/anime/12/76664.jpg
+41,Keijo!!!!!!!!,Keijo!!!!!!!!,競女!!!!!!!!,TV,417690,6.9,2016,https://cdn.myanimelist.net/images/anime/10/81906.jpg
+42,Durarara!!x2 Ketsu,Durarara!! x2 Ketsu,デュラララ!!×2 結,TV,394580,8.05,2016,https://cdn.myanimelist.net/images/anime/6/77838.jpg
+43,Hundred,Hundred,ハンドレッド,TV,389335,6.3,2016,https://cdn.myanimelist.net/images/anime/3/78858.jpg
+44,Berserk,Berserk (2016),ベルセルク,TV,384117,6.33,2016,https://cdn.myanimelist.net/images/anime/10/79352.jpg
+45,Akagami no Shirayuki-hime 2nd Season,Snow White with the Red Hair 2,赤髪の白雪姫,TV,379218,7.97,2016,https://cdn.myanimelist.net/images/anime/12/77834.jpg
+46,Danganronpa 3: The End of Kibougamine Gakuen - Mirai-hen,Danganronpa 3: The End of Hope's Peak High School - Future Arc,ダンガンロンパ3 -The End of 希望ヶ峰学園- 未来編,TV,370207,7.21,2016,https://cdn.myanimelist.net/images/anime/10/80931.jpg
+47,Nanbaka,Nanbaka,ナンバカ,TV,351250,7.33,2016,https://cdn.myanimelist.net/images/anime/2/81399.jpg
+48,Danganronpa 3: The End of Kibougamine Gakuen - Zetsubou-hen,Danganronpa 3: The End of Hope's Peak High School - Despair Arc,ダンガンロンパ3 -The End of 希望ヶ峰学園- 絶望編,TV,339334,7.35,2016,https://cdn.myanimelist.net/images/anime/4/80932.jpg
+49,Tales of Zestiria the Cross,Tales of Zestiria the X,テイルズ オブ ゼスティリア ザ クロス,TV,338664,7.21,2016,https://cdn.myanimelist.net/images/anime/1739/124338.jpg
+50,Nejimaki Seirei Senki: Tenkyou no Alderamin,Alderamin on the Sky,ねじ巻き精霊戦記 天鏡のアルデラミン,TV,338064,7.63,2016,https://cdn.myanimelist.net/images/anime/11/79531.jpg

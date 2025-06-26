@@ -1,39 +1,43 @@
-rank,title,title_english,title_japanese,type,members,score,year
-2,Macross,Super Dimension Fortress Macross,超時空要塞マクロス,TV,118568,7.88,1982
-4,Taiyou no Ko Esteban,The Mysterious Cities of Gold,太陽の子エステバン,TV,15580,7.75,1982
-5,Space Cobra,Space Adventure Cobra,スペースコブラ,TV,26648,7.67,1982
-6,Waga Seishun no Arcadia,Captain Harlock: Arcadia of my Youth,わが青春のアルカディア,Movie,12260,7.46,1982
-8,Patalliro!,Patalliro!,パタリロ！,TV,10170,7.33,1982
-9,Sentou Mecha Xabungle,Sentou Mecha Xabungle,戦闘メカザブングル,TV,6255,7.18,1982
-10,Tokimeki Tonight,Tokimeki Tonight,ときめきトゥナイト,TV,11090,7.17,1982
-12,Space Adventure Cobra,Space Adventure Cobra: The Movie,SPACE ADVENTURE コブラ,Movie,12872,7.08,1982
-13,Minami no Niji no Lucy,Lucy-May of the Southern Rainbow,南の虹のルーシー,TV,3302,6.99,1982
-14,Ochamegami Monogatari: Korokoro Pollon,Little Pollon,おちゃめ神物語コロコロポロン,TV,4123,6.99,1982
-15,Mahou no Princess Minky Momo,Fairy Princess Minky Momo,魔法のプリンセス　ミンキーモモ,TV,10908,6.91,1982
-16,Cello Hiki no Gauche (1982),Gauche the Cellist,セロ弾きのゴーシュ,Movie,15516,6.88,1982
-18,The Kabocha Wine,The Pumpkin Wine,Ｔｈｅかぼちゃワイン,TV,4687,6.76,1982
-19,1000-nen Joou: Queen Millennia,1000-nen Joou: Queen Millennia,1000年女王 Queen Millennia,Movie,5719,6.74,1982
-20,Ginga Patrol PJ,Ginga Patrol PJ,銀河パトロールPJ,TV,1297,6.72,1982
-22,Sasuga no Sarutobi,Amazing Sarutobi,さすがの猿飛,TV,2327,6.47,1982
-24,Kikou Kantai Dairugger XV,Armored Fleet Dairugger XV,機甲艦隊ダイラガーXV,TV,3253,6.43,1982
-26,Tonde Mon Pe,Tonde Mon Pe,とんでモン・ぺ,TV,538,6.39,1982
-28,Shiroi Kiba White Fang Monogatari,Shiroi Kiba White Fang Monogatari,白い牙ホワイトファング物語,TV Special,1418,6.35,1982
-29,Tondera House no Daibouken,The Flying House,トンデラハウスの大冒険,TV,1792,6.34,1982
-30,Ai no Senshi Rainbowman,Ai no Senshi Rainbowman,愛の戦士レインボーマン,TV,1631,6.26,1982
-31,Tobiuo no Boy wa Byouki desu,Tobiuo no Boy wa Byouki desu,トビウオのぼうや は びょうきです,Movie,482,6.23,1982
-32,Sekai Meisaku Douwa: Aladdin to Mahou no Lamp,Aladdin and the Wonderful Lamp,アラジンと魔法のランプ,Movie,2166,6.17,1982
-33,Okon Joururi,Okon Joururi,おこんじょうるり,Movie,644,6.15,1982
-34,Asari-chan,Asari-chan,あさりちゃん,TV,1445,6.13,1982
-35,Kagaku Kyuujo-tai TechnoVoyager,Thunderbirds 2086,科学救助隊テクノボイジャー,TV,1877,6.13,1982
-37,Lu Ling,Lu Ling,鹿铃,Movie,480,6.07,1982
-38,Haguregumo,Haguregumo,浮浪雲,Movie,2686,6.07,1982
-39,Kyojin no Hoshi (Movie),Kyojin no Hoshi (Movie),巨人の星,Movie,855,6.07,1982
-41,Future War 198X-nen,Future War Year 198X,Future War 198X年,Movie,3249,6.04,1982
-42,Mizuiro no One-Piece,Mizuiro no One-Piece,水色のワンピース,Music,1155,6.03,1982
-43,Ninjaman Ippei,Ninjaman Ippei,忍者マン 一平,TV,584,6.03,1982
-45,Densetsu Kyojin Ideon: Sesshoku-hen,The Ideon: A Contact,伝説巨神イデオン 接触篇,Movie,5348,6.01,1982
-46,Tezuka Osamu no Don Dracula,Tezuka Osamu no Don Dracula,手塚治虫のドン・ドラキュラ,TV,3455,6.0,1982
-47,Game Center Arashi,Game Center Arashi,ゲームセンターあらし,TV,1232,5.99,1982
-48,Cybot Robocchi,Robby the Rascal,サイボットロボッチ,TV,758,5.99,1982
-49,Manga Nippon Mukashibanashi (Movie),Manga Nippon Mukashibanashi (Movie),まんが日本昔ばなし,Movie,584,5.97,1982
-50,Ohayou! Spank (Movie),Ohayou! Spank (Movie),おはよう! スパンク,Movie,909,5.95,1982
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+2,Macross,Super Dimension Fortress Macross,超時空要塞マクロス,TV,118568,7.88,1982,https://cdn.myanimelist.net/images/anime/1553/137717.jpg
+4,Taiyou no Ko Esteban,The Mysterious Cities of Gold,太陽の子エステバン,TV,15580,7.75,1982,https://cdn.myanimelist.net/images/anime/1936/134369.jpg
+5,Space Cobra,Space Adventure Cobra,スペースコブラ,TV,26648,7.67,1982,https://cdn.myanimelist.net/images/anime/7/41437.jpg
+8,Patalliro!,Patalliro!,パタリロ！,TV,10170,7.33,1982,https://cdn.myanimelist.net/images/anime/2/56443.jpg
+9,Sentou Mecha Xabungle,Sentou Mecha Xabungle,戦闘メカザブングル,TV,6255,7.18,1982,https://cdn.myanimelist.net/images/anime/7/51455.jpg
+10,Tokimeki Tonight,Tokimeki Tonight,ときめきトゥナイト,TV,11090,7.17,1982,https://cdn.myanimelist.net/images/anime/1272/104468.jpg
+13,Minami no Niji no Lucy,Lucy-May of the Southern Rainbow,南の虹のルーシー,TV,3302,6.99,1982,https://cdn.myanimelist.net/images/anime/1769/102083.jpg
+14,Ochamegami Monogatari: Korokoro Pollon,Little Pollon,おちゃめ神物語コロコロポロン,TV,4123,6.99,1982,https://cdn.myanimelist.net/images/anime/2/60529.jpg
+15,Mahou no Princess Minky Momo,Fairy Princess Minky Momo,魔法のプリンセス　ミンキーモモ,TV,10908,6.91,1982,https://cdn.myanimelist.net/images/anime/1704/105810.jpg
+16,Cello Hiki no Gauche (1982),Gauche the Cellist,セロ弾きのゴーシュ,Movie,15516,6.88,1982,https://cdn.myanimelist.net/images/anime/9/36627.jpg
+18,The Kabocha Wine,The Pumpkin Wine,Ｔｈｅかぼちゃワイン,TV,4687,6.76,1982,https://cdn.myanimelist.net/images/anime/2/26634.jpg
+19,1000-nen Joou: Queen Millennia,1000-nen Joou: Queen Millennia,1000年女王 Queen Millennia,Movie,5719,6.74,1982,https://cdn.myanimelist.net/images/anime/1/2398.jpg
+20,Ginga Patrol PJ,Ginga Patrol PJ,銀河パトロールPJ,TV,1297,6.72,1982,https://cdn.myanimelist.net/images/anime/6/31535.jpg
+22,Sasuga no Sarutobi,Amazing Sarutobi,さすがの猿飛,TV,2327,6.47,1982,https://cdn.myanimelist.net/images/anime/1318/106142.jpg
+23,"Dr. Slump Movie 02: ""Hoyoyo!"" Uchuu Daibouken","Dr. Slump: ""Hoyoyo!"" Space Adventure",Dr.SLUMP “ほよよ!”宇宙大冒険,Movie,2358,6.46,1982,https://cdn.myanimelist.net/images/anime/12/23174.jpg
+24,Kikou Kantai Dairugger XV,Armored Fleet Dairugger XV,機甲艦隊ダイラガーXV,TV,3253,6.43,1982,https://cdn.myanimelist.net/images/anime/1375/134587.jpg
+25,Shin Mitsubachi Maya no Bouken,The New Adventures of Honeybee Maya,新みつばちマーヤの冒険,TV,4318,6.43,1982,https://cdn.myanimelist.net/images/anime/10/22043.jpg
+26,Tonde Mon Pe,Tonde Mon Pe,とんでモン・ぺ,TV,538,6.39,1982,https://cdn.myanimelist.net/images/anime/12/15468.jpg
+27,Ginga Reppuu Baxingar,Galactic Gale Baxingar,銀河烈風バクシンガー,TV,2006,6.38,1982,https://cdn.myanimelist.net/images/anime/8/56417.jpg
+28,Shiroi Kiba White Fang Monogatari,Shiroi Kiba White Fang Monogatari,白い牙ホワイトファング物語,TV Special,1418,6.35,1982,https://cdn.myanimelist.net/images/anime/11/81828.jpg
+29,Tondera House no Daibouken,The Flying House,トンデラハウスの大冒険,TV,1792,6.34,1982,https://cdn.myanimelist.net/images/anime/1860/146214.jpg
+30,Ai no Senshi Rainbowman,Ai no Senshi Rainbowman,愛の戦士レインボーマン,TV,1631,6.26,1982,https://cdn.myanimelist.net/images/anime/5/21465.jpg
+31,Tobiuo no Boy wa Byouki desu,Tobiuo no Boy wa Byouki desu,トビウオのぼうや は びょうきです,Movie,482,6.23,1982,
+32,Sekai Meisaku Douwa: Aladdin to Mahou no Lamp,Aladdin and the Wonderful Lamp,アラジンと魔法のランプ,Movie,2166,6.17,1982,https://cdn.myanimelist.net/images/anime/1255/144160.jpg
+33,Okon Joururi,Okon Joururi,おこんじょうるり,Movie,644,6.15,1982,https://cdn.myanimelist.net/images/anime/13/18190.jpg
+34,Asari-chan,Asari-chan,あさりちゃん,TV,1445,6.13,1982,https://cdn.myanimelist.net/images/anime/12/64365.jpg
+35,Kagaku Kyuujo-tai TechnoVoyager,Thunderbirds 2086,科学救助隊テクノボイジャー,TV,1877,6.13,1982,https://cdn.myanimelist.net/images/anime/1575/104710.jpg
+36,Ninja Hattori-kun: Nin Nin Ninpo Enikki no Maki,Ninja Hattori-kun: Nin Nin Ninpo Enikki no Maki,忍者ハットリくん ニンニン忍法絵日記の巻,Movie,925,6.12,1982,https://cdn.myanimelist.net/images/anime/1413/148577.jpg
+37,Lu Ling,Lu Ling,鹿铃,Movie,480,6.07,1982,
+38,Haguregumo,Haguregumo,浮浪雲,Movie,2686,6.07,1982,https://cdn.myanimelist.net/images/anime/1781/134845.jpg
+39,Kyojin no Hoshi (Movie),Kyojin no Hoshi (Movie),巨人の星,Movie,855,6.07,1982,https://cdn.myanimelist.net/images/anime/12/46611.jpg
+40,Lao Fu Zi Shui Hu Chuan,Lao Fu Zi Shui Hu Chuan,老夫子水虎傳,Movie,514,6.06,1982,https://cdn.myanimelist.net/images/anime/9/72100.jpg
+41,Future War 198X-nen,Future War Year 198X,Future War 198X年,Movie,3249,6.04,1982,https://cdn.myanimelist.net/images/anime/1943/100161.jpg
+42,Mizuiro no One-Piece,Mizuiro no One-Piece,水色のワンピース,Music,1155,6.03,1982,https://cdn.myanimelist.net/images/anime/1840/101153.jpg
+43,Ninjaman Ippei,Ninjaman Ippei,忍者マン 一平,TV,584,6.03,1982,https://cdn.myanimelist.net/images/anime/1618/121191.jpg
+44,Dr. Slump: Arale-chan - Penguin Mura Eiyuu Densetsu,Dr. Slump: Hero Legend of Penguin Village,Dr.スランプアラレちゃんスペシャル ペンギン村英雄伝説,Special,1438,6.01,1982,https://cdn.myanimelist.net/images/anime/1310/107726.jpg
+45,Densetsu Kyojin Ideon: Sesshoku-hen,The Ideon: A Contact,伝説巨神イデオン 接触篇,Movie,5348,6.01,1982,https://cdn.myanimelist.net/images/anime/3/23715.jpg
+46,Tezuka Osamu no Don Dracula,Tezuka Osamu no Don Dracula,手塚治虫のドン・ドラキュラ,TV,3455,6,1982,https://cdn.myanimelist.net/images/anime/1132/147716.jpg
+47,Game Center Arashi,Game Center Arashi,ゲームセンターあらし,TV,1232,5.99,1982,https://cdn.myanimelist.net/images/anime/5/34473.jpg
+48,Cybot Robocchi,Robby the Rascal,サイボットロボッチ,TV,758,5.99,1982,https://cdn.myanimelist.net/images/anime/1623/132162.jpg
+49,Manga Nippon Mukashibanashi (Movie),Manga Nippon Mukashibanashi (Movie),まんが日本昔ばなし,Movie,584,5.97,1982,https://cdn.myanimelist.net/images/anime/9/28284.jpg
+50,Ohayou! Spank (Movie),Ohayou! Spank (Movie),おはよう! スパンク,Movie,909,5.95,1982,https://cdn.myanimelist.net/images/anime/2/53059.jpg

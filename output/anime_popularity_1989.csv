@@ -1,37 +1,44 @@
-rank,title,title_english,title_japanese,type,members,score,year
-2,Majo no Takkyuubin,Kiki's Delivery Service,魔女の宅急便,Movie,632472,8.23,1989
-3,Ranma ½,Ranma ½,らんま1/2,TV,274284,7.77,1989
-7,Kidou Keisatsu Patlabor: On Television,Patlabor: The Mobile Police - The TV Series,機動警察パトレイバー ON TELEVISION,TV,43908,7.69,1989
-9,Angel Cop,Angel Cop,エンゼルコップ,OVA,25670,6.03,1989
-10,Riding Bean,Riding Bean,ライディング・ビーン,OVA,25651,7.06,1989
-11,Yawara!,Yawara!,YAWARA!,TV,24079,7.49,1989
-12,Baoh Raihousha,Baoh the Visitor,バオー来訪者,OVA,21618,6.14,1989
-14,Venus Senki,Venus Wars,ヴィナス戦記,Movie,17398,6.77,1989
-15,Kyoushoku Soukou Guyver (1989),The Guyver: Bio-Booster Armor,強殖装甲ガイバー,OVA,15765,7.09,1989
-16,Five Star Stories,The Five Star Stories,ファイブスター物語,Movie,15539,6.58,1989
-17,Midnight Eye: Gokuu,Goku: Midnight Eye,MIDNIGHT EYE　ゴクウ,OVA,15362,6.46,1989
-19,Cipher,Cipher,CIPHER THE VIDEO,OVA,13081,4.54,1989
-20,Tenkuu Senki Shurato,Tenkuu Senki Shurato,天空戦記シュラト,TV,12355,7.18,1989
-21,Earthian,Earthian,アーシアン,OVA,11623,6.0,1989
-22,Little Nemo,Little Nemo: Adventures in Slumberland,リトル・ニモ,Movie,11073,7.18,1989
-23,Youma,Blood Reign: Curse of the Yoma,妖魔,OVA,10796,6.06,1989
-24,Gosenzo-sama Banbanzai!,Long Life To The Ancestors,御先祖様万々歳!,OVA,10793,7.3,1989
-25,Be-Boy Kidnapp'n Idol,Be-Boy Kidnapp'n Idol,BE-BOY KIDNAPP'N IDOL,OVA,10469,5.47,1989
-28,Legend of Lemnear: Kyokuguro no Tsubasa Valkisas,Legend of Lemnear,Legend of Lemnear 極黒の翼 バルキサス,OVA,9676,5.56,1989
-29,Kimagure Orange☆Road OVA,Kimagure Orange Road OVA,きまぐれオレンジ☆ロード,OVA,9357,7.35,1989
-30,Ys,Ys,Ys イース,OVA,9243,6.4,1989
-31,Jungle Book Shounen Mowgli,The Jungle Book,ジャングルブック・少年モーグリ,TV,8311,6.99,1989
-34,Idol Densetsu Eriko,Legendary Idol Eriko,アイドル伝説えり子,TV,7086,6.89,1989
-36,Choujin Densetsu Urotsukidouji Movie,Choujin Densetsu Urotsukidouji Movie,超神伝説うろつき童子,Movie,6651,6.1,1989
-37,Chiisana Ahiru no Ooki na Ai no Monogatari: Ahiru no Kwak,Alfred J. Kwak,小さなアヒルの大きな愛の物語 あひるのクワック,TV,6406,7.37,1989
-39,Sengoku Kitan Youtouden Movie,Wrath of the Ninja,戦国奇譚 妖刀伝 劇場版,Movie,5992,5.93,1989
-40,Jungle Taitei (1989),Jungle Taitei (1989),ジャングル大帝,TV,5928,6.72,1989
-41,All That Gundam,All That Gundam,ALL THAT GUNDAM,Special,5916,5.81,1989
-42,Seijuuki Cyguard,Cybernetics Guardian,聖獣機サイガード,OVA,5754,5.25,1989
-43,Assemble Insert,Assemble Insert,アッセンブル・インサート,OVA,5459,6.07,1989
-44,Peter Pan no Bouken,Peter Pan & Wendy,ピーターパンの冒険,TV,5293,6.77,1989
-45,Riki-Oh: Toukatsu Jigoku,Riki-Oh: The Wall of Hell,力王 等括地獄,OVA,4808,5.97,1989
-47,Crusher Joe OVA,Crusher Joe: The OVAs,クラッシャージョウ,OVA,4502,6.64,1989
-48,Makaryuudo Demon Hunter,Makaryuudo Demon Hunter,魔狩人,OVA,4389,5.31,1989
-49,Cleopatra D.C.,Cleopatra D.C.,クレオパトラＤ．Ｃ,OVA,4365,5.86,1989
-50,Shuten Douji,Shuten Doji - The Star Hand Kid,手天童子,OVA,4365,5.68,1989
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+2,Majo no Takkyuubin,Kiki's Delivery Service,魔女の宅急便,Movie,632472,8.23,1989,https://cdn.myanimelist.net/images/anime/1579/140483.jpg
+3,Ranma ½,Ranma ½,らんま1/2,TV,274284,7.77,1989,https://cdn.myanimelist.net/images/anime/13/6441.jpg
+7,Kidou Keisatsu Patlabor: On Television,Patlabor: The Mobile Police - The TV Series,機動警察パトレイバー ON TELEVISION,TV,43908,7.69,1989,https://cdn.myanimelist.net/images/anime/1739/144310.jpg
+9,Angel Cop,Angel Cop,エンゼルコップ,OVA,25670,6.03,1989,https://cdn.myanimelist.net/images/anime/1377/110296.jpg
+10,Riding Bean,Riding Bean,ライディング・ビーン,OVA,25651,7.06,1989,https://cdn.myanimelist.net/images/anime/1310/112637.jpg
+11,Yawara!,Yawara!,YAWARA!,TV,24079,7.49,1989,https://cdn.myanimelist.net/images/anime/4/44864.jpg
+12,Baoh Raihousha,Baoh the Visitor,バオー来訪者,OVA,21618,6.14,1989,https://cdn.myanimelist.net/images/anime/1274/112464.jpg
+14,Venus Senki,Venus Wars,ヴィナス戦記,Movie,17398,6.77,1989,https://cdn.myanimelist.net/images/anime/1305/100582.jpg
+15,Kyoushoku Soukou Guyver (1989),The Guyver: Bio-Booster Armor,強殖装甲ガイバー,OVA,15765,7.09,1989,https://cdn.myanimelist.net/images/anime/7/13102.jpg
+16,Five Star Stories,The Five Star Stories,ファイブスター物語,Movie,15539,6.58,1989,https://cdn.myanimelist.net/images/anime/11/76054.jpg
+17,Midnight Eye: Gokuu,Goku: Midnight Eye,MIDNIGHT EYE　ゴクウ,OVA,15362,6.46,1989,https://cdn.myanimelist.net/images/anime/1699/106790.jpg
+19,Cipher,Cipher,CIPHER THE VIDEO,OVA,13081,4.54,1989,https://cdn.myanimelist.net/images/anime/11/33203.jpg
+20,Tenkuu Senki Shurato,Tenkuu Senki Shurato,天空戦記シュラト,TV,12355,7.18,1989,https://cdn.myanimelist.net/images/anime/1989/92418.jpg
+21,Earthian,Earthian,アーシアン,OVA,11623,6,1989,https://cdn.myanimelist.net/images/anime/1134/143852.jpg
+22,Little Nemo,Little Nemo: Adventures in Slumberland,リトル・ニモ,Movie,11073,7.18,1989,https://cdn.myanimelist.net/images/anime/7/82033.jpg
+23,Youma,Blood Reign: Curse of the Yoma,妖魔,OVA,10796,6.06,1989,https://cdn.myanimelist.net/images/anime/1123/94526.jpg
+24,Gosenzo-sama Banbanzai!,Long Life To The Ancestors,御先祖様万々歳!,OVA,10793,7.3,1989,https://cdn.myanimelist.net/images/anime/1908/146500.jpg
+25,Be-Boy Kidnapp'n Idol,Be-Boy Kidnapp'n Idol,BE-BOY KIDNAPP'N IDOL,OVA,10469,5.47,1989,https://cdn.myanimelist.net/images/anime/1/2413.jpg
+26,City Hunter: Ai to Shukumei no Magnum,City Hunter: .357 Magnum,シティーハンター 愛と宿命のマグナム,Movie,9949,7.38,1989,https://cdn.myanimelist.net/images/anime/1978/94391.jpg
+27,Lupin III: Bye Bye Liberty - Kiki Ippatsu!,Lupin III: Goodbye Lady Liberty,ルパン三世『バイバイ・リバティー危機一発！,TV Special,9702,6.78,1989,https://cdn.myanimelist.net/images/anime/13/61691.jpg
+28,Legend of Lemnear: Kyokuguro no Tsubasa Valkisas,Legend of Lemnear,Legend of Lemnear 極黒の翼 バルキサス,OVA,9676,5.56,1989,https://cdn.myanimelist.net/images/anime/8/26903.jpg
+29,Kimagure Orange☆Road OVA,Kimagure Orange Road OVA,きまぐれオレンジ☆ロード,OVA,9357,7.35,1989,https://cdn.myanimelist.net/images/anime/1022/107653.jpg
+30,Ys,Ys,Ys イース,OVA,9243,6.4,1989,https://cdn.myanimelist.net/images/anime/9/23207.jpg
+31,Jungle Book Shounen Mowgli,The Jungle Book,ジャングルブック・少年モーグリ,TV,8311,6.99,1989,https://cdn.myanimelist.net/images/anime/5/12752.jpg
+32,Warau Salesman,Laughing Salesman,笑ゥせぇるすまん,TV,7853,6.88,1989,https://cdn.myanimelist.net/images/anime/5/61389.jpg
+33,Midnight Eye: Gokuu II,Goku II: Midnight Eye,MIDNIGHT EYE　ゴクウII,OVA,7706,6.22,1989,https://cdn.myanimelist.net/images/anime/1/1880.jpg
+34,Idol Densetsu Eriko,Legendary Idol Eriko,アイドル伝説えり子,TV,7086,6.89,1989,https://cdn.myanimelist.net/images/anime/11/20173.jpg
+35,Project A-Ko 4: Final,Project A-ko: Love & Robots,プロジェクトA子 -FINAL-,OVA,6681,6.37,1989,https://cdn.myanimelist.net/images/anime/13/29212.jpg
+36,Choujin Densetsu Urotsukidouji Movie,Choujin Densetsu Urotsukidouji Movie,超神伝説うろつき童子,Movie,6651,6.1,1989,https://cdn.myanimelist.net/images/anime/10/15026.jpg
+37,Chiisana Ahiru no Ooki na Ai no Monogatari: Ahiru no Kwak,Alfred J. Kwak,小さなアヒルの大きな愛の物語 あひるのクワック,TV,6406,7.37,1989,https://cdn.myanimelist.net/images/anime/1016/125157.jpg
+38,Doraemon Movie 10: Nobita no Nippon Tanjou,Doraemon the Movie: Nobita and the Birth of Japan,映画 ドラえもん のび太の日本誕生,Movie,6202,7.17,1989,https://cdn.myanimelist.net/images/anime/8/72415.jpg
+39,Sengoku Kitan Youtouden Movie,Wrath of the Ninja,戦国奇譚 妖刀伝 劇場版,Movie,5992,5.93,1989,https://cdn.myanimelist.net/images/anime/1358/97131.jpg
+40,Jungle Taitei (1989),Jungle Taitei (1989),ジャングル大帝,TV,5928,6.72,1989,https://cdn.myanimelist.net/images/anime/6/75997.jpg
+41,All That Gundam,All That Gundam,ALL THAT GUNDAM,Special,5916,5.81,1989,https://cdn.myanimelist.net/images/anime/1355/149862.jpg
+42,Seijuuki Cyguard,Cybernetics Guardian,聖獣機サイガード,OVA,5754,5.25,1989,https://cdn.myanimelist.net/images/anime/4/29427.jpg
+43,Assemble Insert,Assemble Insert,アッセンブル・インサート,OVA,5459,6.07,1989,https://cdn.myanimelist.net/images/anime/1502/123445.jpg
+44,Peter Pan no Bouken,Peter Pan & Wendy,ピーターパンの冒険,TV,5293,6.77,1989,https://cdn.myanimelist.net/images/anime/1845/104533.jpg
+45,Riki-Oh: Toukatsu Jigoku,Riki-Oh: The Wall of Hell,力王 等括地獄,OVA,4808,5.97,1989,https://cdn.myanimelist.net/images/anime/1366/99209.jpg
+46,Kidou Senshi SD Gundam Mk-II,Mobile Suit SD Gundam Mk-II,機動戦士SDガンダム Mk-II,OVA,4790,6.1,1989,https://cdn.myanimelist.net/images/anime/3/55903.jpg
+47,Crusher Joe OVA,Crusher Joe: The OVAs,クラッシャージョウ,OVA,4502,6.64,1989,https://cdn.myanimelist.net/images/anime/3/18788.jpg
+48,Makaryuudo Demon Hunter,Makaryuudo Demon Hunter,魔狩人,OVA,4389,5.31,1989,https://cdn.myanimelist.net/images/anime/11/69053.jpg
+49,Cleopatra D.C.,Cleopatra D.C.,クレオパトラＤ．Ｃ,OVA,4365,5.86,1989,https://cdn.myanimelist.net/images/anime/1367/107825.jpg
+50,Shuten Douji,Shuten Doji - The Star Hand Kid,手天童子,OVA,4365,5.68,1989,https://cdn.myanimelist.net/images/anime/9/18492.jpg

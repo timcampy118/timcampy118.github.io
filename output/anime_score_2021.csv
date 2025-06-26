@@ -1,33 +1,13 @@
-rank,title,title_english,title_japanese,type,members,score,year
-4,Shiguang Dailiren,Link Click,時光代理人,ONA,440577,8.72,2021
-5,86 Part 2,86 Eighty-Six Part 2,86―エイティシックス―,TV,586036,8.72,2021
-7,Odd Taxi,Odd Taxi,オッドタクシー,TV,480115,8.64,2021
-14,Ousama Ranking,Ranking of Kings,王様ランキング,TV,714415,8.49,2021
-18,Jujutsu Kaisen 0 Movie,Jujutsu Kaisen 0,劇場版 呪術廻戦 0,Movie,1126741,8.4,2021
-19,Vivy: Fluorite Eye's Song,Vivy -Fluorite Eye's Song-,Vivy -Fluorite Eye's Song- (ヴィヴィ -フローライトアイズソング-),TV,582080,8.38,2021
-20,Violet Evergarden: Recollections,Violet Evergarden: Recollections,ヴァイオレット・エヴァーガーデン特別総集版,Special,40526,8.37,2021
-21,Mushoku Tensei: Isekai Ittara Honki Dasu,Mushoku Tensei: Jobless Reincarnation,無職転生 ～異世界行ったら本気だす～,TV,1476458,8.35,2021
-22,Tensei shitara Slime Datta Ken 2nd Season,That Time I Got Reincarnated as a Slime Season 2,転生したらスライムだった件,TV,1055552,8.35,2021
-25,Fumetsu no Anata e,To Your Eternity,不滅のあなたへ,TV,941980,8.34,2021
-26,86,86 Eighty-Six,86―エイティシックス―,TV,892741,8.33,2021
-28,Tensei shitara Slime Datta Ken 2nd Season Part 2,That Time I Got Reincarnated as a Slime Season 2 Part 2,転生したらスライムだった件,TV,856535,8.3,2021
-29,Yuukoku no Moriarty Part 2,Moriarty the Patriot Part 2,憂国のモリアーティ,TV,277441,8.28,2021
-31,World Trigger 3rd Season,World Trigger 3rd Season,ワールドトリガー,TV,132616,8.25,2021
-34,Horimiya,Horimiya,ホリミヤ,TV,1528893,8.19,2021
-36,Natsume Yuujinchou: Ishi Okoshi to Ayashiki Raihousha,Natsume's Book of Friends: The Waking Rock and the Strange Visitor,夏目友人帳 石起こしと怪しき来訪者,Movie,51860,8.17,2021
-39,Eiga Daisuki Pompo-san,Pompo: The Cinéphile,映画大好きポンポさん,Movie,60438,8.13,2021
-41,Kaguya-sama wa Kokurasetai: Ultra Romantic Teaser PV - Ishigami Yuu wa Kataritai,"Kaguya-sama: Love is War - Ultra Romantic ""Yu Ishigami Wants to Chat""",第３期『かぐや様は告らせたい-ウルトラロマンティック-』 / ティザーPV 「石上優は語りたい」,PV,61318,8.13,2021
-44,World Trigger 2nd Season,World Trigger 2nd Season,ワールドトリガー,TV,167292,8.04,2021
-45,Mairimashita! Iruma-kun 2nd Season,Welcome to Demon School! Iruma-kun Season 2,魔入りました！入間くん,TV,353228,8.02,2021
-48,Pui Pui Molcar,Pui Pui Molcar,PUI PUI モルカー,TV,18701,8.01,2021
-50,SK∞,SK8 the Infinity,SK∞ エスケーエイト,TV,603827,8.0,2021
-53,Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria,Sword Art Online the Movie: Progressive - Aria of a Starless Night,劇場版 ソードアート・オンライン プログレッシブ 星なき夜のアリア,Movie,275816,7.95,2021
-55,Imaizumin Chi wa Douyara Gal no Tamariba ni Natteru Rashii,Imaizumi Brings All the Gyarus to His House,今泉ん家はどうやらギャルの溜まり場になってるらしい,OVA,26574,7.94,2021
-56,Love Live! Superstar!!,Love Live! SuperStar!!,ラブライブ！スーパースター!!,TV,76173,7.92,2021
-57,Fanren Xiu Xian Chuan 2nd Season,A Record of a Mortal's Journey to Immortality Season 2,凡人修仙传,ONA,4396,7.92,2021
-58,Hololive Alternative,Hololive Alternative,ホロライブ・オルタナティブ,PV,11597,7.91,2021
-59,Summer Ghost,Summer Ghost,サマーゴースト,Movie,135306,7.91,2021
-60,Vanitas no Karte,The Case Study of Vanitas,ヴァニタスの手記,TV,592883,7.9,2021
-62,Wanmei Shijie,Perfect World,完美世界,ONA,12778,7.86,2021
-63,Tokyo Revengers,Tokyo Revengers,東京リベンジャーズ,TV,1347477,7.85,2021
-64,Sonny Boy,Sonny Boy,Sonny Boy (サニーボーイ),TV,350969,7.83,2021
+rank,title,title_english,title_japanese,type,members,score,year,image_url
+4,Shiguang Dailiren,Link Click,時光代理人,ONA,440321,8.72,2021,https://cdn.myanimelist.net/images/anime/1135/114867.jpg
+7,Odd Taxi,Odd Taxi,オッドタクシー,TV,480045,8.64,2021,https://cdn.myanimelist.net/images/anime/1981/113348.jpg
+14,Ousama Ranking,Ranking of Kings,王様ランキング,TV,714302,8.49,2021,https://cdn.myanimelist.net/images/anime/1347/117616.jpg
+19,Vivy: Fluorite Eye's Song,Vivy -Fluorite Eye's Song-,Vivy -Fluorite Eye's Song- (ヴィヴィ -フローライトアイズソング-),TV,582017,8.38,2021,https://cdn.myanimelist.net/images/anime/1551/128960.jpg
+22,Mushoku Tensei: Isekai Ittara Honki Dasu,Mushoku Tensei: Jobless Reincarnation,無職転生 ～異世界行ったら本気だす～,TV,1476187,8.35,2021,https://cdn.myanimelist.net/images/anime/1530/117776.jpg
+25,Fumetsu no Anata e,To Your Eternity,不滅のあなたへ,TV,941746,8.34,2021,https://cdn.myanimelist.net/images/anime/1880/118484.jpg
+26,86,86 Eighty-Six,86―エイティシックス―,TV,892741,8.33,2021,https://cdn.myanimelist.net/images/anime/1987/117507.jpg
+34,Horimiya,Horimiya,ホリミヤ,TV,1528452,8.19,2021,https://cdn.myanimelist.net/images/anime/1695/111486.jpg
+39,Eiga Daisuki Pompo-san,Pompo: The Cinéphile,映画大好きポンポさん,Movie,60417,8.13,2021,
+48,Pui Pui Molcar,Pui Pui Molcar,PUI PUI モルカー,TV,18700,8.01,2021,
+50,SK∞,SK8 the Infinity,SK∞ エスケーエイト,TV,603736,8,2021,https://cdn.myanimelist.net/images/anime/1549/119195.jpg
+56,Love Live! Superstar!!,Love Live! SuperStar!!,ラブライブ！スーパースター!!,TV,76173,7.92,2021,

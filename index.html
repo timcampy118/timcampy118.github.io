@@ -70,9 +70,11 @@
     .green { background-color: #4caf50; }
     .orange { background-color: #ff9800; }
     .red { background-color: #f44336; }
+
   </style>
 </head>
 <body>
+<div id="fullPage">
   <h1>Anime Checklist</h1>
 
   <div id="counterBox" style="
@@ -88,9 +90,8 @@
   box-shadow: 0 0 8px rgba(0,0,0,0.7);
   user-select: none;
   z-index: 1000;
+  display: inline-block;
   white-space: nowrap;
-  margin-left: auto;
-  margin-right: 0;
 ">
   Watched: <span id="countWatched">0</span> |
   Partial: <span id="countPartial">0</span> |
@@ -186,29 +187,39 @@
         return result;
     }
 
-    function setDataSource(source) {
-        dataSource = source;
+function setDataSource(source) {
+    dataSource = source;
+    document.getElementById('togglePopularity').style.backgroundColor = source === 'popularity' ? '#4caf50' : '#2c2c2c';
+    document.getElementById('toggleScore').style.backgroundColor = source === 'score' ? '#4caf50' : '#2c2c2c';
 
-        // Update toggle button styles to show active
-        document.getElementById('togglePopularity').style.backgroundColor = source === 'popularity' ? '#4caf50' : '#2c2c2c';
-        document.getElementById('toggleScore').style.backgroundColor = source === 'score' ? '#4caf50' : '#2c2c2c';
+    const container = document.getElementById("container");
+    container.innerHTML = '';
 
-        // Clear container and rebuild grid with new data source
-        const container = document.getElementById("container");
-        container.innerHTML = '';
-        buildGrid();
+    buildGrid().then(() => {
+        loadState();
+
+        const currentFilter = document.getElementById("filterDropdown").value;
+        filterState(currentFilter);
+    });
+}
+
+
+
+function handleYearRangeChange() {
+    const start = parseInt(document.getElementById("startYearSelect").value);
+    const end = parseInt(document.getElementById("endYearSelect").value);
+
+    if (start > end) {
+        alert("Start year must be less than or equal to end year.");
+        return;
     }
 
-    function handleYearRangeChange() {
-        const start = parseInt(document.getElementById("startYearSelect").value);
-        const end = parseInt(document.getElementById("endYearSelect").value);
+    buildGrid().then(() => {
+        const currentFilter = document.getElementById("filterDropdown").value;
+        filterState(currentFilter);
+    });
+}
 
-        if (start > end) {
-            alert("Start year must be less than or equal to end year.");
-            return;
-        }
-        buildGrid();
-    }
 
 
     // Update fetchCSV to use dataSource for path
@@ -249,7 +260,6 @@
     window.onload = () => {
         populateYearDropdowns();
         setDataSource(dataSource);
-        buildGrid();
     };
 
     async function buildGrid() {
@@ -389,14 +399,66 @@
         event.target.value = "";
     }
 
-    function captureGrid() {
-        html2canvas(document.getElementById("container"), { backgroundColor: '#121212' }).then(canvas => {
-            const link = document.createElement("a");
-            link.download = "anime_grid.png";
-            link.href = canvas.toDataURL();
-            link.click();
-        });
-    }
+function captureGrid() {
+  const fullPage = document.getElementById("fullPage");
+  const counterBox = document.getElementById("counterBox");
+
+  const restoreSelects = swapSelectsForSpans(); // use spans instead of ugly divs
+
+  const prevPosition = counterBox.style.position;
+  counterBox.style.position = "static";
+
+  html2canvas(fullPage, {
+    backgroundColor: '#121212',
+    useCORS: true,
+    scrollY: 0
+  }).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "anime_grid.png";
+    link.href = canvas.toDataURL();
+    link.click();
+
+    counterBox.style.position = prevPosition;
+    restoreSelects(); // cleanup
+  });
+}
+
+function swapSelectsForSpans() {
+  const selects = document.querySelectorAll("select");
+  const clones = [];
+
+  selects.forEach(select => {
+    const span = document.createElement("span");
+    span.className = "select-clone";
+    span.textContent = select.options[select.selectedIndex].text;
+
+    // Match style
+    const style = getComputedStyle(select);
+    span.style.display = "inline-block";
+    span.style.backgroundColor = style.backgroundColor || "#2c2c2c";
+    span.style.color = style.color || "#fff";
+    span.style.padding = style.padding || "8px 12px";
+    span.style.borderRadius = style.borderRadius || "4px";
+    span.style.font = style.font || "inherit";
+    span.style.fontSize = style.fontSize;
+    span.style.minWidth = select.offsetWidth + "px";
+    span.style.textAlign = "center";
+    span.style.marginRight = "4px";
+
+    select.style.display = "none";
+    select.parentNode.insertBefore(span, select);
+    clones.push({ span, select });
+  });
+
+  return () => {
+    clones.forEach(({ span, select }) => {
+      span.remove();
+      select.style.display = "";
+    });
+  };
+}
+
+
 
     function updateCounter() {
         const cells = document.querySelectorAll(".cell");
@@ -425,5 +487,6 @@
         });
     }
   </script>
+</div>
 </body>
 </html>

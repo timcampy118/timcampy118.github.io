@@ -1,3 +1,4 @@
+<!--To do: Clear button doesn't remove year color, sometime rows are doubled show listing, screenshot should include whole page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,11 +98,10 @@
   Total: <span id="countTotal">0</span>
 </div>
 
-
 <div class="controls">
-    <button class="btn" onclick="saveStateToFile()">Export</button>
+    <!-- <button class="btn" onclick="saveStateToFile()">Export</button>
     <input type="file" id="loadFileInput" style="display:none" accept=".json" onchange="loadStateFromFile(event)" />
-    <button class="btn" onclick="document.getElementById('loadFileInput').click()">Import</button>
+    <button class="btn" onclick="document.getElementById('loadFileInput').click()">Import</button>-->
     <label style="color: white">Language:</label>
     <select class="btn" id="languageSelect" onchange="handleLanguageChange()">
       <option value="romanji">Romanji</option>

@@ -3,6 +3,7 @@ rank,title,title_english,title_japanese,type,members,score,year
 2,Daicon Opening Animations,Daicon Opening Animations,DAICONオープニングアニメ,Special,23033,7.7,1981
 3,Taiyou no Kiba Dougram,Taiyou no Kiba Dougram,太陽の牙ダグラム,TV,7169,7.41,1981
 4,Kazoku Robinson Hyouryuuki: Fushigi na Shima no Flone,The Swiss Family Robinson: Flone of the Mysterious Island,家族ロビンソン漂流記ふしぎな島のフローネ,TV,7892,7.33,1981
+8,Kidou Senshi Gundam I,Mobile Suit Gundam I,劇場版　機動戦士ガンダム I　特別編,Movie,49982,7.25,1981
 10,Dr. Slump: Arale-chan,Dr. Slump: Arale-chan,Dr.スランプ・アラレちゃん,TV,18014,7.2,1981
 11,Dash! Kappei,Dash! Kappei,ダッシュ勝平,TV,6152,7.15,1981
 12,Unico,The Fantastic Adventures Of Unico,ユニコ,Movie,6981,7.12,1981
@@ -11,7 +12,6 @@ rank,title,title_english,title_japanese,type,members,score,year
 16,Hello! Sandybell,Hello! Sandybell,ハロー！サンディベル,TV,7115,7.07,1981
 17,Jarinko Chie,Chie the Brat,じゃりン子チエ,Movie,5101,7.03,1981
 18,Ninja Hattori-kun,Ninja Hattori-kun,忍者ハットリくん,TV,12666,6.98,1981
-19,Doraemon Movie 02: Nobita no Uchuu Kaitakushi,"Doraemon the Movie: The Records of Nobita, Spaceblazer",映画 ドラえもん のび太の宇宙開拓史,Movie,6082,6.97,1981
 20,Sekai Meisaku Douwa: Hakuchou no Mizuumi,Swan Lake,世界名作童話 白鳥の湖,Movie,4463,6.91,1981
 21,Hyakujuu-Ou GoLion,Voltron: Defender of the Universe,百獣王ゴライオン,TV,13644,6.83,1981
 22,Meiken Jolie,Belle and Sebastian,名犬ジョリィ,TV,4338,6.78,1981
@@ -24,7 +24,6 @@ rank,title,title_english,title_japanese,type,members,score,year
 29,Ai no Gakkou Cuore Monogatari,Ai no Gakkou Cuore Monogatari,愛の学校 クオレ物語,TV,3051,6.61,1981
 30,Kagirinaki Rakuen,Kagirinaki Rakuen,限りなき楽園,Movie,781,6.54,1981
 31,Sengoku Majin Goushougun,Macron 1,戦国魔神ゴーショーグン,TV,3988,6.54,1981
-32,"Doraemon Movie: Boku, Momotarou no Nanna no Sa","Doraemon Movie: Boku, Momotarou no Nanna no Sa",映画 ドラえもん ぼく、桃太郎のなんなのさ,Movie,2855,6.5,1981
 33,"Arano no Sakebi Koe: Hoero, Buck",The Call of the Wild,荒野の呼び声 吠えろバック,TV Special,1650,6.46,1981
 34,Wakakusa no Yon Shimai,Little Women,若草の四姉妹,TV,2040,6.44,1981
 35,Time Bokan Series: Yattodetaman,Firebird,タイムボカンシリーズ　ヤットデタマン,TV,2367,6.4,1981
@@ -33,13 +32,9 @@ rank,title,title_english,title_japanese,type,members,score,year
 38,Helen Keller Monogatari: Ai to Hikari no Tenshi,The Story of Hellen Keller: Angel of Love and Light,ヘレン・ケラー物語　愛と光の天使,TV Special,1090,6.33,1981
 39,Uchuu Senshi Baldios (Movie),Space Warrior Baldios,宇宙戦士バルディオス,Movie,2164,6.3,1981
 40,Honey Honey no Suteki na Bouken,Honey Honey's Wonderful Adventures,ハニーハニーのすてきな冒険,TV,1572,6.3,1981
-41,Dr. Slump Movie 01: Arale-chan Hello! Fushigi Shima,Dr. Slump and Arale-chan: Hello! Wonder Island,Dr.スランプ アラレちゃん ハロー！不思議島,Movie,2930,6.28,1981
-42,Renshenguo,Renshenguo,人參果,Movie,524,6.23,1981
 43,Maicching Machiko-sensei,Miss Machiko,まいっちんぐマチコ先生,TV,4640,6.19,1981
 44,Anime Oyako Gekijou,Superbook,アニメ 親子劇場,TV,2935,6.19,1981
-45,Ikkyuu-san: Haru Da! Yancha Hime,Ikkyuu-san: Haru Da! Yancha Hime,一休さん 春だ!やんちゃ姫,Movie,486,6.14,1981
 46,Koutsuu Anzen da yo Doraemon,Koutsuu Anzen da yo Doraemon,交通安全だよ ドラえもん,Movie,778,6.13,1981
 47,Sugata Sanshirou,Judo Story,姿三四郎,TV Special,1378,6.11,1981
 48,Ougon Senshi Gold Lightan,Golden Warrior: The Gold Lightan,黄金戦士ゴールド・ライタン,TV,1545,6.08,1981
-49,Shin Dokonjou Gaeru,Shin Dokonjou Gaeru,新・ど根性ガエル,TV,964,6.07,1981
 50,Captain Movie,Captain Movie,キャプテン 劇場版,Movie,637,6.06,1981

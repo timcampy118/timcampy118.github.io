@@ -1,7 +1,6 @@
 rank,title,title_english,title_japanese,type,members,score,year
 1,Kidou Senshi Gundam,Mobile Suit Gundam,機動戦士ガンダム,TV,144298,7.76,1979
 3,Versailles no Bara,The Rose of Versailles,ベルサイユのばら,TV,108621,8.35,1979
-4,Doraemon (1979),Doraemon,ドラえもん,TV,69173,7.87,1979
 5,Akage no Anne,Anne of Green Gables,赤毛のアン,TV,50332,7.84,1979
 6,Ginga Tetsudou 999 (Movie),Galaxy Express 999,銀河鉄道９９９,Movie,22455,7.54,1979
 7,Cyborg 009 (1979),Cyborg 009,サイボーグ009,TV,12197,7.15,1979
@@ -10,6 +9,7 @@ rank,title,title_english,title_japanese,type,members,score,year
 10,Ace wo Nerae! (1979),Aim for the Ace!: The Movie,エースをねらえ！,Movie,5407,6.91,1979
 11,Tatsu no Ko Tarou,Taro the Dragon Boy,龍の子太郎,Movie,4760,6.75,1979
 13,The☆Ultraman,The☆Ultraman,ザ☆ウルトラマン,TV,4131,6.46,1979
+14,Mirai Shounen Conan (Movie),Future Boy Conan Movie,未来少年コナン (1979),Movie,3325,7.0,1979
 16,Kataku,House of Flames,火宅,Movie,2855,6.09,1979
 17,Uchuu Kuubo Blue Noah,Space Carrier Blue Noah,宇宙空母ブルーノア,TV,2591,6.49,1979
 18,Mirai Robo Daltanias,Future Robo Daltanius,未来ロボ ダルタニアス,TV,2352,6.68,1979
@@ -39,9 +39,7 @@ rank,title,title_english,title_japanese,type,members,score,year
 42,Ashinaga Ojisan,Daddy Long-Legs,あしながおじさん,TV Special,1153,5.6,1979
 43,Kaitou Lupin: 813 no Nazo,Kaitou Lupin: 813 no Nazo,怪盗ルパン 813の謎,TV Special,1151,6.29,1979
 44,Daikyouryuu Jidai,Daikyouryuu Jidai,大恐竜時代,TV Special,1132,5.62,1979
-45,Shin Kyojin no Hoshi II,Shin Kyojin no Hoshi II,新巨人の星II,TV,1076,6.22,1979
 46,Koguma no Misha,Koguma no Misha,こぐまのミーシャ,TV,1037,6.11,1979
 47,Comics,Comics,コミックス,Movie,1008,4.26,1979
 48,Kagaku Bouken-tai Tansar 5,Kagaku Bouken-tai Tansar 5,科学冒険隊タンサー5,TV,993,6.11,1979
 49,SF Saiyuuki Starzinger (Movie),SF Saiyuuki Starzinger (Movie),ＳＦ西遊記 スタージンガー,Movie,942,5.47,1979
-50,Yakyuukyou no Uta: Kita no Ookami Minami no Tora,Yakyuukyou no Uta: Kita no Ookami Minami no Tora,野球狂の詩 北の狼南の虎,Movie,907,6.07,1979

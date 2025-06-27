@@ -17,6 +17,17 @@
       text-align: center;
       margin-bottom: 16px;
     }
+    @media (max-width: 600px) {
+      .btn {
+        font-size: 12px;
+        padding: 6px 10px;
+        flex: 1 1 auto;
+      }
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
     .controls {
       display: flex;
       justify-content: center;
@@ -43,32 +54,48 @@
       font-weight: bold;
       border-radius: 4px;
     }
-    .grid {
+     .grid {
       display: grid;
-      grid-template-columns: 1fr repeat(12, 1fr);
+      grid-template-columns: 1fr repeat(12, 1fr); /* default layout for desktop */
       gap: 6px;
       margin-bottom: 4px;
+      width: 100%;
+    }
+
+    @media (max-width: 1300px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* more flexible on mobile */
+      }
     }
     .controls {
       display: flex;
       flex-wrap: wrap;
+      gap: 8px;
       justify-content: center;
-      align-items: center;
-      gap: 10px;
     }
     .cell {
       background-color: #1e1e1e;
       color: #fff;
       border: none;
-      padding: 10px 6px;
+      font-size: clamp(10px, 2vw, 14px);
+      padding: 6px 4px;
       font-size: 12px;
       text-align: center;
       border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.2s;
     }
+    .body {
+      font-size: clamp(12px, 2.5vw, 16px);
+    }
     .cell img {
       transition: transform 0.2s ease;
+    }
+    @media (max-width: 480px) {
+        .cell img {
+        width: 32px;
+        height: 44px;
+        }
     }
     .cell:hover img {
       transform: scale(1.05);
@@ -262,8 +289,8 @@ Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.<b
         document.getElementById('togglePopularity').style.backgroundColor = source === 'popularity' ? '#4caf50' : '#2c2c2c';
         document.getElementById('toggleScore').style.backgroundColor = source === 'score' ? '#4caf50' : '#2c2c2c';
 
-        const container = document.getElementById("container");
-        container.innerHTML = '';
+        document.getElementById("container").replaceChildren();
+
 
         buildGrid().then(() => {
             loadState();
@@ -332,6 +359,7 @@ Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.<b
 
     async function buildGrid() {
         const container = document.getElementById("container");
+        container.replaceChildren();
         container.innerHTML = "";
 
         const startYear = parseInt(document.getElementById("startYearSelect").value);
@@ -538,28 +566,29 @@ document.addEventListener('mousemove', (e) => {
     }
 
     function captureGrid() {
-        const fullPage = document.getElementById("fullPage");
-        const counterBox = document.getElementById("counterBox");
+    const fullPage = document.getElementById("fullPage");
+    const counterBox = document.getElementById("counterBox");
 
-          const warning = document.createElement("div");
-          warning.textContent = "Generating image... this may take a few seconds if images are on.";
-          warning.style.position = "fixed";
-          warning.style.top = "10px";
-          warning.style.left = "50%";
-          warning.style.transform = "translateX(-50%)";
-          warning.style.backgroundColor = "#222";
-          warning.style.color = "#fff";
-          warning.style.padding = "8px 16px";
-          warning.style.borderRadius = "6px";
-          warning.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
-          warning.style.zIndex = "10000";
-          document.body.appendChild(warning);
+    const warning = document.createElement("div");
+    warning.textContent = "Generating image... this may take a few seconds if images are on.";
+    warning.style.position = "fixed";
+    warning.style.top = "10px";
+    warning.style.left = "50%";
+    warning.style.transform = "translateX(-50%)";
+    warning.style.backgroundColor = "#222";
+    warning.style.color = "#fff";
+    warning.style.padding = "8px 16px";
+    warning.style.borderRadius = "6px";
+    warning.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
+    warning.style.zIndex = "10000";
+    document.body.appendChild(warning);
 
-        const restoreSelects = swapSelectsForSpans();
+    const restoreSelects = swapSelectsForSpans();
+    const prevPosition = counterBox.style.position;
+    counterBox.style.position = "static";
 
-        const prevPosition = counterBox.style.position;
-        counterBox.style.position = "static";
-
+    // Delay for image loading/render stability
+    setTimeout(() => {
         html2canvas(fullPage, {
             backgroundColor: '#121212',
             useCORS: true,
@@ -567,15 +596,16 @@ document.addEventListener('mousemove', (e) => {
         }).then(canvas => {
             const link = document.createElement("a");
             link.download = "anime_grid.png";
-            link.href = canvas.toDataURL();
+            link.href = canvas.toDataURL("image/png");
             link.click();
 
             counterBox.style.position = prevPosition;
             restoreSelects();
-
             document.body.removeChild(warning);
         });
-    }
+    }, 500); // Adjust delay if needed
+}
+
 
     function swapSelectsForSpans() {
         const selects = document.querySelectorAll("select");

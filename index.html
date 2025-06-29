@@ -15,19 +15,30 @@
     }
     h1 {
       text-align: center;
+      margin-top: 40px;
       margin-bottom: 16px;
     }
-    @media (max-width: 600px) {
-      .btn {
-        font-size: 12px;
-        padding: 6px 10px;
-        flex: 1 1 auto;
-      }
+      @media (max-width: 600px) {
       .controls {
-        flex-direction: column;
-        align-items: stretch;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .controls > * {
+        flex: 0 1 auto;
+        max-width: unset;
+        font-size: 12px;
+        padding: 6px 8px;
+      }
+
+      .btn,
+      select {
+        font-size: 12px;
+        padding: 6px 8px;
       }
     }
+
     .controls {
       display: flex;
       justify-content: center;
@@ -119,6 +130,23 @@
       border-radius: 4px;
       display: block;
     }
+    #counterBox {
+        position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #222;
+      color: #fff;
+      padding: 6px 8px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: clamp(14px, 4vw, 24px);
+      box-shadow: 0 0 8px rgba(0,0,0,0.7);
+      user-select: none;
+      text-align: center;
+      width: 100%;
+      border-radius: 0;
+      word-break: break-word;
+      margin-bottom: 10px;
+    }
     .green { background-color: #4caf50; }
     .orange { background-color: #ff9800; }
     .red { background-color: #f44336; }
@@ -142,26 +170,9 @@
       line-height: 1.5;
     ">
       This list is generated using data from <a href="https://myanimelist.net/" target="_blank" style="color: #4caf50; text-decoration: none;">MyAnimeList</a>. (Sequels/spin-offs/side stories are excluded)
-
-
     </div>
 
-  <div id="counterBox" style="
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #222;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 24px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.7);
-  user-select: none;
-  z-index: 1000;
-  display: inline-block;
-  white-space: nowrap;
-">
+<div id="counterBox">
     Watched: <span id="countWatched">0</span> |
     Partial: <span id="countPartial">0</span> |
     Dropped: <span id="countDropped">0</span> |
@@ -390,10 +401,10 @@ Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.<b
                     const displayTitle = languageMode === 'english' ? show.en :
                     languageMode === 'japanese' ? show.jp : show.ro;
                     cell.innerHTML = `
-      <div style="display: flex; flex-direction: column; align-items: center;">
-        <img src="${show.img}" alt="cover" style="width: 48px; height: 68px; object-fit: cover; border-radius: 4px; margin-bottom: 4px;" />
-        <span>${displayTitle}</span>
-      </div>`;
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="${show.img}" alt="cover" style="width: 48px; height: 68px; object-fit: cover; border-radius: 4px; margin-bottom: 4px;" />
+            <span>${displayTitle}</span>
+          </div>`;
                 } else {
                     cell.textContent = languageMode === 'english' ? show.en :
                     languageMode === 'japanese' ? show.jp : show.ro;
@@ -421,60 +432,60 @@ Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.<b
     }
 
     const imagePopup = document.getElementById('imagePopup');
-document.addEventListener('mousemove', (e) => {
-      if (imagePopup.style.display === 'block') {
-        const padding = 20;
-        let x = e.clientX + padding;
-        let y = e.clientY + padding;
-        const popupRect = imagePopup.getBoundingClientRect();
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
+    document.addEventListener('mousemove', (e) => {
+        if (imagePopup.style.display === 'block') {
+            const padding = 20;
+            let x = e.clientX + padding;
+            let y = e.clientY + padding;
+            const popupRect = imagePopup.getBoundingClientRect();
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
 
 
-        if (x + popupRect.width > windowWidth) {
-          x = e.clientX - popupRect.width - padding;
+            if (x + popupRect.width > windowWidth) {
+                x = e.clientX - popupRect.width - padding;
+            }
+            if (y + popupRect.height > windowHeight) {
+                y = e.clientY - popupRect.height - padding;
+            }
+
+            imagePopup.style.left = `${x}px`;
+            imagePopup.style.top = `${y}px`;
         }
-        if (y + popupRect.height > windowHeight) {
-          y = e.clientY - popupRect.height - padding;
-        }
-
-        imagePopup.style.left = `${x}px`;
-        imagePopup.style.top = `${y}px`;
-      }
     });
 
     document.querySelector('#container').addEventListener('mouseover', (e) => {
-      const cell = e.target.closest('.cell');
-      if (!cell) return;
+        const cell = e.target.closest('.cell');
+        if (!cell) return;
 
-      if (cell.querySelector('img') && (window.event.ctrlKey || window.event.metaKey)) {
-        const imgSrc = cell.querySelector('img').src;
-        const popupImg = imagePopup.querySelector('img');
-        popupImg.src = imgSrc;
-        imagePopup.style.display = 'block';
-      }
+        if (cell.querySelector('img') && (window.event.ctrlKey || window.event.metaKey)) {
+            const imgSrc = cell.querySelector('img').src;
+            const popupImg = imagePopup.querySelector('img');
+            popupImg.src = imgSrc;
+            imagePopup.style.display = 'block';
+        }
     });
 
     document.querySelector('#container').addEventListener('mouseout', (e) => {
-      const cell = e.target.closest('.cell');
-      if (!cell) return;
-      imagePopup.style.display = 'none';
+        const cell = e.target.closest('.cell');
+        if (!cell) return;
+        imagePopup.style.display = 'none';
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Control' || e.key === 'Meta') {
-        const hovered = document.querySelector('.cell:hover');
-        if (hovered && hovered.querySelector('img')) {
-          const imgSrc = hovered.querySelector('img').src;
-          imagePopup.querySelector('img').src = imgSrc;
-          imagePopup.style.display = 'block';
+        if (e.key === 'Control' || e.key === 'Meta') {
+            const hovered = document.querySelector('.cell:hover');
+            if (hovered && hovered.querySelector('img')) {
+                const imgSrc = hovered.querySelector('img').src;
+                imagePopup.querySelector('img').src = imgSrc;
+                imagePopup.style.display = 'block';
+            }
         }
-      }
     });
     document.addEventListener('keyup', (e) => {
-      if (e.key === 'Control' || e.key === 'Meta') {
-        imagePopup.style.display = 'none';
-      }
+        if (e.key === 'Control' || e.key === 'Meta') {
+            imagePopup.style.display = 'none';
+        }
     });
 
 
@@ -566,45 +577,62 @@ document.addEventListener('mousemove', (e) => {
     }
 
     function captureGrid() {
-    const fullPage = document.getElementById("fullPage");
-    const counterBox = document.getElementById("counterBox");
+        const fullPage = document.getElementById("fullPage");
+        const counterBox = document.getElementById("counterBox");
 
-    const warning = document.createElement("div");
-    warning.textContent = "Generating image... this may take a few seconds if images are on.";
-    warning.style.position = "fixed";
-    warning.style.top = "10px";
-    warning.style.left = "50%";
-    warning.style.transform = "translateX(-50%)";
-    warning.style.backgroundColor = "#222";
-    warning.style.color = "#fff";
-    warning.style.padding = "8px 16px";
-    warning.style.borderRadius = "6px";
-    warning.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
-    warning.style.zIndex = "10000";
-    document.body.appendChild(warning);
+        const warning = document.createElement("div");
+        warning.textContent = "Generating image... this may take a few seconds if images are on.";
+        warning.style.position = "fixed";
+        warning.style.top = "10px";
+        warning.style.left = "50%";
+        warning.style.transform = "translateX(-50%)";
+        warning.style.backgroundColor = "#222";
+        warning.style.color = "#fff";
+        warning.style.padding = "8px 16px";
+        warning.style.borderRadius = "6px";
+        warning.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
+        warning.style.zIndex = "10000";
+        document.body.appendChild(warning);
 
-    const restoreSelects = swapSelectsForSpans();
-    const prevPosition = counterBox.style.position;
-    counterBox.style.position = "static";
+        const restoreSelects = swapSelectsForSpans();
+        const prevPosition = counterBox.style.position;
+        counterBox.style.position = "static";
 
-    // Delay for image loading/render stability
-    setTimeout(() => {
-        html2canvas(fullPage, {
-            backgroundColor: '#121212',
-            useCORS: true,
-            scrollY: 0
-        }).then(canvas => {
-            const link = document.createElement("a");
-            link.download = "anime_grid.png";
-            link.href = canvas.toDataURL("image/png");
-            link.click();
-
-            counterBox.style.position = prevPosition;
-            restoreSelects();
-            document.body.removeChild(warning);
+        const originalStyles = [];
+        const gridRows = document.querySelectorAll('.grid');
+        gridRows.forEach(row => {
+            originalStyles.push(row.getAttribute("style"));
+            row.style.gridTemplateColumns = "1fr repeat(12, minmax(0, 1fr))";
+            row.style.width = "1600px"; // or adjust as needed
         });
-    }, 500); // Adjust delay if needed
-}
+
+        const originalPageWidth = fullPage.style.width;
+        fullPage.style.width = "1700px"; // slightly more than grid rows
+
+        setTimeout(() => {
+            html2canvas(fullPage, {
+                backgroundColor: '#121212',
+                useCORS: true,
+                scrollY: 0
+            }).then(canvas => {
+                const link = document.createElement("a");
+                link.download = "anime_grid.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+
+                counterBox.style.position = prevPosition;
+                restoreSelects();
+                document.body.removeChild(warning);
+
+                gridRows.forEach((row, i) => {
+                    row.setAttribute("style", originalStyles[i] || "");
+                });
+                fullPage.style.width = originalPageWidth || "";
+            });
+        }, 500);
+    }
+
+
 
 
     function swapSelectsForSpans() {
@@ -671,10 +699,10 @@ document.addEventListener('mousemove', (e) => {
             const allGreen = Array.from(cells).every(cell => cell.dataset.state === "1");
 
             if (allGreen) {
-              label.style.backgroundColor = "#4caf50";
+                label.style.backgroundColor = "#4caf50";
             } else {
-              label.style.backgroundColor = "#333";
-              label.style.color = "#fff";
+                label.style.backgroundColor = "#333";
+                label.style.color = "#fff";
             }
         });
     }

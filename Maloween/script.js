@@ -511,7 +511,7 @@ function setupDrawEvents() {
             else if (src === "null") console.error(`❌ Round ${i}: src is literally 'null'`, r.prompt);
         });
 
-        downloadFinalPoster();
+        showFinalComposite();
     });
 
     function hasSignature(canvas) {
@@ -903,4 +903,5 @@ async function showFinalComposite() {
         link.download = "logos_from_memory_results.png";
         link.click();
     }, 80);
+
 }

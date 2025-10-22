@@ -127,7 +127,7 @@ class SFX {
         o.type=type; o.frequency.value=freq; g.gain.value=0;
         o.connect(g).connect(ctx.destination);
         const now=ctx.currentTime;
-        // envelope ADSR-ish
+
         const a=0.005, d=0.03, s=0.15, r=0.06;
         g.gain.setValueAtTime(0, now);
         g.gain.linearRampToValueAtTime(vol, now+a);
@@ -186,8 +186,6 @@ function updateLogoPreview() {
   const container = document.querySelector(".canvas-container");
 
   if (!container || !logoPreview) return;
-
-  // Toggle layout mode
   if (easyModeToggle?.checked) {
     container.classList.remove("single");
     container.classList.add("easy-mode");
@@ -204,7 +202,6 @@ function updateLogoPreview() {
     logoImgEl.onload = () => enableImageColorPicker();
   } else {
     logoPreview.innerHTML = "";
-    buildPalette(); // revert to default palette
   }
 }
 
@@ -217,7 +214,6 @@ function enableImageColorPicker() {
   logoImgEl.crossOrigin = "anonymous";
   logoImgEl.onclick = null;
 
-  // Create or reuse the preview element
   let preview = document.querySelector(".color-preview");
   if (!preview) {
     preview = document.createElement("div");
@@ -227,7 +223,6 @@ function enableImageColorPicker() {
 
   let altPressed = false;
 
-  // Listen for Alt key press/release globally
   window.addEventListener("keydown", (e) => {
     if (e.key === "Alt") altPressed = true;
   });
@@ -257,7 +252,6 @@ function enableImageColorPicker() {
     }
   };
 
-  // Hover handling
   logoImgEl.addEventListener("mousemove", (e) => {
     if (!altPressed) {
       preview.style.display = "none";
@@ -271,12 +265,10 @@ function enableImageColorPicker() {
     preview.style.display = "block";
   });
 
-  // Hide on leaving image
   logoImgEl.addEventListener("mouseleave", () => {
     preview.style.display = "none";
   });
 
-  // Click to pick color (only if Alt held)
   logoImgEl.addEventListener("click", (e) => {
     if (!altPressed) return;
 
@@ -287,7 +279,6 @@ function enableImageColorPicker() {
     if (window.pickr) pickr.setColor(hex);
     playSfx("woosh");
 
-    // Hide after pick
     preview.style.display = "none";
   });
 }
@@ -346,7 +337,6 @@ function setupRoundUI() {
         ctx.lineJoin = "round";
         ctx.strokeStyle = brushColor;
 
-        // Keep brush width in sync with slider
         ctx.lineWidth = Number(brushWidthInput.value);
         brushSize = Number(brushWidthInput.value);
 
@@ -424,9 +414,8 @@ function markActiveColor(el){
 }
 function buildPalette(palette) {
     colorPicker.innerHTML = "";
-    const swatches = palette && palette.length
-    ? palette
-    : globalPalette;
+    const swatches = palette && palette.length ? palette : globalPalette;
+
     swatches.forEach(c => {
         const btn = document.createElement("button");
         btn.className = "color" + (c === "#ffffff" ? " white" : "");
@@ -447,6 +436,7 @@ function buildPalette(palette) {
     colorPicker.appendChild(custom);
 
     if (pickr) pickr.destroyAndRemove();
+
     pickr = Pickr.create({
         el: '#customColor',
         theme: 'classic',
@@ -457,9 +447,19 @@ function buildPalette(palette) {
         }
     });
 
+    pickr.on('init', (instance) => {
+        const button = instance.getRoot().button;
+        button.style.border = '1.5px solid rgba(0,0,0,0.6)';
+        button.style.boxShadow = '0 0 3px rgba(0,0,0,0.15)';
+        button.style.borderRadius = '50%';
+    });
+
     pickr.on('change', (color) => {
         const hex = color.toHEXA().toString();
         setBrushColor(hex);
+        const button = pickr.getRoot().button;
+        button.style.background = hex;
+        button.style.border = '1.5px solid rgba(0,0,0,0.6)';
     });
 
     pickr.on('save', (color) => {
@@ -468,25 +468,30 @@ function buildPalette(palette) {
         markActiveColor(custom);
         playSfx('woosh');
         pickr.hide();
+        const button = pickr.getRoot().button;
+        button.style.background = hex;
+        button.style.border = '1.5px solid rgba(0,0,0,0.6)';
     });
 
-    // Show active for current brushColor
     const brushHex = normalizeHex(brushColor);
     let matched = false;
-    [...colorPicker.querySelectorAll('.color')].forEach(btn=>{
-        const bg = btn.id === 'customColor' ? normalizeHex(brushHex) : normalizeHex(rgbStrToHex(getComputedStyle(btn).backgroundColor) || btn.style.background);
-        if(btn.id !== 'customColor' && normalizeHex(btn.style.background) === brushHex){
+    [...colorPicker.querySelectorAll('.color')].forEach(btn => {
+        const bg = btn.id === 'customColor'
+            ? normalizeHex(brushHex)
+            : normalizeHex(rgbStrToHex(getComputedStyle(btn).backgroundColor) || btn.style.background);
+        if (btn.id !== 'customColor' && normalizeHex(btn.style.background) === brushHex) {
             matched = true;
             markActiveColor(btn);
         }
     });
-    if(!matched){
-        // tint custom bubble and set active
+    if (!matched) {
         custom.style.background = brushHex;
         custom.style.color = getReadableTextColor(brushHex);
+        custom.style.border = '1.5px solid rgba(0,0,0,0.6)';
         markActiveColor(custom);
     }
 }
+
 function rgbStrToHex(rgb){
     if(!rgb || !rgb.startsWith('rgb')) return null;
     const parts = rgb.match(/(\d+),\s*(\d+),\s*(\d+)/);
@@ -530,7 +535,6 @@ function floodFill(xCss, yCss, fillHex) {
     const target = getPixelAt(data, fx, fy, w);
     const fill = hexToRgb(fillHex).concat(255);
 
-    // If target already ~equals fill, bail
     if (colorsMatch(target, fill)) return;
 
     const stack = [[fx, fy]];
@@ -545,7 +549,6 @@ function floodFill(xCss, yCss, fillHex) {
         const cur = [data[off], data[off + 1], data[off + 2], data[off + 3]];
         if (!colorsMatch(cur, target)) continue;
 
-        // paint pixel
         data[off]     = fill[0];
         data[off + 1] = fill[1];
         data[off + 2] = fill[2];
@@ -809,7 +812,6 @@ function buildComparisonRowFromDataURL(dataURL, logoImage, dims){
     row.width = rowW;
     row.height = rowH;
 
-    // background + panels
     rctx.fillStyle = BG_PAGE; rctx.fillRect(0,0,rowW,rowH);
     const leftX = PANEL_PADDING;
     const rightX = PANEL_PADDING + halfW + PANEL_GAP;

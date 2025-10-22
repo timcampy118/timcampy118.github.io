@@ -66,7 +66,6 @@ body {
 
 
 
-
 /* Prompt bubble */
 .prompt-bubble {
   position: relative;
@@ -103,6 +102,9 @@ body {
   .logo-preview {
     width: 240px;
     height: 240px;
+    position: relative;
+  display: inline-block;
+  overflow: visible !important;
   }
 }
 
@@ -118,6 +120,9 @@ body {
   border: 2px solid var(--border);
   border-radius: 10px;
   background: #fff;
+  position: relative;
+  display: inline-block;
+  overflow: visible !important;
   box-shadow: inset 0 0 6px rgba(0,0,0,0.08);
 }
 
@@ -129,11 +134,36 @@ body {
 .tool { font-size: 14px; display: flex; align-items: center; gap: 8px; }
 .colors { display: flex; gap: 10px; align-items: center; }
 .color {
-  width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: none;
+  width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 1.5px solid rgba(0, 0, 0, 0.6);
 }
 .color.white { border: 1px solid #ccc; }
 .color.custom { border: 1px solid #bbb; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
-.color.active { outline: 3px solid var(--green); outline-offset: 2px; }
+.color:hover {
+  transform: scale(1.15);
+}
+
+.color.active {
+  outline: 3px solid var(--green, #30c05a);
+  outline-offset: 2px;
+  box-shadow: 0 0 8px rgba(0, 200, 120, 0.6);
+}
+#customColor,
+.pcr-button {
+  border: 1.5px solid rgba(0, 0, 0, 0.6) !important; /* black outline */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.pcr-button:hover {
+  transform: scale(1.15);
+}
+
+@keyframes pulseActive {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(0, 200, 120, 0); }
+  50% { transform: scale(1.15); box-shadow: 0 0 10px rgba(0, 200, 120, 0.5); }
+  100% { transform: scale(1.1); box-shadow: 0 0 6px rgba(0, 200, 120, 0.3); }
+}
 
 .actions { display: flex; gap: 8px; align-items: center; }
 .btn {
@@ -222,13 +252,11 @@ body {
   75% { transform: rotate(-4deg); }
   100% { transform: rotate(0deg); }
 }
-/* Center prompt text inside the bubble */
 .prompt-text {
   text-align: center;
   font-weight: 600;
 }
 
-/* Reroll container (centered below bubble) */
 .reroll-container {
   display: flex;
   justify-content: center;
@@ -237,7 +265,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Reroll button style */
 .reroll-btn {
   background: #fff;
   border: 1px solid var(--border);
@@ -257,7 +284,6 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
 }
-/* --- Dice roll animation --- */
 @keyframes diceRoll {
   0%   { transform: rotate(0deg) scale(1); }
   25%  { transform: rotate(-15deg) scale(1.05); }
@@ -285,7 +311,6 @@ body {
   cursor: pointer;
 }
 
-/* The side-by-side layout for easy mode */
 .canvas-container {
   display: flex;
   justify-content: center;
@@ -294,19 +319,50 @@ body {
   margin: 20px auto;
   transition: all 0.3s ease;
 }
+
+/* Default layout (no Easy Mode): only canvas centered */
 .canvas-container.single {
+  flex-direction: column;
   justify-content: center;
 }
 
-
-.logo-preview {
+.canvas-container.single .logo-preview {
   display: none;
+}
+
+/* Easy Mode layout: side by side */
+.canvas-container.easy-mode {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.canvas-container.easy-mode .logo-preview {
+  display: flex;
+  width: 300px;
+  height: 300px;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logo-preview {
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 0;
   transform: scale(0.95);
+}
+
+
+
+.logo-preview {
+  display: inline-block;
+  overflow: visible !important;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: scale(0.95);
+  position: relative;
 }
 
 .logo-preview.visible {
@@ -315,14 +371,12 @@ body {
   transform: scale(1);
 }
 
-/* Image fills same box without stretching */
 .logo-preview img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* --- Easy Mode popup --- */
 .easy-popup {
   position: fixed;
   top: 0;
@@ -374,14 +428,12 @@ button:disabled {
   to {transform: scale(1); opacity: 1;}
 }
 
-/* --- Active Easy Mode glow --- */
 .easy-mode-btn.active {
   background: #eaf3ff;
   border-color: #0078ff;
   box-shadow: 0 0 10px rgba(0,120,255,0.4);
 }
 
-/* Subtle text tag */
 .easy-indicator {
   position: absolute;
   top: 14px;
@@ -399,3 +451,75 @@ button:disabled {
 
 .easy-popup.fadeout { opacity: 0; transition: opacity 0.2s ease; }
 
+.color-btn.selected {
+  outline: 3px solid #000;
+  outline-offset: 2px;
+  transform: scale(1.1);
+  transition: transform 0.15s ease, outline 0.15s ease;
+}
+#colorPicker.selected {
+  outline: 3px solid #000;
+  outline-offset: 2px;
+  border-radius: 4px;
+  transform: scale(1.1);
+}
+
+.color.active,
+#customColor.active {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+  box-shadow: 0 0 8px rgba(0, 200, 120, 0.6);
+  transform: scale(1.1);
+  border-radius: 50%;
+  transition: all 0.25s ease;
+}
+.color-preview {
+  position: fixed;
+  pointer-events: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+/* 🎨 Easy Mode Eyedropper Tooltip */
+.eyedropper-hint {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+.eyedropper-hint.visible {
+  opacity: 1;
+}
+.canvas-container.easy-mode .logo-preview {
+  animation: fadeIn 0.35s ease;
+}
+.logo-preview {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

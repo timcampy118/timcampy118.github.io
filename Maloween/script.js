@@ -207,7 +207,6 @@ function updateLogoPreview() {
 
 
 function enableImageColorPicker() {
-
   const logoImgEl = logoPreview.querySelector("img");
   if (!logoImgEl) return;
 
@@ -221,47 +220,80 @@ function enableImageColorPicker() {
     document.body.appendChild(preview);
   }
 
-  let altPressed = false;
+let ctrlPressed = false;
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Alt") altPressed = true;
-  });
-  window.addEventListener("keyup", (e) => {
-    if (e.key === "Alt") {
-      altPressed = false;
-      preview.style.display = "none";
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Control") ctrlPressed = true;
+});
+window.addEventListener("keyup", (e) => {
+  if (e.key === "Control") {
+    ctrlPressed = false;
+    const preview = document.querySelector(".color-preview");
+    if (preview) preview.style.display = "none";
+  }
+});
+
+  const getDrawnBox = () => {
+    const rect = logoImgEl.getBoundingClientRect();
+    const iw = logoImgEl.naturalWidth || logoImgEl.width;
+    const ih = logoImgEl.naturalHeight || logoImgEl.height;
+    const ir = iw / ih;
+    const er = rect.width / rect.height;
+
+    let drawW, drawH;
+    if (ir > er) {
+      drawW = rect.width;
+      drawH = rect.width / ir;
+    } else {
+      drawH = rect.height;
+      drawW = rect.height * ir;
     }
-  });
+    const offsetX = (rect.width - drawW) / 2;
+    const offsetY = (rect.height - drawH) / 2;
+
+    return { rect, iw, ih, drawW, drawH, offsetX, offsetY };
+  };
 
   const getPixelColor = (clientX, clientY) => {
+    const { rect, iw, ih, drawW, drawH, offsetX, offsetY } = getDrawnBox();
+
+    const lx = clientX - rect.left - offsetX;
+    const ly = clientY - rect.top  - offsetY;
+
+    if (lx < 0 || ly < 0 || lx >= drawW || ly >= drawH) return null;
+
+    const scaleX = iw / drawW;
+    const scaleY = ih / drawH;
+    const x = Math.floor(lx * scaleX);
+    const y = Math.floor(ly * scaleY);
+
     const sampleCanvas = document.createElement("canvas");
     const ctxSampler = sampleCanvas.getContext("2d", { willReadFrequently: true });
-    sampleCanvas.width = logoImgEl.naturalWidth;
-    sampleCanvas.height = logoImgEl.naturalHeight;
-    ctxSampler.drawImage(logoImgEl, 0, 0);
-
-    const rect = logoImgEl.getBoundingClientRect();
-    const x = Math.floor((clientX - rect.left) * (logoImgEl.naturalWidth / rect.width));
-    const y = Math.floor((clientY - rect.top) * (logoImgEl.naturalHeight / rect.height));
+    sampleCanvas.width = iw;
+    sampleCanvas.height = ih;
 
     try {
+      ctxSampler.drawImage(logoImgEl, 0, 0, iw, ih);
       const pixel = ctxSampler.getImageData(x, y, 1, 1).data;
       return rgbToHex(pixel[0], pixel[1], pixel[2]);
     } catch {
-      return "#000000";
+      return null;
     }
   };
 
   logoImgEl.addEventListener("mousemove", (e) => {
-    if (!altPressed) {
+    if (!ctrlPressed) {
       preview.style.display = "none";
       return;
     }
-
     const color = getPixelColor(e.clientX, e.clientY);
+    if (!color) {
+      preview.style.display = "none";
+      return;
+    }
     preview.style.background = color;
     preview.style.left = e.clientX + 20 + "px";
-    preview.style.top = e.clientY + 20 + "px";
+    preview.style.top  = e.clientY + 20 + "px";
     preview.style.display = "block";
   });
 
@@ -270,25 +302,25 @@ function enableImageColorPicker() {
   });
 
   logoImgEl.addEventListener("click", (e) => {
-    if (!altPressed) return;
-
+    if (!ctrlPressed) return;
     const hex = getPixelColor(e.clientX, e.clientY);
+    if (!hex) return;
     setBrushColor(hex);
     const customBtn = document.getElementById("customColor");
     if (customBtn) markActiveColor(customBtn);
     if (window.pickr) pickr.setColor(hex);
     playSfx("woosh");
-
     preview.style.display = "none";
   });
 }
+
 
 function showEyedropperHint() {
   let hint = document.querySelector(".eyedropper-hint");
   if (!hint) {
     hint = document.createElement("div");
     hint.className = "eyedropper-hint";
-    hint.textContent = "Hold Alt to pick colors from the picture";
+    hint.textContent = "Hold CTRL to pick colors from the picture";
     logoPreview.appendChild(hint);
   }
   hint.classList.add("visible");
@@ -501,14 +533,17 @@ function rgbStrToHex(rgb){
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
 function setBrushColor(c) {
-    brushColor = normalizeHex(c) || c;
-    ctx.strokeStyle = brushColor;
-    const bubble = document.getElementById('customColor');
-    if (bubble) {
-        bubble.style.background = brushColor;
-        bubble.style.color = getReadableTextColor(brushColor);
-    }
+  brushColor = normalizeHex(c) || c;
+  ctx.strokeStyle = brushColor;
+  const bubble = document.getElementById('customColor');
+  if (bubble) {
+    bubble.style.background = brushColor;
+    bubble.style.color = getReadableTextColor(brushColor);
+  }
+  const indicator = document.getElementById('currentColorIndicator');
+  if (indicator) indicator.style.background = brushColor;
 }
+
 function getReadableTextColor(hex) {
     const m = (hex||'').replace('#',''); if(m.length<6) return '#000';
     const r = parseInt(m.slice(0,2),16);
@@ -692,32 +727,48 @@ function draw(e) {
     lastX = x;
     lastY = y;
 }
+
 function handleReroll() {
-    if (!rerollBtn) return;
-    if (rerolledThisRound) return;
-    if (!remainingPrompts.length) {
-        rerollBtn.disabled = true;
-        return;
+  if (!rerollBtn) return;
+  if (rerolledThisRound) return;
+
+  if (!remainingPrompts.length) {
+    rerollBtn.disabled = true;
+    return;
+  }
+
+  playSfx("click");
+  rerollCount++;
+  document.getElementById("rerollCountDisplay").textContent = `${rerollCount} used`;
+
+  rerollBtn.classList.add("roll");
+  rerollBtn.disabled = true;
+
+  setTimeout(() => {
+    rerollBtn.classList.remove("roll");
+
+    const currentPrompt = selectedPrompts[current];
+    remainingPrompts.push(currentPrompt);
+
+    const available = [...remainingPrompts];
+    const arr = new Uint32Array(1);
+    crypto.getRandomValues(arr);
+    const rand = arr[0] / 0xffffffff;
+    const newPromptIndex = Math.floor(rand * available.length);
+
+    let newPrompt = available[newPromptIndex];
+    if (available.length > 1 && newPrompt.name === currentPrompt.name) {
+      newPrompt = available[(newPromptIndex + 1) % available.length];
     }
 
-    playSfx("click");
-    rerollCount++;
-    document.getElementById("rerollCountDisplay").textContent = `${rerollCount} used`;
-    rerollBtn.classList.add("roll");
-    setTimeout(() => {
-        rerollBtn.classList.remove("roll");
-        const currentPrompt = selectedPrompts[current];
-        remainingPrompts.push(currentPrompt);
-
-        const newPromptIndex = Math.floor(Math.random() * remainingPrompts.length);
-        const newPrompt = remainingPrompts.splice(newPromptIndex, 1)[0];
-        selectedPrompts[current] = newPrompt;
-        rerolledThisRound = true;
-        rerollBtn.disabled = true;
-        clearCanvas();
-        setupRoundUI();
-    }, 500);
+    remainingPrompts.splice(remainingPrompts.indexOf(newPrompt), 1);
+    selectedPrompts[current] = newPrompt;
+    rerolledThisRound = true;
+    clearCanvas();
+    setupRoundUI();
+  }, 500);
 }
+
 function getCanvasPos(e, targetCanvas) {
     const rect = targetCanvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;

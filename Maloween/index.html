@@ -24,7 +24,7 @@
                         Draw the MyAnimeList logo from memory.
                      </div>
                      <div class="reroll-container">
-                        <button id="rerollBtn" class="btn reroll-btn" title="🎲 Re-roll this prompt" type="button">
+                        <button id="rerollBtn" class="btn reroll-btn" type="button">
                         Re-roll
                         </button>
                         <div id="rerollCountDisplay" style="font-size: 13px; color: #444; margin-left: 4px;">0 used</div>
@@ -49,6 +49,7 @@
                   <input type="range" id="brushWidth" min="1" max="36" value="6" />
                   </label>
                   <div class="colors" id="colorPicker" aria-label="Brush colors"></div>
+                  <div id="currentColorIndicator" class="current-color-indicator" title="Current brush color"></div>
                   <button id="fillToggle" class="icon-btn" title="🪣 Bucket tool" type="button">
                      <svg viewBox="0 0 24 24" width="20" height="20">
                         <path d="M3 9l6-6 6 6M5 9h14l-1.5 10.5a2 2 0 0 1-2 1.5H8.5a2 2 0 0 1-2-1.5L5 9zm11.2 1.8c.9 1 .8 2.5-.2 3.4-.9.8-2.4.8-3.3-.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>

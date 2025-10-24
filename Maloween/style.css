@@ -523,3 +523,11 @@ button:disabled {
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
 }
+.current-color-indicator {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  margin-left: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}

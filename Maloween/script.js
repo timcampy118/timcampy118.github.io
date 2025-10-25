@@ -380,10 +380,9 @@ function setupRoundUI() {
         canvas.style.height = h * scale + "px";
         ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
 
-        logoPreview.style.width = w + "px";
-        logoPreview.style.height = h + "px";
+        logoPreview.style.width = maxW + "px";
+        logoPreview.style.height = h * scale + "px";
 
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.fillStyle = selectedPrompts[current].bg;
         ctx.fillRect(0, 0, w, h);
         ctx.lineCap = "round";
@@ -727,7 +726,6 @@ function setupDrawEvents() {
 }
 function startDraw(e) {
     e.preventDefault();
-    const dpr = window.devicePixelRatio || 1;
     const p = getCanvasPos(e, canvas);
     if (fillMode) {
         floodFill(p.x, p.y, brushColor);
@@ -735,27 +733,22 @@ function startDraw(e) {
         return;
     }
     drawing = true;
-    lastX = p.x * dpr;
-    lastY = p.y * dpr;
+    lastX = p.x;
+    lastY = p.y;
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
 }
 function draw(e) {
     if (!drawing) return;
     e.preventDefault();
-    const dpr = window.devicePixelRatio || 1;
     const p = getCanvasPos(e, canvas);
-    const x = p.x * dpr;
-    const y = p.y * dpr;
+    const x = p.x;
+    const y = p.y;
     ctx.lineTo(x, y);
     ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(x, y);
-
-    lastX = x;
-    lastY = y;
 }
-
 function handleReroll() {
     if (!rerollBtn) return;
     if (rerolledThisRound) return;
@@ -811,10 +804,13 @@ function getCanvasPos(e, targetCanvas) {
   };
 }
 function stopDraw(){ drawing = false; }
-function clearCanvas(){
-    const dims = roundDims[current] || { w: canvas.width/dpr, h: canvas.height/dpr };
-    ctx.clearRect(0,0,dims.w,dims.h);
-    ctx.fillStyle = "#fff"; ctx.fillRect(0,0,dims.w,dims.h);
+function clearCanvas() {
+    const dims = roundDims[current] || { w: canvas.width / dpr, h: canvas.height / dpr };
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, dims.w, dims.h);
 }
 function snapshotCanvasDataURL(){ return canvas.toDataURL("image/png"); }
 function restoreDrawing(dataURL, w, h){

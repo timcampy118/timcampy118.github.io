@@ -7,6 +7,7 @@ const BG_PAGE = "#f1f2f6";
 const PANEL_BG = "#ffffff";
 let usedNames = new Set();
 let rerolledThisRound = false;
+let currentScale = 1
 let rerollBtn;
 let rerollCount = 0;
 const dpr = window.devicePixelRatio || 1;
@@ -374,6 +375,7 @@ function setupRoundUI() {
 
         const maxW = Math.min(window.innerWidth - 40, w);
         const scale = maxW / w;
+        currentScale = scale;
         canvas.width = w * scale * dpr;
         canvas.height = h * scale * dpr;
         canvas.style.width = maxW + "px";
@@ -808,7 +810,7 @@ function clearCanvas() {
     const dims = roundDims[current] || { w: canvas.width / dpr, h: canvas.height / dpr };
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
+    ctx.setTransform(currentScale * dpr, 0, 0, currentScale * dpr, 0, 0);
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, dims.w, dims.h);
 }

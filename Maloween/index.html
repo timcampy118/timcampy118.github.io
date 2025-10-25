@@ -16,7 +16,7 @@
          <div class="card">
             <div class="header header-grid">
                <div class="left">
-                  <button id="backBtn" class="btn subtle" title="🔙 Back">&larr; Back</button>
+                  <button id="backBtn" class="btn subtle">&larr; Back</button>
                </div>
                <div class="center">
                   <div class="prompt-bubble">
@@ -32,11 +32,11 @@
                   </div>
                </div>
                <div class="right">
-                  <button id="nextBtn" class="btn primary" title="➡️ Next">Next</button>
+                  <button id="nextBtn" class="btn primary">Next</button>
                </div>
             </div>
             <div class="drawing-section">
-               <button id="easyModeBtn" class="easy-mode-btn" title="Toggle Easy Mode">👁</button>
+               <button id="easyModeBtn" class="easy-mode-btn">👁</button>
                <input type="checkbox" id="easyModeToggle" hidden>
                <div class="canvas-container single">
                   <canvas id="drawingCanvas"></canvas>
@@ -44,13 +44,13 @@
             </div>
             <div class="toolbar">
                <div class="tools">
-                  <label class="tool" title="🖌️ Brush width">
+                  <label class="tool">
                   Width
                   <input type="range" id="brushWidth" min="1" max="36" value="6" />
                   </label>
                   <div class="colors" id="colorPicker" aria-label="Brush colors"></div>
-                  <div id="currentColorIndicator" class="current-color-indicator" title="Current brush color"></div>
-                  <button id="fillToggle" class="icon-btn" title="🪣 Bucket tool" type="button">
+                  <div id="currentColorIndicator" class="current-color-indicator" ></div>
+                  <button id="fillToggle" class="icon-btn" type="button">
                      <svg viewBox="0 0 24 24" width="20" height="20">
                         <path d="M3 9l6-6 6 6M5 9h14l-1.5 10.5a2 2 0 0 1-2 1.5H8.5a2 2 0 0 1-2-1.5L5 9zm11.2 1.8c.9 1 .8 2.5-.2 3.4-.9.8-2.4.8-3.3-.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M20.5 6c.7.8.7 2-.1 2.8-.7.7-1.9.7-2.6 0-.8-.8-.8-2 0-2.8.7-.7 1.9-.7 2.7 0z" fill="currentColor"/>
@@ -58,23 +58,21 @@
                   </button>
                </div>
                <div class="actions">
-                  <button id="clearBtn" class="btn" title="🧽 Clear">Clear</button>
+                  <button id="clearBtn" class="btn">Clear</button>
                </div>
             </div>
-            <!-- Drawn signature -->
             <div class="signature-box">
                <label>Your Signature:</label>
-               <canvas id="signatureCanvas" width="300" height="60" title="✍️ Sign here"></canvas>
-               <button id="clearSig" class="btn" title="🧽 Clear signature">Clear</button>
+               <canvas id="signatureCanvas" width="300" height="60"></canvas>
+               <button id="clearSig" class="btn" >Clear</button>
             </div>
          </div>
       </div>
       <!-- Final composite overlay -->
       <div id="finalOverlay" class="overlay hidden">
          <canvas id="finalCanvas"></canvas>
-         <button id="downloadAllBtn" class="btn primary reveal-download" title="⬇️ Download image">Download</button>
+         <button id="downloadAllBtn" class="btn primary reveal-download" >Download</button>
       </div>
-      <!-- Finish confirmation modal -->
       <div id="finishModal" class="modal-overlay hidden" aria-hidden="true">
          <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="finishTitle">
             <div class="modal-body">
@@ -82,8 +80,8 @@
                <p>You won’t be able to edit your drawings after this step.</p>
             </div>
             <div class="modal-actions">
-               <button id="finishCancel" class="btn" title="❌ Keep editing">Cancel</button>
-               <button id="finishConfirm" class="btn primary" title="🏁 Finish and export">Yes, finish</button>
+               <button id="finishCancel" class="btn" >Cancel</button>
+               <button id="finishConfirm" class="btn primary">Yes, finish</button>
             </div>
          </div>
       </div>

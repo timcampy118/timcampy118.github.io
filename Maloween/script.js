@@ -28,10 +28,10 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(easyIndicator);
 
     easyModeBtn.addEventListener("click", () => {
-  if (!easyModeToggle.checked) {
-    const popup = document.createElement("div");
-    popup.className = "easy-popup";
-    popup.innerHTML = `
+        if (!easyModeToggle.checked) {
+            const popup = document.createElement("div");
+            popup.className = "easy-popup";
+            popup.innerHTML = `
       <div class="popup-box">
         <h3>Enable Easy Mode?</h3>
         <p>This will show the reference logo while you draw.</p>
@@ -41,31 +41,31 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     `;
-    document.body.appendChild(popup);
-    popup.querySelector("#confirmEasy").addEventListener("click", () => {
-      popup.remove();
-      easyModeToggle.checked = true;
-      easyModeBtn.classList.add("active");
-      easyIndicator.classList.add("visible");
-      playSfx("click");
-      updateLogoPreview();
-      updateCanvasLayout();
-    });
-    popup.querySelector("#cancelEasy").addEventListener("click", () => {
-      popup.remove();
-      playSfx("click");
-    });
+            document.body.appendChild(popup);
+            popup.querySelector("#confirmEasy").addEventListener("click", () => {
+                popup.remove();
+                easyModeToggle.checked = true;
+                easyModeBtn.classList.add("active");
+                easyIndicator.classList.add("visible");
+                playSfx("click");
+                updateLogoPreview();
+                updateCanvasLayout();
+            });
+            popup.querySelector("#cancelEasy").addEventListener("click", () => {
+                popup.remove();
+                playSfx("click");
+            });
 
-  } else {
-    easyModeToggle.checked = false;
-    easyModeBtn.classList.remove("active");
-    easyIndicator.classList.remove("visible");
-    playSfx("click");
+        } else {
+            easyModeToggle.checked = false;
+            easyModeBtn.classList.remove("active");
+            easyIndicator.classList.remove("visible");
+            playSfx("click");
 
-    updateLogoPreview();
-    updateCanvasLayout();
-  }
-});
+            updateLogoPreview();
+            updateCanvasLayout();
+        }
+    });
 
     logoPreview = document.createElement("div");
     logoPreview.className = "logo-preview";
@@ -182,152 +182,98 @@ if (easyModeToggle) {
 
 
 function updateLogoPreview() {
-  const prompt = selectedPrompts?.[current];
-  const container = document.querySelector(".canvas-container");
+    const prompt = selectedPrompts?.[current];
+    const container = document.querySelector(".canvas-container");
 
-  if (!container || !logoPreview) return;
-  if (easyModeToggle?.checked) {
-    container.classList.remove("single");
-    container.classList.add("easy-mode");
-  } else {
-    container.classList.remove("easy-mode");
-    container.classList.add("single");
-  }
+    if (!container || !logoPreview) return;
+    if (easyModeToggle?.checked) {
+        container.classList.remove("single");
+        container.classList.add("easy-mode");
+    } else {
+        container.classList.remove("easy-mode");
+        container.classList.add("single");
+    }
 
-  if (easyModeToggle?.checked && prompt?.src) {
-    logoPreview.innerHTML = `<img crossOrigin="anonymous" src="${prompt.src}" alt="${prompt.name || 'Reference Logo'}">`;
-    showEyedropperHint();
-    buildPalette(prompt.palette);
-    const logoImgEl = logoPreview.querySelector("img");
-    logoImgEl.onload = () => enableImageColorPicker();
-  } else {
-    logoPreview.innerHTML = "";
-  }
+    if (easyModeToggle?.checked && prompt?.src) {
+        logoPreview.innerHTML = `<img crossOrigin="anonymous" src="${prompt.src}" alt="${prompt.name || 'Reference Logo'}">`;
+        showEyedropperHint();
+        buildPalette(prompt.palette);
+        const logoImgEl = logoPreview.querySelector("img");
+        logoImgEl.onload = () => enableImageColorPicker();
+    } else {
+        logoPreview.innerHTML = "";
+    }
 }
 
 
 function enableImageColorPicker() {
-  const logoImgEl = logoPreview.querySelector("img");
-  if (!logoImgEl) return;
+    const logoImgEl = logoPreview.querySelector("img");
+    if (!logoImgEl) return;
 
-  logoImgEl.crossOrigin = "anonymous";
-  logoImgEl.onclick = null;
+    let eyedropperMode = false;
+    let longPressTimer = null;
 
-  let preview = document.querySelector(".color-preview");
-  if (!preview) {
-    preview = document.createElement("div");
-    preview.className = "color-preview";
-    document.body.appendChild(preview);
-  }
+    logoImgEl.addEventListener("touchstart", e => {
+        longPressTimer = setTimeout(() => {
+            eyedropperMode = true;
+            showMobileEyedropperHint();
+            logoImgEl.style.filter = "brightness(0.8)";
+        }, 600);
+    }, { passive: false });
 
-let ctrlPressed = false;
+    logoImgEl.addEventListener("touchmove", e => {
+        if (eyedropperMode) e.preventDefault();
+    }, { passive: false });
 
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Control") ctrlPressed = true;
-});
-window.addEventListener("keyup", (e) => {
-  if (e.key === "Control") {
-    ctrlPressed = false;
-    const preview = document.querySelector(".color-preview");
-    if (preview) preview.style.display = "none";
-  }
-});
+    logoImgEl.addEventListener("touchend", e => {
+        clearTimeout(longPressTimer);
+        if (!eyedropperMode) return;
 
-  const getDrawnBox = () => {
-    const rect = logoImgEl.getBoundingClientRect();
-    const iw = logoImgEl.naturalWidth || logoImgEl.width;
-    const ih = logoImgEl.naturalHeight || logoImgEl.height;
-    const ir = iw / ih;
-    const er = rect.width / rect.height;
+        const touch = e.changedTouches[0];
+        const color = getPixelColor(touch.clientX, touch.clientY);
+        if (color) {
+            setBrushColor(color);
+            playSfx("woosh");
+            const customBtn = document.getElementById("customColor");
+            if (customBtn) markActiveColor(customBtn);
+            if (window.pickr) pickr.setColor(color);
+        }
 
-    let drawW, drawH;
-    if (ir > er) {
-      drawW = rect.width;
-      drawH = rect.width / ir;
-    } else {
-      drawH = rect.height;
-      drawW = rect.height * ir;
+        eyedropperMode = false;
+        logoImgEl.style.filter = "";
+        hideMobileEyedropperHint();
+    });
+}
+
+function showMobileEyedropperHint() {
+    let hint = document.querySelector(".mobile-eyedropper-hint");
+    if (!hint) {
+        hint = document.createElement("div");
+        hint.className = "mobile-eyedropper-hint";
+        hint.textContent = "Tap a color to pick it!";
+        document.body.appendChild(hint);
     }
-    const offsetX = (rect.width - drawW) / 2;
-    const offsetY = (rect.height - drawH) / 2;
-
-    return { rect, iw, ih, drawW, drawH, offsetX, offsetY };
-  };
-
-  const getPixelColor = (clientX, clientY) => {
-    const { rect, iw, ih, drawW, drawH, offsetX, offsetY } = getDrawnBox();
-
-    const lx = clientX - rect.left - offsetX;
-    const ly = clientY - rect.top  - offsetY;
-
-    if (lx < 0 || ly < 0 || lx >= drawW || ly >= drawH) return null;
-
-    const scaleX = iw / drawW;
-    const scaleY = ih / drawH;
-    const x = Math.floor(lx * scaleX);
-    const y = Math.floor(ly * scaleY);
-
-    const sampleCanvas = document.createElement("canvas");
-    const ctxSampler = sampleCanvas.getContext("2d", { willReadFrequently: true });
-    sampleCanvas.width = iw;
-    sampleCanvas.height = ih;
-
-    try {
-      ctxSampler.drawImage(logoImgEl, 0, 0, iw, ih);
-      const pixel = ctxSampler.getImageData(x, y, 1, 1).data;
-      return rgbToHex(pixel[0], pixel[1], pixel[2]);
-    } catch {
-      return null;
-    }
-  };
-
-  logoImgEl.addEventListener("mousemove", (e) => {
-    if (!ctrlPressed) {
-      preview.style.display = "none";
-      return;
-    }
-    const color = getPixelColor(e.clientX, e.clientY);
-    if (!color) {
-      preview.style.display = "none";
-      return;
-    }
-    preview.style.background = color;
-    preview.style.left = e.clientX + 20 + "px";
-    preview.style.top  = e.clientY + 20 + "px";
-    preview.style.display = "block";
-  });
-
-  logoImgEl.addEventListener("mouseleave", () => {
-    preview.style.display = "none";
-  });
-
-  logoImgEl.addEventListener("click", (e) => {
-    if (!ctrlPressed) return;
-    const hex = getPixelColor(e.clientX, e.clientY);
-    if (!hex) return;
-    setBrushColor(hex);
-    const customBtn = document.getElementById("customColor");
-    if (customBtn) markActiveColor(customBtn);
-    if (window.pickr) pickr.setColor(hex);
-    playSfx("woosh");
-    preview.style.display = "none";
-  });
+    hint.classList.add("visible");
+}
+function hideMobileEyedropperHint() {
+    const hint = document.querySelector(".mobile-eyedropper-hint");
+    if (hint) hint.remove();
 }
 
 
 function showEyedropperHint() {
-  let hint = document.querySelector(".eyedropper-hint");
-  if (!hint) {
-    hint = document.createElement("div");
-    hint.className = "eyedropper-hint";
-    hint.textContent = "Hold CTRL to pick colors from the picture";
-    logoPreview.appendChild(hint);
-  }
-  hint.classList.add("visible");
-  clearTimeout(hint._hideTimer);
-  hint._hideTimer = setTimeout(() => {
-    hint.classList.remove("visible");
-  }, 5000);
+    let hint = document.querySelector(".eyedropper-hint");
+    if (!hint) {
+        hint = document.createElement("div");
+        hint.className = "eyedropper-hint";
+        hint.textContent = "Hold CTRL to pick colors from the picture";
+        logoPreview.appendChild(hint);
+    }
+    hint.classList.add("visible");
+    clearTimeout(hint._hideTimer);
+    hint._hideTimer = setTimeout(() => {
+        hint.classList.remove("visible");
+    }, 5000);
 }
 
 
@@ -355,10 +301,14 @@ function setupRoundUI() {
         const h = logoImg.naturalHeight;
         roundDims[current] = { w, h };
 
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-        canvas.style.width = w + "px";
-        canvas.style.height = h + "px";
+        const maxW = Math.min(window.innerWidth - 40, w);
+        const scale = maxW / w;
+        canvas.width = w * scale * dpr;
+        canvas.height = h * scale * dpr;
+        canvas.style.width = maxW + "px";
+        canvas.style.height = h * scale + "px";
+        ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
+
         logoPreview.style.width = w + "px";
         logoPreview.style.height = h + "px";
 
@@ -379,7 +329,6 @@ function setupRoundUI() {
 
         buildPalette(prompt.palette);
         nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
-        nextBtn.title = current === TOTAL_ROUNDS - 1 ? "🏁 Finish" : "➡️ Next";
         backBtn.disabled = current === 0;
         updateCanvasLayout();
     };
@@ -468,16 +417,18 @@ function buildPalette(palette) {
     colorPicker.appendChild(custom);
 
     if (pickr) pickr.destroyAndRemove();
-
-    pickr = Pickr.create({
-        el: '#customColor',
-        theme: 'classic',
-        default: brushColor,
-        components: {
-            preview: true, opacity: true, hue: true,
-            interaction: { hex: true, rgba: true, input: true, save: true, clear: true }
+    if (window.innerWidth > 700) {
+        pickr = Pickr.create({
+            el: '#customColor',
+            theme: 'classic',
+            default: brushColor,
+            components: {
+                preview: true, opacity: true, hue: true,
+                interaction: { hex: true, rgba: true, input: true, save: true, clear: true }
+            }
+        });}else {
+            document.getElementById("customColor").disabled = true;
         }
-    });
 
     pickr.on('init', (instance) => {
         const button = instance.getRoot().button;
@@ -509,8 +460,8 @@ function buildPalette(palette) {
     let matched = false;
     [...colorPicker.querySelectorAll('.color')].forEach(btn => {
         const bg = btn.id === 'customColor'
-            ? normalizeHex(brushHex)
-            : normalizeHex(rgbStrToHex(getComputedStyle(btn).backgroundColor) || btn.style.background);
+        ? normalizeHex(brushHex)
+        : normalizeHex(rgbStrToHex(getComputedStyle(btn).backgroundColor) || btn.style.background);
         if (btn.id !== 'customColor' && normalizeHex(btn.style.background) === brushHex) {
             matched = true;
             markActiveColor(btn);
@@ -533,15 +484,15 @@ function rgbStrToHex(rgb){
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
 function setBrushColor(c) {
-  brushColor = normalizeHex(c) || c;
-  ctx.strokeStyle = brushColor;
-  const bubble = document.getElementById('customColor');
-  if (bubble) {
-    bubble.style.background = brushColor;
-    bubble.style.color = getReadableTextColor(brushColor);
-  }
-  const indicator = document.getElementById('currentColorIndicator');
-  if (indicator) indicator.style.background = brushColor;
+    brushColor = normalizeHex(c) || c;
+    ctx.strokeStyle = brushColor;
+    const bubble = document.getElementById('customColor');
+    if (bubble) {
+        bubble.style.background = brushColor;
+        bubble.style.color = getReadableTextColor(brushColor);
+    }
+    const indicator = document.getElementById('currentColorIndicator');
+    if (indicator) indicator.style.background = brushColor;
 }
 
 function getReadableTextColor(hex) {
@@ -624,6 +575,9 @@ function setupDrawEvents() {
     if (drawEventsInitialized) return;
     drawEventsInitialized = true;
 
+    document.body.addEventListener('touchmove', e => {
+        if (e.target === canvas) e.preventDefault();
+    }, { passive: false });
 
     canvas.addEventListener("mousedown", startDraw);
     canvas.addEventListener("mousemove", draw);
@@ -724,49 +678,52 @@ function draw(e) {
     const y = p.y * dpr;
     ctx.lineTo(x, y);
     ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+
     lastX = x;
     lastY = y;
 }
 
 function handleReroll() {
-  if (!rerollBtn) return;
-  if (rerolledThisRound) return;
+    if (!rerollBtn) return;
+    if (rerolledThisRound) return;
 
-  if (!remainingPrompts.length) {
-    rerollBtn.disabled = true;
-    return;
-  }
-
-  playSfx("click");
-  rerollCount++;
-  document.getElementById("rerollCountDisplay").textContent = `${rerollCount} used`;
-
-  rerollBtn.classList.add("roll");
-  rerollBtn.disabled = true;
-
-  setTimeout(() => {
-    rerollBtn.classList.remove("roll");
-
-    const currentPrompt = selectedPrompts[current];
-    remainingPrompts.push(currentPrompt);
-
-    const available = [...remainingPrompts];
-    const arr = new Uint32Array(1);
-    crypto.getRandomValues(arr);
-    const rand = arr[0] / 0xffffffff;
-    const newPromptIndex = Math.floor(rand * available.length);
-
-    let newPrompt = available[newPromptIndex];
-    if (available.length > 1 && newPrompt.name === currentPrompt.name) {
-      newPrompt = available[(newPromptIndex + 1) % available.length];
+    if (!remainingPrompts.length) {
+        rerollBtn.disabled = true;
+        return;
     }
 
-    remainingPrompts.splice(remainingPrompts.indexOf(newPrompt), 1);
-    selectedPrompts[current] = newPrompt;
-    rerolledThisRound = true;
-    clearCanvas();
-    setupRoundUI();
-  }, 500);
+    playSfx("click");
+    rerollCount++;
+    document.getElementById("rerollCountDisplay").textContent = `${rerollCount} used`;
+
+    rerollBtn.classList.add("roll");
+    rerollBtn.disabled = true;
+
+    setTimeout(() => {
+        rerollBtn.classList.remove("roll");
+
+        const currentPrompt = selectedPrompts[current];
+        remainingPrompts.push(currentPrompt);
+
+        const available = [...remainingPrompts];
+        const arr = new Uint32Array(1);
+        crypto.getRandomValues(arr);
+        const rand = arr[0] / 0xffffffff;
+        const newPromptIndex = Math.floor(rand * available.length);
+
+        let newPrompt = available[newPromptIndex];
+        if (available.length > 1 && newPrompt.name === currentPrompt.name) {
+            newPrompt = available[(newPromptIndex + 1) % available.length];
+        }
+
+        remainingPrompts.splice(remainingPrompts.indexOf(newPrompt), 1);
+        selectedPrompts[current] = newPrompt;
+        rerolledThisRound = true;
+        clearCanvas();
+        setupRoundUI();
+    }, 500);
 }
 
 function getCanvasPos(e, targetCanvas) {
@@ -1066,7 +1023,7 @@ async function showFinalComposite() {
 
         const link = document.createElement("a");
         link.href = out.toDataURL("image/png");
-        link.download = "logos_from_memory_results.png";
+        link.download = "DrawnFromTheDead.png";
         link.click();
     }, 80);
 

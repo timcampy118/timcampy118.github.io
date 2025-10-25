@@ -8,6 +8,10 @@ const prompts = [
     name: "MyAnimeList",    src: "./logos/MAL.svg",    bg: "#ffffff",    prompt: "Draw the MyAnimeList logo."
   },
   {
+    name: "Maki",    src: "./logos/Maki.webp",    bg: "#ffffff",    prompt: "Draw the MAL mascot Maki.",
+    palette:['#f9f5ec', '#3b1717', '#ed8943', '#cdb1a5', '#b84230', '#7f715f']
+  },
+  {
     name: "Kineta",    src: "./logos/kineta.webp",    bg: "#ffffff",    prompt: "Draw Kineta's profile picture",
     palette:['#fdfcfc', '#fdc028', '#f30a8c', '#f77a2b', '#171514', '#cda8a3']
   },

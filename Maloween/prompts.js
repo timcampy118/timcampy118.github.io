@@ -75,7 +75,7 @@ const prompts = [
     palette:['#aa0000', '#fefefe', '#020000', '#500000', '#a4a4a4', '#4c4c4c']
   },
   {
-    name: "Tim",    src: "./logos/tim.webp",    bg: "#ffffff",    prompt: "Draw the Chainsaw Man Movie: Reze-hen poster",
+    name: "Reze",    src: "./logos/CSM.jpg",    bg: "#ffffff",    prompt: "Draw the Chainsaw Man Movie: Reze-hen poster",
     palette:['#0b1825', '#f23b48', '#64131d', '#c4151e', '#75797b', '#e9ddde']
   },
   {

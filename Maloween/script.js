@@ -280,17 +280,22 @@ function enableImageColorPicker() {
     });
 
     logoImgEl.addEventListener("mouseleave", () => preview.style.display = "none");
-    logoImgEl.addEventListener("click", e => {
-      if (!ctrlPressed) return;
-      const hex = getPixelColor(e.clientX, e.clientY);
-      if (!hex) return;
-      setBrushColor(hex);
-      const customBtn = document.getElementById("customColor");
-      if (customBtn) markActiveColor(customBtn);
-      if (window.pickr) pickr.setColor(hex);
-      playSfx("woosh");
-      preview.style.display = "none";
-    });
+    logoImgEl.addEventListener("click", (e) => {
+  if (!ctrlPressed && !('ontouchstart' in window)) return; // keep desktop ctrl behavior
+
+  const hex = getPixelColor(e.clientX, e.clientY);
+  if (!hex) return;
+
+  setBrushColor(hex);
+  if (window.pickr) pickr.setColor(hex);
+  playSfx("woosh");
+  preview.style.display = "none";
+
+  // 🔹 Remove active highlight from all swatches
+  document.querySelectorAll("#colorPicker .color.active").forEach(btn => {
+    btn.classList.remove("active");
+  });
+});
   }
 
   else {
@@ -504,8 +509,6 @@ function buildPalette(palette) {
 
     pickr.on('init', (instance) => {
         const button = instance.getRoot().button;
-        button.style.border = '1.5px solid rgba(0,0,0,0.6)';
-        button.style.boxShadow = '0 0 3px rgba(0,0,0,0.15)';
         button.style.borderRadius = '50%';
     });
 
@@ -514,7 +517,6 @@ function buildPalette(palette) {
         setBrushColor(hex);
         const button = pickr.getRoot().button;
         button.style.background = hex;
-        button.style.border = '1.5px solid rgba(0,0,0,0.6)';
     });
 
     pickr.on('save', (color) => {
@@ -525,8 +527,17 @@ function buildPalette(palette) {
         pickr.hide();
         const button = pickr.getRoot().button;
         button.style.background = hex;
-        button.style.border = '1.5px solid rgba(0,0,0,0.6)';
     });
+    pickr.on('hide', (instance) => {
+      const currentColor = pickr.getColor()?.toHEXA().toString() || brushColor;
+      const button = pickr.getRoot().button;
+
+      button.style.background = currentColor;
+      button.style.borderRadius = '50%';
+      const indicator = document.getElementById('currentColorIndicator');
+      if (indicator) indicator.style.background = currentColor;
+    });
+
 
     const brushHex = normalizeHex(brushColor);
     let matched = false;
@@ -542,7 +553,6 @@ function buildPalette(palette) {
     if (!matched) {
         custom.style.background = brushHex;
         custom.style.color = getReadableTextColor(brushHex);
-        custom.style.border = '1.5px solid rgba(0,0,0,0.6)';
         markActiveColor(custom);
     }
 }

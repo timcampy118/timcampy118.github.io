@@ -532,8 +532,8 @@ button:disabled {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 button, .color {
-    min-width: 44px;
-    min-height: 44px;
+    min-width: 30px;
+    min-height: 30px;
 }
 input[type="range"] {
     touch-action: none;

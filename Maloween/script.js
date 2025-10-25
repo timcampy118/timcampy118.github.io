@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
             popup.innerHTML = `
       <div class="popup-box">
         <h3>Enable Easy Mode?</h3>
-        <p>This will show the reference logo while you draw.</p>
+        <p>This will show the reference image while you draw.</p>
         <div>
           <button id="confirmEasy">Yes, enable</button>
           <button id="cancelEasy">Cancel</button>

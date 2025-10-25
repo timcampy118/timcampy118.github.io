@@ -207,42 +207,109 @@ function updateLogoPreview() {
 
 
 function enableImageColorPicker() {
-    const logoImgEl = logoPreview.querySelector("img");
-    if (!logoImgEl) return;
+  const logoImgEl = logoPreview.querySelector("img");
+  if (!logoImgEl) return;
 
-    let eyedropperMode = false;
-    let longPressTimer = null;
+  logoImgEl.crossOrigin = "anonymous";
+  logoImgEl.onclick = null;
 
-    logoImgEl.addEventListener("touchstart", e => {
-        longPressTimer = setTimeout(() => {
-            eyedropperMode = true;
-            showMobileEyedropperHint();
-            logoImgEl.style.filter = "brightness(0.8)";
-        }, 600);
-    }, { passive: false });
+  logoImgEl.addEventListener("contextmenu", e => e.preventDefault());
+  logoImgEl.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
 
-    logoImgEl.addEventListener("touchmove", e => {
-        if (eyedropperMode) e.preventDefault();
-    }, { passive: false });
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    logoImgEl.addEventListener("touchend", e => {
-        clearTimeout(longPressTimer);
-        if (!eyedropperMode) return;
+  showEyedropperHint(isTouch);
 
-        const touch = e.changedTouches[0];
-        const color = getPixelColor(touch.clientX, touch.clientY);
-        if (color) {
-            setBrushColor(color);
-            playSfx("woosh");
-            const customBtn = document.getElementById("customColor");
-            if (customBtn) markActiveColor(customBtn);
-            if (window.pickr) pickr.setColor(color);
-        }
+  let preview = document.querySelector(".color-preview");
+  if (!preview) {
+    preview = document.createElement("div");
+    preview.className = "color-preview";
+    document.body.appendChild(preview);
+  }
 
-        eyedropperMode = false;
-        logoImgEl.style.filter = "";
-        hideMobileEyedropperHint();
+  const getDrawnBox = () => {
+    const rect = logoImgEl.getBoundingClientRect();
+    const iw = logoImgEl.naturalWidth || logoImgEl.width;
+    const ih = logoImgEl.naturalHeight || logoImgEl.height;
+    const ir = iw / ih;
+    const er = rect.width / rect.height;
+    let drawW, drawH;
+    if (ir > er) { drawW = rect.width; drawH = rect.width / ir; }
+    else { drawH = rect.height; drawW = rect.height * ir; }
+    const offsetX = (rect.width - drawW) / 2;
+    const offsetY = (rect.height - drawH) / 2;
+    return { rect, iw, ih, drawW, drawH, offsetX, offsetY };
+  };
+
+  const getPixelColor = (clientX, clientY) => {
+    const { rect, iw, ih, drawW, drawH, offsetX, offsetY } = getDrawnBox();
+    const lx = clientX - rect.left - offsetX;
+    const ly = clientY - rect.top - offsetY;
+    if (lx < 0 || ly < 0 || lx >= drawW || ly >= drawH) return null;
+    const scaleX = iw / drawW;
+    const scaleY = ih / drawH;
+    const x = Math.floor(lx * scaleX);
+    const y = Math.floor(ly * scaleY);
+    const sampleCanvas = document.createElement("canvas");
+    const ctxSampler = sampleCanvas.getContext("2d", { willReadFrequently: true });
+    sampleCanvas.width = iw;
+    sampleCanvas.height = ih;
+    try {
+      ctxSampler.drawImage(logoImgEl, 0, 0, iw, ih);
+      const pixel = ctxSampler.getImageData(x, y, 1, 1).data;
+      return rgbToHex(pixel[0], pixel[1], pixel[2]);
+    } catch { return null; }
+  };
+
+  if (!isTouch) {
+    let ctrlPressed = false;
+    window.addEventListener("keydown", e => { if (e.key === "Control") ctrlPressed = true; });
+    window.addEventListener("keyup", e => {
+      if (e.key === "Control") { ctrlPressed = false; preview.style.display = "none"; }
     });
+
+    logoImgEl.addEventListener("mousemove", e => {
+      if (!ctrlPressed) { preview.style.display = "none"; return; }
+      const color = getPixelColor(e.clientX, e.clientY);
+      if (!color) { preview.style.display = "none"; return; }
+      preview.style.background = color;
+      preview.style.left = e.clientX + 20 + "px";
+      preview.style.top  = e.clientY + 20 + "px";
+      preview.style.display = "block";
+    });
+
+    logoImgEl.addEventListener("mouseleave", () => preview.style.display = "none");
+    logoImgEl.addEventListener("click", e => {
+      if (!ctrlPressed) return;
+      const hex = getPixelColor(e.clientX, e.clientY);
+      if (!hex) return;
+      setBrushColor(hex);
+      const customBtn = document.getElementById("customColor");
+      if (customBtn) markActiveColor(customBtn);
+      if (window.pickr) pickr.setColor(hex);
+      playSfx("woosh");
+      preview.style.display = "none";
+    });
+  }
+
+  else {
+    logoImgEl.addEventListener("click", e => {
+      const hex = getPixelColor(e.clientX, e.clientY);
+      if (!hex) return;
+      setBrushColor(hex);
+      const customBtn = document.getElementById("customColor");
+      if (customBtn) markActiveColor(customBtn);
+      if (window.pickr) pickr.setColor(hex);
+      playSfx("woosh");
+
+      // small flash feedback
+      preview.style.background = hex;
+      preview.style.left = e.clientX + "px";
+      preview.style.top = e.clientY + "px";
+      preview.style.display = "block";
+      setTimeout(() => preview.style.display = "none", 300);
+    });
+  }
 }
 
 function showMobileEyedropperHint() {
@@ -262,19 +329,23 @@ function hideMobileEyedropperHint() {
 
 
 function showEyedropperHint() {
-    let hint = document.querySelector(".eyedropper-hint");
-    if (!hint) {
-        hint = document.createElement("div");
-        hint.className = "eyedropper-hint";
-        hint.textContent = "Hold CTRL to pick colors from the picture";
-        logoPreview.appendChild(hint);
-    }
-    hint.classList.add("visible");
-    clearTimeout(hint._hideTimer);
-    hint._hideTimer = setTimeout(() => {
-        hint.classList.remove("visible");
-    }, 5000);
+  let hint = document.querySelector(".eyedropper-hint");
+  if (!hint) {
+    hint = document.createElement("div");
+    hint.className = "eyedropper-hint";
+    document.body.appendChild(hint);
+  }
+
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  hint.textContent = isTouch
+    ? "Touch the picture to pick a color"
+    : "Hold CTRL to pick colors from the picture";
+
+  hint.classList.add("visible");
+  clearTimeout(hint._hideTimer);
+  hint._hideTimer = setTimeout(() => hint.classList.remove("visible"), 5000);
 }
+
 
 
 
@@ -727,10 +798,17 @@ function handleReroll() {
 }
 
 function getCanvasPos(e, targetCanvas) {
-    const rect = targetCanvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return { x: clientX - rect.left, y: clientY - rect.top };
+  const rect = targetCanvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  const scaleX = targetCanvas.width / rect.width;
+  const scaleY = targetCanvas.height / rect.height;
+
+  return {
+    x: (clientX - rect.left) * scaleX,
+    y: (clientY - rect.top) * scaleY
+  };
 }
 function stopDraw(){ drawing = false; }
 function clearCanvas(){

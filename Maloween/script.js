@@ -215,11 +215,6 @@ function enableImageColorPicker() {
   logoImgEl.onclick = null;
 
   logoImgEl.addEventListener("contextmenu", e => e.preventDefault());
-  logoImgEl.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
-
-  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-  showEyedropperHint(isTouch);
 
   let preview = document.querySelector(".color-preview");
   if (!preview) {
@@ -262,7 +257,6 @@ function enableImageColorPicker() {
     } catch { return null; }
   };
 
-  if (!isTouch) {
     let ctrlPressed = false;
     window.addEventListener("keydown", e => { if (e.key === "Control") ctrlPressed = true; });
     window.addEventListener("keyup", e => {
@@ -281,58 +275,22 @@ function enableImageColorPicker() {
 
     logoImgEl.addEventListener("mouseleave", () => preview.style.display = "none");
     logoImgEl.addEventListener("click", (e) => {
-  if (!ctrlPressed && !('ontouchstart' in window)) return; // keep desktop ctrl behavior
+    if (!ctrlPressed && !('ontouchstart' in window)) return; // keep desktop ctrl behavior
 
-  const hex = getPixelColor(e.clientX, e.clientY);
-  if (!hex) return;
+    const hex = getPixelColor(e.clientX, e.clientY);
+    if (!hex) return;
 
-  setBrushColor(hex);
-  if (window.pickr) pickr.setColor(hex);
-  playSfx("woosh");
-  preview.style.display = "none";
+    setBrushColor(hex);
+    if (window.pickr) pickr.setColor(hex);
+    playSfx("woosh");
+    preview.style.display = "none";
 
-  // 🔹 Remove active highlight from all swatches
-  document.querySelectorAll("#colorPicker .color.active").forEach(btn => {
+    // 🔹 Remove active highlight from all swatches
+    document.querySelectorAll("#colorPicker .color.active").forEach(btn => {
     btn.classList.remove("active");
-  });
-});
-  }
-
-  else {
-    logoImgEl.addEventListener("click", e => {
-      const hex = getPixelColor(e.clientX, e.clientY);
-      if (!hex) return;
-      setBrushColor(hex);
-      const customBtn = document.getElementById("customColor");
-      if (customBtn) markActiveColor(customBtn);
-      if (window.pickr) pickr.setColor(hex);
-      playSfx("woosh");
-
-      // small flash feedback
-      preview.style.background = hex;
-      preview.style.left = e.clientX + "px";
-      preview.style.top = e.clientY + "px";
-      preview.style.display = "block";
-      setTimeout(() => preview.style.display = "none", 300);
     });
-  }
-}
-
-function showMobileEyedropperHint() {
-    let hint = document.querySelector(".mobile-eyedropper-hint");
-    if (!hint) {
-        hint = document.createElement("div");
-        hint.className = "mobile-eyedropper-hint";
-        hint.textContent = "Tap a color to pick it!";
-        document.body.appendChild(hint);
+    });
     }
-    hint.classList.add("visible");
-}
-function hideMobileEyedropperHint() {
-    const hint = document.querySelector(".mobile-eyedropper-hint");
-    if (hint) hint.remove();
-}
-
 
 function showEyedropperHint() {
   let hint = document.querySelector(".eyedropper-hint");
@@ -341,12 +299,7 @@ function showEyedropperHint() {
     hint.className = "eyedropper-hint";
     document.body.appendChild(hint);
   }
-
-  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  hint.textContent = isTouch
-    ? "Touch the picture to pick a color"
-    : "Hold CTRL to pick colors from the picture";
-
+  hint.textContent = "Hold CTRL to pick colors from the picture";
   hint.classList.add("visible");
   clearTimeout(hint._hideTimer);
   hint._hideTimer = setTimeout(() => hint.classList.remove("visible"), 5000);
@@ -656,18 +609,10 @@ let drawEventsInitialized = false;
 function setupDrawEvents() {
     if (drawEventsInitialized) return;
     drawEventsInitialized = true;
-
-    document.body.addEventListener('touchmove', e => {
-        if (e.target === canvas) e.preventDefault();
-    }, { passive: false });
-
     canvas.addEventListener("mousedown", startDraw);
     canvas.addEventListener("mousemove", draw);
     canvas.addEventListener("mouseup", stopDraw);
     canvas.addEventListener("mouseleave", stopDraw);
-    canvas.addEventListener("touchstart", startDraw, { passive: false });
-    canvas.addEventListener("touchmove", draw, { passive: false });
-    canvas.addEventListener("touchend", stopDraw, { passive: false });
 
 
     brushWidthInput.addEventListener("input", () => {
@@ -880,10 +825,6 @@ function setupSignaturePad() {
     signatureCanvas.addEventListener("mousemove", sigMove);
     signatureCanvas.addEventListener("mouseup", sigEnd);
     signatureCanvas.addEventListener("mouseleave", sigEnd);
-
-    signatureCanvas.addEventListener("touchstart", sigStart, { passive: false });
-    signatureCanvas.addEventListener("touchmove", sigMove, { passive: false });
-    signatureCanvas.addEventListener("touchend", sigEnd, { passive: false });
 
     clearSigBtn.addEventListener("click", () => {
         playSfx('click');

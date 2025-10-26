@@ -394,8 +394,6 @@ function setupRoundUI() {
         canvas.height = rect.height * dpr;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
-
-    if (window.debugGridOverlay) debugGridOverlay();
 };
 
 
@@ -459,7 +457,6 @@ function handleDprChange() {
 
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, rect.width, rect.height);
-    if (window.debugGridOverlay) debugGridOverlay();
   }
 }
 

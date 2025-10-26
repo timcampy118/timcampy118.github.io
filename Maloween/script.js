@@ -209,101 +209,100 @@ function updateLogoPreview() {
 
 
 function enableImageColorPicker() {
-  const logoImgEl = logoPreview.querySelector("img");
-  if (!logoImgEl) return;
+    const logoImgEl = logoPreview.querySelector("img");
+    if (!logoImgEl) return;
 
-  logoImgEl.crossOrigin = "anonymous";
-  logoImgEl.onclick = null;
+    logoImgEl.crossOrigin = "anonymous";
+    logoImgEl.onclick = null;
 
-  logoImgEl.addEventListener("contextmenu", e => e.preventDefault());
+    logoImgEl.addEventListener("contextmenu", e => e.preventDefault());
 
-  let preview = document.querySelector(".color-preview");
-  if (!preview) {
-    preview = document.createElement("div");
-    preview.className = "color-preview";
-    document.body.appendChild(preview);
-  }
+    let preview = document.querySelector(".color-preview");
+    if (!preview) {
+        preview = document.createElement("div");
+        preview.className = "color-preview";
+        document.body.appendChild(preview);
+    }
 
-  const getDrawnBox = () => {
-    const rect = logoImgEl.getBoundingClientRect();
-    const iw = logoImgEl.naturalWidth || logoImgEl.width;
-    const ih = logoImgEl.naturalHeight || logoImgEl.height;
-    const ir = iw / ih;
-    const er = rect.width / rect.height;
-    let drawW, drawH;
-    if (ir > er) { drawW = rect.width; drawH = rect.width / ir; }
-    else { drawH = rect.height; drawW = rect.height * ir; }
-    const offsetX = (rect.width - drawW) / 2;
-    const offsetY = (rect.height - drawH) / 2;
-    return { rect, iw, ih, drawW, drawH, offsetX, offsetY };
-  };
+    const getDrawnBox = () => {
+        const rect = logoImgEl.getBoundingClientRect();
+        const iw = logoImgEl.naturalWidth || logoImgEl.width;
+        const ih = logoImgEl.naturalHeight || logoImgEl.height;
+        const ir = iw / ih;
+        const er = rect.width / rect.height;
+        let drawW, drawH;
+        if (ir > er) { drawW = rect.width; drawH = rect.width / ir; }
+        else { drawH = rect.height; drawW = rect.height * ir; }
+        const offsetX = (rect.width - drawW) / 2;
+        const offsetY = (rect.height - drawH) / 2;
+        return { rect, iw, ih, drawW, drawH, offsetX, offsetY };
+    };
 
-  const getPixelColor = (clientX, clientY) => {
-    const { rect, iw, ih, drawW, drawH, offsetX, offsetY } = getDrawnBox();
-    const lx = clientX - rect.left - offsetX;
-    const ly = clientY - rect.top - offsetY;
-    if (lx < 0 || ly < 0 || lx >= drawW || ly >= drawH) return null;
-    const scaleX = iw / drawW;
-    const scaleY = ih / drawH;
-    const x = Math.floor(lx * scaleX);
-    const y = Math.floor(ly * scaleY);
-    const sampleCanvas = document.createElement("canvas");
-    const ctxSampler = sampleCanvas.getContext("2d", { willReadFrequently: true });
-    sampleCanvas.width = iw;
-    sampleCanvas.height = ih;
-    try {
-      ctxSampler.drawImage(logoImgEl, 0, 0, iw, ih);
-      const pixel = ctxSampler.getImageData(x, y, 1, 1).data;
-      return rgbToHex(pixel[0], pixel[1], pixel[2]);
-    } catch { return null; }
-  };
+    const getPixelColor = (clientX, clientY) => {
+        const { rect, iw, ih, drawW, drawH, offsetX, offsetY } = getDrawnBox();
+        const lx = clientX - rect.left - offsetX;
+        const ly = clientY - rect.top - offsetY;
+        if (lx < 0 || ly < 0 || lx >= drawW || ly >= drawH) return null;
+        const scaleX = iw / drawW;
+        const scaleY = ih / drawH;
+        const x = Math.floor(lx * scaleX);
+        const y = Math.floor(ly * scaleY);
+        const sampleCanvas = document.createElement("canvas");
+        const ctxSampler = sampleCanvas.getContext("2d", { willReadFrequently: true });
+        sampleCanvas.width = iw;
+        sampleCanvas.height = ih;
+        try {
+            ctxSampler.drawImage(logoImgEl, 0, 0, iw, ih);
+            const pixel = ctxSampler.getImageData(x, y, 1, 1).data;
+            return rgbToHex(pixel[0], pixel[1], pixel[2]);
+        } catch { return null; }
+    };
 
     let ctrlPressed = false;
     window.addEventListener("keydown", e => { if (e.key === "Control") ctrlPressed = true; });
     window.addEventListener("keyup", e => {
-      if (e.key === "Control") { ctrlPressed = false; preview.style.display = "none"; }
+        if (e.key === "Control") { ctrlPressed = false; preview.style.display = "none"; }
     });
 
     logoImgEl.addEventListener("mousemove", e => {
-      if (!ctrlPressed) { preview.style.display = "none"; return; }
-      const color = getPixelColor(e.clientX, e.clientY);
-      if (!color) { preview.style.display = "none"; return; }
-      preview.style.background = color;
-      preview.style.left = e.clientX + 20 + "px";
-      preview.style.top  = e.clientY + 20 + "px";
-      preview.style.display = "block";
+        if (!ctrlPressed) { preview.style.display = "none"; return; }
+        const color = getPixelColor(e.clientX, e.clientY);
+        if (!color) { preview.style.display = "none"; return; }
+        preview.style.background = color;
+        preview.style.left = e.clientX + 20 + "px";
+        preview.style.top  = e.clientY + 20 + "px";
+        preview.style.display = "block";
     });
 
     logoImgEl.addEventListener("mouseleave", () => preview.style.display = "none");
     logoImgEl.addEventListener("click", (e) => {
-    if (!ctrlPressed && !('ontouchstart' in window)) return; // keep desktop ctrl behavior
+        if (!ctrlPressed && !('ontouchstart' in window)) return;
 
-    const hex = getPixelColor(e.clientX, e.clientY);
-    if (!hex) return;
+        const hex = getPixelColor(e.clientX, e.clientY);
+        if (!hex) return;
 
-    setBrushColor(hex);
-    if (window.pickr) pickr.setColor(hex);
-    playSfx("woosh");
-    preview.style.display = "none";
+        setBrushColor(hex);
+        if (window.pickr) pickr.setColor(hex);
+        playSfx("woosh");
+        preview.style.display = "none";
 
-    // 🔹 Remove active highlight from all swatches
-    document.querySelectorAll("#colorPicker .color.active").forEach(btn => {
-    btn.classList.remove("active");
+        document.querySelectorAll("#colorPicker .color.active").forEach(btn => {
+            btn.classList.remove("active");
+        });
     });
-    });
-    }
+}
 
 function showEyedropperHint() {
-  let hint = document.querySelector(".eyedropper-hint");
-  if (!hint) {
-    hint = document.createElement("div");
-    hint.className = "eyedropper-hint";
-    document.body.appendChild(hint);
-  }
-  hint.textContent = "Hold CTRL to pick colors from the picture";
-  hint.classList.add("visible");
-  clearTimeout(hint._hideTimer);
-  hint._hideTimer = setTimeout(() => hint.classList.remove("visible"), 5000);
+    let hint = document.querySelector(".eyedropper-hint");
+    if (!hint) {
+        hint = document.createElement("div");
+        hint.className = "eyedropper-hint";
+        document.body.appendChild(hint);
+    }
+    hint.textContent = "Hold CTRL to pick colors from the picture";
+    hint.classList.add("visible");
+    clearTimeout(hint._hideTimer);
+    hint._hideTimer = setTimeout(() => hint.classList.remove("visible"), 5000);
 }
 
 
@@ -327,44 +326,44 @@ function setupRoundUI() {
     updateCanvasLayout();
     syncCanvasAndLogoSize();
 
-   logoImg.onload = () => {
-      const w = logoImg.naturalWidth;
-      const h = logoImg.naturalHeight;
-      roundDims[current] = { w, h };
+    logoImg.onload = () => {
+        const w = logoImg.naturalWidth;
+        const h = logoImg.naturalHeight;
+        roundDims[current] = { w, h };
 
-      const maxW = Math.min(window.innerWidth - 40, w);
-      const scale = maxW / w;
-      currentScale = scale;
+        const maxW = Math.min(window.innerWidth - 40, w);
+        const scale = maxW / w;
+        currentScale = scale;
 
-      canvas.width = w * scale * dpr;
-      canvas.height = h * scale * dpr;
+        canvas.width = w * scale * dpr;
+        canvas.height = h * scale * dpr;
 
-      canvas.style.width = maxW + "px";
-      canvas.style.height = h * scale + "px";
+        canvas.style.width = maxW + "px";
+        canvas.style.height = h * scale + "px";
 
-      ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
+        ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
 
-      logoPreview.style.width = maxW + "px";
-      logoPreview.style.height = h * scale + "px";
+        logoPreview.style.width = maxW + "px";
+        logoPreview.style.height = h * scale + "px";
 
-      ctx.fillStyle = selectedPrompts[current].bg;
-      ctx.fillRect(0, 0, w, h);
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.strokeStyle = brushColor;
-      ctx.lineWidth = Number(brushWidthInput.value);
-      brushSize = Number(brushWidthInput.value);
+        ctx.fillStyle = selectedPrompts[current].bg;
+        ctx.fillRect(0, 0, w, h);
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.strokeStyle = brushColor;
+        ctx.lineWidth = Number(brushWidthInput.value);
+        brushSize = Number(brushWidthInput.value);
 
-      if (results[current] && results[current].drawing) {
-        restoreDrawing(results[current].drawing, w, h);
-      }
+        if (results[current] && results[current].drawing) {
+            restoreDrawing(results[current].drawing, w, h);
+        }
 
-      buildPalette(prompt.palette);
-      nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
-      backBtn.disabled = current === 0;
-      updateCanvasLayout();
+        buildPalette(prompt.palette);
+        nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
+        backBtn.disabled = current === 0;
+        updateCanvasLayout();
 
-      if (window.debugGridOverlay) debugGridOverlay();
+        if (window.debugGridOverlay) debugGridOverlay();
     };
 
 
@@ -519,13 +518,13 @@ function buildPalette(palette) {
         button.style.background = hex;
     });
     pickr.on('hide', (instance) => {
-      const currentColor = pickr.getColor()?.toHEXA().toString() || brushColor;
-      const button = pickr.getRoot().button;
+        const currentColor = pickr.getColor()?.toHEXA().toString() || brushColor;
+        const button = pickr.getRoot().button;
 
-      button.style.background = currentColor;
-      button.style.borderRadius = '50%';
-      const indicator = document.getElementById('currentColorIndicator');
-      if (indicator) indicator.style.background = currentColor;
+        button.style.background = currentColor;
+        button.style.borderRadius = '50%';
+        const indicator = document.getElementById('currentColorIndicator');
+        if (indicator) indicator.style.background = currentColor;
     });
 
 
@@ -646,10 +645,19 @@ let drawEventsInitialized = false;
 function setupDrawEvents() {
     if (drawEventsInitialized) return;
     drawEventsInitialized = true;
+
+    document.body.addEventListener('touchmove', e => {
+        if (e.target === canvas) e.preventDefault();
+    }, { passive: false });
+
     canvas.addEventListener("mousedown", startDraw);
     canvas.addEventListener("mousemove", draw);
     canvas.addEventListener("mouseup", stopDraw);
     canvas.addEventListener("mouseleave", stopDraw);
+
+    canvas.addEventListener("touchstart", startDraw, { passive: false });
+    canvas.addEventListener("touchmove", draw, { passive: false });
+    canvas.addEventListener("touchend", stopDraw, { passive: false });
 
 
     brushWidthInput.addEventListener("input", () => {
@@ -785,17 +793,17 @@ function handleReroll() {
 }
 
 function getCanvasPos(e, targetCanvas) {
-  const rect = targetCanvas.getBoundingClientRect();
-  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const rect = targetCanvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-  const scaleX = targetCanvas.width / rect.width;
-  const scaleY = targetCanvas.height / rect.height;
+    const scaleX = targetCanvas.width / rect.width;
+    const scaleY = targetCanvas.height / rect.height;
 
-  return {
-    x: (clientX - rect.left) * scaleX,
-    y: (clientY - rect.top) * scaleY
-  };
+    return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+    };
 }
 function stopDraw(){ drawing = false; }
 function clearCanvas() {
@@ -863,6 +871,9 @@ function setupSignaturePad() {
     signatureCanvas.addEventListener("mousemove", sigMove);
     signatureCanvas.addEventListener("mouseup", sigEnd);
     signatureCanvas.addEventListener("mouseleave", sigEnd);
+    signatureCanvas.addEventListener("touchstart", sigStart, { passive: false });
+    signatureCanvas.addEventListener("touchmove", sigMove, { passive: false });
+    signatureCanvas.addEventListener("touchend", sigEnd, { passive: false });
 
     clearSigBtn.addEventListener("click", () => {
         playSfx('click');

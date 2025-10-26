@@ -158,7 +158,6 @@ window.addEventListener("load", () => {
     setupSignaturePad();
     setupRoundUI();
     setupDrawEvents();
-    debugGridOverlay();
 });
 function syncCanvasAndLogoSize() {
     if (!logoPreview) return;
@@ -327,44 +326,79 @@ function setupRoundUI() {
     syncCanvasAndLogoSize();
 
     logoImg.onload = () => {
-        const w = logoImg.naturalWidth;
-        const h = logoImg.naturalHeight;
-        roundDims[current] = { w, h };
+    const w = logoImg.naturalWidth;
+    const h = logoImg.naturalHeight;
+    roundDims[current] = { w, h };
 
-        const maxW = Math.min(window.innerWidth - 40, w);
-        const scale = maxW / w;
-        currentScale = scale;
+    const maxW = Math.min(window.innerWidth - 40, w);
+    const scale = maxW / w;
+    currentScale = scale;
 
-        canvas.width = w * scale * dpr;
-        canvas.height = h * scale * dpr;
+    const displayWidth = maxW;
+    const displayHeight = h * scale;
 
-        canvas.style.width = maxW + "px";
-        canvas.style.height = h * scale + "px";
+    const internalWidth = displayWidth * dpr;
+    const internalHeight = displayHeight * dpr;
 
-        ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
+    canvas.width = internalWidth;
+    canvas.height = internalHeight;
+    canvas.style.width = `${displayWidth}px`;
+    canvas.style.height = `${displayHeight}px`;
 
-        logoPreview.style.width = maxW + "px";
-        logoPreview.style.height = h * scale + "px";
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-        ctx.fillStyle = selectedPrompts[current].bg;
-        ctx.fillRect(0, 0, w, h);
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.strokeStyle = brushColor;
-        ctx.lineWidth = Number(brushWidthInput.value);
-        brushSize = Number(brushWidthInput.value);
+    logoPreview.style.width = `${displayWidth}px`;
+    logoPreview.style.height = `${displayHeight}px`;
 
-        if (results[current] && results[current].drawing) {
-            restoreDrawing(results[current].drawing, w, h);
-        }
+    ctx.fillStyle = selectedPrompts[current].bg;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = brushColor;
+    ctx.lineWidth = Number(brushWidthInput.value) * dpr;
+    brushSize = Number(brushWidthInput.value);
 
-        buildPalette(prompt.palette);
-        nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
-        backBtn.disabled = current === 0;
-        updateCanvasLayout();
+    if (results[current] && results[current].drawing) {
+        restoreDrawing(results[current].drawing, w, h);
+    }
 
-        if (window.debugGridOverlay) debugGridOverlay();
-    };
+    buildPalette(prompt.palette);
+    nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
+    backBtn.disabled = current === 0;
+    updateCanvasLayout();
+
+    const rect = canvas.getBoundingClientRect();
+    const ratioX = canvas.width / rect.width;
+    const ratioY = canvas.height / rect.height;
+    console.table({
+        displayWidth,
+        displayHeight,
+        internalWidth: canvas.width,
+        internalHeight: canvas.height,
+        rectWidth: rect.width,
+        rectHeight: rect.height,
+        ratioX,
+        ratioY,
+        devicePixelRatio: dpr,
+        currentScale
+    });
+
+    if (
+        Math.abs(ratioX - dpr) > 0.05 ||
+        Math.abs(ratioY - dpr) > 0.05
+    ) {
+        console.warn(
+            "⚠️ Canvas scaling mismatch detected. Correcting alignment..."
+        );
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+    if (window.debugGridOverlay) debugGridOverlay();
+};
+
+
 
 
 
@@ -408,6 +442,31 @@ function drawContain(ctx, img, x, y, w, h) {
 window.addEventListener("beforeunload", () => {
     saveCurrentRound();
 });
+
+let lastDpr = dpr;
+
+function handleDprChange() {
+  const newDpr = window.devicePixelRatio;
+  if (Math.abs(newDpr - lastDpr) > 0.01) {
+    console.log(`[Canvas] DPR changed from ${lastDpr} → ${newDpr}, resyncing...`);
+    lastDpr = newDpr;
+    dpr = newDpr;
+
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * newDpr;
+    canvas.height = rect.height * newDpr;
+    ctx.setTransform(currentScale * newDpr, 0, 0, currentScale * newDpr, 0, 0);
+
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    if (window.debugGridOverlay) debugGridOverlay();
+  }
+}
+
+setInterval(() => {
+  if (window.devicePixelRatio !== lastDpr) handleDprChange();
+}, 500);
+
 
 //DEBUG STUFF HERE
 /*canvas.addEventListener("mousemove", e => {
@@ -719,18 +778,22 @@ function setupDrawEvents() {
     });
 
     const fillToggle = document.getElementById("fillToggle");
-    fillToggle.addEventListener("click", () => {
-        fillMode = !fillMode;
-        canvas.style.cursor = fillMode ? "cell" : "crosshair";
-        fillToggle.classList.toggle("active", fillMode);
-        playSfx("click");
-    });
+    if(fillToggle){
+        fillToggle.addEventListener("click", () => {
+            fillMode = !fillMode;
+            canvas.style.cursor = fillMode ? "cell" : "crosshair";
+            fillToggle.classList.toggle("active", fillMode);
+            playSfx("click");
+        });
+    }
 }
 function startDraw(e) {
     e.preventDefault();
     const p = getCanvasPos(e, canvas);
     if (fillMode) {
-        floodFill(p.x, p.y, brushColor);
+        const px = Math.floor(p.x);
+        const py = Math.floor(p.y);
+        floodFill(px, py, brushColor);
         playSfx("woosh");
         return;
     }
@@ -740,6 +803,7 @@ function startDraw(e) {
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
 }
+
 function draw(e) {
     if (!drawing) return;
     e.preventDefault();
@@ -797,12 +861,15 @@ function getCanvasPos(e, targetCanvas) {
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-    const scaleX = targetCanvas.width / rect.width;
-    const scaleY = targetCanvas.height / rect.height;
+    const px = (clientX - rect.left) * window.devicePixelRatio;
+    const py = (clientY - rect.top) * window.devicePixelRatio;
+
+    const scaleX = targetCanvas.width / (rect.width * window.devicePixelRatio);
+    const scaleY = targetCanvas.height / (rect.height * window.devicePixelRatio);
 
     return {
-        x: (clientX - rect.left) * scaleX,
-        y: (clientY - rect.top) * scaleY
+        x: px * scaleX,
+        y: py * scaleY
     };
 }
 function stopDraw(){ drawing = false; }
@@ -810,10 +877,8 @@ function clearCanvas() {
     const dims = roundDims[current] || { w: canvas.width / dpr, h: canvas.height / dpr };
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.setTransform(currentScale * dpr, 0, 0, currentScale * dpr, 0, 0);
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, dims.w, dims.h);
-    if (window.debugGridOverlay) debugGridOverlay();
 }
 function snapshotCanvasDataURL(){ return canvas.toDataURL("image/png"); }
 function restoreDrawing(dataURL, w, h){

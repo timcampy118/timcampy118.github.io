@@ -158,6 +158,7 @@ window.addEventListener("load", () => {
     setupSignaturePad();
     setupRoundUI();
     setupDrawEvents();
+    debugGridOverlay();
 });
 function syncCanvasAndLogoSize() {
     if (!logoPreview) return;
@@ -326,42 +327,46 @@ function setupRoundUI() {
     updateCanvasLayout();
     syncCanvasAndLogoSize();
 
-    logoImg.onload = () => {
-        const w = logoImg.naturalWidth;
-        const h = logoImg.naturalHeight;
-        roundDims[current] = { w, h };
+   logoImg.onload = () => {
+      const w = logoImg.naturalWidth;
+      const h = logoImg.naturalHeight;
+      roundDims[current] = { w, h };
 
-        const maxW = Math.min(window.innerWidth - 40, w);
-        const scale = maxW / w;
-        currentScale = scale;
-        canvas.width = w * scale * dpr;
-        canvas.height = h * scale * dpr;
-        canvas.style.width = maxW + "px";
-        canvas.style.height = h * scale + "px";
-        ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
+      const maxW = Math.min(window.innerWidth - 40, w);
+      const scale = maxW / w;
+      currentScale = scale;
 
-        logoPreview.style.width = maxW + "px";
-        logoPreview.style.height = h * scale + "px";
+      canvas.width = w * scale * dpr;
+      canvas.height = h * scale * dpr;
 
-        ctx.fillStyle = selectedPrompts[current].bg;
-        ctx.fillRect(0, 0, w, h);
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.strokeStyle = brushColor;
+      canvas.style.width = maxW + "px";
+      canvas.style.height = h * scale + "px";
 
-        ctx.lineWidth = Number(brushWidthInput.value);
-        brushSize = Number(brushWidthInput.value);
+      ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
 
+      logoPreview.style.width = maxW + "px";
+      logoPreview.style.height = h * scale + "px";
 
-        if (results[current] && results[current].drawing) {
-            restoreDrawing(results[current].drawing, w, h);
-        }
+      ctx.fillStyle = selectedPrompts[current].bg;
+      ctx.fillRect(0, 0, w, h);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = brushColor;
+      ctx.lineWidth = Number(brushWidthInput.value);
+      brushSize = Number(brushWidthInput.value);
 
-        buildPalette(prompt.palette);
-        nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
-        backBtn.disabled = current === 0;
-        updateCanvasLayout();
+      if (results[current] && results[current].drawing) {
+        restoreDrawing(results[current].drawing, w, h);
+      }
+
+      buildPalette(prompt.palette);
+      nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
+      backBtn.disabled = current === 0;
+      updateCanvasLayout();
+
+      if (window.debugGridOverlay) debugGridOverlay();
     };
+
 
 
     currentNum.textContent = current+1;
@@ -404,6 +409,38 @@ function drawContain(ctx, img, x, y, w, h) {
 window.addEventListener("beforeunload", () => {
     saveCurrentRound();
 });
+
+//DEBUG STUFF HERE
+/*canvas.addEventListener("mousemove", e => {
+  const p = getCanvasPos(e, canvas);
+  const ctx = canvas.getContext("2d");
+  ctx.save();
+  ctx.fillStyle = "red";
+  ctx.fillRect(p.x, p.y, 2, 2);
+  ctx.restore();
+});
+
+window.debugGridOverlay = function() {
+  const ctx = canvas.getContext("2d");
+  const step = 40;
+  ctx.save();
+  ctx.strokeStyle = "rgba(0,0,0,0.2)";
+  ctx.lineWidth = 1 / dpr;
+  for (let x = 0; x < canvas.width; x += step * dpr) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.stroke();
+  }
+  for (let y = 0; y < canvas.height; y += step * dpr) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.stroke();
+  }
+  ctx.restore();
+};
+*/
 
 /***************
  * PALETTE + CUSTOM COLOR (Pickr)
@@ -768,6 +805,7 @@ function clearCanvas() {
     ctx.setTransform(currentScale * dpr, 0, 0, currentScale * dpr, 0, 0);
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, dims.w, dims.h);
+    if (window.debugGridOverlay) debugGridOverlay();
 }
 function snapshotCanvasDataURL(){ return canvas.toDataURL("image/png"); }
 function restoreDrawing(dataURL, w, h){

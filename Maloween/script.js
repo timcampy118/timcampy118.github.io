@@ -73,15 +73,41 @@ window.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector(".canvas-container");
     if (container) container.appendChild(logoPreview);
 });
-for (const p of prompts || []) {
+for (const p of (prompts || [])) {
     if (p && !seenNames.has(p.name)) {
         seenNames.add(p.name);
         uniquePrompts.push(p);
     }
 }
-const shuffled = uniquePrompts.sort(() => Math.random() - 0.5);
-const selectedPrompts = shuffled.slice(0, TOTAL_ROUNDS);
-let remainingPrompts = shuffled.slice(TOTAL_ROUNDS);
+let selectedPrompts = [];
+let remainingPrompts = [];
+
+const savedOrder = localStorage.getItem("promptOrder");
+
+if (savedOrder) {
+    const savedNames = JSON.parse(savedOrder);
+    const matched = savedNames
+        .map(name => uniquePrompts.find(p => p.name === name))
+        .filter(Boolean);
+
+    if (matched.length === 0) {
+        console.warn("[Restore] Saved prompt order invalid — regenerating.");
+    } else {
+        selectedPrompts = matched.slice(0, TOTAL_ROUNDS);
+        const chosenSet = new Set(selectedPrompts.map(p => p.name));
+        remainingPrompts = uniquePrompts.filter(p => !chosenSet.has(p.name));
+        console.log(`[Restore] Restored ${selectedPrompts.length} prompts.`);
+    }
+}
+
+if (selectedPrompts.length === 0) {
+    const indices = uniquePrompts.map((_, i) => i);
+    indices.sort(() => Math.random() - 0.5);
+    selectedPrompts = indices.slice(0, TOTAL_ROUNDS).map(i => uniquePrompts[i]);
+    remainingPrompts = uniquePrompts.filter((_, i) => !indices.slice(0, TOTAL_ROUNDS).includes(i));
+    localStorage.setItem("promptOrder", JSON.stringify(selectedPrompts.map(p => p.name)));
+    console.log("[Init] Generated new random prompt order.");
+}
 const globalPalette = [
     "#000000", "#1e40af", "#4f46e5", "#22c55e", "#ef4444", "#ffffff"
 ];
@@ -314,9 +340,21 @@ function rgbToHex(r, g, b) {
 
 function setupRoundUI() {
     const prompt = selectedPrompts[current];
+    if (!prompt) {
+        console.warn(`[setupRoundUI] Missing prompt for round ${current}`);
+        return;
+    }
 
     logoLabel.textContent = prompt.prompt;
-    clearCanvas();
+
+    const promptKey = `drawing_${prompt.name || current}`;
+    const hasSaved = !!localStorage.getItem(promptKey);
+    if (!hasSaved) {
+        clearCanvas();
+        console.log(`[Setup] Cleared canvas for new round: ${promptKey}`);
+    } else {
+        console.log(`[Setup] Found existing save for ${promptKey}, will restore.`);
+    }
 
     rerolledThisRound = false;
     if (rerollBtn) rerollBtn.disabled = false;
@@ -349,9 +387,11 @@ function setupRoundUI() {
 
         logoPreview.style.width = `${displayWidth}px`;
         logoPreview.style.height = `${displayHeight}px`;
+        if (!hasSaved) {
+            ctx.fillStyle = selectedPrompts[current].bg || "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
 
-        ctx.fillStyle = selectedPrompts[current].bg;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         ctx.strokeStyle = brushColor;
@@ -378,9 +418,7 @@ function setupRoundUI() {
             ctx.setTransform(1, 0, 0, 1, 0, 0);
         }
         setTimeout(() => {
-            const promptKey = `drawing_${prompt.name || current}`;
             const savedData = localStorage.getItem(promptKey);
-
             if (savedData) {
                 const img = new Image();
                 img.onload = () => {
@@ -398,6 +436,7 @@ function setupRoundUI() {
     logoImg.src = selectedPrompts[current].src;
 }
 
+
 function saveCurrentRound() {
     const drawingURL = canvas.toDataURL("image/png");
     results[current] = {
@@ -408,10 +447,10 @@ function saveCurrentRound() {
 function saveDrawingToLocal() {
     try {
         const prompt = selectedPrompts[current];
-        const key = `drawing_${prompt.name || current}`;
+        const key = `drawing_${prompt.name}`;
         const dataURL = canvas.toDataURL("image/png");
         localStorage.setItem(key, dataURL);
-        console.log(`[Persist] Saved drawing for ${key}`);
+        console.log(`[Persist] Saved drawing for ${key}, size = ${Math.round(dataURL.length / 1024)} KB`);
     } catch (err) {
         console.warn("⚠️ Failed to save drawing to localStorage:", err);
     }
@@ -897,7 +936,9 @@ function clearCanvas() {
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, dims.w, dims.h);
     const prompt = selectedPrompts[current];
-    localStorage.removeItem(`drawing_${prompt.name || current}`);
+    const key = `drawing_${prompt.name}`;
+    localStorage.removeItem(key);
+    console.log(`[Clear] Removed saved drawing for ${key}`);
 }
 function snapshotCanvasDataURL(){ return canvas.toDataURL("image/png"); }
 function restoreDrawing(dataURL, w, h){
@@ -1015,6 +1056,7 @@ function buildComparisonRowFromDataURL(dataURL, logoImage, dims){
 function handleNextClick(){
     playSfx('click');
     saveCurrentRound();
+    saveDrawingToLocal();
 
     if (current === TOTAL_ROUNDS - 1) {
         openFinishModal();
@@ -1023,9 +1065,11 @@ function handleNextClick(){
         setupRoundUI();
     }
 }
+
 function handleBack(){
     if (current === 0) return;
     saveCurrentRound();
+    saveDrawingToLocal();
     current--;
     setupRoundUI();
 }
@@ -1186,5 +1230,4 @@ async function showFinalComposite() {
         link.download = "DrawnFromTheDead.png";
         link.click();
     }, 80);
-
 }

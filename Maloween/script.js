@@ -326,90 +326,77 @@ function setupRoundUI() {
     syncCanvasAndLogoSize();
 
     logoImg.onload = () => {
-    const w = logoImg.naturalWidth;
-    const h = logoImg.naturalHeight;
-    roundDims[current] = { w, h };
+        const w = logoImg.naturalWidth;
+        const h = logoImg.naturalHeight;
+        roundDims[current] = { w, h };
 
-    const maxW = Math.min(window.innerWidth - 40, w);
-    const scale = maxW / w;
-    currentScale = scale;
+        const maxW = Math.min(window.innerWidth - 40, w);
+        const scale = maxW / w;
+        currentScale = scale;
 
-    const displayWidth = maxW;
-    const displayHeight = h * scale;
+        const displayWidth = maxW;
+        const displayHeight = h * scale;
 
-    const internalWidth = displayWidth * dpr;
-    const internalHeight = displayHeight * dpr;
+        const internalWidth = displayWidth * dpr;
+        const internalHeight = displayHeight * dpr;
 
-    canvas.width = internalWidth;
-    canvas.height = internalHeight;
-    canvas.style.width = `${displayWidth}px`;
-    canvas.style.height = `${displayHeight}px`;
+        canvas.width = internalWidth;
+        canvas.height = internalHeight;
+        canvas.style.width = `${displayWidth}px`;
+        canvas.style.height = `${displayHeight}px`;
 
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-    logoPreview.style.width = `${displayWidth}px`;
-    logoPreview.style.height = `${displayHeight}px`;
-
-    ctx.fillStyle = selectedPrompts[current].bg;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.strokeStyle = brushColor;
-    ctx.lineWidth = Number(brushWidthInput.value) * dpr;
-    brushSize = Number(brushWidthInput.value);
-
-    if (results[current] && results[current].drawing) {
-        restoreDrawing(results[current].drawing, w, h);
-    }
-
-    buildPalette(prompt.palette);
-    nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
-    backBtn.disabled = current === 0;
-    updateCanvasLayout();
-
-    const rect = canvas.getBoundingClientRect();
-    const ratioX = canvas.width / rect.width;
-    const ratioY = canvas.height / rect.height;
-    /*console.table({
-        displayWidth,
-        displayHeight,
-        internalWidth: canvas.width,
-        internalHeight: canvas.height,
-        rectWidth: rect.width,
-        rectHeight: rect.height,
-        ratioX,
-        ratioY,
-        devicePixelRatio: dpr,
-        currentScale
-    });*/
-
-    if (
-        Math.abs(ratioX - dpr) > 0.05 ||
-        Math.abs(ratioY - dpr) > 0.05
-    ) {
-        console.warn(
-            "⚠️ Canvas scaling mismatch detected. Correcting alignment..."
-        );
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
-    }
-    const savedKey = `drawing_round_${current}`;
-    const savedData = localStorage.getItem(savedKey);
-    if (savedData) {
-        const img = new Image();
-        img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        img.src = savedData;
-    }
-};
 
+        logoPreview.style.width = `${displayWidth}px`;
+        logoPreview.style.height = `${displayHeight}px`;
 
+        ctx.fillStyle = selectedPrompts[current].bg;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.strokeStyle = brushColor;
+        ctx.lineWidth = Number(brushWidthInput.value) * dpr;
+        brushSize = Number(brushWidthInput.value);
 
+        if (results[current] && results[current].drawing) {
+            restoreDrawing(results[current].drawing, w, h);
+        }
 
+        buildPalette(prompt.palette);
+        nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
+        backBtn.disabled = current === 0;
+        updateCanvasLayout();
 
-    currentNum.textContent = current+1;
+        const rect = canvas.getBoundingClientRect();
+        const ratioX = canvas.width / rect.width;
+        const ratioY = canvas.height / rect.height;
+
+        if (Math.abs(ratioX - dpr) > 0.05 || Math.abs(ratioY - dpr) > 0.05) {
+            console.warn("⚠️ Canvas scaling mismatch detected. Correcting alignment...");
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+        }
+        setTimeout(() => {
+            const savedKey = `drawing_round_${current}`;
+            const savedData = localStorage.getItem(savedKey);
+            if (savedData) {
+                const img = new Image();
+                img.onload = () => {
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    console.log(`[Restore] Loaded saved drawing for round ${current}`);
+                };
+                img.src = savedData;
+            } else {
+                console.log(`[Restore] No saved drawing found for round ${current}`);
+            }
+        }, 50);
+    };
+
+    currentNum.textContent = current + 1;
     logoImg.src = selectedPrompts[current].src;
 }
+
 function saveCurrentRound() {
     const drawingURL = canvas.toDataURL("image/png");
     results[current] = {

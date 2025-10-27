@@ -79,20 +79,8 @@ for (const p of prompts || []) {
         uniquePrompts.push(p);
     }
 }
-let savedOrder = localStorage.getItem("promptOrder");
-let selectedPrompts;
-
-if (savedOrder) {
-    const order = JSON.parse(savedOrder);
-    selectedPrompts = order.map(i => uniquePrompts[i]);
-    console.log("[Restore] Using saved prompt order");
-} else {
-    const indices = uniquePrompts.map((_, i) => i);
-    indices.sort(() => Math.random() - 0.5);
-    selectedPrompts = indices.slice(0, TOTAL_ROUNDS).map(i => uniquePrompts[i]);
-    localStorage.setItem("promptOrder", JSON.stringify(indices.slice(0, TOTAL_ROUNDS)));
-    console.log("[Init] Generated new random prompt order");
-}
+const shuffled = uniquePrompts.sort(() => Math.random() - 0.5);
+const selectedPrompts = shuffled.slice(0, TOTAL_ROUNDS);
 let remainingPrompts = shuffled.slice(TOTAL_ROUNDS);
 const globalPalette = [
     "#000000", "#1e40af", "#4f46e5", "#22c55e", "#ef4444", "#ffffff"

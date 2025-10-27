@@ -73,15 +73,41 @@ window.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector(".canvas-container");
     if (container) container.appendChild(logoPreview);
 });
-for (const p of prompts || []) {
+for (const p of (prompts || [])) {
     if (p && !seenNames.has(p.name)) {
         seenNames.add(p.name);
         uniquePrompts.push(p);
     }
 }
-const shuffled = uniquePrompts.sort(() => Math.random() - 0.5);
-const selectedPrompts = shuffled.slice(0, TOTAL_ROUNDS);
-let remainingPrompts = shuffled.slice(TOTAL_ROUNDS);
+let selectedPrompts = [];
+let remainingPrompts = [];
+
+const savedOrder = localStorage.getItem("promptOrder");
+
+if (savedOrder) {
+    const savedNames = JSON.parse(savedOrder);
+    const matched = savedNames
+        .map(name => uniquePrompts.find(p => p.name === name))
+        .filter(Boolean);
+
+    if (matched.length === 0) {
+        console.warn("[Restore] Saved prompt order invalid — regenerating.");
+    } else {
+        selectedPrompts = matched.slice(0, TOTAL_ROUNDS);
+        const chosenSet = new Set(selectedPrompts.map(p => p.name));
+        remainingPrompts = uniquePrompts.filter(p => !chosenSet.has(p.name));
+        console.log(`[Restore] Restored ${selectedPrompts.length} prompts.`);
+    }
+}
+
+if (selectedPrompts.length === 0) {
+    const indices = uniquePrompts.map((_, i) => i);
+    indices.sort(() => Math.random() - 0.5);
+    selectedPrompts = indices.slice(0, TOTAL_ROUNDS).map(i => uniquePrompts[i]);
+    remainingPrompts = uniquePrompts.filter((_, i) => !indices.slice(0, TOTAL_ROUNDS).includes(i));
+    localStorage.setItem("promptOrder", JSON.stringify(selectedPrompts.map(p => p.name)));
+    console.log("[Init] Generated new random prompt order.");
+}
 const globalPalette = [
     "#000000", "#1e40af", "#4f46e5", "#22c55e", "#ef4444", "#ffffff"
 ];
@@ -215,11 +241,6 @@ function enableImageColorPicker() {
     logoImgEl.onclick = null;
 
     logoImgEl.addEventListener("contextmenu", e => e.preventDefault());
-    logoImgEl.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
-
-      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-      showEyedropperHint(isTouch);
 
     let preview = document.querySelector(".color-preview");
     if (!preview) {
@@ -262,7 +283,6 @@ function enableImageColorPicker() {
         } catch { return null; }
     };
 
-
     let ctrlPressed = false;
     window.addEventListener("keydown", e => { if (e.key === "Control") ctrlPressed = true; });
     window.addEventListener("keyup", e => {
@@ -280,7 +300,6 @@ function enableImageColorPicker() {
     });
 
     logoImgEl.addEventListener("mouseleave", () => preview.style.display = "none");
-
     logoImgEl.addEventListener("click", (e) => {
         if (!ctrlPressed && !('ontouchstart' in window)) return;
 
@@ -296,27 +315,8 @@ function enableImageColorPicker() {
             btn.classList.remove("active");
         });
     });
-    logoImgEl.addEventListener("touchstart", (e) => {
-    if (e.touches.length > 1) return; // ignore multitouch
-    e.preventDefault();
-    const touch = e.touches[0];
-    const hex = getPixelColor(touch.clientX, touch.clientY);
-    if (!hex) return;
-
-    setBrushColor(hex);
-    if (window.pickr) pickr.setColor(hex);
-    playSfx("woosh");
-
-    document.querySelectorAll("#colorPicker .color.active").forEach(btn => {
-        btn.classList.remove("active");
-    });
-    preview.style.background = hex;
-    preview.style.left = touch.clientX + 20 + "px";
-    preview.style.top = touch.clientY + 20 + "px";
-    preview.style.display = "block";
-    setTimeout(() => (preview.style.display = "none"), 800);
-}, { passive: false });
 }
+
 function showEyedropperHint() {
     let hint = document.querySelector(".eyedropper-hint");
     if (!hint) {
@@ -324,10 +324,7 @@ function showEyedropperHint() {
         hint.className = "eyedropper-hint";
         document.body.appendChild(hint);
     }
-    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      hint.textContent = isTouch
-        ? "Touch the picture to pick a color"
-        : "Hold CTRL to pick colors from the picture";
+    hint.textContent = "Hold CTRL to pick colors from the picture";
     hint.classList.add("visible");
     clearTimeout(hint._hideTimer);
     hint._hideTimer = setTimeout(() => hint.classList.remove("visible"), 5000);
@@ -343,9 +340,22 @@ function rgbToHex(r, g, b) {
 
 function setupRoundUI() {
     const prompt = selectedPrompts[current];
+    if (!prompt) {
+        console.warn(`[setupRoundUI] Missing prompt for round ${current}`);
+        return;
+    }
 
     logoLabel.textContent = prompt.prompt;
-    clearCanvas();
+
+    // Check for existing saved drawing before clearing
+    const promptKey = `drawing_${prompt.name || current}`;
+    const hasSaved = !!localStorage.getItem(promptKey);
+    if (!hasSaved) {
+        clearCanvas();
+        console.log(`[Setup] Cleared canvas for new round: ${promptKey}`);
+    } else {
+        console.log(`[Setup] Found existing save for ${promptKey}, will restore.`);
+    }
 
     rerolledThisRound = false;
     if (rerollBtn) rerollBtn.disabled = false;
@@ -355,89 +365,100 @@ function setupRoundUI() {
     syncCanvasAndLogoSize();
 
     logoImg.onload = () => {
-    const w = logoImg.naturalWidth;
-    const h = logoImg.naturalHeight;
-    roundDims[current] = { w, h };
+        const w = logoImg.naturalWidth;
+        const h = logoImg.naturalHeight;
+        roundDims[current] = { w, h };
 
-    const maxW = Math.min(window.innerWidth - 40, w);
-    const scale = maxW / w;
-    currentScale = scale;
+        const maxW = Math.min(window.innerWidth - 40, w);
+        const scale = maxW / w;
+        currentScale = scale;
 
-    const displayWidth = maxW;
-    const displayHeight = h * scale;
+        const displayWidth = maxW;
+        const displayHeight = h * scale;
 
-    const internalWidth = displayWidth * dpr;
-    const internalHeight = displayHeight * dpr;
+        const internalWidth = displayWidth * dpr;
+        const internalHeight = displayHeight * dpr;
 
-    canvas.width = internalWidth;
-    canvas.height = internalHeight;
-    canvas.style.width = `${displayWidth}px`;
-    canvas.style.height = `${displayHeight}px`;
+        canvas.width = internalWidth;
+        canvas.height = internalHeight;
+        canvas.style.width = `${displayWidth}px`;
+        canvas.style.height = `${displayHeight}px`;
 
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-    logoPreview.style.width = `${displayWidth}px`;
-    logoPreview.style.height = `${displayHeight}px`;
-
-    ctx.fillStyle = selectedPrompts[current].bg;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.strokeStyle = brushColor;
-    ctx.lineWidth = Number(brushWidthInput.value) * dpr;
-    brushSize = Number(brushWidthInput.value);
-
-    if (results[current] && results[current].drawing) {
-        restoreDrawing(results[current].drawing, w, h);
-    }
-
-    buildPalette(prompt.palette);
-    nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
-    backBtn.disabled = current === 0;
-    updateCanvasLayout();
-
-    const rect = canvas.getBoundingClientRect();
-    const ratioX = canvas.width / rect.width;
-    const ratioY = canvas.height / rect.height;
-    console.table({
-        displayWidth,
-        displayHeight,
-        internalWidth: canvas.width,
-        internalHeight: canvas.height,
-        rectWidth: rect.width,
-        rectHeight: rect.height,
-        ratioX,
-        ratioY,
-        devicePixelRatio: dpr,
-        currentScale
-    });
-
-    if (
-        Math.abs(ratioX - dpr) > 0.05 ||
-        Math.abs(ratioY - dpr) > 0.05
-    ) {
-        console.warn(
-            "⚠️ Canvas scaling mismatch detected. Correcting alignment..."
-        );
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
-    }
-};
 
+        logoPreview.style.width = `${displayWidth}px`;
+        logoPreview.style.height = `${displayHeight}px`;
 
+        // If no saved image, initialize a blank background
+        if (!hasSaved) {
+            ctx.fillStyle = selectedPrompts[current].bg || "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
 
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.strokeStyle = brushColor;
+        ctx.lineWidth = Number(brushWidthInput.value) * dpr;
+        brushSize = Number(brushWidthInput.value);
 
+        if (results[current] && results[current].drawing) {
+            restoreDrawing(results[current].drawing, w, h);
+        }
 
-    currentNum.textContent = current+1;
+        buildPalette(prompt.palette);
+        nextBtn.textContent = current === TOTAL_ROUNDS - 1 ? "Finish" : "Next";
+        backBtn.disabled = current === 0;
+        updateCanvasLayout();
+
+        const rect = canvas.getBoundingClientRect();
+        const ratioX = canvas.width / rect.width;
+        const ratioY = canvas.height / rect.height;
+
+        if (Math.abs(ratioX - dpr) > 0.05 || Math.abs(ratioY - dpr) > 0.05) {
+            console.warn("⚠️ Canvas scaling mismatch detected. Correcting alignment...");
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+        }
+
+        // Restore saved drawing, if any
+        setTimeout(() => {
+            const savedData = localStorage.getItem(promptKey);
+            if (savedData) {
+                const img = new Image();
+                img.onload = () => {
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    console.log(`[Restore] Loaded saved drawing for ${promptKey}`);
+                };
+                img.src = savedData;
+            } else {
+                console.log(`[Restore] No saved drawing found for ${promptKey}`);
+            }
+        }, 50);
+    };
+
+    currentNum.textContent = current + 1;
     logoImg.src = selectedPrompts[current].src;
 }
+
+
 function saveCurrentRound() {
     const drawingURL = canvas.toDataURL("image/png");
     results[current] = {
         prompt: { ...selectedPrompts[current] },
         drawing: drawingURL
     };
+}
+function saveDrawingToLocal() {
+    try {
+        const prompt = selectedPrompts[current];
+        const key = `drawing_${prompt.name}`;
+        const dataURL = canvas.toDataURL("image/png");
+        localStorage.setItem(key, dataURL);
+        console.log(`[Persist] Saved drawing for ${key}, size = ${Math.round(dataURL.length / 1024)} KB`);
+    } catch (err) {
+        console.warn("⚠️ Failed to save drawing to localStorage:", err);
+    }
 }
 function loadImage(src) {
     return new Promise((res, rej) => {
@@ -467,7 +488,12 @@ function drawContain(ctx, img, x, y, w, h) {
     ctx.drawImage(img, dx, dy, dw, dh);
 }
 window.addEventListener("beforeunload", () => {
-    saveCurrentRound();
+    try {
+        saveCurrentRound();
+        saveDrawingToLocal();
+    } catch (e) {
+        console.warn("⚠️ Auto-save failed:", e);
+    }
 });
 
 let lastDpr = dpr;
@@ -737,12 +763,20 @@ function setupDrawEvents() {
 
     canvas.addEventListener("mousedown", startDraw);
     canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mouseup", stopDraw);
     canvas.addEventListener("mouseleave", stopDraw);
+    canvas.addEventListener("mouseup", (e) => {
+    stopDraw(e);
+    saveDrawingToLocal();
+    });
+
+    canvas.addEventListener("touchend", (e) => {
+        stopDraw(e);
+        saveDrawingToLocal();
+    }, { passive: false });
+
 
     canvas.addEventListener("touchstart", startDraw, { passive: false });
     canvas.addEventListener("touchmove", draw, { passive: false });
-    canvas.addEventListener("touchend", stopDraw, { passive: false });
 
 
     brushWidthInput.addEventListener("input", () => {
@@ -821,6 +855,7 @@ function startDraw(e) {
         const py = Math.floor(p.y);
         floodFill(px, py, brushColor);
         playSfx("woosh");
+        saveDrawingToLocal();
         return;
     }
     drawing = true;
@@ -905,6 +940,10 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, dims.w, dims.h);
+    const prompt = selectedPrompts[current];
+    const key = `drawing_${prompt.name}`;
+    localStorage.removeItem(key);
+    console.log(`[Clear] Removed saved drawing for ${key}`);
 }
 function snapshotCanvasDataURL(){ return canvas.toDataURL("image/png"); }
 function restoreDrawing(dataURL, w, h){
@@ -1022,6 +1061,7 @@ function buildComparisonRowFromDataURL(dataURL, logoImage, dims){
 function handleNextClick(){
     playSfx('click');
     saveCurrentRound();
+    saveDrawingToLocal();
 
     if (current === TOTAL_ROUNDS - 1) {
         openFinishModal();
@@ -1030,9 +1070,11 @@ function handleNextClick(){
         setupRoundUI();
     }
 }
+
 function handleBack(){
     if (current === 0) return;
     saveCurrentRound();
+    saveDrawingToLocal();
     current--;
     setupRoundUI();
 }

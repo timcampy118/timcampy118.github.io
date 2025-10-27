@@ -370,7 +370,7 @@ function setupRoundUI() {
     const rect = canvas.getBoundingClientRect();
     const ratioX = canvas.width / rect.width;
     const ratioY = canvas.height / rect.height;
-    console.table({
+    /*console.table({
         displayWidth,
         displayHeight,
         internalWidth: canvas.width,
@@ -381,7 +381,7 @@ function setupRoundUI() {
         ratioY,
         devicePixelRatio: dpr,
         currentScale
-    });
+    });*/
 
     if (
         Math.abs(ratioX - dpr) > 0.05 ||
@@ -393,6 +393,13 @@ function setupRoundUI() {
         canvas.width = rect.width * dpr;
         canvas.height = rect.height * dpr;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+    const savedKey = `drawing_round_${current}`;
+    const savedData = localStorage.getItem(savedKey);
+    if (savedData) {
+        const img = new Image();
+        img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.src = savedData;
     }
 };
 
@@ -409,6 +416,15 @@ function saveCurrentRound() {
         prompt: { ...selectedPrompts[current] },
         drawing: drawingURL
     };
+}
+function saveDrawingToLocal() {
+    try {
+        const dataURL = canvas.toDataURL("image/png");
+        const key = `drawing_round_${current}`;
+        localStorage.setItem(key, dataURL);
+    } catch (err) {
+        console.warn("⚠️ Failed to save drawing to localStorage:", err);
+    }
 }
 function loadImage(src) {
     return new Promise((res, rej) => {
@@ -438,7 +454,12 @@ function drawContain(ctx, img, x, y, w, h) {
     ctx.drawImage(img, dx, dy, dw, dh);
 }
 window.addEventListener("beforeunload", () => {
-    saveCurrentRound();
+    try {
+        saveCurrentRound();
+        saveDrawingToLocal();
+    } catch (e) {
+        console.warn("⚠️ Auto-save failed:", e);
+    }
 });
 
 let lastDpr = dpr;
@@ -708,12 +729,20 @@ function setupDrawEvents() {
 
     canvas.addEventListener("mousedown", startDraw);
     canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mouseup", stopDraw);
     canvas.addEventListener("mouseleave", stopDraw);
+    canvas.addEventListener("mouseup", (e) => {
+    stopDraw(e);
+    saveDrawingToLocal();
+    });
+
+    canvas.addEventListener("touchend", (e) => {
+        stopDraw(e);
+        saveDrawingToLocal();
+    }, { passive: false });
+
 
     canvas.addEventListener("touchstart", startDraw, { passive: false });
     canvas.addEventListener("touchmove", draw, { passive: false });
-    canvas.addEventListener("touchend", stopDraw, { passive: false });
 
 
     brushWidthInput.addEventListener("input", () => {
@@ -792,6 +821,7 @@ function startDraw(e) {
         const py = Math.floor(p.y);
         floodFill(px, py, brushColor);
         playSfx("woosh");
+        saveDrawingToLocal();
         return;
     }
     drawing = true;
@@ -876,6 +906,8 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, dims.w, dims.h);
+    const key = `drawing_round_${current}`;
+    localStorage.removeItem(key);
 }
 function snapshotCanvasDataURL(){ return canvas.toDataURL("image/png"); }
 function restoreDrawing(dataURL, w, h){

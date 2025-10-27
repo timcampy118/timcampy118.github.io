@@ -79,8 +79,20 @@ for (const p of prompts || []) {
         uniquePrompts.push(p);
     }
 }
-const shuffled = uniquePrompts.sort(() => Math.random() - 0.5);
-const selectedPrompts = shuffled.slice(0, TOTAL_ROUNDS);
+let savedOrder = localStorage.getItem("promptOrder");
+let selectedPrompts;
+
+if (savedOrder) {
+    const order = JSON.parse(savedOrder);
+    selectedPrompts = order.map(i => uniquePrompts[i]);
+    console.log("[Restore] Using saved prompt order");
+} else {
+    const indices = uniquePrompts.map((_, i) => i);
+    indices.sort(() => Math.random() - 0.5);
+    selectedPrompts = indices.slice(0, TOTAL_ROUNDS).map(i => uniquePrompts[i]);
+    localStorage.setItem("promptOrder", JSON.stringify(indices.slice(0, TOTAL_ROUNDS)));
+    console.log("[Init] Generated new random prompt order");
+}
 let remainingPrompts = shuffled.slice(TOTAL_ROUNDS);
 const globalPalette = [
     "#000000", "#1e40af", "#4f46e5", "#22c55e", "#ef4444", "#ffffff"
@@ -378,17 +390,18 @@ function setupRoundUI() {
             ctx.setTransform(1, 0, 0, 1, 0, 0);
         }
         setTimeout(() => {
-            const savedKey = `drawing_round_${current}`;
-            const savedData = localStorage.getItem(savedKey);
+            const promptKey = `drawing_${prompt.name || current}`;
+            const savedData = localStorage.getItem(promptKey);
+
             if (savedData) {
                 const img = new Image();
                 img.onload = () => {
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    console.log(`[Restore] Loaded saved drawing for round ${current}`);
+                    console.log(`[Restore] Loaded saved drawing for ${promptKey}`);
                 };
                 img.src = savedData;
             } else {
-                console.log(`[Restore] No saved drawing found for round ${current}`);
+                console.log(`[Restore] No saved drawing found for ${promptKey}`);
             }
         }, 50);
     };
@@ -406,9 +419,11 @@ function saveCurrentRound() {
 }
 function saveDrawingToLocal() {
     try {
+        const prompt = selectedPrompts[current];
+        const key = `drawing_${prompt.name || current}`;
         const dataURL = canvas.toDataURL("image/png");
-        const key = `drawing_round_${current}`;
         localStorage.setItem(key, dataURL);
+        console.log(`[Persist] Saved drawing for ${key}`);
     } catch (err) {
         console.warn("⚠️ Failed to save drawing to localStorage:", err);
     }
@@ -893,8 +908,8 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, dims.w, dims.h);
-    const key = `drawing_round_${current}`;
-    localStorage.removeItem(key);
+    const prompt = selectedPrompts[current];
+    localStorage.removeItem(`drawing_${prompt.name || current}`);
 }
 function snapshotCanvasDataURL(){ return canvas.toDataURL("image/png"); }
 function restoreDrawing(dataURL, w, h){

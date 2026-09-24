@@ -1,712 +1,2611 @@
-<!--To do: If on green, doesn't remember when changing board. Clear button doesn't remove year color, sometime rows are doubled show listing, screenshot should include whole page -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+ <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anime Checklist</title>
+  <title>Anime Grid Builder</title>
+     <!--I don't know what half of these goes to anymore -->
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #121212;
-      color: #fff;
-      margin: 0;
-      padding: 20px;
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+   }
+   body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #fff;
+    padding: 20px;
+   }
+   h1 {
+    text-align: center;
+    margin: 20px 0 6px;
+    font-weight: 500;
+   }
+   .sub {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+   }
+   .app-container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+   }
+   .menu-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+   }
+   .menu-card {
+    background: #1e1e1e;
+    border: 2px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 24px 28px;
+    width: 100%;
+    max-width: 480px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+   }
+   .menu-card:hover {
+    border-color: #4caf50;
+    background: #252525;
+    transform: translateY(-2px);
+   }
+   .menu-card-icon {
+    font-size: 2.2rem;
+    flex-shrink: 0;
+   }
+   .menu-card-text h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    font-weight: 600;
+   }
+   .menu-card-text p {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.4;
+   }
+   .viewonly-banner {
+    background: #2a2a1e;
+    border-left: 4px solid #ff9800;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.9rem;
+   }
+   .viewonly-banner.visible {
+    display: flex;
+   }
+   .viewonly-banner button {
+    background: transparent;
+    border: 1px solid #ff9800;
+    color: #ff9800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.15s;
+    white-space: nowrap;
+   }
+   .viewonly-banner button:hover {
+    background: #ff9800;
+    color: #111;
+   }
+   .btn {
+    background-color: #2c2c2c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+   }
+   .btn:hover {
+    background-color: #3d3d3d;
+   }
+   .btn-primary {
+    background: #4caf50;
+    border-color: #4caf50;
+   }
+   .btn-primary:hover {
+    background: #66bb6a;
+   }
+   .btn-danger {
+    background: #b71c1c;
+    border-color: #b71c1c;
+   }
+   .btn-danger:hover {
+    background: #d32f2f;
+   }
+   .btn-share {
+    background: #1976d2;
+    border-color: #1976d2;
+   }
+   .btn-share:hover {
+    background: #2196f3;
+   }
+   .btn-capture {
+    background: #7b1fa2;
+    border-color: #7b1fa2;
+   }
+   .btn-capture:hover {
+    background: #9c27b0;
+   }
+   .screen {
+    display: none;
+   }
+   .screen.active {
+    display: block;
+   }
+   .board-title-wrap {
+    max-width: 720px;
+    margin: 0 auto 16px auto;
+    text-align: center;
+   }
+   .board-title-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #2a2a2a;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 4px;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+   }
+   .board-title-input:focus {
+    border-bottom-color: #4caf50;
+   }
+   .board-title-input::placeholder {
+    color: #444;
+    font-style: italic;
+    font-weight: 400;
+   }
+   .language-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    font-size: 0.85rem;
+    color: #aaa;
+   }
+   .language-bar select {
+    background: #2c2c2c;
+    border: 1px solid #3d3d3d;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+   }
+   .create-panel {
+    background: #1e1e1e;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+   }
+   .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+   }
+   .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 140px;
+   }
+   .form-group label {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-weight: 500;
+   }
+   .form-group input,
+   .form-group select {
+    background: #2c2c2c;
+    border: 1px solid #3d3d3d;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+   }
+   .form-group input:focus,
+   .form-group select:focus {
+    border-color: #4caf50;
+   }
+   .create-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+   }
+   .builder-section {
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid #262626;
+    margin-bottom: 16px;
+   }
+   .builder-year-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #2e2e2e;
+   }
+   .builder-year-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4caf50;
+    background: #2a2a2a;
+    padding: 4px 16px;
+    border-radius: 20px;
+   }
+   .builder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+   }
+   .builder-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 700px;
+    margin: 0 auto;
+   }
+   .builder-grid.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+   }
+   .card-base {
+    background: #202020;
+    border-radius: 12px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    min-height: 150px;
+    justify-content: flex-start;
+   }
+   .builder-cell {
+    transition: 0.15s;
+   }
+   .builder-cell:focus-within {
+    border-color: #4caf50;
+    background: #252525;
+    z-index: 10;
+   }
+   .builder-cell img.cover {
+    width: 80px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #2a2a2a;
+    transition: transform 0.2s ease;
+   }
+   .builder-cell .placeholder-cover {
+    width: 80px;
+    height: 110px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+    font-size: 1.4rem;
+   }
+   .builder-cell-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+    word-break: break-word;
+    position: absolute;
+    inset: auto 8px 8px;
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    background: transparent;
+    border-radius: 6px;
+    padding: 2px 0;
+   }
+   .builder-cell-input::placeholder {
+    color: #555;
+    font-style: italic;
+   }
+   .builder-cell-input.active {
+    opacity: 1;
+    pointer-events: auto;
+    height: auto;
+    width: auto;
+    background: #2c2c2c;
+    padding: 6px 8px;
+   }
+   .builder-cell-slot {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    font-size: 0.65rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+   }
+   .cell-suggestions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    border: 1px solid #3d3d3d;
+    border-radius: 8px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+   }
+   .cell-suggestions.open {
+    display: block;
+   }
+   .cell-suggestions.below {
+    top: 100%;
+    margin-top: 4px;
+   }
+   .cell-suggestions.above {
+    bottom: 100%;
+    margin-bottom: 4px;
+   }
+   .cell-suggestion-item {
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #252525;
+    font-size: 0.8rem;
+    text-align: left;
+   }
+   .cell-suggestion-item:last-child {
+    border-bottom: none;
+   }
+   .cell-suggestion-item:hover {
+    background: #2a2a2a;
+   }
+   .cell-suggestion-item img {
+    width: 28px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #2a2a2a;
+    flex-shrink: 0;
+   }
+   .cell-suggestion-text {
+    flex: 1;
+    overflow: hidden;
+   }
+   .cell-suggestion-title {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+   }
+   .cell-suggestion-meta {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 2px;
+   }
+   .cell-suggestions .loading,
+   .cell-suggestions .empty {
+    padding: 10px;
+    text-align: center;
+    color: #777;
+    font-size: 0.8rem;
+    font-style: italic;
+   }
+   .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    background: #181818;
+    padding: 14px 20px;
+    border-radius: 40px;
+    margin-bottom: 24px;
+    justify-content: center;
+    border: 1px solid #262626;
+   }
+   .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+   }
+   .stat-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+   }
+   .green-bg {
+    background: #4caf50;
+   }
+   .orange-bg {
+    background: #ff9800;
+   }
+   .red-bg {
+    background: #f44336;
+   }
+   .white-bg {
+    background: #f5f5f5;
+   }
+   .stat-value {
+    font-weight: 700;
+    margin-left: 4px;
+   }
+   .counter-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #222;
+    color: #fff;
+    padding: 10px 14px;
+    font-size: clamp(13px, 3.5vw, 18px);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+    user-select: none;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 16px;
+   }
+   .viewonly-csv-grid {
+    display: grid;
+    grid-template-columns: 1fr repeat(12, 1fr);
+    gap: 6px;
+    margin-bottom: 4px;
+    width: 100%;
+   }
+   @media (max-width: 1300px) {
+    .viewonly-csv-grid {
+     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
-    h1 {
-      text-align: center;
-      margin-top: 40px;
-      margin-bottom: 16px;
+   }
+   .viewonly-csv-label {
+    grid-column: span 1;
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 0.85rem;
+   }
+   .viewonly-csv-cell {
+    background-color: #1e1e1e;
+    color: #fff;
+    border: none;
+    font-size: clamp(9px, 1.8vw, 13px);
+    padding: 6px 4px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+   }
+   .viewonly-csv-cell img {
+    width: 48px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    transition: transform 0.2s ease;
+   }
+   @media (max-width: 480px) {
+    .viewonly-csv-cell img {
+     width: 32px;
+     height: 44px;
     }
-      @media (max-width: 600px) {
-      .controls {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-      }
-
-      .controls > * {
-        flex: 0 1 auto;
-        max-width: unset;
-        font-size: 12px;
-        padding: 6px 8px;
-      }
-
-      .btn,
-      select {
-        font-size: 12px;
-        padding: 6px 8px;
-      }
+   }
+   .viewonly-csv-cell span {
+    font-size: 0.75rem;
+    line-height: 1.2;
+   }
+   .viewonly-csv-cell.green {
+    background-color: #4caf50;
+   }
+   .viewonly-csv-cell.orange {
+    background-color: #ff9800;
+   }
+   .viewonly-csv-cell.red {
+    background-color: #f44336;
+   }
+   .viewonly-csv-cell.white {
+    background-color: #f5f5f5;
+    color: #000;
+   }
+   .grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+   }
+   .grid-row {
+    display: grid;
+    gap: 12px;
+   }
+   .grid-row.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 700px;
+    margin: 0 auto;
+   }
+   .grid-row.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+   }
+   .static-grid-section {
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #262626;
+    max-width: 960px;
+    margin: 0 auto;
+   }
+   .anime-card {
+    cursor: pointer;
+    transition: all 0.15s;
+   }
+   .anime-card:hover {
+    transform: translateY(-2px);
+    border-color: #444;
+   }
+   .anime-card.green {
+    background: #2e7d32;
+    border-color: #4caf50;
+   }
+   .anime-card.orange {
+    background: #b85e00;
+    border-color: #ff9800;
+   }
+   .anime-card.red {
+    background: #a12b2b;
+    border-color: #f44336;
+   }
+   .anime-card.white {
+    background: #e0e0e0;
+    color: #111;
+    border-color: #fff;
+   }
+   .anime-card.white .anime-meta {
+    color: #333;
+   }
+   .anime-card img {
+    width: 80px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #2a2a2a;
+    transition: transform 0.2s ease;
+   }
+   .anime-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.3;
+    word-break: break-word;
+   }
+   .anime-meta {
+    font-size: 0.7rem;
+    color: #aaa;
+    margin-top: 4px;
+   }
+   .empty-placeholder {
+    color: #555;
+    font-style: italic;
+    font-size: 0.85rem;
+   }
+   .anime-card.viewonly:hover {
+    transform: none;
+   }
+   .anime-card:hover img,
+   .builder-cell:hover img.cover,
+   .csv-cell:hover img,
+   .viewonly-csv-cell:hover img {
+    transform: scale(1.05);
+   }
+   body.ctrl-held .anime-card:hover img,
+   body.ctrl-held .builder-cell:hover img.cover,
+   body.ctrl-held .csv-cell:hover img,
+   body.ctrl-held .viewonly-csv-cell:hover img {
+    transform: scale(1.15);
+   }
+   #captureArea {
+    position: absolute;
+    left: -99999px;
+    top: 0;
+    padding: 40px;
+    background: #121212;
+   }
+   .no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #777;
+    font-style: italic;
+    background: #1a1a1a;
+    border-radius: 16px;
+   }
+   .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c2c2c;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 40px;
+    border-left: 5px solid #4caf50;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    font-size: 0.9rem;
+    z-index: 9999;
+   }
+   .loading-overlay {
+    text-align: center;
+    padding: 40px 20px;
+    color: #4caf50;
+    background: #1a1a1a;
+    border-radius: 16px;
+    margin-bottom: 20px;
+   }
+   .builder-topbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+   }
+   .builder-topbar .title {
+    font-size: 1rem;
+    color: #aaa;
+    margin-left: auto;
+   }
+   .builder-hint {
+    text-align: center;
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 12px;
+    font-style: italic;
+   }
+   #imagePopup {
+    position: fixed;
+    pointer-events: none;
+    border: 2px solid #4caf50;
+    border-radius: 8px;
+    background: #222;
+    padding: 4px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    display: none;
+    z-index: 10000;
+    max-width: 300px;
+    max-height: 450px;
+   }
+   #imagePopup img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+   }
+   .csv-title {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 16px;
+   }
+   .csv-description {
+    max-width: 800px;
+    margin: 0 auto 16px auto;
+    padding: 10px 14px;
+    background-color: #1e1e1e;
+    border-left: 4px solid #4caf50;
+    color: #ccc;
+    font-size: 13px;
+    border-radius: 6px;
+    line-height: 1.5;
+   }
+   .csv-description a {
+    color: #4caf50;
+    text-decoration: none;
+   }
+   .csv-hint {
+    color: #bbb;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   }
+   .csv-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: #1a1a1a;
+    padding: 14px 18px;
+    border-radius: 16px;
+    border: 1px solid #2a2a2a;
+   }
+   .csv-controls label {
+    color: #ccc;
+    font-size: 0.85rem;
+   }
+   .csv-controls select {
+    background: #2c2c2c;
+    border: 1px solid #3d3d3d;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+   }
+   .csv-grid {
+    display: grid;
+    grid-template-columns: 1fr repeat(12, 1fr);
+    gap: 6px;
+    margin-bottom: 4px;
+    width: 100%;
+   }
+   @media (max-width: 1300px) {
+    .csv-grid {
+     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
-
-    .controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+   }
+   .csv-year-label {
+    grid-column: span 1;
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 0.85rem;
+   }
+   .csv-cell {
+    background-color: #1e1e1e;
+    color: #fff;
+    border: none;
+    font-size: clamp(9px, 1.8vw, 13px);
+    padding: 6px 4px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+   }
+   .csv-cell img {
+    transition: transform 0.2s ease;
+   }
+   @media (max-width: 480px) {
+    .csv-cell img {
+     width: 32px;
+     height: 44px;
     }
-    .btn {
-      background-color: #2c2c2c;
-      color: #fff;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .btn:hover {
-      background-color: #3d3d3d;
-    }
-    .year-label {
-      grid-column: span 1;
-      background-color: #333;
-      padding: 10px;
-      text-align: center;
-      font-weight: bold;
-      border-radius: 4px;
-    }
-     .grid {
-      display: grid;
-      grid-template-columns: 1fr repeat(12, 1fr); /* default layout for desktop */
-      gap: 6px;
-      margin-bottom: 4px;
-      width: 100%;
-    }
-
-    @media (max-width: 1300px) {
-      .grid {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* more flexible on mobile */
-      }
-    }
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-    }
-    .cell {
-      background-color: #1e1e1e;
-      color: #fff;
-      border: none;
-      font-size: clamp(10px, 2vw, 14px);
-      padding: 6px 4px;
-      font-size: 12px;
-      text-align: center;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-    .body {
-      font-size: clamp(12px, 2.5vw, 16px);
-    }
-    .cell img {
-      transition: transform 0.2s ease;
-    }
-    @media (max-width: 480px) {
-        .cell img {
-        width: 32px;
-        height: 44px;
-        }
-    }
-    .cell:hover img {
-      transform: scale(1.05);
-    }
-    #imagePopup {
-      position: fixed;
-      pointer-events: none;
-      border: 2px solid #4caf50;
-      border-radius: 8px;
-      background: #222;
-      padding: 4px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.7);
-      display: none;
-      z-index: 10000;
-      max-width: 300px;
-      max-height: 450px;
-    }
-    #imagePopup img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      display: block;
-    }
-    #counterBox {
-        position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #222;
-      color: #fff;
-      padding: 6px 8px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: clamp(14px, 4vw, 24px);
-      box-shadow: 0 0 8px rgba(0,0,0,0.7);
-      user-select: none;
-      text-align: center;
-      width: 100%;
-      border-radius: 0;
-      word-break: break-word;
-      margin-bottom: 10px;
-    }
-    .green { background-color: #4caf50; }
-    .orange { background-color: #ff9800; }
-    .red { background-color: #f44336; }
-    .white { background-color: #f5f5f5; color: #000;}
-
+   }
+   .csv-cell span {
+    font-size: 0.75rem;
+    line-height: 1.2;
+   }
+   .csv-cell.green {
+    background-color: #4caf50;
+   }
+   .csv-cell.orange {
+    background-color: #ff9800;
+   }
+   .csv-cell.red {
+    background-color: #f44336;
+   }
+   .csv-cell.white {
+    background-color: #f5f5f5;
+    color: #000;
+   }
   </style>
-</head>
-<body>
-<div id="imagePopup"><img src="" alt="Large cover" /></div>
-<div id="fullPage">
-  <h1>Anime Checklist 1979-2024</h1>
-    <div style="
-      max-width: 800px;
-      margin: 0 auto 16px auto;
-      padding: 10px 14px;
-      background-color: #1e1e1e;
-      border-left: 4px solid #4caf50;
-      color: #ccc;
-      font-size: 13px;
-      border-radius: 6px;
-      line-height: 1.5;
-    ">
-      This list is generated using data from <a href="https://myanimelist.net/" target="_blank" style="color: #4caf50; text-decoration: none;">MyAnimeList</a>. (Sequels/spin-offs/side stories are excluded)
+ </head>
+ <body>
+  <div class="app-container">
+   <h1 class="no-capture">Anime Board Builder</h1>
+   <div class="sub no-capture">Create your own custom board, or fill one in</div>
+
+   <div id="screen-menu" class="screen active">
+    <div class="menu-screen no-capture">
+     <div class="menu-card" data-action="create-3x3">
+      <div class="menu-card-icon">🎯</div>
+      <div class="menu-card-text">
+       <h3>3×3 Board</h3>
+       <p>A classic 9-slot tier list. Pick your top 9 anime.</p>
+      </div>
+     </div>
+     <div class="menu-card" data-action="create-grid">
+      <div class="menu-card-icon">📋</div>
+      <div class="menu-card-text">
+       <h3>Custom Board</h3>
+       <p>A custom x by x board for the weak and indecisive</p>
+      </div>
+     </div>
+     <div class="menu-card" data-action="csv-checklist">
+      <div class="menu-card-icon">📊</div>
+      <div class="menu-card-text">
+       <h3>MAL Checklist</h3>
+       <p>Data-driven list of the best and most popular shows from MAL by year.</p>
+      </div>
+     </div>
+     <div class="menu-card" data-action="create-custom">
+      <div class="menu-card-icon">⚙️</div>
+      <div class="menu-card-text">
+       <h3>Custom Best of Years</h3>
+       <p>Create your own best anime of the years checklist</p>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <div id="screen-builder" class="screen">
+    <div class="builder-topbar no-capture">
+     <button class="btn" id="backToMenuBtn">← Back to Menu</button>
+     <span class="title" id="builderTitle"></span>
     </div>
 
-<div id="counterBox">
-    Watched: <span id="countWatched">0</span> |
-    Partial: <span id="countPartial">0</span> |
-    Dropped: <span id="countDropped">0</span> |
-    Planned: <span id="countPlanned">0</span> |
-    Total: <span id="countTotal">0</span>
-</div>
+    <div class="board-title-wrap">
+        <label for="boardTitleInput"></label><input
+      type="text"
+      class="board-title-input"
+      id="boardTitleInput"
+      placeholder="Give your board a title..."
+      maxlength="60"
+     />
+    </div>
 
-<div class="controls">
-    <!-- <button class="btn" onclick="saveStateToFile()">Export</button>
-    <input type="file" id="loadFileInput" style="display:none" accept=".json" onchange="loadStateFromFile(event)" />
-    <button class="btn" onclick="document.getElementById('loadFileInput').click()">Import</button>-->
-    <label style="color: white">Show Images:</label>
-    <select class="btn" id="imageToggle" onchange="handleImageToggle()">
-      <option value="on">On</option>
-      <option value="off">Off</option>
-    </select>
-    <label style="color: white">Language:</label>
-    <select class="btn" id="languageSelect" onchange="handleLanguageChange()">
+    <div class="language-bar no-capture">
+     <label for="builderLanguageSelect">Language:</label>
+     <select id="builderLanguageSelect">
       <option value="romanji">Romanji</option>
       <option value="english">English</option>
       <option value="japanese">Japanese</option>
-    </select>
-    <select class="btn" id="filterDropdown" onchange="filterState(this.value)">
+     </select>
+    </div>
+
+    <div class="create-panel no-capture" id="createPanel">
+  <div class="form-row" id="builderFormRow">
+    <div class="form-group">
+      <label>Start Year</label>
+        <label for="createStartYear"></label><input type="number" id="createStartYear" value="2000" min="1900" max="2100" />
+    </div>
+    <div class="form-group">
+      <label>End Year</label>
+        <label for="createEndYear"></label><input type="number" id="createEndYear" value="2025" min="1900" max="2100" />
+    </div>
+    <div class="form-group">
+      <label>Options per Year</label>
+        <label for="createOptionsPerYear"></label><input type="number" id="createOptionsPerYear" value="12" min="1" max="50" />
+    </div>
+    <div class="form-group" style="flex: 0 0 auto;">
+      <label>&nbsp;</label>
+      <button class="btn btn-primary" id="generateBuilderBtn">Generate Board</button>
+    </div>
+  </div>
+
+  <div class="form-row" id="gridFormRow" style="display:none;">
+    <div class="form-group">
+      <label>Rows</label>
+        <label for="createGridRows"></label><input type="number" id="createGridRows" value="4" min="1" max="20" />
+    </div>
+    <div class="form-group">
+      <label>Columns</label>
+      <input type="number" id="createGridCols" value="4" min="1" max="20" />
+    </div>
+    <div class="form-group" style="flex: 0 0 auto;">
+      <label>&nbsp;</label>
+      <button class="btn btn-primary" id="generateGridBtn">Generate Grid</button>
+    </div>
+  </div>
+</div>
+
+    <div class="create-actions no-capture">
+     <button class="btn btn-capture" id="savePngBtn">Save as PNG</button>
+     <button class="btn btn-share" id="shareLinkBtn">Copy Share Link</button>
+     <button class="btn" id="clearBuilderBtn">Clear Board</button>
+     <button class="btn" id="exportBuilderBtn">Export JSON</button>
+     <button class="btn" id="importBuilderBtn">Import</button>
+     <input type="file" id="importBuilderFile" style="display: none" accept=".json" />
+    </div>
+
+    <div id="builderContainer"></div>
+   </div>
+
+   <div id="screen-viewonly" class="screen">
+    <div class="viewonly-banner visible no-capture">
+     <span>This is a view own page, copy it to your own list to edit.</span>
+     <button id="makeOwnCopyBtn">Copy as my own</button>
+    </div>
+
+    <div class="board-title-wrap">
+     <input
+      type="text"
+      class="board-title-input"
+      id="viewonlyTitleDisplay"
+      placeholder="Untitled board"
+      maxlength="60"
+      readonly
+     />
+    </div>
+
+    <div class="language-bar no-capture">
+     <label for="viewonlyLanguageSelect">Language:</label>
+     <select id="viewonlyLanguageSelect">
+      <option value="romanji">Romanji</option>
+      <option value="english">English</option>
+      <option value="japanese">Japanese</option>
+     </select>
+    </div>
+
+    <div class="csv-hint no-capture">
+     Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.
+    </div>
+
+    <div class="counter-sticky">
+     Watched: <span id="statWatchedVO">0</span> | Partial: <span id="statPartialVO">0</span> | Dropped:
+     <span id="statDroppedVO">0</span> | Planned: <span id="statPlannedVO">0</span> | Total:
+     <span id="statTotalVO">0</span>
+    </div>
+
+    <div class="create-actions no-capture" style="justify-content: center">
+     <button class="btn btn-capture" id="savePngViewOnlyBtn">📸 Save as PNG</button>
+    </div>
+
+    <div id="viewonlyContainer"></div>
+   </div>
+
+   <div id="screen-csv" class="screen">
+    <h1 class="csv-title">Anime Checklist 1979-2024</h1>
+    <div class="csv-description">
+     This list is generated using data from
+     <a href="https://myanimelist.net/" target="_blank">MyAnimeList</a>. (Sequels/spin-offs/side stories are excluded)
+    </div>
+
+    <div class="builder-topbar">
+     <button class="btn" id="csvBackToMenuBtn">← Back to Menu</button>
+    </div>
+
+    <div class="csv-controls">
+     <label>Show Images:</label>
+        <label for="imageToggle"></label><select id="imageToggle" onchange="handleImageToggle()">
+      <option value="on">On</option>
+      <option value="off">Off</option>
+     </select>
+     <label>Language:</label>
+        <label for="languageSelect"></label><select id="languageSelect" onchange="handleLanguageChange()">
+      <option value="romanji">Romanji</option>
+      <option value="english">English</option>
+      <option value="japanese">Japanese</option>
+     </select>
+        <label for="filterDropdown"></label><select id="filterDropdown" onchange="filterState(this.value)">
       <option value="all">Show All</option>
-      <option value="green">Show Green</option>
-      <option value="orange">Show Orange</option>
-      <option value="red">Show Red</option>
-      <option value="white">Show White</option>
+      <option value="green">Show Watched</option>
+      <option value="orange">Show Hold</option>
+      <option value="red">Show Dropped</option>
+      <option value="white">Show Planned</option>
+     </select>
+     <button class="btn" id="togglePopularity" onclick="setDataSource('popularity')">Popularity</button>
+     <button class="btn" id="toggleScore" onclick="setDataSource('score')">Score</button>
+     <label>From:</label>
+        <label for="startYearSelect"></label><select id="startYearSelect" onchange="handleYearRangeChange()"></select>
+     <label>To:</label>
+        <label for="endYearSelect"></label><select id="endYearSelect" onchange="handleYearRangeChange()"></select>
+     <button class="btn" onclick="captureCsvGrid()">📸 Save as PNG</button>
+     <button class="btn btn-danger" onclick="clearCsvBoard()">🗑️ Clear Board</button>
+    </div>
 
-    </select>
+    <div class="csv-hint">Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.</div>
 
-    <button class="btn" id="togglePopularity" onclick="setDataSource('popularity')">Popularity</button>
-    <button class="btn" id="toggleScore" onclick="setDataSource('score')">Score</button>
-    <label style="color: white">From:</label>
-    <select id="startYearSelect" class="btn" onchange="handleYearRangeChange()"></select>
+    <div class="counter-sticky">
+     Watched: <span id="countWatched">0</span> | Partial: <span id="countPartial">0</span> | Dropped:
+     <span id="countDropped">0</span> | Planned: <span id="countPlanned">0</span> | Total:
+     <span id="countTotal">0</span>
+    </div>
 
-    <label style="color: white">To:</label>
-    <select id="endYearSelect" class="btn" onchange="handleYearRangeChange()"></select>
-  <button class="btn" onclick="captureGrid()">Download PNG</button>
-  <button class="btn" onclick="clearBoard()">Clear Board</button>
-<div style="color: #bbb; font-size: 12px; text-align: center; margin-top: 10px;">
-Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.<br />
-</div>
-</div>
+    <div id="csvContainer"></div>
+   </div>
+  </div>
 
-  <div id="container"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script>
-    const STATES = ["", "green", "orange", "red", "white"];
-    const YEAR_MIN = 1979;
-    const YEAR_MAX = 2024;
-    let languageMode = 'romanji';
-    let dataSource = 'popularity';
-    let showImages = true;
+  <div id="captureArea"></div>
+  <div id="imagePopup"><img id="imagePopupImg" src="" alt="" /></div>
+ </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    //CONFIG
+const PROXY_URL = "https://malapi.johns84912.workers.dev";
+const TENRAI_API = "https://api.tenrai.org/v1";
+const MIN_QUERY_LENGTH = 2;
+const DEBOUNCE_MS = 300;
+const MAX_SUGGESTIONS = 8;
+const BOARD_API = `${PROXY_URL}/board`;
+const TENRAI_COOLDOWN_MS = 1000;
+//CONST
+const LAYOUT_KEYS = {
+  '3x3': 'board_3x3',
+  'grid': 'board_grid',
+  'custom': 'board_custom'
+};
+const ACTIVE_LAYOUT_KEY = 'activeLayout';
+const STATES = ["", "green", "orange", "red", "white"];
+//GLOBAL VARIABLES
+let tenraiLastRequestAt = 0;
+let tenraiBackoffUntil = 0;
+let boardData = { layout: 'custom', title: '', years: [] };
+let progress = [];
+const searchCache = new Map();
+let boardLanguageMode = 'romanji';
 
-    function handleImageToggle() {
-        const toggle = document.getElementById("imageToggle").value;
-        showImages = toggle === "on";
-        buildGrid();
+function resolveTitle(anime, lang) {
+    if (!anime) return '';
+    if (typeof anime === 'string') return anime;
+    if (lang === 'english') return anime.titleEn || anime.title || '';
+    if (lang === 'japanese') return anime.titleJp || anime.title || '';
+    return anime.title || anime.titleEn || anime.titleJp || '';
+}
+function isStaticLayout() {
+  return boardData.layout === '3x3' || boardData.layout === 'grid';
+}
+
+function getAnimeData(titleData) {
+    if (titleData && typeof titleData === 'object') {
+        return {
+            title: titleData.title || '',
+            titleEn: titleData.titleEn || '',
+            titleJp: titleData.titleJp || '',
+            image: titleData.image || '',
+            year: titleData.year || '',
+            mal_id: titleData.mal_id || null
+        };
     }
+    return { title: titleData || '', titleEn: '', titleJp: '', image: '', year: '', mal_id: null };
+}
 
-    function handleLanguageChange() {
-        const select = document.getElementById("languageSelect");
-        languageMode = select.value;
-        buildGrid();
-    }
-    function populateYearDropdowns() {
-        const startSelect = document.getElementById("startYearSelect");
-        const endSelect = document.getElementById("endYearSelect");
+function hasAnime(titleData) {
+    return Boolean(resolveTitle(getAnimeData(titleData), 'romanji'));
+}
 
-        for (let y = YEAR_MIN; y <= YEAR_MAX; y++) {
-            const option1 = new Option(y, y);
-            const option2 = new Option(y, y);
-            startSelect.appendChild(option1);
-            endSelect.appendChild(option2);
-        }
-        startSelect.value = 2000;
-        endSelect.value = YEAR_MAX;
+function getCellIndex(cell) {
+    if (cell.dataset.s !== undefined) return { type: 'static', index: Number(cell.dataset.s) };
+    return { type: 'custom', y: Number(cell.dataset.y), t: Number(cell.dataset.t) };
+}
+
+function getCellValue(cell) {
+    const index = getCellIndex(cell);
+    return index.type === 'static'
+        ? boardData.slots[index.index]
+    : boardData.years[index.y].titles[index.t];
+}
+
+function setCellValue(cell, value) {
+    const index = getCellIndex(cell);
+    if (index.type === 'static') boardData.slots[index.index] = value;
+    else boardData.years[index.y].titles[index.t] = value;
+}
+
+const boardTitleInput = document.getElementById('boardTitleInput');
+const viewonlyTitleDisplay = document.getElementById('viewonlyTitleDisplay');
+
+boardTitleInput.addEventListener('input', () => {
+    boardData.title = boardTitleInput.value;
+    saveBoardState();
+});
+boardTitleInput.addEventListener('blur', () => { saveBoardState(); });
+
+function syncTitleToUI() {
+    boardTitleInput.value = boardData.title || '';
+    viewonlyTitleDisplay.value = boardData.title || '';
+}
+
+const builderLanguageSelect = document.getElementById('builderLanguageSelect');
+const viewonlyLanguageSelect = document.getElementById('viewonlyLanguageSelect');
+
+builderLanguageSelect.addEventListener('change', () => {
+    boardLanguageMode = builderLanguageSelect.value;
+    renderBuilder();
+});
+viewonlyLanguageSelect.addEventListener('change', () => {
+    boardLanguageMode = viewonlyLanguageSelect.value;
+    renderViewOnlyScreen();
+});
+
+function syncLanguageToUI() {
+    builderLanguageSelect.value = boardLanguageMode;
+    viewonlyLanguageSelect.value = boardLanguageMode;
+    const csvSelect = document.getElementById('languageSelect');
+    if (csvSelect) csvSelect.value = boardLanguageMode;
+    csvLanguageMode = boardLanguageMode;
+}
+
+//Navigation
+function showScreen(name) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(`screen-${name}`).classList.add('active');
+}
+
+document.querySelectorAll('.menu-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const action = card.dataset.action;
+    if (action === 'create-3x3') openBoard('3x3');
+    else if (action === 'create-grid') openBoard('grid');
+    else if (action === 'create-custom') openBoard('custom');
+    else if (action === 'csv-checklist') startCsvChecklist();
+  });
+});
+//MAKE BOARDS
+function openBoard(layout) {
+  const stored = loadLayoutFromStorage(layout);
+
+  if (stored && stored.board) {
+    boardData = stored.board;
+    progress = stored.progress || buildEmptyProgress(boardData);
+    ensureProgressShape();
+  } else {
+    if (layout === '3x3') {
+      boardData = { layout: '3x3', title: '', slots: new Array(9).fill('') };
+      progress = new Array(9).fill(0);
+    } else if (layout === 'grid') {
+      boardData = { layout: 'grid', rows: 4, cols: 4, title: '', slots: new Array(16).fill('') };
+      progress = new Array(16).fill(0);
+    } else {
+      boardData = { layout: 'custom', title: '', years: [] };
+      progress = [];
     }
-    function clearBoard() {
-        const cells = document.querySelectorAll(".cell");
-        cells.forEach(cell => {
-            const current = parseInt(cell.dataset.state);
-            if (STATES[current]) cell.classList.remove(STATES[current]);
-            cell.dataset.state = "0";
+  }
+
+  localStorage.setItem(ACTIVE_LAYOUT_KEY, layout);
+
+  if (boardData.layout === '3x3' || boardData.layout === 'custom') {
+    document.getElementById('builderTitle').textContent =
+      boardData.layout === '3x3'
+        ? '3×3 Board — 9 slots'
+        : 'Custom board — Best of Years';
+    document.getElementById('builderFormRow').style.display = boardData.layout === 'custom' ? '' : 'none';
+    document.getElementById('gridFormRow').style.display = 'none';
+    document.getElementById('createPanel').style.display = boardData.layout === '3x3' ? 'none' : 'block';
+  } else {
+    document.getElementById('builderTitle').textContent =
+      `${boardData.rows}×${boardData.cols} grid — ${boardData.rows * boardData.cols} slots`;
+    document.getElementById('builderFormRow').style.display = 'none';
+    document.getElementById('gridFormRow').style.display = '';
+    document.getElementById('createPanel').style.display = 'block';
+  }
+
+  syncTitleToUI();
+  renderBuilder();
+  saveBoardState();
+  showScreen('builder');
+}
+
+document.getElementById('backToMenuBtn').addEventListener('click', () => {
+    saveBoardState();
+    showScreen('menu');
+});
+
+const createStartYear = document.getElementById('createStartYear');
+const createEndYear = document.getElementById('createEndYear');
+const createOptionsPerYear = document.getElementById('createOptionsPerYear');
+const builderContainer = document.getElementById('builderContainer');
+
+document.getElementById('generateBuilderBtn').addEventListener('click', generateCustomBuilder);
+document.getElementById('generateGridBtn').addEventListener('click', generateGridBuilder);
+
+function generateGridBuilder() {
+  const rows = parseInt(document.getElementById('createGridRows').value);
+  const cols = parseInt(document.getElementById('createGridCols').value);
+
+  if (isNaN(rows) || isNaN(cols)) { showToast('Please fill in rows and columns'); return; }
+  if (rows < 1 || rows > 20 || cols < 1 || cols > 20) {
+    showToast('Rows and columns must be between 1 and 20');
+    return;
+  }
+
+  const total = rows * cols;
+  const hasExisting = boardData.layout === 'grid' &&
+    boardData.slots && boardData.slots.some(hasAnime);
+  if (hasExisting && !confirm('This will replace your current grid. Continue?')) return;
+
+  const existingTitle = boardData.title || '';
+  boardData = {
+    layout: 'grid',
+    rows,
+    cols,
+    title: existingTitle,
+    slots: new Array(total).fill('')
+  };
+  progress = new Array(total).fill(0);
+
+  localStorage.setItem(ACTIVE_LAYOUT_KEY, 'grid');
+  syncTitleToUI();
+  renderBuilder();
+  saveBoardState();
+  showToast(`Generated ${rows}×${cols} grid (${total} slots)`);
+}
+
+function generateCustomBuilder() {
+    const start = parseInt(createStartYear.value);
+    const end = parseInt(createEndYear.value);
+    const perYear = parseInt(createOptionsPerYear.value);
+
+    if (isNaN(start) || isNaN(end) || isNaN(perYear)) { showToast('Please fill in all fields'); return; }
+    if (start > end) { showToast('Start year must be <= end year'); return; }
+    if (perYear < 1 || perYear > 50) { showToast('Options per year must be 1-50'); return; }
+
+    const hasExisting = boardData.years && boardData.years.length > 0 &&
+          boardData.years.some(r => r.titles.some(hasAnime));
+    if (hasExisting && !confirm('This will replace your current board. Continue?')) return;
+
+    const existingTitle = boardData.title || '';
+    boardData = { layout: 'custom', title: existingTitle, years: [] };
+    for (let y = start; y <= end; y++) {
+        boardData.years.push({ year: y, titles: new Array(perYear).fill('') });
+    }
+    progress = buildEmptyProgress(boardData);
+
+    localStorage.setItem(ACTIVE_LAYOUT_KEY, 'custom');
+    syncTitleToUI();
+    renderBuilder();
+    saveBoardState();
+    showToast(`Generated ${boardData.years.length} years × ${perYear} slots`);
+}
+
+//RENDER
+function renderBuilder() {
+    if (isStaticLayout()) renderStaticBuilder();
+    else renderCustomBuilder();
+}
+
+function renderStaticBuilder() {
+  let cols, maxWidth, label;
+  if (boardData.layout === '3x3') {
+    cols = 3;
+    maxWidth = 700;
+    label = '3×3 Board';
+  } else {
+    // 'grid' layout
+    cols = boardData.cols;
+    maxWidth = Math.max(600, cols * 180); // scale up for wide grids
+    label = `${boardData.rows}×${boardData.cols} Grid`;
+  }
+
+  let html = `<div class="builder-section">
+    <div class="builder-year-header capture-hide">
+      <span class="builder-year-title">${label}</span>
+      <span style="color:#666; font-size:0.8rem;">${boardData.slots.length} slots</span>
+    </div>
+    <div class="builder-grid" style="grid-template-columns:repeat(${cols}, 1fr); max-width:${maxWidth}px; margin:0 auto;">`;
+
+  boardData.slots.forEach((titleData, i) => {
+    html += renderBuilderCell(titleData, { 'data-s': i }, `Slot ${i + 1}`);
+  });
+
+  html += `</div></div>
+    <div class="builder-hint no-capture">Click any slot to search and pick an anime. Hold Ctrl and hover for a larger preview.</div>`;
+  builderContainer.innerHTML = html;
+
+  builderContainer.querySelectorAll('.builder-cell').forEach(cell => {
+    attachBuilderCellHandlers(cell, 'static');
+  });
+}
+
+function renderCustomBuilder() {
+    if (!boardData.years || boardData.years.length === 0) {
+        builderContainer.innerHTML = '<div class="no-results no-capture">Fill in the form above and click <strong>Generate Board</strong>.</div>';
+        return;
+    }
+    let html = '';
+    boardData.years.forEach((yearRow, yIdx) => {
+        html += `<div class="builder-section">
+        <div class="builder-year-header capture-hide">
+          <span class="builder-year-title">${yearRow.year}</span>
+          <span style="color:#666; font-size:0.8rem;">${yearRow.titles.length} slots</span>
+        </div>
+        <div class="builder-grid">`;
+        yearRow.titles.forEach((titleData, tIdx) => {
+            html += renderBuilderCell(titleData, { 'data-y': yIdx, 'data-t': tIdx }, `Slot ${tIdx + 1}`);
         });
+        html += `</div></div>`;
+    });
+    html += `<div class="builder-hint no-capture">Click any slot to search and pick an anime. Hold Ctrl and hover for a larger preview.</div>`;
+    builderContainer.innerHTML = html;
 
-        // Clear the saved grid state for the current data source from localStorage
-        localStorage.removeItem(`animeGridState_${dataSource}`);
+    builderContainer.querySelectorAll('.builder-cell').forEach(cell => {
+        attachBuilderCellHandlers(cell, 'custom');
+    });
+}
 
-        if (gridStateCache[dataSource]) {
-            gridStateCache[dataSource] = {};
+function renderBuilderCell(titleData, dataset, slotLabel) {
+    const data = getAnimeData(titleData);
+    const displayTitle = resolveTitle(data, boardLanguageMode);
+    const { image, year } = data;
+    const coverHtml = image
+    ? `<img class="cover" src="${escapeHtml(image)}" alt="" loading="lazy" data-fullsize="${escapeHtml(image)}" onerror="this.style.display='none'" />`
+    : `<div class="placeholder-cover">?</div>`;
+
+    const dataAttrs = Object.entries(dataset).map(([k, v]) => `${k}="${v}"`).join(' ');
+
+    return `<div class="builder-cell card-base" ${dataAttrs}>
+      <div class="builder-cell-slot capture-hide">${slotLabel}</div>
+      ${coverHtml}
+      <div class="anime-title">${displayTitle ? escapeHtml(displayTitle) : `<span style="color:#555;font-style:italic;">Empty slot</span>`}</div>
+      ${year ? `<div class="anime-meta">${escapeHtml(String(year))}</div>` : ''}
+      <input type="text" class="builder-cell-input"
+             ${dataAttrs}
+             value="${escapeHtml(resolveTitle(data, 'romanji'))}"
+             placeholder="Click to search or type..." />
+      <div class="cell-suggestions" ${dataAttrs}></div>
+    </div>`;
+}
+
+function attachBuilderCellHandlers(cell, mode) {
+    const input = cell.querySelector('.builder-cell-input');
+    const suggestionsEl = cell.querySelector('.cell-suggestions');
+    let cellDebounce = null;
+
+    cell.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.cell-suggestions')) return;
+        if (input.classList.contains('active')) return;
+        e.preventDefault();
+        activateCell(cell, input, mode);
+    });
+
+    input.addEventListener('input', () => {
+        const query = input.value.trim();
+        const titleEl = cell.querySelector('.anime-title');
+        if (titleEl) {
+            titleEl.innerHTML = query
+                ? escapeHtml(query)
+            : '<span style="color:#555;font-style:italic;">Empty slot</span>';
         }
-        document.querySelectorAll(".year-label").forEach(label => {
-            label.style.backgroundColor = "#333";
-        });
+        clearTimeout(cellDebounce);
+        if (query.length < MIN_QUERY_LENGTH) { closeSuggestions(suggestionsEl); return; }
+        cellDebounce = setTimeout(() => {
+            runCellSearch(query, suggestionsEl, mode, input, cell);
+        }, DEBOUNCE_MS);
+    });
 
-        updateCounter();
+    input.addEventListener('blur', () => {
+        setTimeout(() => {
+            commitTypedTitle(cell, input, mode);
+            saveBoardState();
+        }, 200);
+    });
+
+    input.addEventListener('focus', () => {
+        const query = input.value.trim();
+        if (query.length >= MIN_QUERY_LENGTH) {
+            const cached = searchCache.get(query.toLowerCase());
+            if (cached) renderSuggestions(cached, suggestionsEl, mode, input, cell);
+        }
+    });
+}
+
+function activateCell(cell, input, mode) {
+    input.classList.add('active');
+    requestAnimationFrame(() => {
+        input.focus();
+        input.select();
+    });
+}
+
+function commitTypedTitle(cell, input, mode) {
+    const value = input.value.trim();
+    const existing = getCellValue(cell);
+    if (typeof existing === 'object' && existing !== null) return;
+    setCellValue(cell, value);
+    input.classList.remove('active');
+}
+
+async function runCellSearch(query, suggestionsEl, mode, input, cell) {
+    const normalized = query.toLowerCase();
+    if (searchCache.has(normalized)) {
+        renderSuggestions(searchCache.get(normalized), suggestionsEl, mode, input, cell);
+        return;
     }
-    function parseCSVLine(line) {
-        const parts = [];
-        let current = '';
-        let inQuotes = false;
+    suggestionsEl.innerHTML = '<div class="loading">Searching...</div>';
+    positionSuggestions(suggestionsEl, cell);
+    suggestionsEl.classList.add('open');
+    try {
+        const results = await searchAnimeDatabase(query);
+        searchCache.set(normalized, results);
+        renderSuggestions(results, suggestionsEl, mode, input, cell);
+    } catch (err) {
+        console.error('Search failed:', err);
+        suggestionsEl.innerHTML = '<div class="empty">Search failed. Try again.</div>';
+        positionSuggestions(suggestionsEl, cell);
+    }
+}
+//Search goes off screen otherwise
+function positionSuggestions(suggestionsEl, cell) {
+    const rect = cell.getBoundingClientRect();
+    const viewportH = window.innerHeight;
+    const spaceBelow = viewportH - rect.bottom - 20;
+    const spaceAbove = rect.top - 20;
+    const useAbove = spaceBelow < 260 && spaceAbove > spaceBelow;
+    suggestionsEl.classList.remove('above', 'below');
+    if (useAbove) {
+        suggestionsEl.classList.add('above');
+        suggestionsEl.style.maxHeight = Math.min(400, Math.max(120, spaceAbove - 10)) + 'px';
+    } else {
+        suggestionsEl.classList.add('below');
+        suggestionsEl.style.maxHeight = Math.min(400, Math.max(120, spaceBelow - 10)) + 'px';
+    }
+}
 
-        for (let i = 0; i < line.length; i++) {
-            const char = line[i];
+function renderSuggestions(results, suggestionsEl, mode, input, cell) {
+    if (!results.length) {
+        suggestionsEl.innerHTML = '<div class="empty">No matches found</div>';
+        positionSuggestions(suggestionsEl, cell);
+        suggestionsEl.classList.add('open');
+        return;
+    }
+    suggestionsEl.innerHTML = results.map((anime, idx) => `
+      <div class="cell-suggestion-item" data-idx="${idx}">
+        ${anime.image ? `<img src="${escapeHtml(anime.image)}" alt="" loading="lazy" onerror="this.style.opacity=0.3" />` : '<div style="width:28px;height:38px;background:#2a2a2a;border-radius:4px;flex-shrink:0;"></div>'}
+        <div class="cell-suggestion-text">
+          <div class="cell-suggestion-title">${escapeHtml(anime.title)}</div>
+          <div class="cell-suggestion-meta">${anime.year || 'Year unknown'}</div>
+        </div>
+      </div>
+    `).join('');
+    positionSuggestions(suggestionsEl, cell);
+    suggestionsEl.classList.add('open');
 
-            if (char === '"' ) {
-                inQuotes = !inQuotes;
-            } else if (char === ',' && !inQuotes) {
-                parts.push(current);
-                current = '';
-            } else {
-                current += char;
+    suggestionsEl.querySelectorAll('.cell-suggestion-item').forEach(item => {
+        item.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            const idx = parseInt(item.dataset.idx);
+            const picked = results[idx];
+            const entry = {
+                title: picked.title,
+                titleEn: picked.titleEn || '',
+                titleJp: picked.titleJp || '',
+                image: picked.image,
+                year: picked.year,
+                mal_id: picked.mal_id
+            };
+            setCellValue(cell, entry);
+            updateCellVisual(cell, entry);
+
+            input.value = resolveTitle(entry, 'romanji');
+            input.classList.remove('active');
+
+            closeSuggestions(suggestionsEl);
+            saveBoardState();
+        });
+    });
+}
+
+function updateCellVisual(cell, entry) {
+    const displayTitle = resolveTitle(entry, boardLanguageMode);
+    const titleEl = cell.querySelector('.anime-title');
+    const cover = cell.querySelector('.cover, .placeholder-cover');
+    const meta = cell.querySelector('.anime-meta');
+
+    if (titleEl) titleEl.textContent = displayTitle || '';
+
+    if (entry.image) {
+        const newImg = document.createElement('img');
+        newImg.className = 'cover';
+        newImg.src = entry.image;
+        newImg.alt = '';
+        newImg.loading = 'lazy';
+        newImg.dataset.fullsize = entry.image;
+        newImg.onerror = function() { this.style.display = 'none'; };
+        if (cover) cover.replaceWith(newImg);
+        else cell.insertBefore(newImg, titleEl);
+    }
+
+    if (entry.year) {
+        if (meta) meta.textContent = entry.year;
+        else {
+            const m = document.createElement('div');
+            m.className = 'anime-meta';
+            m.textContent = entry.year;
+            if (titleEl && titleEl.nextSibling) cell.insertBefore(m, titleEl.nextSibling);
+            else cell.appendChild(m);
+        }
+    }
+}
+
+function closeSuggestions(el) {
+    if (el) { el.classList.remove('open'); el.innerHTML = ''; }
+}
+
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.builder-cell')) return;
+    document.querySelectorAll('.cell-suggestions.open').forEach(closeSuggestions);
+    document.querySelectorAll('.builder-cell-input').forEach(input => {
+        if (input.classList.contains('active')) {
+            const cell = input.closest('.builder-cell');
+            const mode = cell.dataset.y !== undefined ? 'custom' : 'static';
+            commitTypedTitle(cell, input, mode);
+            saveBoardState();
+        }
+    });
+});
+
+window.addEventListener('resize', () => {
+    document.querySelectorAll('.cell-suggestions.open').forEach(el => {
+        const cell = el.closest('.builder-cell');
+        if (cell) positionSuggestions(el, cell);
+    });
+});
+
+//SEARCHING
+async function searchAnimeDatabase(query) {
+    if (query.trim().length < 3) {
+    return await searchTenrai(trimmed);
+    }
+    try {
+        const response = await fetch(
+            `${PROXY_URL}/anime?q=${encodeURIComponent(query)}&limit=${MAX_SUGGESTIONS}&fields=id,title,alternative_titles,main_picture,start_date`
+        );
+        if (response.ok) {
+            const data = await response.json();
+            return data.data.map(item => ({
+                title: item.node.title,
+                titleEn: item.node.alternative_titles?.en || '',
+                titleJp: item.node.alternative_titles?.ja || '',
+                year: item.node.start_date ? new Date(item.node.start_date).getFullYear() : null,
+                image: item.node.main_picture?.medium || "",
+                mal_id: item.node.id
+            }));
+        }
+        console.warn(`MAL proxy returned ${response.status}. Falling back to Tenrai.`);
+    } catch (err) {
+        console.warn('MAL proxy fetch failed. Falling back to Tenrai.', err);
+    }
+    return await searchTenrai(query);
+}
+
+async function waitForTenraiSlot() {
+    const now = Date.now();
+    if (tenraiBackoffUntil > now) {
+        await new Promise(r => setTimeout(r, tenraiBackoffUntil - now));
+    }
+    const sinceLast = Date.now() - tenraiLastRequestAt;
+    if (sinceLast < TENRAI_COOLDOWN_MS) {
+        await new Promise(r => setTimeout(r, TENRAI_COOLDOWN_MS - sinceLast));
+    }
+    tenraiLastRequestAt = Date.now();
+}
+
+async function searchTenrai(query) {
+    await waitForTenraiSlot();
+    try {
+        const response = await fetch(
+            `${TENRAI_API}/anime?q=${encodeURIComponent(query)}&limit=${MAX_SUGGESTIONS}`
+        );
+        if (response.status === 429) {
+            const retryAfter = response.headers.get('Retry-After');
+            let backoffMs = 5000;
+            if (retryAfter) {
+                const seconds = parseInt(retryAfter, 10);
+                if (!isNaN(seconds)) backoffMs = seconds * 1000;
             }
+            tenraiBackoffUntil = Date.now() + backoffMs;
+            throw new Error(`Tenrai rate limit — retry in ${Math.ceil(backoffMs / 1000)}s`);
         }
-        parts.push(current);
-
-        return parts.map(s => s.trim());
+        if (!response.ok) throw new Error(`Tenrai API returned ${response.status}`);
+        const data = await response.json();
+        return data.data.map(item => ({
+            title: item.title,
+            titleEn: item.title_english || '',
+            titleJp: item.title_japanese || '',
+            year: item.year || (item.aired?.prop?.from?.year) || null,
+            image: item.images?.jpg?.image_url || '',
+            mal_id: item.mal_id
+        }));
+    } catch (err) {
+        console.error('Tenrai fallback failed:', err);
+        throw err;
     }
+}
 
-
-    function setDataSource(source) {
-        dataSource = source;
-        document.getElementById('togglePopularity').style.backgroundColor = source === 'popularity' ? '#4caf50' : '#2c2c2c';
-        document.getElementById('toggleScore').style.backgroundColor = source === 'score' ? '#4caf50' : '#2c2c2c';
-
-        document.getElementById("container").replaceChildren();
-
-
-        buildGrid().then(() => {
-            loadState();
-
-            const currentFilter = document.getElementById("filterDropdown").value;
-            filterState(currentFilter);
+//GENERATE LINK
+document.getElementById('shareLinkBtn').addEventListener('click', async () => {
+    if (!boardHasContent()) { showToast('Create a board first'); return; }
+    showToast('Uploading board...');
+    try {
+        const payload = { board: boardData, progress };
+        const response = await fetch(BOARD_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
         });
-    }
-
-
-
-    function handleYearRangeChange() {
-        const start = parseInt(document.getElementById("startYearSelect").value);
-        const end = parseInt(document.getElementById("endYearSelect").value);
-
-        if (start > end) {
-            alert("Start year must be less than or equal to end year.");
-            return;
+        if (!response.ok) {
+            const errBody = await response.text();
+            throw new Error(`Upload failed (${response.status}): ${errBody}`);
         }
-
-        buildGrid().then(() => {
-            const currentFilter = document.getElementById("filterDropdown").value;
-            filterState(currentFilter);
-        });
+        const { id } = await response.json();
+        if (!id) throw new Error('Server did not return an ID');
+        const shareUrl = `${location.origin}${location.pathname}#id=${id}`;
+        const copied = await copyToClipboard(shareUrl);
+        if (copied) showToast(`Share link copied!`);
+        else prompt('Copy this share link:', shareUrl);
+    } catch (err) {
+        console.error('Failed to create share link:', err);
+        showToast('Failed to upload board: ' + err.message);
     }
+});
 
-    async function fetchCSV(year) {
-        let path = dataSource === 'popularity'
-        ? `output/anime_popularity_${year}.csv`
-        : `output/anime_score_${year}.csv`;
+function boardHasContent() {
+    if (isStaticLayout()) return boardData.slots.some(hasAnime);
+    return (boardData.years || []).some(row => row.titles.some(hasAnime));
+}
 
-        try {
-            const response = await fetch(path);
-            if (!response.ok) return [];
+async function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        try { await navigator.clipboard.writeText(text); return true; } catch (err) {}
+    }
+    try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const success = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        return success;
+    } catch (err) { return false; }
+}
 
-            const text = await response.text();
-            const lines = text.trim().split('\n');
-            const headers = parseCSVLine(lines[0]);
+//PNG
+function waitForImages(container) {
+    const imgs = Array.from(container.querySelectorAll('img'));
+    if (imgs.length === 0) return Promise.resolve();
+    return Promise.all(imgs.map(img => {
+        if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+        return new Promise(resolve => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+            setTimeout(resolve, 4000);
+        });
+    }));
+}
 
-            const jpIndex = headers.indexOf("title_japanese");
-            const enIndex = headers.indexOf("title_english");
-            const roIndex = headers.indexOf("title");
-            const imgIndex = headers.indexOf("image_url");
+async function captureElement(element) {
+    const inner = element.firstElementChild || element;
+    const w = Math.ceil(inner.scrollWidth || inner.offsetWidth || 1200);
+    const h = Math.ceil(inner.scrollHeight || inner.offsetHeight || 800);
+    return html2canvas(element, {
+        backgroundColor: '#121212',
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        //Pass the full size so png doesn't crop the box.
+        width: element.offsetWidth,
+        height: element.offsetHeight,
+        windowWidth: w + 40,
+        windowHeight: h + 40
+    });
+}
 
-            const rows = lines.slice(1).map(line => {
-                const parsed = parseCSVLine(line);
-                return {
-                    en: parsed[enIndex],
-                    jp: parsed[jpIndex],
-                    ro: parsed[roIndex],
-                    img: parsed[imgIndex]
-                };
+function downloadCanvas(canvas, filename) {
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+}
+
+const CAPTURE_MIN_WIDTH = 1600;
+const CAPTURE_MAX_WIDTH = 4800;
+const CAPTURE_CELL_WIDTH = 140;
+
+function computeCaptureWidth(maxSlots) {
+    const raw = CAPTURE_CELL_WIDTH * (maxSlots + 1) + 80;
+    return Math.max(CAPTURE_MIN_WIDTH, Math.min(CAPTURE_MAX_WIDTH, raw));
+}
+
+async function captureAsPng() {
+    if (typeof html2canvas === 'undefined') { showToast('html2canvas not loaded'); return; }
+    document.activeElement?.blur();
+
+    let width;
+if (boardData.layout === '3x3') {
+  width = CAPTURE_MIN_WIDTH;
+} else if (boardData.layout === 'grid') {
+  width = computeCaptureWidth(boardData.cols);
+} else {
+  const maxSlots = Math.max(...(boardData.years || []).map(r => r.titles.length), 1);
+  width = computeCaptureWidth(maxSlots);
+}
+
+    const captureArea = document.getElementById('captureArea');
+    captureArea.style.width = (width + 32) + 'px';
+    captureArea.style.paddingRight = '16px';
+    captureArea.innerHTML = buildCaptureMarkup(width);
+
+    showToast('Generating PNG...');
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    await waitForImages(captureArea);
+    await new Promise(r => setTimeout(r, 120));
+
+    try {
+        const canvas = await captureElement(captureArea);
+        const safeTitle = (boardData.title || 'anime-board')
+        .replace(/[^a-z0-9\-_ ]/gi, '')
+        .trim()
+        .replace(/\s+/g, '_')
+        .slice(0, 40) || 'anime-board';
+        downloadCanvas(canvas, `${safeTitle}.png`);
+        showToast('PNG saved!');
+    } catch (err) {
+        console.error('PNG capture failed:', err);
+        showToast('Failed to save PNG: ' + err.message);
+    } finally {
+        captureArea.innerHTML = '';
+        captureArea.style.width = '';
+        captureArea.style.paddingRight = '';
+    }
+}
+
+function buildCaptureMarkup(captureWidth) {
+    const title = boardData.title || '';
+    let html = `<div style="width:${captureWidth}px;">`;
+    if (title) {
+        html += `<h1 style="text-align:center; font-size:1.6rem; font-weight:600; margin:0 0 24px 0; color:#fff;">${escapeHtml(title)}</h1>`;
+    }
+    if (isStaticLayout()) {
+  const cols = boardData.layout === '3x3' ? 3 : boardData.cols;
+  const maxW = boardData.layout === '3x3' ? 700 : Math.max(600, cols * 180);
+  html += `<div style="display:grid; grid-template-columns:repeat(${cols}, 1fr); gap:12px; max-width:${maxW}px; margin:0 auto;">`;
+  boardData.slots.forEach((titleData, i) => { html += renderCaptureCard(titleData, progress[i] || 0); });
+  html += `</div>`;
+}else {
+        const maxSlots = Math.max(...boardData.years.map(r => r.titles.length), 1);
+        boardData.years.forEach((yearRow, yIdx) => {
+            const rowProgress = progress[yIdx] || [];
+            const allGreen = yearRow.titles.length > 0 &&
+                  yearRow.titles.every((_, i) => (rowProgress[i] || 0) === 1);
+            const labelBg = allGreen ? '#4caf50' : '#333';
+
+            html += `<div style="display:grid; grid-template-columns:1fr repeat(${maxSlots}, 1fr); gap:6px; margin-bottom:6px;">`;
+            html += `<div style="background:${labelBg}; border-radius:4px; padding:10px; text-align:center; font-weight:bold; font-size:0.85rem; display:flex; align-items:center; justify-content:center;">${yearRow.year}</div>`;
+            yearRow.titles.forEach((titleData, tIdx) => {
+                html += renderCaptureCard(titleData, rowProgress[tIdx] || 0);
             });
-
-            return rows.slice(0, 12); // adjust as needed
-        } catch (e) {
-            console.error(`Failed to fetch CSV for ${year}:`, e);
-            return [];
-        }
-    }
-
-    window.onload = () => {
-        populateYearDropdowns();
-        setDataSource(dataSource);
-    };
-
-    async function buildGrid() {
-        const container = document.getElementById("container");
-        container.replaceChildren();
-        container.innerHTML = "";
-
-        const startYear = parseInt(document.getElementById("startYearSelect").value);
-        const endYear = parseInt(document.getElementById("endYearSelect").value);
-
-        for (let year = startYear; year <= endYear; year++) {
-            const row = document.createElement("div");
-            row.className = "grid";
-            row.dataset.year = year;
-
-            const label = document.createElement("div");
-            label.className = "year-label";
-            label.textContent = year;
-            row.appendChild(label);
-
-            const titles = await fetchCSV(year);
-            console.log(`Titles for year ${year}:`, titles);
-
-
-            for (let i = 0; i < 12; i++) {
-                const cell = document.createElement("div");
-                cell.className = "cell";
-                const show = titles[i];
-
-                if (!show) {
-                    cell.textContent = `#${i + 1}`;
-                } else if (showImages && show.img) {
-                    const displayTitle = languageMode === 'english' ? show.en :
-                    languageMode === 'japanese' ? show.jp : show.ro;
-                    cell.innerHTML = `
-          <div style="display: flex; flex-direction: column; align-items: center;">
-            <img src="${show.img}" alt="cover" style="width: 48px; height: 68px; object-fit: cover; border-radius: 4px; margin-bottom: 4px;" />
-            <span>${displayTitle}</span>
-          </div>`;
-                } else {
-                    cell.textContent = languageMode === 'english' ? show.en :
-                    languageMode === 'japanese' ? show.jp : show.ro;
-                }
-                cell.dataset.state = "0";
-
-                cell.addEventListener("click", () => {
-                    let current = parseInt(cell.dataset.state);
-                    let next = (current + 1) % STATES.length;
-                    if (STATES[current]) cell.classList.remove(STATES[current]);
-                    if (STATES[next]) cell.classList.add(STATES[next]);
-                    cell.dataset.state = next;
-                    updateCounter();
-                    saveState();
-                });
-
-                row.appendChild(cell);
+            for (let i = yearRow.titles.length; i < maxSlots; i++) {
+                html += `<div></div>`;
             }
+            html += `</div>`;
+        });
+    }
+    html += '</div>';
+    return html;
+}
 
-            container.appendChild(row);
+function renderCaptureCard(titleData, stateIdx) {
+    const data = getAnimeData(titleData);
+    const displayTitle = resolveTitle(data, boardLanguageMode);
+    const { image, year } = data;
+    const stateClass = STATES[stateIdx] || '';
+    const bgMap = { green: '#2e7d32', orange: '#b85e00', red: '#a12b2b', white: '#e0e0e0', '': '#202020' };
+    const borderMap = { green: '#4caf50', orange: '#ff9800', red: '#f44336', white: '#ffffff', '': 'transparent' };
+    const textColor = stateClass === 'white' ? '#111' : '#fff';
+    const metaColor = stateClass === 'white' ? '#333' : '#aaa';
+
+    return `
+      <div style="background:${bgMap[stateClass]}; border:2px solid ${borderMap[stateClass]}; border-radius:12px; padding:12px 10px; display:flex; flex-direction:column; align-items:center; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.4); min-height:150px; justify-content:flex-start;">
+        ${image ? `<img src="${escapeHtml(image)}" alt="" crossorigin="anonymous" style="width:80px;height:110px;object-fit:cover;border-radius:8px;margin-bottom:8px;background:#2a2a2a;" />` : ''}
+        ${displayTitle ? `<div style="font-size:0.85rem;font-weight:500;line-height:1.3;color:${textColor};word-break:break-word;">${escapeHtml(displayTitle)}</div>` : `<div style="color:#555;font-style:italic;font-size:0.85rem;">Empty slot</div>`}
+        ${year ? `<div style="font-size:0.7rem;color:${metaColor};margin-top:4px;">${escapeHtml(String(year))}</div>` : ''}
+      </div>
+    `;
+}
+
+document.getElementById('savePngBtn').addEventListener('click', captureAsPng);
+document.getElementById('savePngViewOnlyBtn').addEventListener('click', captureAsPng);
+
+//Share and Load
+async function checkForSharedBoard() {
+    if (!location.hash || !location.hash.startsWith('#id=')) return false;
+    const blobId = location.hash.slice('#id='.length).trim();
+    if (!blobId) return false;
+
+    showScreen('viewonly');
+    document.getElementById('viewonlyContainer').innerHTML =
+        '<div class="loading-overlay">Loading shared board...</div>';
+
+    try {
+        const response = await fetch(`${BOARD_API}/${blobId}`, { headers: { 'Accept': 'application/json' } });
+        if (!response.ok) {
+            if (response.status === 404) throw new Error('This shared board no longer exists.');
+            throw new Error(`Server returned ${response.status}`);
         }
+        const data = await response.json();
+        let sharedBoard, sharedProgress;
+        if (Array.isArray(data)) {
+            sharedBoard = { layout: 'custom', title: '', years: data };
+            sharedProgress = null;
+        } else if (data && data.board) {
+            sharedBoard = data.board;
+            sharedProgress = data.progress || null;
+        } else {
+            throw new Error('Invalid board format');
+        }
+        boardData = sharedBoard;
+        progress = sharedProgress || buildEmptyProgress(boardData);
+        syncTitleToUI();
+        syncLanguageToUI();
+        renderViewOnlyScreen();
+        return true;
+    } catch (err) {
+        console.error('Failed to load shared board:', err);
+        document.getElementById('viewonlyContainer').innerHTML =
+            `<div class="no-results">Could not load shared board.<br><small style="color:#666">${escapeHtml(err.message)}</small></div>`;
+        return true;
+    }
+}
 
-        updateCounter();
-        loadState();
+function buildEmptyProgress(data) {
+  if (data.layout === '3x3') return new Array(data.slots.length).fill(0);
+  if (data.layout === 'grid') return new Array(data.slots.length).fill(0);
+  return (data.years || []).map(r => new Array(r.titles.length).fill(0));
+}
+
+function ensureProgressShape() {
+    if (isStaticLayout()) {
+        if (!Array.isArray(progress) || progress.length !== boardData.slots.length) {
+            progress = new Array(boardData.slots.length).fill(0);
+        }
+    } else {
+        if (!Array.isArray(progress) || progress.length !== (boardData.years || []).length) {
+            progress = (boardData.years || []).map(r => new Array(r.titles.length).fill(0));
+        }
+    }
+}
+
+//Load Link
+function renderViewOnlyScreen() {
+    if (isStaticLayout()) renderStaticViewOnly();
+    else renderCustomViewOnly();
+}
+
+function renderStaticViewOnly() {
+  let cols, maxWidth;
+  if (boardData.layout === '3x3') {
+    cols = 3; maxWidth = 700;
+  } else {
+    cols = boardData.cols;
+    maxWidth = Math.max(600, cols * 180);
+  }
+
+  let html = `<div class="static-grid-section" style="max-width:${maxWidth + 60}px;">
+    <div class="grid-row" style="grid-template-columns:repeat(${cols}, 1fr);">`;
+
+  boardData.slots.forEach((titleData, i) => {
+    const data = getAnimeData(titleData);
+    const displayTitle = resolveTitle(data, boardLanguageMode);
+    const { image, year } = data;
+    const stateClass = STATES[progress[i] || 0] || '';
+    html += `<div class="anime-card card-base viewonly ${stateClass}" data-s="${i}">
+      ${image ? `<img src="${escapeHtml(image)}" alt="" loading="lazy" data-fullsize="${escapeHtml(image)}" onerror="this.style.display='none'" />` : ''}
+      ${displayTitle ? `<div class="anime-title">${escapeHtml(displayTitle)}</div>` : '<div class="empty-placeholder">Empty slot</div>'}
+      ${year ? `<div class="anime-meta">${escapeHtml(String(year))}</div>` : ''}
+    </div>`;
+  });
+
+  html += '</div></div>';
+  document.getElementById('viewonlyContainer').innerHTML = html;
+  updateStatsForViewOnly();
+}
+
+function renderCustomViewOnly() {
+    if (!boardData.years || boardData.years.length === 0) {
+        document.getElementById('viewonlyContainer').innerHTML = '<div class="no-results">This board is empty.</div>';
+        updateStatsForViewOnly();
+        return;
     }
 
-    const imagePopup = document.getElementById('imagePopup');
+    const maxSlots = Math.max(...boardData.years.map(r => r.titles.length));
+
+    let html = '';
+    boardData.years.forEach((yearRow, yIdx) => {
+        const rowProgress = progress[yIdx] || [];
+        const allGreen = yearRow.titles.length > 0 &&
+              yearRow.titles.every((_, i) => (rowProgress[i] || 0) === 1);
+        const labelStyle = allGreen ? 'background-color:#4caf50;' : '';
+
+        html += `<div class="viewonly-csv-grid" style="grid-template-columns:1fr repeat(${maxSlots}, 1fr);">`;
+        html += `<div class="viewonly-csv-label" style="${labelStyle}">${yearRow.year}</div>`;
+
+        yearRow.titles.forEach((titleData, tIdx) => {
+            const data = getAnimeData(titleData);
+            const displayTitle = resolveTitle(data, boardLanguageMode);
+            const { image } = data;
+            const stateClass = STATES[rowProgress[tIdx] || 0] || '';
+
+            html += `<div class="viewonly-csv-cell ${stateClass}" data-y="${yIdx}" data-t="${tIdx}">`;
+            if (image) {
+                html += `<img src="${escapeHtml(image)}" alt="" loading="lazy" data-fullsize="${escapeHtml(image)}" onerror="this.style.display='none'" />`;
+            }
+            if (displayTitle) {
+                html += `<span>${escapeHtml(displayTitle)}</span>`;
+            } else if (!image) {
+                html += `<span style="color:#555;font-style:italic;">Empty</span>`;
+            }
+            html += `</div>`;
+        });
+
+        for (let i = yearRow.titles.length; i < maxSlots; i++) {
+            html += `<div class="viewonly-csv-cell" style="opacity:0.3;cursor:default;"></div>`;
+        }
+
+        html += `</div>`;
+    });
+
+    document.getElementById('viewonlyContainer').innerHTML = html;
+    updateStatsForViewOnly();
+}
+
+document.getElementById('viewonlyContainer').addEventListener('click', (e) => {
+    const csvCell = e.target.closest('.viewonly-csv-cell');
+    if (csvCell && csvCell.dataset.y !== undefined) {
+        const y = Number(csvCell.dataset.y);
+        const t = Number(csvCell.dataset.t);
+        progress[y][t] = (progress[y][t] + 1) % STATES.length;
+        renderViewOnlyScreen();
+        return;
+    }
+    const card = e.target.closest('.anime-card.viewonly');
+    if (card && card.dataset.s !== undefined) {
+        const i = Number(card.dataset.s);
+        progress[i] = (progress[i] + 1) % STATES.length;
+        renderViewOnlyScreen();
+    }
+});
+
+function updateStatsForViewOnly() {
+    let watched = 0, partial = 0, dropped = 0, planned = 0, total = 0;
+    if (isStaticLayout()) {
+        progress.forEach(state => {
+            total++;
+            if (state === 1) watched++; else if (state === 2) partial++;
+            else if (state === 3) dropped++; else if (state === 4) planned++;
+        });
+    } else {
+        progress.forEach(row => {
+            (row || []).forEach(state => {
+                total++;
+                if (state === 1) watched++; else if (state === 2) partial++;
+                else if (state === 3) dropped++; else if (state === 4) planned++;
+            });
+        });
+    }
+    document.getElementById('statWatchedVO').textContent = watched;
+    document.getElementById('statPartialVO').textContent = partial;
+    document.getElementById('statDroppedVO').textContent = dropped;
+    document.getElementById('statPlannedVO').textContent = planned;
+    document.getElementById('statTotalVO').textContent = total;
+}
+
+document.getElementById('makeOwnCopyBtn').addEventListener('click', () => {
+    if (!confirm('Copy this board to your local builder? You can then edit the anime selections.')) return;
+    const copy = JSON.parse(JSON.stringify(boardData));
+    boardData = copy;
+    progress = buildEmptyProgress(boardData);
+
+    const layoutKey = boardData.layout === '3x3' ? '3x3'
+    : boardData.layout === '4x4' ? '4x4'
+    : 'custom';
+    localStorage.setItem(ACTIVE_LAYOUT_KEY, layoutKey);
+
+    history.replaceState(null, '', location.pathname + location.search);
+
+    if (isStaticLayout()) {
+        document.getElementById('createPanel').style.display = 'none';
+        document.getElementById('builderTitle').textContent = `${boardData.layout.replace('x','×')} board — ${boardData.slots.length} slots`;
+    } else {
+        document.getElementById('createPanel').style.display = 'block';
+        document.getElementById('builderTitle').textContent = 'Custom board — Best of Years';
+    }
+    syncTitleToUI();
+    renderBuilder();
+    saveBoardState();
+    showScreen('builder');
+    showToast('Board copied — now fill it in!');
+});
+
+document.getElementById('clearBuilderBtn').addEventListener('click', () => {
+    if (!confirm('Clear the entire board?')) return;
+    if (isStaticLayout()) {
+        boardData.slots = new Array(boardData.slots.length).fill('');
+        progress = buildEmptyProgress(boardData);
+    } else {
+        boardData.years = [];
+        progress = buildEmptyProgress(boardData);
+    }
+    renderBuilder();
+    saveBoardState();
+    showToast('Board cleared');
+});
+
+document.getElementById('exportBuilderBtn').addEventListener('click', () => {
+    downloadJSON({ board: boardData, progress }, 'anime_board.json');
+});
+
+document.getElementById('importBuilderBtn').addEventListener('click', () => {
+    document.getElementById('importBuilderFile').click();
+});
+document.getElementById('importBuilderFile').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+        try {
+            const data = JSON.parse(ev.target.result);
+            let importedBoard = null, importedProgress = null;
+            if (data && data.board) {
+                importedBoard = data.board;
+                importedProgress = data.progress || null;
+            } else if (Array.isArray(data)) {
+                importedBoard = { layout: 'custom', title: '', years: data };
+            } else {
+                showToast('Invalid board file'); e.target.value = ''; return;
+            }
+            if (!importedBoard.title) importedBoard.title = '';
+            if (importedBoard.layout === '3x3') {
+  if (!Array.isArray(importedBoard.slots)) throw new Error('Invalid 3x3 board');
+} else if (importedBoard.layout === 'grid') {
+  if (!Array.isArray(importedBoard.slots)) throw new Error('Invalid grid board');
+  if (typeof importedBoard.rows !== 'number' || typeof importedBoard.cols !== 'number') {
+    const total = importedBoard.slots.length;
+    const sqrt = Math.round(Math.sqrt(total));
+    if (sqrt * sqrt === total) {
+      importedBoard.rows = sqrt;
+      importedBoard.cols = sqrt;
+    } else {
+      throw new Error('Grid board is missing rows/cols');
+    }
+  }
+} else {
+  if (!Array.isArray(importedBoard.years)) throw new Error('Invalid custom board');
+}
+            boardData = importedBoard;
+            progress = importedProgress || buildEmptyProgress(boardData);
+
+            const layoutKey = boardData.layout === '3x3' ? '3x3'
+            : boardData.layout === '4x4' ? '4x4'
+            : 'custom';
+            localStorage.setItem(ACTIVE_LAYOUT_KEY, layoutKey);
+
+            if (isStaticLayout()) {
+                document.getElementById('createPanel').style.display = 'none';
+                document.getElementById('builderTitle').textContent = `${boardData.layout.replace('x','×')} board — ${boardData.slots.length} slots`;
+            } else {
+                document.getElementById('createPanel').style.display = 'block';
+                document.getElementById('builderTitle').textContent = 'Custom board — Best of Years';
+            }
+            syncTitleToUI();
+            renderBuilder();
+            saveBoardState();
+            showScreen('builder');
+            showToast('Board imported');
+        } catch (err) {
+            console.error(err);
+            showToast('Failed to parse file: ' + err.message);
+        }
+        e.target.value = '';
+    };
+    reader.readAsText(file);
+});
+
+function saveBoardState() {
+    if (!boardData || !boardData.layout) return;
+
+    const layout = boardData.layout === '3x3' ? '3x3'
+             : boardData.layout === 'grid' ? 'grid'
+             : 'custom';
+    const key = LAYOUT_KEYS[layout];
+    try {
+        localStorage.setItem(key, JSON.stringify({
+            board: boardData,
+            progress: progress,
+            savedAt: Date.now()
+        }));
+        localStorage.setItem(ACTIVE_LAYOUT_KEY, layout);
+    } catch (e) {
+        console.error('Failed to save board state:', e);
+    }
+}
+
+function loadLayoutFromStorage(layout) {
+    try {
+        const raw = localStorage.getItem(LAYOUT_KEYS[layout]);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        if (!parsed || !parsed.board) return null;
+        return parsed;
+    } catch (e) {
+        console.error('Failed to load layout from storage:', e);
+        return null;
+    }
+}
+//Messy cleanup because I changed this like five times. To be removed later
+function loadFromLocalStorage() {
+    let activeLayout = localStorage.getItem(ACTIVE_LAYOUT_KEY);
+    try {
+        const legacyBoard = localStorage.getItem('animeBoard');
+        const legacyProgress = localStorage.getItem('animeProgress');
+        if (legacyBoard && !activeLayout) {
+            const parsedBoard = JSON.parse(legacyBoard);
+            if (parsedBoard && parsedBoard.layout) {
+                const layout = parsedBoard.layout === '3x3' ? '3x3'
+                : parsedBoard.layout === '4x4' ? '4x4'
+                : 'custom';
+                const parsedProgress = legacyProgress ? JSON.parse(legacyProgress) : buildEmptyProgress(parsedBoard);
+                localStorage.setItem(LAYOUT_KEYS[layout], JSON.stringify({
+                    board: parsedBoard,
+                    progress: parsedProgress,
+                    savedAt: Date.now()
+                }));
+                localStorage.setItem(ACTIVE_LAYOUT_KEY, layout);
+                activeLayout = layout;
+                localStorage.removeItem('animeBoard');
+                localStorage.removeItem('animeProgress');
+            }
+        }
+    } catch (e) {
+        console.warn('Legacy migration failed:', e);
+    }
+
+    if (!activeLayout) {
+        return null;
+    }
+
+    const stored = loadLayoutFromStorage(activeLayout);
+    if (!stored) return null;
+
+    boardData = stored.board;
+    progress = stored.progress || buildEmptyProgress(boardData);
+    ensureProgressShape();
+
+    if (isStaticLayout()) {
+        document.getElementById('createPanel').style.display = 'none';
+        document.getElementById('builderTitle').textContent =
+            `${boardData.layout.replace('x','×')} board — ${boardData.slots.length} slots`;
+    } else {
+        document.getElementById('createPanel').style.display = 'block';
+        document.getElementById('builderTitle').textContent = 'Custom board — Best of Years';
+    }
+    syncTitleToUI();
+    renderBuilder();
+    return boardData;
+}
+
+function downloadJSON(obj, filename) {
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function showToast(msg) {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+(function setupCtrlHoverEnlarge() {
+    const popup = document.getElementById('imagePopup');
+    const popupImg = document.getElementById('imagePopupImg');
+    let ctrlHeld = false;
+
+    function setCtrlHeld(held) {
+        if (ctrlHeld === held) return;
+        ctrlHeld = held;
+        document.body.classList.toggle('ctrl-held', held);
+        if (!held) popup.style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Control' || e.key === 'Meta') setCtrlHeld(true);
+    });
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'Control' || e.key === 'Meta') setCtrlHeld(false);
+    });
+    window.addEventListener('blur', () => setCtrlHeld(false));
+
+    function findImg(target) {
+        return target.querySelector('img');
+    }
+
     document.addEventListener('mousemove', (e) => {
-        if (imagePopup.style.display === 'block') {
-            const padding = 20;
+        if (popup.style.display === 'block') {
+            const padding = 16;
             let x = e.clientX + padding;
             let y = e.clientY + padding;
-            const popupRect = imagePopup.getBoundingClientRect();
-            const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
-
-
-            if (x + popupRect.width > windowWidth) {
-                x = e.clientX - popupRect.width - padding;
-            }
-            if (y + popupRect.height > windowHeight) {
-                y = e.clientY - popupRect.height - padding;
-            }
-
-            imagePopup.style.left = `${x}px`;
-            imagePopup.style.top = `${y}px`;
+            const rect = popup.getBoundingClientRect();
+            if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - padding;
+            if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - padding;
+            popup.style.left = x + 'px';
+            popup.style.top = y + 'px';
         }
     });
 
-    document.querySelector('#container').addEventListener('mouseover', (e) => {
-        const cell = e.target.closest('.cell');
+    document.addEventListener('mouseover', (e) => {
+        if (!ctrlHeld) return;
+        const cell = e.target.closest('.builder-cell, .anime-card, .csv-cell, .viewonly-csv-cell');
         if (!cell) return;
-
-        if (cell.querySelector('img') && (window.event.ctrlKey || window.event.metaKey)) {
-            const imgSrc = cell.querySelector('img').src;
-            const popupImg = imagePopup.querySelector('img');
-            popupImg.src = imgSrc;
-            imagePopup.style.display = 'block';
-        }
+        const img = findImg(cell);
+        if (!img) return;
+        const src = img.dataset.fullsize || img.src;
+        if (!src) return;
+        popupImg.src = src;
+        popup.style.display = 'block';
     });
 
-    document.querySelector('#container').addEventListener('mouseout', (e) => {
-        const cell = e.target.closest('.cell');
+    document.addEventListener('mouseout', (e) => {
+        const cell = e.target.closest('.builder-cell, .anime-card, .csv-cell, .viewonly-csv-cell');
         if (!cell) return;
-        imagePopup.style.display = 'none';
+        const related = e.relatedTarget;
+        if (related && cell.contains(related)) return;
+        popup.style.display = 'none';
     });
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Control' || e.key === 'Meta') {
-            const hovered = document.querySelector('.cell:hover');
-            if (hovered && hovered.querySelector('img')) {
-                const imgSrc = hovered.querySelector('img').src;
-                imagePopup.querySelector('img').src = imgSrc;
-                imagePopup.style.display = 'block';
-            }
-        }
+        if (e.key !== 'Control' && e.key !== 'Meta') return;
+        const hovered = document.querySelector('.builder-cell:hover, .anime-card:hover, .csv-cell:hover, .viewonly-csv-cell:hover');
+        if (!hovered) return;
+        const img = findImg(hovered);
+        if (!img) return;
+        const src = img.dataset.fullsize || img.src;
+        if (!src) return;
+        popupImg.src = src;
+        popup.style.display = 'block';
     });
-    document.addEventListener('keyup', (e) => {
-        if (e.key === 'Control' || e.key === 'Meta') {
-            imagePopup.style.display = 'none';
+})();
+
+//Original checklist code
+const YEAR_MIN = 1963;
+const YEAR_MAX = 2025;
+let csvLanguageMode = 'romanji';
+let csvDataSource = 'popularity';
+let csvShowImages = true;
+
+function startCsvChecklist() {
+    showScreen('csv');
+    if (!document.getElementById('startYearSelect').options.length) {
+        populateCsvYearDropdowns();
+    }
+    if (!document.getElementById('csvContainer').children.length) {
+        setDataSource(csvDataSource);
+    }
+    syncLanguageToUI();
+}
+
+document.getElementById('csvBackToMenuBtn').addEventListener('click', () => {
+    showScreen('menu');
+});
+
+function handleImageToggle() {
+    csvShowImages = document.getElementById('imageToggle').value === 'on';
+    refreshCsvGrid();
+}
+
+function handleLanguageChange() {
+    csvLanguageMode = document.getElementById('languageSelect').value;
+    boardLanguageMode = csvLanguageMode;
+    refreshCsvGrid();
+}
+
+function populateCsvYearDropdowns() {
+    const startSelect = document.getElementById('startYearSelect');
+    const endSelect = document.getElementById('endYearSelect');
+    for (let y = YEAR_MIN; y <= YEAR_MAX; y++) {
+        startSelect.appendChild(new Option(y, y));
+        endSelect.appendChild(new Option(y, y));
+    }
+    startSelect.value = 2000;
+    endSelect.value = YEAR_MAX;
+}
+
+function parseCsvLine(line) {
+    const parts = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        if (char === '"') inQuotes = !inQuotes;
+        else if (char === ',' && !inQuotes) { parts.push(current); current = ''; }
+        else current += char;
+    }
+    parts.push(current);
+    return parts.map(s => s.trim());
+}
+
+function getCsvTitle(show) {
+    switch (csvLanguageMode) {
+        case 'english': return show.en;
+        case 'japanese': return show.jp;
+        default: return show.ro;
+    }
+}
+
+function setCsvCellState(cell, state) {
+    const current = Number(cell.dataset.state) || 0;
+    if (STATES[current]) cell.classList.remove(STATES[current]);
+    if (STATES[state]) cell.classList.add(STATES[state]);
+    cell.dataset.state = state;
+}
+
+async function refreshCsvGrid() {
+    await buildCsvGrid();
+    loadCsvState();
+    filterState(document.getElementById('filterDropdown').value);
+}
+
+function setDataSource(source) {
+    csvDataSource = source;
+    document.getElementById('togglePopularity').style.backgroundColor = source === 'popularity' ? '#4caf50' : '#2c2c2c';
+    document.getElementById('toggleScore').style.backgroundColor = source === 'score' ? '#4caf50' : '#2c2c2c';
+    refreshCsvGrid();
+}
+
+function handleYearRangeChange() {
+    const start = parseInt(document.getElementById('startYearSelect').value);
+    const end = parseInt(document.getElementById('endYearSelect').value);
+    if (start > end) { alert('Start year must be <= end year.'); return; }
+    refreshCsvGrid();
+}
+
+async function fetchCsv(year) {
+    const path = csvDataSource === 'popularity'
+    ? `output/anime_popularity_${year}.csv`
+    : `output/anime_score_${year}.csv`;
+    try {
+        const response = await fetch(path);
+        if (!response.ok) return [];
+        const text = await response.text();
+        const lines = text.trim().split('\n');
+        const headers = parseCsvLine(lines[0]);
+        const jpIndex = headers.indexOf("title_japanese");
+        const enIndex = headers.indexOf("title_english");
+        const roIndex = headers.indexOf("title");
+        const imgIndex = headers.indexOf("image_url");
+        return lines.slice(1).map(line => {
+            const parsed = parseCsvLine(line);
+            return { en: parsed[enIndex], jp: parsed[jpIndex], ro: parsed[roIndex], img: parsed[imgIndex] };
+        }).slice(0, 12);
+    } catch (e) {
+        console.error(`Failed to fetch CSV for ${year}:`, e);
+        return [];
+    }
+}
+
+async function buildCsvGrid() {
+    const container = document.getElementById('csvContainer');
+    container.replaceChildren();
+
+    const startYear = parseInt(document.getElementById('startYearSelect').value);
+    const endYear = parseInt(document.getElementById('endYearSelect').value);
+    const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
+    const results = await Promise.all(years.map(year => fetchCsv(year)));
+
+    years.forEach((year, yearIndex) => {
+        const row = document.createElement('div');
+        row.className = 'csv-grid';
+        row.dataset.year = year;
+
+        const label = document.createElement('div');
+        label.className = 'csv-year-label';
+        label.textContent = year;
+        row.appendChild(label);
+
+        const titles = results[yearIndex];
+        for (let i = 0; i < 12; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'csv-cell';
+            const show = titles[i];
+            const displayTitle = show ? getCsvTitle(show) : '';
+
+            if (!show) {
+                cell.textContent = `#${i + 1}`;
+            } else if (csvShowImages && show.img) {
+                cell.innerHTML = `
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <img src="${escapeHtml(show.img)}" alt="cover" data-fullsize="${escapeHtml(show.img)}" style="width:48px;height:68px;object-fit:cover;border-radius:4px;margin-bottom:4px;" />
+              <span>${escapeHtml(displayTitle || '')}</span>
+            </div>`;
+            } else {
+                cell.textContent = displayTitle || '';
+            }
+            cell.dataset.state = '0';
+
+            cell.addEventListener('click', () => {
+                const next = (Number(cell.dataset.state) + 1) % STATES.length;
+                setCsvCellState(cell, next);
+                updateCsvCounter();
+                saveCsvState();
+            });
+
+            row.appendChild(cell);
         }
+
+        container.appendChild(row);
     });
 
+    updateCsvCounter();
+}
 
-    function saveState() {
-        const stateKey = `animeGridState_${dataSource}`;
-        const currentState = JSON.parse(localStorage.getItem(stateKey) || "{}");
+function saveCsvState() {
+    const stateKey = `animeGridState_${csvDataSource}`;
+    const currentState = JSON.parse(localStorage.getItem(stateKey) || "{}");
+    document.querySelectorAll(".csv-grid").forEach(row => {
+        const year = row.dataset.year;
+        const cells = row.querySelectorAll(".csv-cell");
+        currentState[year] = Array.from(cells).map(cell => cell.dataset.state);
+    });
+    localStorage.setItem(stateKey, JSON.stringify(currentState));
+}
 
-        document.querySelectorAll(".grid").forEach(row => {
-            const year = row.dataset.year;
-            const cells = row.querySelectorAll(".cell");
-            const yearState = Array.from(cells).map(cell => cell.dataset.state);
-            currentState[year] = yearState;
+function loadCsvState() {
+    const stateKey = `animeGridState_${csvDataSource}`;
+    const saved = JSON.parse(localStorage.getItem(stateKey) || "{}");
+    document.querySelectorAll(".csv-grid").forEach(row => {
+        const year = row.dataset.year;
+        const state = saved[year] || [];
+        const cells = row.querySelectorAll(".csv-cell");
+        cells.forEach((cell, index) => {
+            const newState = parseInt(state[index] || 0);
+            setCsvCellState(cell, newState);
         });
+    });
+    updateCsvCounter();
+}
 
-        localStorage.setItem(stateKey, JSON.stringify(currentState));
+function filterState(filter) {
+    document.querySelectorAll(".csv-cell").forEach(cell => {
+        const state = STATES[parseInt(cell.dataset.state)];
+        if (filter === 'all' || state === filter) cell.style.display = '';
+        else cell.style.display = 'none';
+    });
+}
+
+function clearCsvBoard() {
+    if (!confirm('Clear all CSV checklist progress for the current data source?')) return;
+    document.querySelectorAll(".csv-cell").forEach(cell => {
+        setCsvCellState(cell, 0);
+    });
+    localStorage.removeItem(`animeGridState_${csvDataSource}`);
+    document.querySelectorAll(".csv-year-label").forEach(label => {
+        label.style.backgroundColor = "#333";
+    });
+    updateCsvCounter();
+}
+
+function updateCsvCounter() {
+    const cells = document.querySelectorAll(".csv-cell");
+    let watched = 0, partial = 0, dropped = 0, planned = 0;
+    cells.forEach(cell => {
+        const state = cell.dataset.state;
+        if (state === "1") watched++;
+        else if (state === "2") partial++;
+        else if (state === "3") dropped++;
+        else if (state === "4") planned++;
+    });
+    const total = cells.length;
+    document.getElementById("countWatched").textContent = watched;
+    document.getElementById("countPartial").textContent = partial;
+    document.getElementById("countDropped").textContent = dropped;
+    document.getElementById("countPlanned").textContent = planned;
+    document.getElementById("countTotal").textContent = total;
+
+    document.querySelectorAll(".csv-grid").forEach(row => {
+        const cells = row.querySelectorAll(".csv-cell");
+        const label = row.querySelector(".csv-year-label");
+        const allGreen = Array.from(cells).every(cell => cell.dataset.state === "1");
+        label.style.backgroundColor = allGreen ? "#4caf50" : "#333";
+        label.style.color = allGreen ? "#fff" : "#fff";
+    });
+}
+
+async function captureCsvGrid() {
+  if (typeof html2canvas === 'undefined') { showToast('html2canvas not loaded'); return; }
+  document.activeElement?.blur();
+
+  const captureArea = document.getElementById('captureArea');
+  captureArea.style.width = CAPTURE_MIN_WIDTH + 'px';
+  const counter = document.querySelector('.counter-sticky').outerHTML;
+  const grid = document.getElementById('csvContainer').innerHTML;
+  captureArea.innerHTML = `<div style="padding:20px; background:#121212;">${counter}<div style="margin-top:16px;">${grid}</div></div>`;
+
+  showToast('Generating PNG...');
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  await waitForImages(captureArea);
+  await new Promise(r => setTimeout(r, 120));
+
+  try {
+    const canvas = await captureElement(captureArea);
+    downloadCanvas(canvas, 'anime_checklist.png');
+    showToast('PNG saved!');
+  } catch (err) {
+    console.error('PNG capture failed:', err);
+    showToast('Failed to save PNG: ' + err.message);
+  } finally {
+    captureArea.innerHTML = '';
+    captureArea.style.width = '';
+  }
+}
+(async () => {
+    const loaded = await checkForSharedBoard();
+    if (!loaded) {
+        loadFromLocalStorage();
+        syncLanguageToUI();
+        showScreen('menu');
     }
-    function loadState() {
-        const stateKey = `animeGridState_${dataSource}`;
-        const saved = JSON.parse(localStorage.getItem(stateKey) || "{}");
-
-        document.querySelectorAll(".grid").forEach(row => {
-            const year = row.dataset.year;
-            const state = saved[year] || [];
-            const cells = row.querySelectorAll(".cell");
-
-            cells.forEach((cell, index) => {
-                const current = parseInt(cell.dataset.state);
-                if (STATES[current]) cell.classList.remove(STATES[current]);
-                const newState = parseInt(state[index] || 0);
-                if (STATES[newState]) cell.classList.add(STATES[newState]);
-                cell.dataset.state = newState;
-            });
-        });
-
-        updateCounter();
-    }
-
-    function filterState(filter) {
-        const cells = document.querySelectorAll(".cell");
-        cells.forEach(cell => {
-            const state = STATES[parseInt(cell.dataset.state)];
-            if (filter === 'all' || state === filter) {
-                cell.style.display = '';
-            } else {
-                cell.style.display = 'none';
-            }
-        });
-    }
-
-    function saveStateToFile() {
-        const cells = document.querySelectorAll(".cell");
-        const state = Array.from(cells).map(cell => cell.dataset.state);
-        const blob = new Blob([JSON.stringify(state)], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "animeGridState.json";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-    }
-
-    function loadStateFromFile(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = e => {
-            try {
-                const state = JSON.parse(e.target.result);
-                const cells = document.querySelectorAll(".cell");
-                cells.forEach((cell, index) => {
-                    const current = parseInt(cell.dataset.state);
-                    if (STATES[current]) cell.classList.remove(STATES[current]);
-                    const newState = parseInt(state[index] || 0);
-                    if (STATES[newState]) cell.classList.add(STATES[newState]);
-                    cell.dataset.state = newState;
-                });
-                alert("Grid state loaded from file!");
-                updateCounter();
-            } catch (err) {
-                alert("Failed to load state: invalid file.");
-            }
-        };
-        reader.readAsText(file);
-        event.target.value = "";
-    }
-
-    function captureGrid() {
-        const fullPage = document.getElementById("fullPage");
-        const counterBox = document.getElementById("counterBox");
-
-        const warning = document.createElement("div");
-        warning.textContent = "Generating image... this may take a few seconds if images are on.";
-        warning.style.position = "fixed";
-        warning.style.top = "10px";
-        warning.style.left = "50%";
-        warning.style.transform = "translateX(-50%)";
-        warning.style.backgroundColor = "#222";
-        warning.style.color = "#fff";
-        warning.style.padding = "8px 16px";
-        warning.style.borderRadius = "6px";
-        warning.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
-        warning.style.zIndex = "10000";
-        document.body.appendChild(warning);
-
-        const restoreSelects = swapSelectsForSpans();
-        const prevPosition = counterBox.style.position;
-        counterBox.style.position = "static";
-
-        const originalStyles = [];
-        const gridRows = document.querySelectorAll('.grid');
-        gridRows.forEach(row => {
-            originalStyles.push(row.getAttribute("style"));
-            row.style.gridTemplateColumns = "1fr repeat(12, minmax(0, 1fr))";
-            row.style.width = "1600px"; // or adjust as needed
-        });
-
-        const originalPageWidth = fullPage.style.width;
-        fullPage.style.width = "1700px"; // slightly more than grid rows
-
-        setTimeout(() => {
-            html2canvas(fullPage, {
-                backgroundColor: '#121212',
-                useCORS: true,
-                scrollY: 0
-            }).then(canvas => {
-                const link = document.createElement("a");
-                link.download = "anime_grid.png";
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-
-                counterBox.style.position = prevPosition;
-                restoreSelects();
-                document.body.removeChild(warning);
-
-                gridRows.forEach((row, i) => {
-                    row.setAttribute("style", originalStyles[i] || "");
-                });
-                fullPage.style.width = originalPageWidth || "";
-            });
-        }, 500);
-    }
-
-
-
-
-    function swapSelectsForSpans() {
-        const selects = document.querySelectorAll("select");
-        const clones = [];
-
-        selects.forEach(select => {
-            const span = document.createElement("span");
-            span.className = "select-clone";
-            span.textContent = select.options[select.selectedIndex].text;
-
-            // Match style
-            const style = getComputedStyle(select);
-            span.style.display = "inline-block";
-            span.style.backgroundColor = style.backgroundColor || "#2c2c2c";
-            span.style.color = style.color || "#fff";
-            span.style.padding = style.padding || "8px 12px";
-            span.style.borderRadius = style.borderRadius || "4px";
-            span.style.font = style.font || "inherit";
-            span.style.fontSize = style.fontSize;
-            span.style.minWidth = select.offsetWidth + "px";
-            span.style.textAlign = "center";
-            span.style.marginRight = "4px";
-
-            select.style.display = "none";
-            select.parentNode.insertBefore(span, select);
-            clones.push({ span, select });
-        });
-
-        return () => {
-            clones.forEach(({ span, select }) => {
-                span.remove();
-                select.style.display = "";
-            });
-        };
-    }
-
-
-
-    function updateCounter() {
-        const cells = document.querySelectorAll(".cell");
-        let watched = 0, partial = 0, dropped = 0, planned = 0;
-
-        cells.forEach(cell => {
-            const state = cell.dataset.state;
-            if (state === "1") watched++;
-            else if (state === "2") partial++;
-            else if (state === "3") dropped++;
-            else if (state === "4") planned++;
-        });
-
-        const total = cells.length;
-
-        document.getElementById("countWatched").textContent = watched;
-        document.getElementById("countPartial").textContent = partial;
-        document.getElementById("countDropped").textContent = dropped;
-        document.getElementById("countPlanned").textContent = planned;
-        document.getElementById("countTotal").textContent = total;
-
-        document.querySelectorAll(".grid").forEach(row => {
-            const cells = row.querySelectorAll(".cell");
-            const label = row.querySelector(".year-label");
-
-            const allGreen = Array.from(cells).every(cell => cell.dataset.state === "1");
-
-            if (allGreen) {
-                label.style.backgroundColor = "#4caf50";
-            } else {
-                label.style.backgroundColor = "#333";
-                label.style.color = "#fff";
-            }
-        });
-    }
-  </script>
-</div>
+})();
+</script>
 </body>
 </html>

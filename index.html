@@ -851,6 +851,189 @@
     background-color: #f5f5f5;
     color: #000;
    }
+   /* Small action buttons that appear on hover in filled cells */
+    .builder-cell-actions {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      display: flex;
+      gap: 4px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 5;
+    }
+    .builder-cell:hover .builder-cell-actions { opacity: 1; }
+    .builder-cell-action-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 0.75rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .builder-cell-action-btn:hover { background: #4caf50; }
+    .builder-cell-action-btn.clear-btn:hover { background: #f44336; }
+
+    /* Image picker modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 20000;
+      padding: 20px;
+    }
+    .modal-backdrop.visible { display: flex; }
+    .modal {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 720px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 12px;
+    }
+    .modal-header h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+      word-break: break-word;
+    }
+    .modal-close {
+      background: transparent;
+      border: 1px solid #3a3a3a;
+      color: #aaa;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.15s;
+      flex-shrink: 0;
+    }
+    .modal-close:hover { background: #2c2c2c; color: #fff; }
+
+    .modal-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 18px;
+      background: #181818;
+      padding: 4px;
+      border-radius: 10px;
+    }
+    .modal-tab {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #aaa;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .modal-tab:hover { color: #fff; }
+    .modal-tab.active { background: #4caf50; color: #fff; }
+
+    .modal-panel { display: none; }
+    .modal-panel.active { display: block; }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+    }
+    .image-choice {
+      background: #202020;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 6px;
+      cursor: pointer;
+      transition: 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+    }
+    .image-choice:hover {
+      border-color: #4caf50;
+      background: #252525;
+    }
+    .image-choice img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+    .image-panel-loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: #4caf50;
+      font-style: italic;
+    }
+    .image-panel-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #777;
+      font-style: italic;
+    }
+
+    .url-input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .url-input-row input[type="text"] {
+      background: #2c2c2c;
+      border: 1px solid #3d3d3d;
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      outline: none;
+      font-family: inherit;
+    }
+    .url-input-row input[type="text"]:focus { border-color: #4caf50; }
+    .url-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      background: #151515;
+      border: 1px dashed #2e2e2e;
+      border-radius: 10px;
+      padding: 12px;
+      color: #666;
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+    .url-preview img {
+      max-width: 100%;
+      max-height: 280px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
   </style>
  </head>
  <body>
@@ -1058,14 +1241,39 @@
     <div id="csvContainer"></div>
    </div>
   </div>
+  <!-- Image picker modal -->
+    <div id="imagePickerModal" class="modal-backdrop">
+    <div class="modal">
+    <div class="modal-header">
+      <h3 id="imagePickerTitle">Change image</h3>
+      <button class="modal-close" id="imagePickerClose">✕</button>
+    </div>
 
+    <div class="modal-tabs">
+      <button class="modal-tab active" data-tab="covers">Covers from MAL</button>
+      <button class="modal-tab" data-tab="url">Paste URL</button>
+    </div>
+
+    <div class="modal-panel active" id="panel-covers">
+      <div id="imageCoversList" class="image-grid"></div>
+    </div>
+
+    <div class="modal-panel" id="panel-url">
+      <div class="url-input-row">
+        <input type="text" id="imageUrlInput" placeholder="https://example.com/image.jpg" />
+        <div class="url-preview" id="imageUrlPreview">Preview will appear here</div>
+        <button class="btn btn-primary" id="imageUrlApply" style="align-self:flex-start;">Use this image</button>
+      </div>
+    </div>
+    </div>
+    </div>
   <div id="captureArea"></div>
   <div id="imagePopup"><img id="imagePopupImg" src="" alt="" /></div>
  </body>
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-    //CONFIG
+//CONFIG
 const PROXY_URL = "https://malapi.johns84912.workers.dev";
 const TENRAI_API = "https://api.tenrai.org/v1";
 const MIN_QUERY_LENGTH = 2;
@@ -1075,9 +1283,9 @@ const BOARD_API = `${PROXY_URL}/board`;
 const TENRAI_COOLDOWN_MS = 1000;
 //CONST
 const LAYOUT_KEYS = {
-  '3x3': 'board_3x3',
-  'grid': 'board_grid',
-  'custom': 'board_custom'
+    '3x3': 'board_3x3',
+    'grid': 'board_grid',
+    'custom': 'board_custom'
 };
 const ACTIVE_LAYOUT_KEY = 'activeLayout';
 const STATES = ["", "green", "orange", "red", "white"];
@@ -1097,7 +1305,7 @@ function resolveTitle(anime, lang) {
     return anime.title || anime.titleEn || anime.titleJp || '';
 }
 function isStaticLayout() {
-  return boardData.layout === '3x3' || boardData.layout === 'grid';
+    return boardData.layout === '3x3' || boardData.layout === 'grid';
 }
 
 function getAnimeData(titleData) {
@@ -1177,57 +1385,57 @@ function showScreen(name) {
 }
 
 document.querySelectorAll('.menu-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const action = card.dataset.action;
-    if (action === 'create-3x3') openBoard('3x3');
-    else if (action === 'create-grid') openBoard('grid');
-    else if (action === 'create-custom') openBoard('custom');
-    else if (action === 'csv-checklist') startCsvChecklist();
-  });
+    card.addEventListener('click', () => {
+        const action = card.dataset.action;
+        if (action === 'create-3x3') openBoard('3x3');
+        else if (action === 'create-grid') openBoard('grid');
+        else if (action === 'create-custom') openBoard('custom');
+        else if (action === 'csv-checklist') startCsvChecklist();
+    });
 });
 //MAKE BOARDS
 function openBoard(layout) {
-  const stored = loadLayoutFromStorage(layout);
+    const stored = loadLayoutFromStorage(layout);
 
-  if (stored && stored.board) {
-    boardData = stored.board;
-    progress = stored.progress || buildEmptyProgress(boardData);
-    ensureProgressShape();
-  } else {
-    if (layout === '3x3') {
-      boardData = { layout: '3x3', title: '', slots: new Array(9).fill('') };
-      progress = new Array(9).fill(0);
-    } else if (layout === 'grid') {
-      boardData = { layout: 'grid', rows: 4, cols: 4, title: '', slots: new Array(16).fill('') };
-      progress = new Array(16).fill(0);
+    if (stored && stored.board) {
+        boardData = stored.board;
+        progress = stored.progress || buildEmptyProgress(boardData);
+        ensureProgressShape();
     } else {
-      boardData = { layout: 'custom', title: '', years: [] };
-      progress = [];
+        if (layout === '3x3') {
+            boardData = { layout: '3x3', title: '', slots: new Array(9).fill('') };
+            progress = new Array(9).fill(0);
+        } else if (layout === 'grid') {
+            boardData = { layout: 'grid', rows: 4, cols: 4, title: '', slots: new Array(16).fill('') };
+            progress = new Array(16).fill(0);
+        } else {
+            boardData = { layout: 'custom', title: '', years: [] };
+            progress = [];
+        }
     }
-  }
 
-  localStorage.setItem(ACTIVE_LAYOUT_KEY, layout);
+    localStorage.setItem(ACTIVE_LAYOUT_KEY, layout);
 
-  if (boardData.layout === '3x3' || boardData.layout === 'custom') {
-    document.getElementById('builderTitle').textContent =
-      boardData.layout === '3x3'
-        ? '3×3 Board — 9 slots'
+    if (boardData.layout === '3x3' || boardData.layout === 'custom') {
+        document.getElementById('builderTitle').textContent =
+            boardData.layout === '3x3'
+            ? '3×3 Board — 9 slots'
         : 'Custom board — Best of Years';
-    document.getElementById('builderFormRow').style.display = boardData.layout === 'custom' ? '' : 'none';
-    document.getElementById('gridFormRow').style.display = 'none';
-    document.getElementById('createPanel').style.display = boardData.layout === '3x3' ? 'none' : 'block';
-  } else {
-    document.getElementById('builderTitle').textContent =
-      `${boardData.rows}×${boardData.cols} grid — ${boardData.rows * boardData.cols} slots`;
-    document.getElementById('builderFormRow').style.display = 'none';
-    document.getElementById('gridFormRow').style.display = '';
-    document.getElementById('createPanel').style.display = 'block';
-  }
+        document.getElementById('builderFormRow').style.display = boardData.layout === 'custom' ? '' : 'none';
+        document.getElementById('gridFormRow').style.display = 'none';
+        document.getElementById('createPanel').style.display = boardData.layout === '3x3' ? 'none' : 'block';
+    } else {
+        document.getElementById('builderTitle').textContent =
+            `${boardData.rows}×${boardData.cols} grid — ${boardData.rows * boardData.cols} slots`;
+        document.getElementById('builderFormRow').style.display = 'none';
+        document.getElementById('gridFormRow').style.display = '';
+        document.getElementById('createPanel').style.display = 'block';
+    }
 
-  syncTitleToUI();
-  renderBuilder();
-  saveBoardState();
-  showScreen('builder');
+    syncTitleToUI();
+    renderBuilder();
+    saveBoardState();
+    showScreen('builder');
 }
 
 document.getElementById('backToMenuBtn').addEventListener('click', () => {
@@ -1244,35 +1452,35 @@ document.getElementById('generateBuilderBtn').addEventListener('click', generate
 document.getElementById('generateGridBtn').addEventListener('click', generateGridBuilder);
 
 function generateGridBuilder() {
-  const rows = parseInt(document.getElementById('createGridRows').value);
-  const cols = parseInt(document.getElementById('createGridCols').value);
+    const rows = parseInt(document.getElementById('createGridRows').value);
+    const cols = parseInt(document.getElementById('createGridCols').value);
 
-  if (isNaN(rows) || isNaN(cols)) { showToast('Please fill in rows and columns'); return; }
-  if (rows < 1 || rows > 20 || cols < 1 || cols > 20) {
-    showToast('Rows and columns must be between 1 and 20');
-    return;
-  }
+    if (isNaN(rows) || isNaN(cols)) { showToast('Please fill in rows and columns'); return; }
+    if (rows < 1 || rows > 20 || cols < 1 || cols > 20) {
+        showToast('Rows and columns must be between 1 and 20');
+        return;
+    }
 
-  const total = rows * cols;
-  const hasExisting = boardData.layout === 'grid' &&
-    boardData.slots && boardData.slots.some(hasAnime);
-  if (hasExisting && !confirm('This will replace your current grid. Continue?')) return;
+    const total = rows * cols;
+    const hasExisting = boardData.layout === 'grid' &&
+          boardData.slots && boardData.slots.some(hasAnime);
+    if (hasExisting && !confirm('This will replace your current grid. Continue?')) return;
 
-  const existingTitle = boardData.title || '';
-  boardData = {
-    layout: 'grid',
-    rows,
-    cols,
-    title: existingTitle,
-    slots: new Array(total).fill('')
-  };
-  progress = new Array(total).fill(0);
+    const existingTitle = boardData.title || '';
+    boardData = {
+        layout: 'grid',
+        rows,
+        cols,
+        title: existingTitle,
+        slots: new Array(total).fill('')
+    };
+    progress = new Array(total).fill(0);
 
-  localStorage.setItem(ACTIVE_LAYOUT_KEY, 'grid');
-  syncTitleToUI();
-  renderBuilder();
-  saveBoardState();
-  showToast(`Generated ${rows}×${cols} grid (${total} slots)`);
+    localStorage.setItem(ACTIVE_LAYOUT_KEY, 'grid');
+    syncTitleToUI();
+    renderBuilder();
+    saveBoardState();
+    showToast(`Generated ${rows}×${cols} grid (${total} slots)`);
 }
 
 function generateCustomBuilder() {
@@ -1309,36 +1517,36 @@ function renderBuilder() {
 }
 
 function renderStaticBuilder() {
-  let cols, maxWidth, label;
-  if (boardData.layout === '3x3') {
-    cols = 3;
-    maxWidth = 700;
-    label = '3×3 Board';
-  } else {
-    // 'grid' layout
-    cols = boardData.cols;
-    maxWidth = Math.max(600, cols * 180); // scale up for wide grids
-    label = `${boardData.rows}×${boardData.cols} Grid`;
-  }
+    let cols, maxWidth, label;
+    if (boardData.layout === '3x3') {
+        cols = 3;
+        maxWidth = 700;
+        label = '3×3 Board';
+    } else {
+        // 'grid' layout
+        cols = boardData.cols;
+        maxWidth = Math.max(600, cols * 180);
+        label = `${boardData.rows}×${boardData.cols} Grid`;
+    }
 
-  let html = `<div class="builder-section">
+    let html = `<div class="builder-section">
     <div class="builder-year-header capture-hide">
       <span class="builder-year-title">${label}</span>
       <span style="color:#666; font-size:0.8rem;">${boardData.slots.length} slots</span>
     </div>
     <div class="builder-grid" style="grid-template-columns:repeat(${cols}, 1fr); max-width:${maxWidth}px; margin:0 auto;">`;
 
-  boardData.slots.forEach((titleData, i) => {
-    html += renderBuilderCell(titleData, { 'data-s': i }, `Slot ${i + 1}`);
-  });
+    boardData.slots.forEach((titleData, i) => {
+        html += renderBuilderCell(titleData, { 'data-s': i }, `Slot ${i + 1}`);
+    });
 
-  html += `</div></div>
+    html += `</div></div>
     <div class="builder-hint no-capture">Click any slot to search and pick an anime. Hold Ctrl and hover for a larger preview.</div>`;
-  builderContainer.innerHTML = html;
+    builderContainer.innerHTML = html;
 
-  builderContainer.querySelectorAll('.builder-cell').forEach(cell => {
-    attachBuilderCellHandlers(cell, 'static');
-  });
+    builderContainer.querySelectorAll('.builder-cell').forEach(cell => {
+        attachBuilderCellHandlers(cell, 'static');
+    });
 }
 
 function renderCustomBuilder() {
@@ -1371,23 +1579,32 @@ function renderBuilderCell(titleData, dataset, slotLabel) {
     const data = getAnimeData(titleData);
     const displayTitle = resolveTitle(data, boardLanguageMode);
     const { image, year } = data;
+    const hasEntry = Boolean(data.title);
     const coverHtml = image
     ? `<img class="cover" src="${escapeHtml(image)}" alt="" loading="lazy" data-fullsize="${escapeHtml(image)}" onerror="this.style.display='none'" />`
     : `<div class="placeholder-cover">?</div>`;
 
     const dataAttrs = Object.entries(dataset).map(([k, v]) => `${k}="${v}"`).join(' ');
 
+    const actionsHtml = hasEntry
+    ? `<div class="builder-cell-actions">
+         <button class="builder-cell-action-btn" type="button" title="Change image" data-action="change-image">🖼️</button>
+         <button class="builder-cell-action-btn clear-btn" type="button" title="Clear slot" data-action="clear-slot">✕</button>
+       </div>`
+    : '';
+
     return `<div class="builder-cell card-base" ${dataAttrs}>
-      <div class="builder-cell-slot capture-hide">${slotLabel}</div>
-      ${coverHtml}
-      <div class="anime-title">${displayTitle ? escapeHtml(displayTitle) : `<span style="color:#555;font-style:italic;">Empty slot</span>`}</div>
-      ${year ? `<div class="anime-meta">${escapeHtml(String(year))}</div>` : ''}
-      <input type="text" class="builder-cell-input"
-             ${dataAttrs}
-             value="${escapeHtml(resolveTitle(data, 'romanji'))}"
-             placeholder="Click to search or type..." />
-      <div class="cell-suggestions" ${dataAttrs}></div>
-    </div>`;
+    <div class="builder-cell-slot capture-hide">${slotLabel}</div>
+    ${actionsHtml}
+    ${coverHtml}
+    <div class="anime-title">${displayTitle ? escapeHtml(displayTitle) : `<span style="color:#555;font-style:italic;">Empty slot</span>`}</div>
+    ${year ? `<div class="anime-meta">${escapeHtml(String(year))}</div>` : ''}
+    <input type="text" class="builder-cell-input"
+           ${dataAttrs}
+           value=""
+           placeholder="Click to search or type..." />
+    <div class="cell-suggestions" ${dataAttrs}></div>
+  </div>`;
 }
 
 function attachBuilderCellHandlers(cell, mode) {
@@ -1396,10 +1613,54 @@ function attachBuilderCellHandlers(cell, mode) {
     let cellDebounce = null;
 
     cell.addEventListener('mousedown', (e) => {
+        // If an action button was clicked, handle that and stop.
+        const actionBtn = e.target.closest('.builder-cell-action-btn');
+        if (actionBtn) {
+            e.stopPropagation();
+            e.preventDefault();
+            const action = actionBtn.dataset.action;
+            if (action === 'clear-slot') {
+                // Reset the model
+                setCellValue(cell, '');
+
+                // Reset the visual without re-rendering the whole builder
+                const cover = cell.querySelector('.cover, .placeholder-cover');
+                if (cover) {
+                    const ph = document.createElement('div');
+                    ph.className = 'placeholder-cover';
+                    ph.textContent = '?';
+                    cover.replaceWith(ph);
+                }
+                const titleEl = cell.querySelector('.anime-title');
+                if (titleEl) {
+                    titleEl.innerHTML = '<span style="color:#555;font-style:italic;">Empty slot</span>';
+                }
+                const meta = cell.querySelector('.anime-meta');
+                if (meta) meta.remove();
+
+                // Hide the input and empty it
+                if (input) {
+                    input.value = '';
+                    input.classList.remove('active');
+                }
+
+                // Remove the action buttons (there's no longer an entry to act on)
+                const actions = cell.querySelector('.builder-cell-actions');
+                if (actions) actions.remove();
+
+                saveBoardState();
+                return;
+            } else if (action === 'change-image') {
+                openImagePicker(cell);
+            }
+            return;
+        }
+
+        // Otherwise, this is a normal cell click → activate the input.
         if (e.target.closest('.cell-suggestions')) return;
         if (input.classList.contains('active')) return;
         e.preventDefault();
-        activateCell(cell, input);
+        activateCell(cell, input, mode);
     });
 
     input.addEventListener('input', () => {
@@ -1411,7 +1672,7 @@ function attachBuilderCellHandlers(cell, mode) {
             : '<span style="color:#555;font-style:italic;">Empty slot</span>';
         }
         clearTimeout(cellDebounce);
-        if (query.length < MIN_QUERY_LENGTH) { closeSuggestions(suggestionsEl); return; }
+        if (query.length <= MIN_QUERY_LENGTH) { closeSuggestions(suggestionsEl); return; }
         cellDebounce = setTimeout(() => {
             runCellSearch(query, suggestionsEl, mode, input, cell);
         }, DEBOUNCE_MS);
@@ -1433,24 +1694,193 @@ function attachBuilderCellHandlers(cell, mode) {
     });
 }
 
+//Image Picker
+const imagePickerModal = document.getElementById('imagePickerModal');
+const imagePickerTitle = document.getElementById('imagePickerTitle');
+const imageCoversList = document.getElementById('imageCoversList');
+const imageUrlInput = document.getElementById('imageUrlInput');
+const imageUrlPreview = document.getElementById('imageUrlPreview');
+const imageUrlApply = document.getElementById('imageUrlApply');
+
+let imagePickerTargetCell = null;
+let tenraiPicLastRequestAt = 0;
+const TENRAI_PIC_COOLDOWN_MS = 1000;
+
+document.querySelectorAll('.modal-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(`panel-${tab.dataset.tab}`).classList.add('active');
+    });
+});
+
+document.getElementById('imagePickerClose').addEventListener('click', closeImagePicker);
+imagePickerModal.addEventListener('click', (e) => {
+    if (e.target === imagePickerModal) closeImagePicker();
+});
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && imagePickerModal.classList.contains('visible')) closeImagePicker();
+});
+
+imageUrlInput.addEventListener('input', () => {
+    const url = imageUrlInput.value.trim();
+    if (!url) {
+        imageUrlPreview.innerHTML = 'Preview will appear here';
+        return;
+    }
+    imageUrlPreview.innerHTML = `<img src="${escapeHtml(url)}" alt="" onerror="this.parentElement.innerHTML='<span>Could not load that image</span>'" />`;
+});
+
+imageUrlApply.addEventListener('click', () => {
+    const url = imageUrlInput.value.trim();
+    if (!url) { showToast('Please enter a URL'); return; }
+    applyNewImage(url);
+});
+
+async function openImagePicker(cell) {
+    const data = getAnimeData(getCellValue(cell));
+    if (!data.mal_id) {
+        showToast('No MAL ID for this entry — use the URL tab');
+    }
+
+    imagePickerTargetCell = cell;
+    imagePickerTitle.textContent = `Change image for: ${data.title || 'Untitled'}`;
+
+    document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector('.modal-tab[data-tab="covers"]').classList.add('active');
+    document.getElementById('panel-covers').classList.add('active');
+
+    imageUrlInput.value = '';
+    imageUrlPreview.innerHTML = 'Preview will appear here';
+
+    imagePickerModal.classList.add('visible');
+
+    imageCoversList.innerHTML = '<div class="image-panel-loading" style="grid-column:1/-1;">Loading covers...</div>';
+    if (!data.mal_id) {
+        imageCoversList.innerHTML = '<div class="image-panel-empty" style="grid-column:1/-1;">No MAL ID available. Use the "Paste URL" tab.</div>';
+        return;
+    }
+
+    try {
+        const covers = await fetchAnimePictures(data.mal_id);
+        renderCoverChoices(covers, data.image);
+    } catch (err) {
+        console.error('Failed to load covers:', err);
+        imageCoversList.innerHTML = '<div class="image-panel-empty" style="grid-column:1/-1;">Could not load covers. Use the "Paste URL" tab.</div>';
+    }
+}
+
+async function fetchAnimePictures(malId) {
+    const now = Date.now();
+    const sinceLast = now - tenraiPicLastRequestAt;
+    if (sinceLast < TENRAI_PIC_COOLDOWN_MS) {
+        await new Promise(r => setTimeout(r, TENRAI_PIC_COOLDOWN_MS - sinceLast));
+    }
+    tenraiPicLastRequestAt = Date.now();
+
+    const response = await fetch(`${TENRAI_API}/anime/${malId}/pictures`);
+    if (response.status === 429) {
+        const retryAfter = response.headers.get('Retry-After');
+        const seconds = retryAfter ? parseInt(retryAfter, 10) : 5;
+        throw new Error(`Rate limited — retry in ${seconds}s`);
+    }
+    if (!response.ok) throw new Error(`Tenrai returned ${response.status}`);
+
+    const data = await response.json();
+    const pictures = Array.isArray(data.data) ? data.data : [];
+    return pictures.map(p => ({
+        url: p.jpg?.large_image_url
+        || p.webp?.large_image_url
+        || p.jpg?.image_url
+        || p.webp?.image_url
+        || '',
+        thumb: p.jpg?.small_image_url
+        || p.webp?.small_image_url
+        || p.jpg?.image_url
+        || ''
+    })).filter(p => p.url);
+}
+
+function renderCoverChoices(covers, currentUrl) {
+    if (!covers.length) {
+        imageCoversList.innerHTML = '<div class="image-panel-empty" style="grid-column:1/-1;">No alternate covers found.</div>';
+        return;
+    }
+
+    imageCoversList.innerHTML = covers.map((c, idx) => `
+    <div class="image-choice" data-idx="${idx}" title="Use this cover">
+      <img src="${escapeHtml(c.url)}" alt="" loading="lazy" onerror="this.style.opacity=0.3" />
+    </div>
+  `).join('');
+
+    imageCoversList.querySelectorAll('.image-choice').forEach(el => {
+        el.addEventListener('click', () => {
+            const idx = parseInt(el.dataset.idx);
+            applyNewImage(covers[idx].url);
+        });
+    });
+}
+
+function applyNewImage(url) {
+    if (!imagePickerTargetCell) return;
+    const cell = imagePickerTargetCell;
+    const existing = getCellValue(cell);
+
+    if (typeof existing !== 'object' || existing === null) {
+        showToast('This slot has no anime to update');
+        closeImagePicker();
+        return;
+    }
+
+    existing.image = url;
+    setCellValue(cell, existing);
+
+    const cover = cell.querySelector('.cover, .placeholder-cover');
+    if (cover) {
+        const newImg = document.createElement('img');
+        newImg.className = 'cover';
+        newImg.src = url;
+        newImg.alt = '';
+        newImg.loading = 'lazy';
+        newImg.dataset.fullsize = url;
+        newImg.onerror = function() { this.style.display = 'none'; };
+        cover.replaceWith(newImg);
+    }
+
+    saveBoardState();
+    closeImagePicker();
+    showToast('Image updated');
+}
+
+function closeImagePicker() {
+    imagePickerModal.classList.remove('visible');
+    imagePickerTargetCell = null;
+}
 function activateCell(cell, input) {
-  const existing = getCellValue(cell);
-  input.placeholder = (existing && typeof existing === 'object')
-    ? 'Search to replace...'
+    const existing = getCellValue(cell);
+    input.placeholder = (existing && typeof existing === 'object')
+        ? 'Search to replace...'
     : 'Click to search or type...';
-  input.classList.add('active');
-  requestAnimationFrame(() => {
-    input.focus();
-    input.select();
-  });
+    input.classList.add('active');
+    requestAnimationFrame(() => {
+        input.focus();
+        input.select();
+    });
 }
 
 function commitTypedTitle(cell, input) {
     const value = input.value.trim();
     const existing = getCellValue(cell);
-    if (typeof existing === 'object' && existing !== null) return;
+    if (typeof existing === 'object' && existing !== null) {
+        input.classList.remove('active');
+        input.value = '';
+        return;
+    }
     setCellValue(cell, value);
     input.classList.remove('active');
+    input.value = '';
 }
 
 async function runCellSearch(query, suggestionsEl, mode, input, cell) {
@@ -1563,6 +1993,19 @@ function updateCellVisual(cell, entry) {
             else cell.appendChild(m);
         }
     }
+
+    // Ensure the action buttons exist now that this cell has an entry.
+    if (!cell.querySelector('.builder-cell-actions')) {
+        const actions = document.createElement('div');
+        actions.className = 'builder-cell-actions';
+        actions.innerHTML = `
+      <button class="builder-cell-action-btn" type="button" title="Change image" data-action="change-image">🖼️</button>
+      <button class="builder-cell-action-btn clear-btn" type="button" title="Clear slot" data-action="clear-slot">✕</button>
+    `;
+        const slotLabel = cell.querySelector('.builder-cell-slot');
+        if (slotLabel) slotLabel.after(actions);
+        else cell.prepend(actions);
+    }
 }
 
 function closeSuggestions(el) {
@@ -1592,7 +2035,7 @@ window.addEventListener('resize', () => {
 //SEARCHING
 async function searchAnimeDatabase(query) {
     if (query.trim().length < 3) {
-    return await searchTenrai(trimmed);
+        return await searchTenrai(trimmed);
     }
     try {
         const response = await fetch(
@@ -1605,7 +2048,7 @@ async function searchAnimeDatabase(query) {
                 titleEn: item.node.alternative_titles?.en || '',
                 titleJp: item.node.alternative_titles?.ja || '',
                 year: item.node.start_date ? new Date(item.node.start_date).getFullYear() : null,
-                image: item.node.main_picture?.medium || "",
+                image: item.node.main_picture?.large || item.node.main_picture?.medium || "",
                 mal_id: item.node.id
             }));
         }
@@ -1651,7 +2094,7 @@ async function searchTenrai(query) {
             titleEn: item.title_english || '',
             titleJp: item.title_japanese || '',
             year: item.year || (item.aired?.prop?.from?.year) || null,
-            image: item.images?.jpg?.image_url || '',
+            image: item.images?.jpg?.large_image_url || item.images?.jpg?.image_url || '',
             mal_id: item.mal_id
         }));
     } catch (err) {
@@ -1762,14 +2205,14 @@ async function captureAsPng() {
     document.activeElement?.blur();
 
     let width;
-if (boardData.layout === '3x3') {
-  width = CAPTURE_MIN_WIDTH;
-} else if (boardData.layout === 'grid') {
-  width = computeCaptureWidth(boardData.cols);
-} else {
-  const maxSlots = Math.max(...(boardData.years || []).map(r => r.titles.length), 1);
-  width = computeCaptureWidth(maxSlots);
-}
+    if (boardData.layout === '3x3') {
+        width = CAPTURE_MIN_WIDTH;
+    } else if (boardData.layout === 'grid') {
+        width = computeCaptureWidth(boardData.cols);
+    } else {
+        const maxSlots = Math.max(...(boardData.years || []).map(r => r.titles.length), 1);
+        width = computeCaptureWidth(maxSlots);
+    }
 
     const captureArea = document.getElementById('captureArea');
     captureArea.style.width = (width + 32) + 'px';
@@ -1807,12 +2250,12 @@ function buildCaptureMarkup(captureWidth) {
         html += `<h1 style="text-align:center; font-size:1.6rem; font-weight:600; margin:0 0 24px 0; color:#fff;">${escapeHtml(title)}</h1>`;
     }
     if (isStaticLayout()) {
-  const cols = boardData.layout === '3x3' ? 3 : boardData.cols;
-  const maxW = boardData.layout === '3x3' ? 700 : Math.max(600, cols * 180);
-  html += `<div style="display:grid; grid-template-columns:repeat(${cols}, 1fr); gap:12px; max-width:${maxW}px; margin:0 auto;">`;
-  boardData.slots.forEach((titleData, i) => { html += renderCaptureCard(titleData, progress[i] || 0); });
-  html += `</div>`;
-}else {
+        const cols = boardData.layout === '3x3' ? 3 : boardData.cols;
+        const maxW = boardData.layout === '3x3' ? 700 : Math.max(600, cols * 180);
+        html += `<div style="display:grid; grid-template-columns:repeat(${cols}, 1fr); gap:12px; max-width:${maxW}px; margin:0 auto;">`;
+        boardData.slots.forEach((titleData, i) => { html += renderCaptureCard(titleData, progress[i] || 0); });
+        html += `</div>`;
+    }else {
         const maxSlots = Math.max(...boardData.years.map(r => r.titles.length), 1);
         boardData.years.forEach((yearRow, yIdx) => {
             const rowProgress = progress[yIdx] || [];
@@ -1899,9 +2342,9 @@ async function checkForSharedBoard() {
 }
 
 function buildEmptyProgress(data) {
-  if (data.layout === '3x3') return new Array(data.slots.length).fill(0);
-  if (data.layout === 'grid') return new Array(data.slots.length).fill(0);
-  return (data.years || []).map(r => new Array(r.titles.length).fill(0));
+    if (data.layout === '3x3') return new Array(data.slots.length).fill(0);
+    if (data.layout === 'grid') return new Array(data.slots.length).fill(0);
+    return (data.years || []).map(r => new Array(r.titles.length).fill(0));
 }
 
 function ensureProgressShape() {
@@ -1923,32 +2366,32 @@ function renderViewOnlyScreen() {
 }
 
 function renderStaticViewOnly() {
-  let cols, maxWidth;
-  if (boardData.layout === '3x3') {
-    cols = 3; maxWidth = 700;
-  } else {
-    cols = boardData.cols;
-    maxWidth = Math.max(600, cols * 180);
-  }
+    let cols, maxWidth;
+    if (boardData.layout === '3x3') {
+        cols = 3; maxWidth = 700;
+    } else {
+        cols = boardData.cols;
+        maxWidth = Math.max(600, cols * 180);
+    }
 
-  let html = `<div class="static-grid-section" style="max-width:${maxWidth + 60}px;">
+    let html = `<div class="static-grid-section" style="max-width:${maxWidth + 60}px;">
     <div class="grid-row" style="grid-template-columns:repeat(${cols}, 1fr);">`;
 
-  boardData.slots.forEach((titleData, i) => {
-    const data = getAnimeData(titleData);
-    const displayTitle = resolveTitle(data, boardLanguageMode);
-    const { image, year } = data;
-    const stateClass = STATES[progress[i] || 0] || '';
-    html += `<div class="anime-card card-base viewonly ${stateClass}" data-s="${i}">
+    boardData.slots.forEach((titleData, i) => {
+        const data = getAnimeData(titleData);
+        const displayTitle = resolveTitle(data, boardLanguageMode);
+        const { image, year } = data;
+        const stateClass = STATES[progress[i] || 0] || '';
+        html += `<div class="anime-card card-base viewonly ${stateClass}" data-s="${i}">
       ${image ? `<img src="${escapeHtml(image)}" alt="" loading="lazy" data-fullsize="${escapeHtml(image)}" onerror="this.style.display='none'" />` : ''}
       ${displayTitle ? `<div class="anime-title">${escapeHtml(displayTitle)}</div>` : '<div class="empty-placeholder">Empty slot</div>'}
       ${year ? `<div class="anime-meta">${escapeHtml(String(year))}</div>` : ''}
     </div>`;
-  });
+    });
 
-  html += '</div></div>';
-  document.getElementById('viewonlyContainer').innerHTML = html;
-  updateStatsForViewOnly();
+    html += '</div></div>';
+    document.getElementById('viewonlyContainer').innerHTML = html;
+    updateStatsForViewOnly();
 }
 
 function renderCustomViewOnly() {
@@ -2106,22 +2549,22 @@ document.getElementById('importBuilderFile').addEventListener('change', (e) => {
             }
             if (!importedBoard.title) importedBoard.title = '';
             if (importedBoard.layout === '3x3') {
-  if (!Array.isArray(importedBoard.slots)) throw new Error('Invalid 3x3 board');
-} else if (importedBoard.layout === 'grid') {
-  if (!Array.isArray(importedBoard.slots)) throw new Error('Invalid grid board');
-  if (typeof importedBoard.rows !== 'number' || typeof importedBoard.cols !== 'number') {
-    const total = importedBoard.slots.length;
-    const sqrt = Math.round(Math.sqrt(total));
-    if (sqrt * sqrt === total) {
-      importedBoard.rows = sqrt;
-      importedBoard.cols = sqrt;
-    } else {
-      throw new Error('Grid board is missing rows/cols');
-    }
-  }
-} else {
-  if (!Array.isArray(importedBoard.years)) throw new Error('Invalid custom board');
-}
+                if (!Array.isArray(importedBoard.slots)) throw new Error('Invalid 3x3 board');
+            } else if (importedBoard.layout === 'grid') {
+                if (!Array.isArray(importedBoard.slots)) throw new Error('Invalid grid board');
+                if (typeof importedBoard.rows !== 'number' || typeof importedBoard.cols !== 'number') {
+                    const total = importedBoard.slots.length;
+                    const sqrt = Math.round(Math.sqrt(total));
+                    if (sqrt * sqrt === total) {
+                        importedBoard.rows = sqrt;
+                        importedBoard.cols = sqrt;
+                    } else {
+                        throw new Error('Grid board is missing rows/cols');
+                    }
+                }
+            } else {
+                if (!Array.isArray(importedBoard.years)) throw new Error('Invalid custom board');
+            }
             boardData = importedBoard;
             progress = importedProgress || buildEmptyProgress(boardData);
 
@@ -2155,8 +2598,8 @@ function saveBoardState() {
     if (!boardData || !boardData.layout) return;
 
     const layout = boardData.layout === '3x3' ? '3x3'
-             : boardData.layout === 'grid' ? 'grid'
-             : 'custom';
+    : boardData.layout === 'grid' ? 'grid'
+    : 'custom';
     const key = LAYOUT_KEYS[layout];
     try {
         localStorage.setItem(key, JSON.stringify({
@@ -2576,31 +3019,31 @@ function updateCsvCounter() {
 }
 
 async function captureCsvGrid() {
-  if (typeof html2canvas === 'undefined') { showToast('html2canvas not loaded'); return; }
-  document.activeElement?.blur();
+    if (typeof html2canvas === 'undefined') { showToast('html2canvas not loaded'); return; }
+    document.activeElement?.blur();
 
-  const captureArea = document.getElementById('captureArea');
-  captureArea.style.width = CAPTURE_MIN_WIDTH + 'px';
-  const counter = document.querySelector('.counter-sticky').outerHTML;
-  const grid = document.getElementById('csvContainer').innerHTML;
-  captureArea.innerHTML = `<div style="padding:20px; background:#121212;">${counter}<div style="margin-top:16px;">${grid}</div></div>`;
+    const captureArea = document.getElementById('captureArea');
+    captureArea.style.width = CAPTURE_MIN_WIDTH + 'px';
+    const counter = document.querySelector('.counter-sticky').outerHTML;
+    const grid = document.getElementById('csvContainer').innerHTML;
+    captureArea.innerHTML = `<div style="padding:20px; background:#121212;">${counter}<div style="margin-top:16px;">${grid}</div></div>`;
 
-  showToast('Generating PNG...');
-  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-  await waitForImages(captureArea);
-  await new Promise(r => setTimeout(r, 120));
+    showToast('Generating PNG...');
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    await waitForImages(captureArea);
+    await new Promise(r => setTimeout(r, 120));
 
-  try {
-    const canvas = await captureElement(captureArea);
-    downloadCanvas(canvas, 'anime_checklist.png');
-    showToast('PNG saved!');
-  } catch (err) {
-    console.error('PNG capture failed:', err);
-    showToast('Failed to save PNG: ' + err.message);
-  } finally {
-    captureArea.innerHTML = '';
-    captureArea.style.width = '';
-  }
+    try {
+        const canvas = await captureElement(captureArea);
+        downloadCanvas(canvas, 'anime_checklist.png');
+        showToast('PNG saved!');
+    } catch (err) {
+        console.error('PNG capture failed:', err);
+        showToast('Failed to save PNG: ' + err.message);
+    } finally {
+        captureArea.innerHTML = '';
+        captureArea.style.width = '';
+    }
 }
 (async () => {
     const loaded = await checkForSharedBoard();

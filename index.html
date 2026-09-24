@@ -1399,7 +1399,7 @@ function attachBuilderCellHandlers(cell, mode) {
         if (e.target.closest('.cell-suggestions')) return;
         if (input.classList.contains('active')) return;
         e.preventDefault();
-        activateCell(cell, input, mode);
+        activateCell(cell, input);
     });
 
     input.addEventListener('input', () => {
@@ -1419,7 +1419,7 @@ function attachBuilderCellHandlers(cell, mode) {
 
     input.addEventListener('blur', () => {
         setTimeout(() => {
-            commitTypedTitle(cell, input, mode);
+            commitTypedTitle(cell, input);
             saveBoardState();
         }, 200);
     });
@@ -1433,15 +1433,19 @@ function attachBuilderCellHandlers(cell, mode) {
     });
 }
 
-function activateCell(cell, input, mode) {
-    input.classList.add('active');
-    requestAnimationFrame(() => {
-        input.focus();
-        input.select();
-    });
+function activateCell(cell, input) {
+  const existing = getCellValue(cell);
+  input.placeholder = (existing && typeof existing === 'object')
+    ? 'Search to replace...'
+    : 'Click to search or type...';
+  input.classList.add('active');
+  requestAnimationFrame(() => {
+    input.focus();
+    input.select();
+  });
 }
 
-function commitTypedTitle(cell, input, mode) {
+function commitTypedTitle(cell, input) {
     const value = input.value.trim();
     const existing = getCellValue(cell);
     if (typeof existing === 'object' && existing !== null) return;
@@ -1520,7 +1524,7 @@ function renderSuggestions(results, suggestionsEl, mode, input, cell) {
             setCellValue(cell, entry);
             updateCellVisual(cell, entry);
 
-            input.value = resolveTitle(entry, 'romanji');
+            input.value = '';
             input.classList.remove('active');
 
             closeSuggestions(suggestionsEl);
@@ -1572,7 +1576,7 @@ document.addEventListener('click', (e) => {
         if (input.classList.contains('active')) {
             const cell = input.closest('.builder-cell');
             const mode = cell.dataset.y !== undefined ? 'custom' : 'static';
-            commitTypedTitle(cell, input, mode);
+            commitTypedTitle(cell, input);
             saveBoardState();
         }
     });

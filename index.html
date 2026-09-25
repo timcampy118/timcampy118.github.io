@@ -480,7 +480,7 @@
             .counter-sticky {
                 position: sticky;
                 top: 0;
-                z-index: 1000;
+                z-index: 200;
                 background: #222;
                 color: #fff;
                 padding: 10px 14px;
@@ -883,7 +883,9 @@
             .builder-cell-action-btn.clear-btn:hover {
                 background: #f44336;
             }
-
+            .hidden {
+                display: none !important;
+            }
             /* Image picker modal */
             .modal-backdrop {
                 position: fixed;
@@ -1101,6 +1103,117 @@
                 background: #4caf50;
                 color: #fff;
             }
+            .type-filter-checkboxes {
+                display: inline-flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                align-items: center;
+                padding: 4px 8px;
+                background: #1e1e1e;
+                border: 1px solid #333;
+                border-radius: 6px;
+            }
+            .type-filter-checkboxes label {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 0.8rem;
+                color: #ddd;
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .type-filter-checkboxes input[type="checkbox"] {
+                accent-color: #4caf50;
+                cursor: pointer;
+                margin: 0;
+            }
+            .type-filter-wrap {
+                position: relative;
+                display: inline-block;
+                margin: 8px 0;
+            }
+
+            .type-filter-toggle {
+                background: #222;
+                color: #eee;
+                border: 1px solid #444;
+                border-radius: 4px;
+                padding: 6px 10px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .type-filter-toggle .caret {
+                font-size: 0.7rem;
+                opacity: 0.7;
+            }
+
+            .type-filter-dropdown {
+                position: absolute;
+                top: calc(100% + 4px);
+                left: 0;
+                z-index: 500;
+                background: #1c1c1c;
+                border: 1px solid #444;
+                border-radius: 4px;
+                padding: 6px;
+                min-width: 200px;
+                max-height: 320px;
+                overflow-y: auto;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            }
+
+            .type-filter-dropdown.hidden {
+                display: none;
+            }
+
+            .type-filter-actions {
+                display: flex;
+                gap: 6px;
+                margin-bottom: 6px;
+                padding-bottom: 6px;
+                border-bottom: 1px solid #333;
+            }
+
+            .type-filter-actions button {
+                flex: 1;
+                background: #2a2a2a;
+                color: #ddd;
+                border: 1px solid #444;
+                border-radius: 3px;
+                padding: 4px 6px;
+                font-size: 0.75rem;
+                cursor: pointer;
+            }
+
+            .type-filter-actions button:hover {
+                background: #333;
+            }
+
+            .type-filter-checkboxes {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .type-filter-checkboxes label {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 4px 6px;
+                border-radius: 3px;
+                cursor: pointer;
+                font-size: 0.85rem;
+                color: #ddd;
+            }
+
+            .type-filter-checkboxes label:hover {
+                background: #2a2a2a;
+            }
         </style>
     </head>
     <body>
@@ -1127,8 +1240,15 @@
                     <div class="menu-card" data-action="csv-checklist">
                         <div class="menu-card-icon">📊</div>
                         <div class="menu-card-text">
-                            <h3>MAL Checklist</h3>
+                            <h3>Anime Checklist</h3>
                             <p>Data-driven list of the best and most popular shows from MAL by year.</p>
+                        </div>
+                    </div>
+                    <div class="menu-card" data-action="csv-manga-checklist">
+                        <div class="menu-card-icon">📖</div>
+                        <div class="menu-card-text">
+                            <h3>Manga Checklist</h3>
+                            <p>Data-driven list of the best and most popular manga from MAL by year.</p>
                         </div>
                     </div>
                     <div class="menu-card" data-action="create-custom">
@@ -1302,7 +1422,7 @@
                 </div>
 
                 <div class="counter-sticky">
-                    Watched: <span id="statWatchedVO">0</span> | Partial: <span id="statPartialVO">0</span> | Dropped:
+                    <span class="watched-label">Watched</span> : <span id="statWatchedVO">0</span> | Partial: <span id="statPartialVO">0</span> | Dropped:
                     <span id="statDroppedVO">0</span> | Planned: <span id="statPlannedVO">0</span> | Total:
                     <span id="statTotalVO">0</span>
                 </div>
@@ -1315,11 +1435,11 @@
             </div>
 
             <div id="screen-csv" class="screen">
-                <h1 class="csv-title">Anime Checklist 1979-2024</h1>
+                <h1 class="csv-title" id="csvTitle">Anime Checklist 1979-2024</h1>
                 <div class="csv-description">
                     This list is generated using data from
-                    <a href="https://myanimelist.net/" target="_blank">MyAnimeList</a>. (Sequels/spin-offs/side stories
-                    are excluded)
+                    <a href="https://myanimelist.net/" target="_blank">MyAnimeList</a><br> Sequels/spin-offs/side stories
+                    are excluded. (Does not apply to the manga section due to the sheer number and overlap to clean up)
                 </div>
 
                 <div class="builder-topbar">
@@ -1343,11 +1463,24 @@
                     <label for="filterDropdown"></label
                     ><select id="filterDropdown" onchange="filterState(this.value)">
                         <option value="all">Show All</option>
-                        <option value="green">Show Watched</option>
+                        <option value="green" class="watched-label">Show Watched</option>
                         <option value="orange">Show Hold</option>
                         <option value="red">Show Dropped</option>
                         <option value="white">Show Planned</option>
                     </select>
+                    <div id="typeFilterWrap" class="type-filter-wrap hidden">
+                        <button type="button" id="typeFilterToggle" class="type-filter-toggle">
+                            <span id="typeFilterLabel">All types</span>
+                            <span class="caret">▾</span>
+                        </button>
+                        <div id="typeFilterDropdown" class="type-filter-dropdown hidden">
+                            <div class="type-filter-actions">
+                                <button type="button" id="typeFilterSelectAll">Select all</button>
+                                <button type="button" id="typeFilterClearAll">Clear</button>
+                            </div>
+                            <div id="typeFilterCheckboxes" class="type-filter-checkboxes"></div>
+                        </div>
+                    </div>
                     <button class="btn" id="togglePopularity" onclick="setDataSource('popularity')">Popularity</button>
                     <button class="btn" id="toggleScore" onclick="setDataSource('score')">Score</button>
                     <label>From:</label>
@@ -1365,7 +1498,7 @@
                 </div>
 
                 <div class="counter-sticky">
-                    Watched: <span id="countWatched">0</span> | Partial: <span id="countPartial">0</span> | Dropped:
+                    <span class="watched-label">Watched</span> : <span id="countWatched">0</span> | Partial: <span id="countPartial">0</span> | Dropped:
                     <span id="countDropped">0</span> | Planned: <span id="countPlanned">0</span> | Total:
                     <span id="countTotal">0</span>
                 </div>
@@ -1407,6 +1540,7 @@
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
+//At some point I should've broken each of the pages. Or at least grid and checklist into its own file instead of this stupid singular file shitstorm
 const PROXY_URL = "https://malapi.johns84912.workers.dev";
 const TENRAI_API = "https://api.tenrai.org/v1";
 const MIN_QUERY_LENGTH = 2;
@@ -1527,7 +1661,8 @@ document.querySelectorAll('.menu-card').forEach(card => {
         if (action === 'create-3x3') openBoard('3x3');
         else if (action === 'create-grid') openBoard('grid');
         else if (action === 'create-custom') openBoard('custom');
-        else if (action === 'csv-checklist') startCsvChecklist();
+        else if (action === 'csv-checklist') startCsvChecklist('anime');
+        else if (action === 'csv-manga-checklist') startCsvChecklist('manga');
     });
 });
 
@@ -1944,7 +2079,7 @@ async function openImagePicker(cell) {
 
     try {
         const covers = await fetchAnimePictures(data.mal_id, data.type || 'anime');
-        renderCoverChoices(covers, data.image);
+        renderCoverChoices(covers);
     } catch (err) {
         console.error('Failed to load covers:', err);
         imageCoversList.innerHTML = '<div class="image-panel-empty" style="grid-column:1/-1;">Could not load covers. Use the "Paste URL" tab.</div>';
@@ -1984,7 +2119,7 @@ async function fetchAnimePictures(malId, type = 'anime') {
     })).filter(p => p.url);
 }
 
-function renderCoverChoices(covers, currentUrl) {
+function renderCoverChoices(covers) {
     if (!covers.length) {
         imageCoversList.innerHTML = '<div class="image-panel-empty" style="grid-column:1/-1;">No alternate covers found.</div>';
         return;
@@ -2202,7 +2337,6 @@ document.addEventListener('click', (e) => {
     document.querySelectorAll('.builder-cell-input').forEach(input => {
         if (input.classList.contains('active')) {
             const cell = input.closest('.builder-cell');
-            const mode = cell.dataset.y !== undefined ? 'custom' : 'static';
             commitTypedTitle(cell, input);
             saveBoardState();
         }
@@ -2217,10 +2351,6 @@ window.addEventListener('resize', () => {
 });
 
 //SEARCHING
-async function searchAnimeDatabase(query) {
-    return searchCatalog(query.trim(), 'anime');
-}
-
 async function searchCatalog(query, type) {
     if (query.length < 3) {
         return await searchTenrai(query, type);
@@ -2979,21 +3109,68 @@ function escapeHtml(text) {
 })();
 
 //Original checklist code
-const YEAR_MIN = 1963;
-const YEAR_MAX = 2025;
+const CHECKLIST_CONFIG = {
+    anime: {
+        yearMin: 1963,
+        yearMax: 2025,
+        defaultStart: 2000,
+        filePrefix: 'anime',
+        title: 'Anime Checklist 1979-2025'
+    },
+    manga: {
+        yearMin: 1962,
+        yearMax: 2025,
+        defaultStart: 2000,
+        filePrefix: 'manga',
+        title: 'Manga Checklist 1962-2025'
+    }
+};
+let csvCatalogType = 'anime';
 let csvLanguageMode = 'romanji';
 let csvDataSource = 'popularity';
+let csvSelectedTypes = new Set();
+let typeFilterInitialized = false;
+let csvTypesInitialized = false;
+let csvAvailableTypes = new Set();
 let csvShowImages = true;
+let csvRawData = [];
 
-function startCsvChecklist() {
+async function startCsvChecklist(type = 'anime') {
+    initTypeFilterDropdown();
+
+    csvCatalogType = type;
+    csvTypesInitialized = false;
+    csvSelectedTypes = new Set();
+    csvStateFilter = 'all';
+
+    const config = CHECKLIST_CONFIG[csvCatalogType];
+    document.getElementById('filterDropdown').value = 'all';
+
+    csvStartYear = config.defaultStart;
+    csvEndYear = config.yearMax;
+
+    document.getElementById('csvTitle').textContent = config.title;
     showScreen('csv');
-    if (!document.getElementById('startYearSelect').options.length) {
+
+    syncDataSourceButtons();
+
+    const label = type === 'manga' ? 'Read' : 'Watched';
+
+    document.querySelectorAll('.watched-label').forEach(element => {
+        element.textContent = element.tagName === 'OPTION'
+            ? `Show ${label}`
+            : label;
+    });
+
+    const startSelect = document.getElementById('startYearSelect');
+
+    if (!startSelect.options.length || startSelect.dataset.type !== type) {
         populateCsvYearDropdowns();
     }
-    if (!document.getElementById('csvContainer').children.length) {
-        setDataSource(csvDataSource);
-    }
+
     syncLanguageToUI();
+
+    await refreshCsvGrid();
 }
 
 document.getElementById('csvBackToMenuBtn').addEventListener('click', () => {
@@ -3011,15 +3188,87 @@ function handleLanguageChange() {
     refreshCsvGrid();
 }
 
+function initTypeFilterDropdown() {
+    if (typeFilterInitialized) {
+        return;
+    }
+
+    const toggle = document.getElementById('typeFilterToggle');
+    const dropdown = document.getElementById('typeFilterDropdown');
+    const selectAll = document.getElementById('typeFilterSelectAll');
+    const clearAll = document.getElementById('typeFilterClearAll');
+
+    if (!toggle || !dropdown) {
+        return;
+    }
+
+    typeFilterInitialized = true;
+
+    toggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+
+        if (csvCatalogType !== 'manga') {
+            return;
+        }
+
+        dropdown.classList.toggle('hidden');
+    });
+
+    dropdown.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target) && event.target !== toggle) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    selectAll?.addEventListener('click', () => {
+        csvSelectedTypes = new Set(csvAvailableTypes);
+        csvTypesInitialized = true;
+
+        populateTypeFilterCheckboxes();
+        updateTypeFilterLabel(
+            document.getElementById('typeFilterLabel'),
+            [...csvAvailableTypes]
+        );
+        renderCsvGrid();
+    });
+
+    clearAll?.addEventListener('click', () => {
+        csvSelectedTypes = new Set();
+        csvTypesInitialized = true;
+
+        populateTypeFilterCheckboxes();
+        updateTypeFilterLabel(
+            document.getElementById('typeFilterLabel'),
+            [...csvAvailableTypes]
+        );
+        renderCsvGrid();
+    });
+}
 function populateCsvYearDropdowns() {
+    const config = CHECKLIST_CONFIG[csvCatalogType];
     const startSelect = document.getElementById('startYearSelect');
     const endSelect = document.getElementById('endYearSelect');
-    for (let y = YEAR_MIN; y <= YEAR_MAX; y++) {
+
+    startSelect.replaceChildren();
+    endSelect.replaceChildren();
+    startSelect.dataset.type = csvCatalogType;
+
+    for (let y = config.yearMin; y <= config.yearMax; y++) {
         startSelect.appendChild(new Option(y, y));
         endSelect.appendChild(new Option(y, y));
     }
-    startSelect.value = 2000;
-    endSelect.value = YEAR_MAX;
+    startSelect.value = config.defaultStart;
+    endSelect.value = config.yearMax;
 }
 
 function parseCsvLine(line) {
@@ -3038,9 +3287,12 @@ function parseCsvLine(line) {
 
 function getCsvTitle(show) {
     switch (csvLanguageMode) {
-        case 'english': return show.en;
-        case 'japanese': return show.jp;
-        default: return show.ro;
+        case 'english':
+            return show.en?.trim() || show.ro;
+        case 'japanese':
+            return show.jp?.trim() || show.ro;
+        default:
+            return show.ro;
     }
 }
 
@@ -3053,8 +3305,9 @@ function setCsvCellState(cell, state) {
 
 async function refreshCsvGrid() {
     await buildCsvGrid();
-    loadCsvState();
-    filterState(document.getElementById('filterDropdown').value);
+    if (csvCatalogType === 'manga') {
+        populateTypeFilterCheckboxes();
+    }
 }
 
 function setDataSource(source) {
@@ -3072,9 +3325,10 @@ function handleYearRangeChange() {
 }
 
 async function fetchCsv(year) {
+    const config = CHECKLIST_CONFIG[csvCatalogType];
     const path = csvDataSource === 'popularity'
-    ? `output/anime_popularity_${year}.csv`
-    : `output/anime_score_${year}.csv`;
+        ? `output/${config.filePrefix}_popularity_${year}.csv`
+        : `output/${config.filePrefix}_score_${year}.csv`;
     try {
         const response = await fetch(path);
         if (!response.ok) return [];
@@ -3085,10 +3339,17 @@ async function fetchCsv(year) {
         const enIndex = headers.indexOf("title_english");
         const roIndex = headers.indexOf("title");
         const imgIndex = headers.indexOf("image_url");
+        const typeIndex = headers.indexOf("type");
         return lines.slice(1).map(line => {
             const parsed = parseCsvLine(line);
-            return { en: parsed[enIndex], jp: parsed[jpIndex], ro: parsed[roIndex], img: parsed[imgIndex] };
-        }).slice(0, 12);
+            return {
+                en: parsed[enIndex],
+                jp: parsed[jpIndex],
+                ro: parsed[roIndex],
+                img: parsed[imgIndex],
+                type: typeIndex >= 0 ? (parsed[typeIndex] || 'Unknown') : 'Unknown'
+            };
+        });
     } catch (e) {
         console.error(`Failed to fetch CSV for ${year}:`, e);
         return [];
@@ -3096,15 +3357,75 @@ async function fetchCsv(year) {
 }
 
 async function buildCsvGrid() {
+    const startYear = parseInt(document.getElementById('startYearSelect').value);
+    const endYear = parseInt(document.getElementById('endYearSelect').value);
+
+    const years = Array.from(
+        { length: endYear - startYear + 1 },
+        (_, i) => startYear + i
+    );
+
+    const results = await Promise.all(
+        years.map(year => fetchCsv(year))
+    );
+
+    csvRawData = years.map((year, i) => ({
+        year,
+        entries: results[i] || []
+    }));
+
+    csvAvailableTypes = new Set();
+
+    if (csvCatalogType === 'manga') {
+    csvRawData.forEach(row => {
+        row.entries.forEach(entry => {
+            if (entry?.type) {
+                csvAvailableTypes.add(entry.type);
+            }
+        });
+    });
+
+    if (!csvTypesInitialized) {
+        csvSelectedTypes = new Set(csvAvailableTypes);
+        csvTypesInitialized = true;
+    } else {
+        csvSelectedTypes = new Set(
+            [...csvSelectedTypes].filter(type => csvAvailableTypes.has(type))
+        );
+    }
+
+    populateTypeFilterCheckboxes();
+} else {
+    csvSelectedTypes = new Set();
+}
+
+    renderCsvGrid();
+}
+
+function renderCsvGrid() {
+    const allTypesSelected = csvSelectedTypes.size === csvAvailableTypes.size;
+    const typeFilterActive = !allTypesSelected && csvSelectedTypes.size > 0;
     const container = document.getElementById('csvContainer');
     container.replaceChildren();
 
-    const startYear = parseInt(document.getElementById('startYearSelect').value);
-    const endYear = parseInt(document.getElementById('endYearSelect').value);
-    const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
-    const results = await Promise.all(years.map(year => fetchCsv(year)));
+    const stateFilter = csvStateFilter || 'all';
 
-    years.forEach((year, yearIndex) => {
+    csvRawData.forEach(({ year, entries }) => {
+        let filtered = entries;
+        if (typeFilterActive) {
+            filtered = filtered.filter(e => csvSelectedTypes.has(e.type));
+        }
+
+        if (stateFilter !== 'all') {
+            filtered = filtered.filter(e => {
+                const savedState = getSavedStateFor(year, e);
+                return STATES[savedState] === stateFilter;
+            });
+        }
+
+        filtered = filtered.slice(0, 12);
+
+
         const row = document.createElement('div');
         row.className = 'csv-grid';
         row.dataset.year = year;
@@ -3114,31 +3435,41 @@ async function buildCsvGrid() {
         label.textContent = year;
         row.appendChild(label);
 
-        const titles = results[yearIndex];
         for (let i = 0; i < 12; i++) {
             const cell = document.createElement('div');
             cell.className = 'csv-cell';
-            const show = titles[i];
+            const show = filtered[i];
             const displayTitle = show ? getCsvTitle(show) : '';
+            const showType = show?.type || 'Unknown';
 
             if (!show) {
                 cell.textContent = `#${i + 1}`;
-            } else if (csvShowImages && show.img) {
-                cell.innerHTML = `
-            <div style="display:flex;flex-direction:column;align-items:center;">
-              <img src="${escapeHtml(show.img)}" alt="cover" data-fullsize="${escapeHtml(show.img)}" style="width:48px;height:68px;object-fit:cover;border-radius:4px;margin-bottom:4px;" />
-              <span>${escapeHtml(displayTitle || '')}</span>
-            </div>`;
+                cell.dataset.state = '0';
+                cell.dataset.type = '';
             } else {
-                cell.textContent = displayTitle || '';
+                cell.dataset.type = showType;
+                cell.dataset.state = String(getSavedStateFor(year, show));
+
+                const s = STATES[Number(cell.dataset.state)];
+                if (s) cell.classList.add(s);
+
+                if (csvShowImages && show.img) {
+                    cell.innerHTML = `
+                        <div style="display:flex;flex-direction:column;align-items:center;">
+                          <img src="${escapeHtml(show.img)}" alt="cover" data-fullsize="${escapeHtml(show.img)}" style="width:48px;height:68px;object-fit:cover;border-radius:4px;margin-bottom:4px;" />
+                          <span>${escapeHtml(displayTitle || '')}</span>
+                          ${csvCatalogType === 'manga' ? `<span style="font-size:0.65rem;color:#888;margin-top:2px;">${escapeHtml(showType)}</span>` : ''}
+                        </div>`;
+                } else {
+                    cell.textContent = displayTitle || '';
+                }
             }
-            cell.dataset.state = '0';
 
             cell.addEventListener('click', () => {
                 const next = (Number(cell.dataset.state) + 1) % STATES.length;
                 setCsvCellState(cell, next);
+                if (show) saveStateFor(year, show, next);
                 updateCsvCounter();
-                saveCsvState();
             });
 
             row.appendChild(cell);
@@ -3150,38 +3481,111 @@ async function buildCsvGrid() {
     updateCsvCounter();
 }
 
-function saveCsvState() {
-    const stateKey = `animeGridState_${csvDataSource}`;
-    const currentState = JSON.parse(localStorage.getItem(stateKey) || "{}");
-    document.querySelectorAll(".csv-grid").forEach(row => {
-        const year = row.dataset.year;
-        const cells = row.querySelectorAll(".csv-cell");
-        currentState[year] = Array.from(cells).map(cell => cell.dataset.state);
-    });
-    localStorage.setItem(stateKey, JSON.stringify(currentState));
+function makeEntryKey(entry) {
+    return entry.ro?.trim() || entry.en?.trim() || entry.jp?.trim() || '';
 }
 
-function loadCsvState() {
-    const stateKey = `animeGridState_${csvDataSource}`;
-    const saved = JSON.parse(localStorage.getItem(stateKey) || "{}");
-    document.querySelectorAll(".csv-grid").forEach(row => {
-        const year = row.dataset.year;
-        const state = saved[year] || [];
-        const cells = row.querySelectorAll(".csv-cell");
-        cells.forEach((cell, index) => {
-            const newState = parseInt(state[index] || 0);
-            setCsvCellState(cell, newState);
+function getStateStore() {
+    const key = `animeGridState_${csvCatalogType}_${csvDataSource}`;
+    return JSON.parse(localStorage.getItem(key) || '{}');
+}
+
+function setStateStore(store) {
+    const key = `animeGridState_${csvCatalogType}_${csvDataSource}`;
+    localStorage.setItem(key, JSON.stringify(store));
+}
+
+function getSavedStateFor(year, entry) {
+    const store = getStateStore();
+    return Number(store?.[year]?.[makeEntryKey(entry)] ?? 0);
+}
+
+function saveStateFor(year, entry, state) {
+    const store = getStateStore();
+    if (!store[year]) store[year] = {};
+    store[year][makeEntryKey(entry)] = state;
+    setStateStore(store);
+}
+
+function populateTypeFilterCheckboxes() {
+    const container = document.getElementById('typeFilterCheckboxes');
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = '';
+
+    const wrap = document.getElementById('typeFilterWrap');
+
+    if (csvCatalogType !== 'manga') {
+        wrap?.classList.add('hidden');
+        return;
+    }
+
+    const types = [...csvAvailableTypes].sort();
+
+    if (types.length === 0) {
+        wrap?.classList.add('hidden');
+        return;
+    }
+
+    wrap?.classList.remove('hidden');
+
+    if (!csvSelectedTypes || csvSelectedTypes.size === 0) {
+        csvSelectedTypes = new Set(types);
+    }
+
+    types.forEach(type => {
+        const label = document.createElement('label');
+        label.className = 'type-filter-option';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = type;
+        checkbox.checked = csvSelectedTypes.has(type);
+
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                csvSelectedTypes.add(type);
+            } else {
+                csvSelectedTypes.delete(type);
+            }
+
+            updateTypeFilterLabel(
+                document.getElementById('typeFilterLabel'),
+                types
+            );
+
+            renderCsvGrid();
         });
+
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(` ${type}`));
+
+        container.appendChild(label);
     });
-    updateCsvCounter();
+
+    updateTypeFilterLabel(
+        document.getElementById('typeFilterLabel'),
+        types
+    );
+}
+
+function updateTypeFilterLabel(labelEl, allTypes) {
+    if (!labelEl) return;
+    const total = allTypes.length;
+    const selected = csvSelectedTypes.size;
+
+    if (selected === total) labelEl.textContent = 'All types';
+    else if (selected === 0) labelEl.textContent = 'No types';
+    else if (selected === 1) labelEl.textContent = [...csvSelectedTypes][0];
+    else labelEl.textContent = `${selected} types`;
 }
 
 function filterState(filter) {
-    document.querySelectorAll(".csv-cell").forEach(cell => {
-        const state = STATES[parseInt(cell.dataset.state)];
-        if (filter === 'all' || state === filter) cell.style.display = '';
-        else cell.style.display = 'none';
-    });
+    csvStateFilter = filter;
+    renderCsvGrid();
 }
 
 function clearCsvBoard() {
@@ -3189,24 +3593,31 @@ function clearCsvBoard() {
     document.querySelectorAll(".csv-cell").forEach(cell => {
         setCsvCellState(cell, 0);
     });
-    localStorage.removeItem(`animeGridState_${csvDataSource}`);
+    localStorage.removeItem(`animeGridState_${csvCatalogType}_${csvDataSource}`);
     document.querySelectorAll(".csv-year-label").forEach(label => {
         label.style.backgroundColor = "#333";
     });
     updateCsvCounter();
 }
+function syncDataSourceButtons() {
+    document.getElementById('togglePopularity').style.backgroundColor =
+        csvDataSource === 'popularity' ? '#4caf50' : '#2c2c2c';
 
+    document.getElementById('toggleScore').style.backgroundColor =
+        csvDataSource === 'score' ? '#4caf50' : '#2c2c2c';
+}
 function updateCsvCounter() {
     const cells = document.querySelectorAll(".csv-cell");
-    let watched = 0, partial = 0, dropped = 0, planned = 0;
+    let watched = 0, partial = 0, dropped = 0, planned = 0, total = 0;
     cells.forEach(cell => {
+        if (!cell.dataset.type) return;
         const state = cell.dataset.state;
+        total++;
         if (state === "1") watched++;
         else if (state === "2") partial++;
         else if (state === "3") dropped++;
         else if (state === "4") planned++;
     });
-    const total = cells.length;
     document.getElementById("countWatched").textContent = watched;
     document.getElementById("countPartial").textContent = partial;
     document.getElementById("countDropped").textContent = dropped;
@@ -3215,10 +3626,10 @@ function updateCsvCounter() {
 
     document.querySelectorAll(".csv-grid").forEach(row => {
         const cells = row.querySelectorAll(".csv-cell");
+        const populated = Array.from(cells).filter(c => c.dataset.type);
         const label = row.querySelector(".csv-year-label");
-        const allGreen = Array.from(cells).every(cell => cell.dataset.state === "1");
+        const allGreen = populated.length > 0 && populated.every(c => c.dataset.state === "1");
         label.style.backgroundColor = allGreen ? "#4caf50" : "#333";
-        label.style.color = allGreen ? "#fff" : "#fff";
     });
 }
 

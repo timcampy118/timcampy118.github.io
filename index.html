@@ -2205,7 +2205,7 @@ function commitTypedTitle(cell, input) {
 }
 
 async function runCellSearch(query, suggestionsEl, mode, input, cell) {
-    const normalized = query.toLowerCase();
+    const normalized = `${catalogType}:${query.toLowerCase()}`;
     if (searchCache.has(normalized)) {
         renderSuggestions(searchCache.get(normalized), suggestionsEl, mode, input, cell);
         return;
@@ -2398,7 +2398,7 @@ async function waitForTenraiSlot() {
     tenraiLastRequestAt = Date.now();
 }
 
-async function searchTenrai(query, type = 'anime') {
+async function searchTenrai(query, type) {
     await waitForTenraiSlot();
     const endpoint = type === 'manga' ? 'manga' : 'anime';
     try {

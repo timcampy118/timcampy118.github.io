@@ -654,20 +654,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\output\manga_popularity_1928.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\output\manga_popularity_1951.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\output\manga_popularity_1967.csv">
           <value>
             <Attribute>

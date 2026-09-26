@@ -477,7 +477,7 @@
                 font-weight: 700;
                 margin-left: 4px;
             }
-            .counter-sticky {
+            .counter-sticky .counter-sticky-checklist {
                 position: sticky;
                 top: 0;
                 z-index: 200;
@@ -1500,7 +1500,7 @@
                     Hold <strong>Ctrl</strong> (or <strong>Cmd</strong> on Mac) for enlarge image.
                 </div>
 
-                <div class="counter-sticky">
+                <div class="counter-sticky-checklist">
                     <span class="watched-label">Watched</span> : <span id="countWatched">0</span> | Partial: <span id="countPartial">0</span> | Dropped:
                     <span id="countDropped">0</span> | Planned: <span id="countPlanned">0</span> | Total:
                     <span id="countTotal">0</span>
@@ -1812,6 +1812,8 @@ function generateCustomBuilder() {
     const perYear = parseInt(createOptionsPerYear.value);
 
     if (isNaN(start) || isNaN(end) || isNaN(perYear)) { showToast('Please fill in all fields'); return; }
+    if (start < 1900 || end > 2030) {showToast('Please add valid years'); return; }
+    if ( (end-start) * perYear > 1200) {showToast('Too many boxes, please choose less, your browser will die'); return;}
     if (start > end) { showToast('Start year must be <= end year'); return; }
     if (perYear < 1 || perYear > 50) { showToast('Options per year must be 1-50'); return; }
 
@@ -2604,6 +2606,17 @@ function buildCaptureMarkup(captureWidth) {
             html += `</div>`;
         });
     }
+    html += `
+        <div class="csv-description" style="
+            margin-top:20px;
+            text-align:center;
+        ">
+            This grid is generated using data from
+            <a href="https://myanimelist.net/" target="_blank">MyAnimeList</a>
+            on
+            <a href="https://timcampy118.github.io" target="_blank">Timcampy118.github.io</a>
+        </div>
+    </div>`;
     html += '</div>';
     return html;
 }
@@ -3148,6 +3161,11 @@ async function startCsvChecklist(type = 'anime') {
 
     const config = CHECKLIST_CONFIG[csvCatalogType];
     document.getElementById('filterDropdown').value = 'all';
+    if(csvCatalogType==='anime'){
+        document.getElementById('typeFilterLabel').classList.add('hidden');
+    }else{
+        document.getElementById('typeFilterLabel').classList.remove('hidden');
+    }
 
     csvStartYear = config.defaultStart;
     csvEndYear = config.yearMax;
@@ -3642,10 +3660,47 @@ async function captureCsvGrid() {
 
     const captureArea = document.getElementById('captureArea');
     captureArea.style.width = CAPTURE_MIN_WIDTH + 'px';
-    const counter = document.querySelector('.counter-sticky').outerHTML;
-    const grid = document.getElementById('csvContainer').innerHTML;
-    captureArea.innerHTML = `<div style="padding:20px; background:#121212;">${counter}<div style="margin-top:16px;">${grid}</div></div>`;
 
+    const counter = document.querySelector('.counter-sticky-checklist').outerHTML;
+    const grid = document.getElementById('csvContainer').innerHTML;
+
+    const titleElement = document.getElementById('csvTitle');
+    const startYear = document.getElementById('startYearSelect')?.value;
+    const endYear = document.getElementById('endYearSelect')?.value;
+
+    let title = titleElement?.textContent.trim() || '';
+
+    if (startYear && endYear) {
+        title = title.replace(/\b\d{4}\s*-\s*\d{4}\b/, `${startYear}-${endYear}`);
+    }
+
+    captureArea.innerHTML = `
+        <div style="padding:20px; background:#121212;">
+            <h1 style="
+                text-align:center;
+                font-size:1.6rem;
+                font-weight:600;
+                margin:0 0 16px 0;
+                color:#fff;
+            ">${escapeHtml(title)}</h1>
+
+            ${counter}
+
+            <div style="margin-top:16px;">
+                ${grid}
+            </div>
+
+            <div class="csv-description" style="
+                margin-top:20px;
+                text-align:center;
+            ">
+                This list is generated using data from
+                <a href="https://myanimelist.net/" target="_blank">MyAnimeList</a>
+                on
+                <a href="https://timcampy118.github.io" target="_blank">Timcampy118.github.io</a>
+            </div>
+        </div>
+    `;
     showToast('Generating PNG...');
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
     await waitForImages(captureArea);

@@ -2357,6 +2357,8 @@ window.addEventListener('resize', () => {
 
 //SEARCHING
 async function searchCatalog(query, type) {
+    //Hotfix because apparently MAL api search SUCKS, plz fix
+    return await searchTenrai(query, type);
     if (query.length < 3) {
         return await searchTenrai(query, type);
     }

@@ -2545,7 +2545,16 @@ async function captureAsPng() {
     captureArea.style.width = `${width}px`;
     captureArea.style.padding = '0';
     captureArea.style.margin = '0';
-    captureArea.innerHTML = buildCaptureMarkup(width);
+    const statsContainer = document.querySelector('.counter-sticky');
+    const stats = statsContainer
+        ? {
+            watched: document.getElementById('statWatchedVO')?.textContent || '0',
+            partial: document.getElementById('statPartialVO')?.textContent || '0',
+            dropped: document.getElementById('statDroppedVO')?.textContent || '0',
+            planned: document.getElementById('statPlannedVO')?.textContent || '0',
+            total: document.getElementById('statTotalVO')?.textContent || '0'
+        } : null;
+    captureArea.innerHTML = buildCaptureMarkup(width, stats);
 
     showToast('Generating PNG...');
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
@@ -2572,11 +2581,32 @@ async function captureAsPng() {
     }
 }
 
-function buildCaptureMarkup(captureWidth) {
+function buildCaptureMarkup(captureWidth, stats) {
     const title = boardData.title || '';
     let html = `<div style="width:${captureWidth}px; box-sizing:border-box;">`;
     if (title) {
         html += `<h1 style="text-align:center; font-size:1.6rem; font-weight:600; margin:0 0 24px 0; color:#fff;">${escapeHtml(title)}</h1>`;
+    }
+    if (stats) {
+        html += `
+            <div class="counter-sticky" style="
+                text-align:center;
+                margin:0 0 20px 0;
+                color:#fff;
+                font-size:0.9rem;
+            ">
+                <span class="watched-label">Watched</span> :
+                <span>${escapeHtml(stats.watched)}</span> |
+                Partial:
+                <span>${escapeHtml(stats.partial)}</span> |
+                Dropped:
+                <span>${escapeHtml(stats.dropped)}</span> |
+                Planned:
+                <span>${escapeHtml(stats.planned)}</span> |
+                Total:
+                <span>${escapeHtml(stats.total)}</span>
+            </div>
+        `;
     }
     if (isStaticLayout()) {
         const cols = boardData.layout === '3x3' ? 3 : boardData.cols;

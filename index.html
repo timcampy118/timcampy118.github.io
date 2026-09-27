@@ -2487,6 +2487,7 @@ async function copyToClipboard(text) {
 }
 
 //PNG
+const CAPTURE_MIN_WIDTH = 1600;
 function waitForImages(container) {
     const imgs = Array.from(container.querySelectorAll('img'));
     if (imgs.length === 0) return Promise.resolve();
@@ -2501,20 +2502,18 @@ function waitForImages(container) {
 }
 
 async function captureElement(element) {
-    const inner = element.firstElementChild || element;
-    const w = Math.ceil(inner.scrollWidth || inner.offsetWidth || 1200);
-    const h = Math.ceil(inner.scrollHeight || inner.offsetHeight || 800);
+    const width = Math.ceil(element.scrollWidth || element.offsetWidth);
+    const height = Math.ceil(element.scrollHeight || element.offsetHeight);
     return html2canvas(element, {
         backgroundColor: '#121212',
         scale: 2,
         useCORS: true,
         allowTaint: true,
         logging: false,
-        //Pass the full size so png doesn't crop the box.
-        width: element.offsetWidth,
-        height: element.offsetHeight,
-        windowWidth: w + 40,
-        windowHeight: h + 40
+        width: width,
+        height: height,
+        x: 0,
+        y: 0
     });
 }
 
@@ -2525,32 +2524,27 @@ function downloadCanvas(canvas, filename) {
     link.click();
 }
 
-const CAPTURE_MIN_WIDTH = 1600;
-const CAPTURE_MAX_WIDTH = 4800;
-const CAPTURE_CELL_WIDTH = 140;
-
-function computeCaptureWidth(maxSlots) {
-    const raw = CAPTURE_CELL_WIDTH * (maxSlots + 1) + 80;
-    return Math.max(CAPTURE_MIN_WIDTH, Math.min(CAPTURE_MAX_WIDTH, raw));
-}
-
 async function captureAsPng() {
-    if (typeof html2canvas === 'undefined') { showToast('html2canvas not loaded'); return; }
+    if (typeof html2canvas === 'undefined') {
+        showToast('html2canvas not loaded');
+        return; }
     document.activeElement?.blur();
 
     let width;
     if (boardData.layout === '3x3') {
-        width = CAPTURE_MIN_WIDTH;
+        width = 700;
     } else if (boardData.layout === 'grid') {
-        width = computeCaptureWidth(boardData.cols);
+        const cols = boardData.cols || 1;
+        width = Math.max(600, cols * 180);
     } else {
-        const maxSlots = Math.max(...(boardData.years || []).map(r => r.titles.length), 1);
-        width = computeCaptureWidth(maxSlots);
+        const maxSlots = Math.max(...(boardData.years || []).map(r => r.titles.length),1);
+        width = 180 * (maxSlots + 1);
     }
 
     const captureArea = document.getElementById('captureArea');
-    captureArea.style.width = (width + 32) + 'px';
-    captureArea.style.paddingRight = '16px';
+    captureArea.style.width = `${width}px`;
+    captureArea.style.padding = '0';
+    captureArea.style.margin = '0';
     captureArea.innerHTML = buildCaptureMarkup(width);
 
     showToast('Generating PNG...');
@@ -2573,32 +2567,36 @@ async function captureAsPng() {
     } finally {
         captureArea.innerHTML = '';
         captureArea.style.width = '';
-        captureArea.style.paddingRight = '';
+        captureArea.style.padding = '';
+        captureArea.style.margin = '';
     }
 }
 
 function buildCaptureMarkup(captureWidth) {
     const title = boardData.title || '';
-    let html = `<div style="width:${captureWidth}px;">`;
+    let html = `<div style="width:${captureWidth}px; box-sizing:border-box;">`;
     if (title) {
         html += `<h1 style="text-align:center; font-size:1.6rem; font-weight:600; margin:0 0 24px 0; color:#fff;">${escapeHtml(title)}</h1>`;
     }
     if (isStaticLayout()) {
         const cols = boardData.layout === '3x3' ? 3 : boardData.cols;
         const maxW = boardData.layout === '3x3' ? 700 : Math.max(600, cols * 180);
-        html += `<div style="display:grid; grid-template-columns:repeat(${cols}, 1fr); gap:12px; max-width:${maxW}px; margin:0 auto;">`;
-        boardData.slots.forEach((titleData, i) => { html += renderCaptureCard(titleData, progress[i] || 0); });
+        html += `<div style="display:grid; grid-template-columns:repeat(${cols}, 1fr); gap:12px; width:${maxW}px; margin:0 auto;">`;
+        boardData.slots.forEach((titleData, i) => {
+            html += renderCaptureCard(titleData,progress[i] || 0);
+        });
         html += `</div>`;
-    }else {
-        const maxSlots = Math.max(...boardData.years.map(r => r.titles.length), 1);
+
+    } else {
+        const maxSlots = Math.max(...boardData.years.map(r => r.titles.length),1);
         boardData.years.forEach((yearRow, yIdx) => {
             const rowProgress = progress[yIdx] || [];
             const allGreen = yearRow.titles.length > 0 &&
-                  yearRow.titles.every((_, i) => (rowProgress[i] || 0) === 1);
+                yearRow.titles.every((_, i) => (rowProgress[i] || 0) === 1);
             const labelBg = allGreen ? '#4caf50' : '#333';
 
-            html += `<div style="display:grid; grid-template-columns:1fr repeat(${maxSlots}, 1fr); gap:6px; margin-bottom:6px;">`;
-            html += `<div style="background:${labelBg}; border-radius:4px; padding:10px; text-align:center; font-weight:bold; font-size:0.85rem; display:flex; align-items:center; justify-content:center;">${yearRow.year}</div>`;
+            html += `<div style=" display:grid; grid-template-columns:1fr repeat(${maxSlots}, 1fr); gap:6px; margin-bottom:6px;">`;
+            html += `<div style=" background:${labelBg}; border-radius:4px; padding:10px; text-align:center; font-weight:bold; font-size:0.85rem; display:flex; align-items:center; justify-content:center;">${yearRow.year}</div>`;
             yearRow.titles.forEach((titleData, tIdx) => {
                 html += renderCaptureCard(titleData, rowProgress[tIdx] || 0);
             });
@@ -2618,8 +2616,10 @@ function buildCaptureMarkup(captureWidth) {
             on
             <a href="https://timcampy118.github.io" target="_blank">Timcampy118.github.io</a>
         </div>
-    </div>`;
-    html += '</div>';
+    `;
+
+    html += `</div>`;
+
     return html;
 }
 

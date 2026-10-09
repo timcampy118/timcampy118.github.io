@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anime Connect — Daily Puzzle</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel-2: #1f232c;
+    --text: #e8eaed;
+    --muted: #8b919a;
+    --accent: #6ea8fe;
+    --good: #4ade80;
+    --bad: #f87171;
+    --border: #2a2f3a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px 80px; }
+  header { text-align: center; margin-bottom: 24px; }
+  h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: -0.5px; }
+  .sub { color: var(--muted); font-size: 13px; }
+  .meta { display: flex; gap: 16px; justify-content: center; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .meta b { color: var(--text); font-weight: 600; }
+
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+
+  .endpoints { display: grid; grid-template-columns: 1fr 40px 1fr; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .anime-card { display: flex; gap: 12px; align-items: center; background: var(--panel-2); border-radius: 10px; padding: 10px; min-width: 0; }
+  .anime-card img { width: 44px; height: 62px; object-fit: cover; border-radius: 6px; flex-shrink: 0; background: #333; }
+  .anime-card .t { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .anime-card .r { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .arrow { text-align: center; color: var(--muted); font-size: 20px; }
+
+  .chain { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .step { display: flex; align-items: center; gap: 10px; background: var(--panel-2); border-radius: 10px; padding: 8px 12px; font-size: 13px; }
+  .step img { width: 32px; height: 44px; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #333; }
+  .step .via { color: var(--muted); font-size: 11px; }
+  .step .via b { color: var(--accent); font-weight: 600; }
+
+  .search { position: relative; }
+  input[type="text"] {
+    width: 100%; padding: 12px 14px; font-size: 15px;
+    background: var(--panel-2); color: var(--text);
+    border: 1px solid var(--border); border-radius: 10px;
+    outline: none;
+  }
+  input[type="text"]:focus { border-color: var(--accent); }
+  .results {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 20;
+    background: var(--panel-2); border: 1px solid var(--border);
+    border-radius: 10px; margin-top: 4px; max-height: 280px; overflow-y: auto;
+  }
+  .results div { padding: 8px 12px; cursor: pointer; font-size: 13px; border-bottom: 1px solid var(--border); }
+  .results div:last-child { border-bottom: none; }
+  .results div:hover, .results div.active { background: var(--accent); color: #0b0d12; }
+
+  .actions { display: flex; gap: 8px; margin-top: 12px; }
+  button {
+    flex: 1; padding: 10px 14px; font-size: 14px; font-weight: 600;
+    background: var(--panel-2); color: var(--text);
+    border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+  }
+  button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .msg { min-height: 22px; margin-top: 10px; font-size: 13px; text-align: center; }
+  .msg.good { color: var(--good); }
+  .msg.bad { color: var(--bad); }
+
+  .win { text-align: center; padding: 20px; background: linear-gradient(135deg, #1a2a1a, #1f232c); border: 1px solid var(--good); border-radius: 12px; margin-top: 16px; }
+  .win h2 { margin: 0 0 8px; color: var(--good); }
+  .win .emojis { font-size: 22px; letter-spacing: 4px; margin: 10px 0; }
+  .win button { max-width: 200px; margin: 12px auto 0; }
+
+  .loading { text-align: center; color: var(--muted); padding: 40px 0; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Anime Connect</h1>
+    <div class="sub">Link the start show to the goal through shared staff & voice actors</div>
+  </header>
+
+  <div id="loading" class="loading">Loading database…</div>
+
+  <div id="game" class="hidden">
+    <div class="meta">
+      <div>Difficulty <b id="difficulty">—</b></div>
+      <div>Par <b id="par">—</b></div>
+      <div>Your links <b id="count">0</b></div>
+    </div>
+
+    <div class="panel">
+      <div class="endpoints">
+        <div class="anime-card" id="startCard"></div>
+        <div class="arrow">→</div>
+        <div class="anime-card" id="goalCard"></div>
+      </div>
+
+      <div class="chain" id="chain"></div>
+
+      <div class="search">
+        <input type="text" id="search" placeholder="Search for a show…" autocomplete="off" disabled>
+        <div class="results hidden" id="results"></div>
+      </div>
+
+      <div class="actions">
+        <button id="hintBtn">💡 Hint</button>
+        <button id="newBtn">🔄 New puzzle</button>
+        <button id="giveUpBtn">🏳️ Give up</button>
+      </div>
+
+      <div class="msg" id="msg"></div>
+    </div>
+
+    <div class="win hidden" id="win"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+<script>
+"use strict";
+
+// =============================================================
+// Constants
+// =============================================================
+
+const DB_FILE = "puzzle_frontend.db";
+const PUZZLES_FILE = "puzzles.json";
+const EPOCH = Date.UTC(2025, 0, 1); // matches START_DATE in generator
+let allPuzzles = [];
+
+// Type code -> human label. Must match TYPE_CODES in build_frontend_db.py.
+const TYPE_NAMES = {
+  1: "voice actor (JP)",
+  2: "voice actor (EN)",
+  3: "director",
+  4: "music",
+  5: "script",
+  6: "series composition",
+  7: "theme song performance",
+  8: "character design",
+  9: "original creator",
+  10: "original character design",
+};
+
+// Lower number = preferred when picking the "best" shared person.
+// Voice actors come first, staff second, theme song last.
+const STAFF_PRIORITY = {
+  1: 0,  // voice actor (JP)
+  2: 1,  // voice actor (EN)
+  3: 2,  // director
+  6: 3,  // series composition
+  5: 4,  // script
+  4: 5,  // music
+  8: 6,  // character design
+  9: 7,  // original creator
+  10: 8, // original character design
+  7: 9,  // theme song performance
+};
+
+// =============================================================
+// State
+// =============================================================
+
+let db = null;
+let animeById = new Map();   // id -> {id, title, title_english, image_url}
+let personById = new Map();  // id -> {id, name}
+
+// appearance-derived indices:
+let animePeople = new Map(); // animeId -> Map<personId, typeCode>
+let personAnime = new Map(); // personId -> Set<animeId>
+
+let puzzle = null;
+let current = null;
+let chain = [];
+let solved = false;
+
+// =============================================================
+// Boot
+// =============================================================
+
+async function boot() {
+  const loadingEl = document.getElementById("loading");
+
+  // 1. Load sql.js
+  loadingEl.textContent = "Loading sql.js…";
+  const SQL = await initSqlJs({
+    locateFile: f => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${f}`
+  });
+
+  // 2. Fetch the DB with progress
+  const dbBuf = await fetchWithProgress(DB_FILE, (r, t) => {
+    loadingEl.textContent = t
+      ? `Loading database… ${Math.round((100 * r) / t)}%`
+      : `Loading database… ${(r / 1e6).toFixed(1)} MB`;
+  });
+  db = new SQL.Database(dbBuf);
+
+  // 3. Fetch puzzles
+  loadingEl.textContent = "Loading puzzles…";
+  const puzzles = await fetch(PUZZLES_FILE).then(r => r.json());
+  console.log(`Loaded ${puzzles.length} puzzles`);
+
+  // 4. Cache anime
+  loadingEl.textContent = "Indexing…";
+  const animeRows = db.exec(
+    "SELECT id, title, title_english, image_url FROM anime"
+  )[0];
+  if (animeRows) {
+    for (const row of animeRows.values) {
+      animeById.set(row[0], {
+        id: row[0],
+        title: row[1],
+        title_english: row[2],
+        image_url: row[3],
+      });
+    }
+  }
+
+  // 5. Cache people
+  const peopleRows = db.exec("SELECT id, name FROM people")[0];
+  if (peopleRows) {
+    for (const row of peopleRows.values) {
+      personById.set(row[0], { id: row[0], name: row[1] });
+    }
+  }
+
+  // 6. Build appearance-based indices
+  const appRows = db.exec(
+    "SELECT person_id, anime_id, type FROM appearances"
+  )[0];
+  if (appRows) {
+    for (const [personId, animeId, typeCode] of appRows.values) {
+      // anime -> {person -> type}
+      if (!animePeople.has(animeId)) animePeople.set(animeId, new Map());
+      animePeople.get(animeId).set(personId, typeCode);
+
+      // person -> {anime}
+      if (!personAnime.has(personId)) personAnime.set(personId, new Set());
+      personAnime.get(personId).add(animeId);
+    }
+  }
+  console.log(
+    `Indexed ${animeById.size} anime, ${personById.size} people, ` +
+    `${appRows ? appRows.values.length : 0} appearances`
+  );
+
+  // 7. Store puzzles and pick one
+  allPuzzles = puzzles;
+  startPuzzle();
+
+  // 8. Show the game
+  loadingEl.classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+}
+
+// =============================================================
+// Puzzle selection
+// =============================================================
+
+function startPuzzle(explicitPuzzle) {
+  if (!allPuzzles || allPuzzles.length === 0) return;
+
+  // If a specific puzzle is given, use it. Otherwise pick randomly.
+  // On first load, prefer the "daily" one so the URL isn't the only
+  // thing that changes day to day.
+  if (explicitPuzzle) {
+    puzzle = explicitPuzzle;
+  } else if (!puzzle) {
+    // First call — use the daily puzzle.
+    const dayIndex = Math.floor((Date.now() - EPOCH) / 86400000);
+    puzzle = allPuzzles[((dayIndex % allPuzzles.length) + allPuzzles.length) % allPuzzles.length];
+  } else {
+    // Subsequent call — random different puzzle.
+    let next;
+    do {
+      next = allPuzzles[Math.floor(Math.random() * allPuzzles.length)];
+    } while (next === puzzle && allPuzzles.length > 1);
+    puzzle = next;
+  }
+
+  // Reset state.
+  current = puzzle.start.id;
+  chain = [{ animeId: current, viaPersonId: null, viaType: null }];
+  solved = false;
+
+  // Reset UI.
+  const searchInput = document.getElementById("search");
+  const resultsEl = document.getElementById("results");
+  searchInput.value = "";
+  searchInput.disabled = false;
+  resultsEl.classList.add("hidden");
+  currentResults = [];
+  activeIndex = -1;
+
+  document.getElementById("hintBtn").disabled = false;
+  document.getElementById("giveUpBtn").disabled = false;
+
+  document.getElementById("win").classList.add("hidden");
+  document.getElementById("win").innerHTML = "";
+
+  setMsg("");
+
+  render();
+}
+
+// =============================================================
+// Fetch with progress (for large binaries)
+// =============================================================
+
+async function fetchWithProgress(url, onProgress) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch ${url}: HTTP ${res.status}`);
+
+  const total = +res.headers.get("Content-Length") || 0;
+
+  // If the browser doesn't support streaming, fall back.
+  if (!res.body || !res.body.getReader) {
+    const buf = new Uint8Array(await res.arrayBuffer());
+    if (onProgress) onProgress(buf.length, buf.length);
+    return buf;
+  }
+
+  const reader = res.body.getReader();
+  const chunks = [];
+  let received = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    received += value.length;
+    if (onProgress) onProgress(received, total);
+  }
+
+  const out = new Uint8Array(received);
+  let offset = 0;
+  for (const c of chunks) {
+    out.set(c, offset);
+    offset += c.length;
+  }
+  return out;
+}
+
+// =============================================================
+// Rendering
+// =============================================================
+
+function animeCardHTML(anime) {
+  const img = anime.image_url
+    ? `<img src="${anime.image_url}" alt="">`
+    : `<img alt="">`;
+  return `${img}<div><div class="t">${escapeHTML(anime.title)}</div><div class="r">${
+    anime.title_english ? escapeHTML(anime.title_english) : ""
+  }</div></div>`;
+}
+
+function render() {
+  document.getElementById("difficulty").textContent = puzzle.difficulty;
+  document.getElementById("par").textContent = puzzle.optimal_links;
+  document.getElementById("count").textContent = chain.length - 1;
+
+  document.getElementById("startCard").innerHTML = animeCardHTML(puzzle.start);
+  document.getElementById("goalCard").innerHTML = animeCardHTML(puzzle.goal);
+
+  const chainEl = document.getElementById("chain");
+  chainEl.innerHTML = "";
+
+  for (let i = 1; i < chain.length; i++) {
+    const step = chain[i];
+    const anime = animeById.get(step.animeId);
+    const person = personById.get(step.viaPersonId);
+    const viaType = step.viaType ? step.viaType.replace(/_/g, " ") : "";
+
+    const html = `
+      <div class="step">
+        ${animeCardHTML(anime)}
+        <div class="via">via <b>${escapeHTML(person ? person.name : "?")}</b><br>${escapeHTML(viaType)}</div>
+      </div>
+    `;
+    chainEl.insertAdjacentHTML("beforeend", html);
+  }
+}
+
+function setMsg(text, cls) {
+  const el = document.getElementById("msg");
+  el.textContent = text;
+  el.className = "msg " + (cls || "");
+}
+
+// =============================================================
+// Connection lookup
+// =============================================================
+
+function getSharedPeople(fromId, toId) {
+  const a = animePeople.get(fromId);
+  const b = animePeople.get(toId);
+  if (!a || !b) return [];
+
+  const [small, large] = a.size <= b.size ? [a, b] : [b, a];
+
+  const shared = [];
+  for (const [personId, typeCode] of small) {
+    if (large.has(personId)) {
+      shared.push({
+        person_id: personId,
+        connection_type: TYPE_NAMES[typeCode] || String(typeCode),
+        typeCode,
+      });
+    }
+  }
+  shared.sort(
+    (x, y) => (STAFF_PRIORITY[x.typeCode] ?? 99) - (STAFF_PRIORITY[y.typeCode] ?? 99)
+  );
+  return shared;
+}
+
+function pickBestSharedPerson(shared) {
+  if (shared.length === 0) return null;
+  return shared[0]; // already sorted by priority
+}
+
+// =============================================================
+// Search / autocomplete
+// =============================================================
+
+const searchInput = document.getElementById("search");
+const resultsEl = document.getElementById("results");
+let activeIndex = -1;
+let currentResults = [];
+
+function searchAnime(query) {
+  const q = query.trim().toLowerCase();
+  if (q.length < 2) return [];
+  const out = [];
+  for (const anime of animeById.values()) {
+    const t = (anime.title || "").toLowerCase();
+    const te = (anime.title_english || "").toLowerCase();
+    if (t.includes(q) || te.includes(q)) {
+      out.push(anime);
+      if (out.length >= 20) break;
+    }
+  }
+  return out;
+}
+
+function renderResults() {
+  resultsEl.innerHTML = "";
+  if (currentResults.length === 0) {
+    resultsEl.classList.add("hidden");
+    return;
+  }
+  currentResults.forEach((anime, i) => {
+    const div = document.createElement("div");
+    div.textContent =
+      anime.title + (anime.title_english ? ` — ${anime.title_english}` : "");
+    if (i === activeIndex) div.classList.add("active");
+    div.onmousedown = e => {
+      e.preventDefault();
+      attemptGuess(anime.id);
+    };
+    resultsEl.appendChild(div);
+  });
+  resultsEl.classList.remove("hidden");
+}
+
+searchInput.addEventListener("input", () => {
+  currentResults = searchAnime(searchInput.value);
+  activeIndex = -1;
+  renderResults();
+});
+
+searchInput.addEventListener("keydown", e => {
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    if (activeIndex < currentResults.length - 1) activeIndex++;
+    renderResults();
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    if (activeIndex > 0) activeIndex--;
+    renderResults();
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    const pick = activeIndex >= 0 ? currentResults[activeIndex] : currentResults[0];
+    if (pick) attemptGuess(pick.id);
+  } else if (e.key === "Escape") {
+    currentResults = [];
+    renderResults();
+  }
+});
+
+document.addEventListener("click", e => {
+  if (!e.target.closest(".search")) {
+    resultsEl.classList.add("hidden");
+  }
+});
+
+// =============================================================
+// Guessing
+// =============================================================
+
+function attemptGuess(guessId) {
+  if (solved) return;
+  searchInput.value = "";
+  currentResults = [];
+  renderResults();
+
+  if (guessId === current) {
+    setMsg("You're already there.", "bad");
+    return;
+  }
+  if (chain.some(s => s.animeId === guessId)) {
+    setMsg("That show is already in your chain.", "bad");
+    return;
+  }
+
+  const shared = getSharedPeople(current, guessId);
+  if (shared.length === 0) {
+    const guess = animeById.get(guessId);
+    setMsg(
+      `No shared staff or VA between "${animeById.get(current).title}" and "${guess.title}".`,
+      "bad"
+    );
+    return;
+  }
+
+  const pick = pickBestSharedPerson(shared);
+  const person = personById.get(pick.person_id);
+
+  chain.push({
+    animeId: guessId,
+    viaPersonId: pick.person_id,
+    viaType: pick.connection_type,
+  });
+  current = guessId;
+
+  setMsg(`✓ Linked via ${person.name}`, "good");
+  render();
+
+  if (guessId === puzzle.goal.id) {
+    win();
+  }
+}
+
+// =============================================================
+// Win / hint / give up
+// =============================================================
+
+function win() {
+  solved = true;
+  searchInput.disabled = true;
+  document.getElementById("hintBtn").disabled = true;
+  document.getElementById("giveUpBtn").disabled = true;
+
+  const links = chain.length - 1;
+  const par = puzzle.optimal_links;
+  const diff = puzzle.difficulty;
+
+  let emojis = "";
+  const status = links <= par ? "🟩" : links === par + 1 ? "🟨" : "🟥";
+  for (let i = 0; i < links; i++) emojis += status;
+
+  const winEl = document.getElementById("win");
+  winEl.innerHTML = `
+    <h2>🎉 Solved in ${links} link${links === 1 ? "" : "s"}!</h2>
+    <div>Par: ${par} links · Difficulty: ${diff}</div>
+    <div class="emojis">${emojis}</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:12px">Anime Connect #${puzzle.day + 1}</div>
+    <button id="shareBtn">📋 Copy result</button>
+  `;
+  winEl.classList.remove("hidden");
+
+  document.getElementById("shareBtn").onclick = () => {
+    const text =
+      `Anime Connect #${puzzle.day + 1} — ${diff}\n` +
+      `${links}/${par} links\n${emojis}`;
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById("shareBtn").textContent = "✓ Copied!";
+    });
+  };
+}
+document.getElementById("newBtn").onclick = () => {
+  startPuzzle();
+};
+document.getElementById("hintBtn").onclick = () => {
+  if (solved) return;
+  const solution = puzzle.solution_path;
+  const idx = solution.indexOf(current);
+  if (idx === -1) {
+    setMsg("You've wandered off the intended path — no hint available from here.", "bad");
+    return;
+  }
+  if (idx >= solution.length - 1) return;
+
+  const nextId = solution[idx + 1];
+
+  // Live lookup — always matches what a successful guess would say.
+  const shared = getSharedPeople(current, nextId);
+  const best = pickBestSharedPerson(shared);
+
+  if (best) {
+    const person = personById.get(best.person_id);
+    setMsg(`Hint: try linking via ${person.name} (${best.connection_type}).`, "good");
+  } else {
+    setMsg(`Hint: the next show starts with "${animeById.get(nextId).title[0]}".`, "good");
+  }
+};
+
+document.getElementById("giveUpBtn").onclick = () => {
+  if (solved) return;
+  solved = true;
+  searchInput.disabled = true;
+
+  const path = puzzle.solution_path
+    .map(id => animeById.get(id).title)
+    .join(" → ");
+
+  setMsg(`Solution: ${path}`, "bad");
+  document.getElementById("hintBtn").disabled = true;
+  document.getElementById("giveUpBtn").disabled = true;
+};
+
+// =============================================================
+// Utility
+// =============================================================
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[c]);
+}
+
+// =============================================================
+// Go
+// =============================================================
+
+boot().catch(err => {
+  console.error(err);
+  document.getElementById("loading").textContent =
+    "Failed to load: " + (err && err.message ? err.message : err);
+});
+</script>
+</body>
+</html>

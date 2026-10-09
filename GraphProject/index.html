@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10131a" />
+  <title>MAL Anime Audience Graph</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div><h1>Anime Audience Graph</h1><p class="subtitle">Explore connections through shared MAL audiences</p></div>
+      <div class="stats" id="stats">Loading graph…</div>
+    </header>
+    <main class="layout">
+      <aside class="sidebar">
+        <label class="field-label" for="search">Search anime</label>
+        <input id="search" type="search" placeholder="Title or MAL ID…" autocomplete="off" />
+        <div id="search-results" class="search-results"></div>
+        <div class="section">
+          <div class="section-title">Visible connections</div>
+          <div class="segmented">
+            <button data-mode="audience" class="active">Audience</button>
+            <button data-mode="relations">Franchise</button>
+            <button data-mode="both">Both</button>
+          </div>
+          <label class="check-row"><input type="checkbox" id="show-labels" checked /> Show labels</label>
+          <label class="check-row"><input type="checkbox" id="color-community" /> Color by community</label>
+          <label class="field-label" for="min-audience">Minimum audience</label>
+          <input id="min-audience" type="range" min="0" max="100" value="0" />
+          <div class="range-labels"><span>All</span><span id="audience-label">No filter</span></div>
+        </div>
+        <div class="section">
+          <div class="section-title">Selected anime</div>
+          <div id="details" class="details empty">Select a node to inspect its audience connections and Tenrai metadata.</div>
+        </div>
+        <footer><span>Data: MAL audience overlap + Tenrai metadata</span><span><a href="https://api.tenrai.org/documentation" target="_blank" rel="noreferrer">Tenrai API</a></span></footer>
+      </aside>
+      <section class="graph-panel">
+        <div id="graph-container" aria-label="Interactive anime graph"></div>
+        <div id="notice" class="notice">Loading graph data…</div>
+        <div class="graph-help">Drag to pan · Scroll to zoom · Click a node for details · Double-click to focus</div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

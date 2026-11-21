@@ -1,0 +1,59 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // サーバー側の国コードを取得（bodyタグのdata属性から）
+  const countryCode = document.body.getAttribute('data-country-code');
+  const isUSUser = (countryCode === 'US');
+
+  // 初期状態では両方とも非表示
+  const gdprElements = document.querySelectorAll('.cmp-gdpr-only');
+  const ccpaElements = document.querySelectorAll('.cmp-ccpa-only');
+
+  gdprElements.forEach(el => {
+    el.style.display = 'none';
+  });
+
+  ccpaElements.forEach(el => {
+    el.style.display = 'none';
+  });
+
+  if (isUSUser) {
+    // USユーザーの場合：Do Not Sellのみ表示（USPAPIが利用可能な場合）
+    if (typeof window.__uspapi === 'function') {
+      window.__uspapi('uspPing', 1, (obj, status) => {
+        if (status && obj.mode && obj.mode.includes('USP')) {
+          window.__uspapi('setUspDftData', 1, (obj, status) => {
+            if (!status) {
+              console.error("Error: USP string not updated!");
+            }
+          });
+
+          const ccpaContents = document.querySelectorAll('.cmp-ccpa-only');
+          ccpaContents.forEach(element => {
+            element.addEventListener('click', function(e) {
+              e.preventDefault();
+              window.__uspapi('displayUspUi');
+              return false;
+            });
+            element.style.display = 'inline';
+          });
+        }
+      });
+    }
+  } else {
+    // US以外の場合：Privacy Settingsのみ表示（TCFAPIが利用可能な場合）
+    if (typeof window.__tcfapi === 'function') {
+      window.__tcfapi('getTCData', 2, (tcData, success) => {
+        if (success && tcData && tcData.gdprApplies) {
+          const gdprContents = document.querySelectorAll('.cmp-gdpr-only');
+          gdprContents.forEach(element => {
+            element.addEventListener('click', (e) => {
+              e.preventDefault();
+              window.__tcfapi('displayConsentUi', 2, () => {});
+              return false;
+            });
+            element.style.display = 'inline';
+          });
+        }
+      });
+    }
+  }
+});
